@@ -444,7 +444,7 @@ p {
 .home-det .home-dat .links .btn-link li {
     float: left;
     padding: 5px 10px;
-    border: 1px solid #888;
+    border: 1px solid black;
     margin-right: 10px;
     color: #888;
 }
@@ -462,7 +462,7 @@ p {
 }
 
 .home-det .home-dat .links .btn-link li a {
-    color: #888;
+    color: black;
 }
 
 .home-det .home-dat .links .social-link {
@@ -472,7 +472,7 @@ p {
 .home-det .home-dat .links .social-link li {
     float: left;
     padding: 5px;
-    border: 1px solid #888;
+    border: 1px solid black;
     border-radius: 0px;
     /*50px*/
     width: 35px;
@@ -553,6 +553,10 @@ p {
     border: 1px solid #888;
     margin-right: 10px;
     color: #888;
+}
+
+.links .btn-link a {
+    color: black;
 }
 
 .refer-cov {
@@ -1006,6 +1010,7 @@ p {
 
 /* CONTACTS */
 .contact {
+  padding-top: 10px;
   padding-bottom: 15px;
 }
 
