@@ -335,6 +335,12 @@ p {
     font-size: 2.2rem;
 }
 
+.overcover .covwe-inn .tit-det h4 {
+    color: #FFF;
+    font-size: 1.2rem;
+}
+
+
 @media screen and (max-width: 450px) {
     .overcover .covwe-inn .tit-det h2 {
         font-size: 1.8rem;
@@ -1005,6 +1011,7 @@ p {
 }
 
 
+
 /* TESTIMONIALS */
 
 .card {
@@ -1153,6 +1160,7 @@ p {
 .prev:active, .next:active {
   color: #014795;
 }
+
 
 
 /* POST FOR THE BLOG */
