@@ -958,36 +958,6 @@ p {
     background: url('../images/clouds.svg');
 }
 
-.satellite {
-    position: absolute;
-    bottom: 30px;
-    left: 90px;
-    display: block;
-    height: 30px;
-    width: 30px;
-    background: rgba(10,80,200,1);
-    border-radius: 15px;
-    transform: rotate(-23.5deg);
-    animation: orbit 96s linear infinite;
-    transform-origin: 20% 20%;
-}
-
-.moonLayer {
-    position: absolute;
-    height: 30px;
-    width: 30px;
-    border-radius: 15px;
-    overflow: hidden;
-}
-
-.moonAmbience {
-    width: 30px;
-    height: 30px;
-    box-shadow: 0px 0px 20px 20px rgba(20,200,200,0.5);
-    background: rgba(20,200,200,0.5);
-    border-radius: 15px;
-}
-
 @keyframes rotate {
     from {
         background-position-x: 0px;
@@ -998,19 +968,104 @@ p {
     }
 }
 
-@keyframes orbit {
-    from {
-        transform: rotate(0deg);
-        /* Define the starting position */
-    }
+.moon{
+  width: 75px;
+  height: 75px;
+  background-color: #e3f2fd;
+  border-radius: 50%;
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: 25s ease-in-out 0s normal none infinite moon-move;
+  box-shadow: 0 0 35px 2px rgba(255,255,255,.5), inset -25px -5px 30px 10px rgba(0,0,0,.5);
+}
 
-    to {
-        transform: rotate(360deg);
-        /* Define the ending position */
-    }
+.moon-layer {
+    position: absolute;
+    height: 75px;
+    width: 75px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.moon-land{
+  animation: rotate 100s linear infinite;
+  background-size: 150px 75px;
+  background-image: url('../images/moon.jpg');
 }
 
 
+@keyframes moon-move{
+  0%{
+    left: -70%;
+    top: 100%;
+    z-index: -1;
+  }
+  25%{
+    transform: scale(1);
+  }
+  50%{
+    left: 70%;
+    top: 53%;
+    transform: scale(0.5);
+  }
+  75%{
+    transform: scale(0.3);
+  }
+  100%{
+    left: -70%;
+    top: 100%;
+    z-index: -2;
+    transform: scale(0.5);
+  }
+}
+
+
+.moon-glare {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotateY(90deg);
+  height: 75px;
+  width: 75px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(0.8,0.8,0.8,0.8) 0%, rgba(0.7,0.7,0.7,0.7) 50%, rgba(0.6,0.6,0.6,0.6) 100%);
+  animation: 25s linear 0s normal none infinite glare-move;
+  z-index: 1;
+}
+
+@keyframes glare-move {
+  0% {
+    opacity: 0.3;
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  25% {
+    opacity: 0.3;
+    transform: translate(-50%, -50%) rotate(-25deg);
+  }
+  50% {
+    opacity: 0.3;
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+  75% {
+    opacity: 0.7;
+    transform: translate(-50%, -50%) rotate(-65deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(-90deg);
+  }
+}
+
+
+.formContainer {
+    max-width: 100%;
+    padding: 20px;
+    background-color: #fff;
+    height: 500px;
+    overflow-y: scroll;
+}
 
 /* TESTIMONIALS */
 
