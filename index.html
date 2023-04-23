@@ -45,13 +45,13 @@
 								<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile"  role="tab" aria-controls="profile" aria-selected="false">Profile</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" id="profile-tab" data-toggle="tab" href="#resume"   role="tab" aria-controls="profile" aria-selected="false">Resume</a>
+								<a class="nav-link" id="resume-tab" data-toggle="tab" href="#resume"   role="tab" aria-controls="profile" aria-selected="false">Resume</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" id="profile-tab" data-toggle="tab" href="#gallery"  role="tab" aria-controls="profile" aria-selected="false">Portfolio</a>
+								<a class="nav-link" id="portfolio-tab" data-toggle="tab" href="#gallery"  role="tab" aria-controls="profile" aria-selected="false">Portfolio</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" id="profile-tab" data-toggle="tab" href="#blog"     role="tab" aria-controls="profile" aria-selected="false">Blog</a>
+								<a class="nav-link" id="blog-tab" data-toggle="tab" href="#blog"     role="tab" aria-controls="profile" aria-selected="false">Blog</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact"  role="tab" aria-controls="contact" aria-selected="false">Contact</a>
@@ -61,7 +61,7 @@
 
           <!-- HOME -->
           <div class="tab-content" id="myTabContent">	
-          	<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+          	<div class="tab-pane show active" id="home" role="tabpanel" aria-labelledby="home-tab">
             	<div class="row no-margin home-det">
               	<div class="col-md-4 big-img">
 
@@ -141,28 +141,28 @@
           </div>
 
           <!-- PROFILE -->
-					<div class="tab-pane fade gallcoo" id="profile" role="tabpanel" aria-labelledby="contact-tab">
+					<div class="tab-pane gallcoo" id="profile" role="tabpanel" aria-labelledby="contact-tab">
             <p> Coming soon. </p>
 					</div>
 	        
           <!-- RESUME -->
-          <div class="tab-pane fade exp-cover formContainer" id="resume" role="tabpanel" aria-labelledby="contact-tab">
+          <div class="tab-pane exp-cover formContainer" id="resume" role="tabpanel" aria-labelledby="contact-tab">
             <div data-include="resume"></div>
 					</div>
 
 
           <!-- PORTFOLIO -->
-					<div class="tab-pane fade gallcoo" id="gallery" role="tabpanel" aria-labelledby="contact-tab">
+					<div class="tab-pane gallcoo formContainer" id="gallery" role="tabpanel" aria-labelledby="portfolio-tab">
             <div data-include="portfolio"></div>
 					</div>
 
           <!-- BLOG -->
-					<div class="tab-pane fade gallcoo" id="blog" role="tabpanel" aria-labelledby="contact-tab">
+					<div class="tab-pane gallcoo formContainer" id="blog" role="tabpanel" aria-labelledby="blog-tab">
             <div data-include="blog"></div>
 					</div>
 					
           <!-- CONTACT -->          
-					<div class="tab-pane fade contact-tab" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+					<div class="tab-pane contact-tab" id="contact" role="tabpanel" aria-labelledby="contact-tab">
             <div data-include="contact"></div>
 					</div>
 
@@ -173,37 +173,17 @@
 </body>
 
 <script src="assets/js/jquery-3.2.1.min.js"></script>
-<script src="assets/js/popper.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/script.js"></script>
 
-<script src="assets/vendor/aos/aos.js"></script>
 <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
 <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
 <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
 <script src="assets/vendor/typed.js/typed.min.js"></script>
 
+<script src="assets/js/script.js"></script>
+
 <script>
-  $(window).on('load', function () {
-    // Initialize Isotope
-    var $grid = $('.portfolio-container').isotope({
-      itemSelector: '.portfolio-item',
-      layoutMode: 'fitRows'
-    });
-
-    // Filter items on button click
-    $('#portfolio-flters').on('click', 'li', function () {
-      var filterValue = $(this).attr('data-filter');
-      $grid.isotope({ filter: filterValue });
-    });
-
-    // Add active class on portfolio filter buttons
-    $('#portfolio-flters').on('click', 'li', function () {
-      $(this).addClass('filter-active').siblings().removeClass('filter-active');
-    });
-  });
-
   $(function () {
     var includes = $('[data-include]')
     $.each(includes, function() {
@@ -231,112 +211,6 @@
   }
 
   /**
-   * Easy event listener function
-   */
-  const on = (type, el, listener, all = false) => {
-    let selectEl = select(el, all)
-    if (selectEl) {
-      if (all) {
-        selectEl.forEach(e => e.addEventListener(type, listener))
-      } else {
-        selectEl.addEventListener(type, listener)
-      }
-    }
-  }
-
-  /**
-   * Easy on scroll event listener 
-   */
-  const onscroll = (el, listener) => {
-    el.addEventListener('scroll', listener)
-  }
-
-  /**
-   * Navbar links active state on scroll
-   */
-  let navbarlinks = select('#navbar .scrollto', true)
-  const navbarlinksActive = () => {
-    let position = window.scrollY + 200
-    navbarlinks.forEach(navbarlink => {
-      if (!navbarlink.hash) return
-      let section = select(navbarlink.hash)
-      if (!section) return
-      if (position >= section.offsetTop && position <= (section.offsetTop + section.offsetHeight)) {
-        navbarlink.classList.add('active')
-      } else {
-        navbarlink.classList.remove('active')
-      }
-    })
-  }
-  window.addEventListener('load', navbarlinksActive)
-  onscroll(document, navbarlinksActive)
-
-  /**
-   * Scrolls to an element with header offset
-   */
-  const scrollto = (el) => {
-    let elementPos = select(el).offsetTop
-    window.scrollTo({
-      top: elementPos,
-      behavior: 'smooth'
-    })
-  }
-
-  /**
-   * Back to top button
-   */
-  let backtotop = select('.back-to-top')
-  if (backtotop) {
-    const toggleBacktotop = () => {
-      if (window.scrollY > 100) {
-        backtotop.classList.add('active')
-      } else {
-        backtotop.classList.remove('active')
-      }
-    }
-    window.addEventListener('load', toggleBacktotop)
-    onscroll(document, toggleBacktotop)
-  }
-
-  /**
-   * Mobile nav toggle
-   */
-  on('click', '.mobile-nav-toggle', function(e) {
-    select('body').classList.toggle('mobile-nav-active')
-    this.classList.toggle('bi-list')
-    this.classList.toggle('bi-x')
-  })
-
-  /**
-   * Scrool with ofset on links with a class name .scrollto
-   */
-  on('click', '.scrollto', function(e) {
-    if (select(this.hash)) {
-      e.preventDefault()
-
-      let body = select('body')
-      if (body.classList.contains('mobile-nav-active')) {
-        body.classList.remove('mobile-nav-active')
-        let navbarToggle = select('.mobile-nav-toggle')
-        navbarToggle.classList.toggle('bi-list')
-        navbarToggle.classList.toggle('bi-x')
-      }
-      scrollto(this.hash)
-    }
-  }, true)
-
-  /**
-   * Scroll with ofset on page load with hash links in the url
-   */
-  window.addEventListener('load', () => {
-    if (window.location.hash) {
-      if (select(window.location.hash)) {
-        scrollto(window.location.hash)
-      }
-    }
-  });
-
-  /**
    * Hero type effect
    */
   const typed = select('.typed')
@@ -352,76 +226,6 @@
     });
   }
 
-  /**
-   * Skills animation
-   */
-  let skilsContent = select('.skills-content');
-  if (skilsContent) {
-    new Waypoint({
-      element: skilsContent,
-      offset: '80%',
-      handler: function(direction) {
-        let progress = select('.progress .progress-bar', true);
-        progress.forEach((el) => {
-          el.style.width = el.getAttribute('aria-valuenow') + '%'
-        });
-      }
-    })
-  }
-
-  /**
-   * Porfolio isotope and filter
-   */
-  window.addEventListener('load', () => {
-    let portfolioContainer = select('.portfolio-container');
-    if (portfolioContainer) {
-      let portfolioIsotope = new Isotope(portfolioContainer, {
-        itemSelector: '.portfolio-item'
-      });
-
-      let portfolioFilters = select('#portfolio-flters li', true);
-
-      on('click', '#portfolio-flters li', function(e) {
-        e.preventDefault();
-        portfolioFilters.forEach(function(el) {
-          el.classList.remove('filter-active');
-        });
-        this.classList.add('filter-active');
-
-        portfolioIsotope.arrange({
-          filter: this.getAttribute('data-filter')
-        });
-        portfolioIsotope.on('arrangeComplete', function() {
-          AOS.refresh()
-        });
-      }, true);
-    }
-
-  });
-
-  /**
-   * Initiate portfolio lightbox 
-   */
-  const portfolioLightbox = GLightbox({
-    selector: '.portfolio-lightbox'
-  });
-
-  /**
-   * Portfolio details slider
-   */
-  new Swiper('.portfolio-details-slider', {
-    speed: 400,
-    loop: true,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false
-    },
-    pagination: {
-      el: '.swiper-pagination',
-      type: 'bullets',
-      clickable: true
-    }
-  });
 
   /**
    * Testimonials slider
@@ -451,23 +255,6 @@
       }
     }
   });
-
-  /**
-   * Animation on scroll
-   */
-  window.addEventListener('load', () => {
-    AOS.init({
-      duration: 1000,
-      easing: 'ease-in-out',
-      once: true,
-      mirror: false
-    })
-  });
-
-  /**
-   * Initiate Pure Counter 
-   */
-  new PureCounter();
 
 })()
 </script>
