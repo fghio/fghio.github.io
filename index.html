@@ -155,14 +155,16 @@
 
           <!-- PORTFOLIO -->
 					<div class="tab-pane gallcoo formContainer" id="gallery" role="tabpanel" aria-labelledby="portfolio-tab">
-            <div data-include="portfolio"></div>
+            Coming soon. <!-- <div data-include="portfolio"></div> -->
 					</div>
 
           <!-- BLOG -->
 					<div class="tab-pane gallcoo formContainer" id="blog" role="tabpanel" aria-labelledby="blog-tab">
+						<div id="post-content"></div>
+
             <div data-include="blog"></div>
 					</div>
-					
+	
           <!-- CONTACT -->          
 					<div class="tab-pane contact-tab" id="contact" role="tabpanel" aria-labelledby="contact-tab">
             <div data-include="contact"></div>
@@ -194,6 +196,29 @@
     })
   })
 </script>
+
+<!-- BLOG ARTICLES -->
+<script>
+function loadPost(url) {
+  fetch(url)
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('post-content').innerHTML = data;
+      document.querySelectorAll('.blog-card').forEach(card => {
+        card.style.display = 'none';
+      });
+    })
+    .catch(error => console.log(error));
+}
+
+function showCards() {
+  document.getElementById('post-content').innerHTML = '';
+  document.querySelectorAll('.blog-card').forEach(card => {
+    card.style.display = 'block';
+  });
+}
+</script>
+
 
 
 <script>
