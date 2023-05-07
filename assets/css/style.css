@@ -314,6 +314,7 @@ p {
     /*url(../images/bg.jpg);*/
     background-size: cover;
     width: 100%;
+    max-height: 350px;
 }
 
 .overcover {
@@ -340,8 +341,8 @@ p {
 
 @media (max-width: 767px) {
 	.overcover .covwe-inn .img-c {
-        width: 0%;
-        height: 0%;
+          width: 0%;
+          height: 0%;
     }
 }
 
@@ -1331,7 +1332,51 @@ p {
   color: #014795;
 }
 
+/* ADVERTISEMENTS */
+.advertisement{
+  width: 100%;
+  padding-top: 10px;
+}
 
+/*NEWS BANNER*/
+.shownews {
+  width:100%;
+  padding-top: 5px;
+  text-transform: uppercase;
+  font-family: open sans;
+  display:grid;
+  grid-template-columns: max-content auto;
+  grid-column-gap:3px;
+}
+
+.shownews .title {
+  background:#F23E16;
+  display:inline-block;
+  padding:8px 16px;
+  color: white;
+}
+
+.date {
+  font-weight:300;
+  background: #014795;
+  color: white;
+  font-size: 12px;
+  text-align: center;
+  padding: 4px;
+}
+
+.shownews #news {
+  background: #fff;
+  border: 1px solid #000;
+  display:inline-block;
+  padding:8px 16px;
+}
+
+.shownews #news a{
+  font-weight:300;
+  color:#000 !important; 
+  text-decoration:none;
+} 
 
 /* POST FOR THE BLOG */
 
@@ -1493,7 +1538,123 @@ p {
   color: #666;
 }
 
+#back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 99;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  background-color: #555;
+  color: white;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+#back-to-top:hover {
+  background-color: #777;
+}
+
+
+
 .grayLine{
 	padding-top: 20px;
   border-bottom: 1px solid #ccc;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ASTRONAUT */
+.arm-left{
+animation: armSwipe 5s infinite ease-in-out;
+transform-origin: left top;
+}
+@keyframes armSwipe{
+  0%{transform: rotate(-10deg);}
+  50%{transform: rotate(0deg);}
+    100%{transform: rotate(-10deg);}
+}
+.arm-right{
+  animation: armRightSwipe 5s infinite ease-in-out;
+  transform-origin: right top;
+}
+@keyframes armRightSwipe {
+  0%{transform: rotate(-1deg);}
+  50%{transform: rotate(-5deg);}
+    100%{transform: rotate(-1deg);}
+}
+.astronaut{
+  width: 15%;
+  height: auto;
+  position: absolute;
+  right: 3%;
+  top: -5%;
+  animation: Levitation 5s infinite ease-in-out;
+}
+@keyframes Levitation{
+  0%{transform: translateY(100px);}
+  50%{transform: translateY(80px); }
+  100%{transform: translateY(100px);}
+}
+.leg-right{
+  animation: LegSwipe 5s infinite ease-out;
+  transform-origin: left bottom;
+}
+@keyframes LegSwipe {
+  0%{transform: rotate(8deg);}
+  50%{transform: rotate(5deg);}
+  100%{transform: rotate(8deg);}
+}
+.leg-left{
+
+}
+@keyframes LegLeftSwipe {
+  0%{transform: rotate(2deg);}
+  50%{transform: rotate(0deg);}
+  100%{transform: rotate(2deg);}
+}
+.reflect{
+  animation: faceOpacity 5s infinite;
+}
+@keyframes faceOpacity {
+  0%{opacity: 0.7;}
+  70%{opacity: 1;}
+  100%{opacity: 0.7;}
+}
+.eye-right{
+  animation: eyeBlink 5s infinite step-start 0s;
+}
+.eye-left{
+  animation: eyeLeftBlink 5s infinite step-start 0s;
+
+}
+@keyframes eyeBlink {
+  90%{transform: none; animation-timing-function: ease-in;}
+  93%{transform: translateY(135px) scaleY(0);}
+  100%{animation-timing-function: ease-in;}
+}
+@keyframes eyeLeftBlink {
+  90%{transform: none; animation-timing-function: ease-in;}
+  93%{transform: translateY(155px) scaleY(0);}
+  100%{animation-timing-function: ease-in;}
+}
+
+@media only screen and (max-width: 767px) {
+  .astronaut {
+    display: none;
+  }
 }
