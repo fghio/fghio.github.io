@@ -9,43 +9,46 @@
 
     <div class="row cont-row no-margin contact">
       <div class="col-sm-6">
-        &nbsp;&nbsp;
+        &nbsp;
         <i class="fas fa-phone"></i> &nbsp;&nbsp;
         <a href:""> XXX XXXXXXX </a>
       </div>
       <div class="col-sm-6">
-          &nbsp;&nbsp;
-        <i class="fas fa-envelope"></i> &nbsp;&nbsp;
-        <a href:""> federico.ghioldi@polimi.it </a>
+        &nbsp;
+        <a href="mailto:federico.ghioldi@polimi.it" target="_blank"><i class="fas fa-envelope"></i> &nbsp;&nbsp;</a>
+        <a href="mailto:federico.ghioldi@polimi.it"> federico.ghioldi@polimi.it </a>
       </div>
     </div>
 
-    <div class="row cont-row no-margin">
-      <div class="col-sm-6">
-        <input placeholder="Full Name" type="text" class="form-control form-control-sm">
+    <form method="POST" action="assets/php/process.php">
+      <div class="row cont-row no-margin">
+        <div class="col-sm-6">
+          <input placeholder="Full Name" name="name" type="text" class="form-control form-control-sm" required>
+        </div>
+        <div class="col-sm-6">
+          <input placeholder="Email Address" name="email" type="email" class="form-control form-control-sm" required>
+        </div>
       </div>
-      <div class="col-sm-6">
-        <input placeholder="Email Address" type="text" class="form-control form-control-sm">
+      <div class="row cont-row no-margin">
+        <div class="col-sm-6">
+          <input placeholder="Subject" name="subject" type="text" class="form-control form-control-sm" required>
+        </div>									   
+        <div class="col-sm-6">
+          <input placeholder="Mobile Number" name="phone" type="tel" class="form-control form-control-sm" required>
+        </div>									   
       </div>
-    </div>
-    <div class="row cont-row no-margin">
-      <div class="col-sm-6">
-        <input placeholder="Subject" type="text" class="form-control form-control-sm">
-      </div>									   
-      <div class="col-sm-6">
-        <input placeholder="Mobile Number" type="text" class="form-control form-control-sm">
-      </div>									   
-    </div>
-    <div class="row cont-row no-margin">
-      <div class="col-sm-12">
-       <textarea placeholder="Enter your Message" class="form-control form-control-sm" rows="9"></textarea>
-      </div>									  
-    </div>
-    <div class="row cont-row no-margin">
-      <div class="col-sm-6">
-        <button class="btn btn-sm btn-primary">Send Message</button>
-      </div>										   
-    </div>
+      <div class="row cont-row no-margin">
+        <div class="col-sm-12">
+          <textarea placeholder="Enter your Message" name="message" class="form-control form-control-sm" rows="9" required></textarea>
+        </div>									  
+      </div>
+      <div class="row cont-row no-margin">
+        <div class="col-sm-6">
+          <button type="submit" class="btn btn-sm btn-primary">This option will come soon.</button>
+        </div>										   
+      </div>
+    </form>
+    
   </div>
 </div>
 
