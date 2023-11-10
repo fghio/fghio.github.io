@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>FGh.io</title>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link rel="preload" as="style" href="assets/css/default.css">
+
+  <link rel="stylesheet" type="text/css" href="assets/css/default.css" />
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=PT+Sans+Narrow:wght@400;700&amp;family=PT+Serif">
+
+
+  <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+  <script>window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    
+        gtag('config', 'G-EJY6FXZBCB');
+  </script>
+
+  
+</head>
+
+<body class="pace-done is-3-column light" data-new-gr-c-s-check-loaded="14.1134.0" data-gr-ext-installed>
+
+  <div class="pace pace-inactive">
+    <div class="pace-progress" data-progress-text="100%" data-progress="99" style="transform: translate3d(100%, 0px, 0px);">
+      <div class="pace-progress-inner"></div>
+    </div>
+    <div class="pace-activity"></div>
+  </div>
+
+  <!-- NAVIGATION BAR -->
+  <div data-include="./common/navBar"></div>
+  
+  <section class=section style="opacity: 1;">
+
+    <div class="container">
+      <div class="columns">
+
+        <!-- CENTRAL PANE -->
+        <div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen">
+
+          <div class="card widget" style="opacity: 1;">
+            <div class="card-content">
+              <div class="menu">
+                <h3 class="menu-label">Whole list of blog tags</h3>
+                <div class="field is-grouped is-grouped-multiline" id="tagsLocationFull">
+                  <!-- HERE WE HAVE THE LIST OF TAGS -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- LEFT PANE -->
+        <div class="column column-left is-4-tablet is-4-desktop is-3-widescreen order-1 is-sticky">
+          <div data-include="./common/leftPane"></div>
+        </div>
+
+        <!-- RIGHT PANE -->
+        <div class="column column-right is-4-tablet is-4-desktop is-3-widescreen order-3 is-sticky">
+          <div data-include="./common/rightPane"></div>
+        </div>
+
+      </div>
+    </div>
+
+    <a id="back-to-top" 
+      title="Back to top" 
+      href="javascript:void(0);" 
+      style="right: 500px; bottom: 35px; width: 50px;" 
+      class="card has-text-centered">
+      <i class="fas fa-chevron-up"></i>
+    </a>
+
+    <script src="./assets/js/back-to-top.js"></script>
+
+  </section>
+
+  <!-- FOOTER -->
+  <div data-include="./common/footer"></div>
+
+  <script src="assets/js/columns.js"></script>
+  <!--<script src="assets/js/animation.js"></script>-->
+
+  <script src="assets/js/jquery-3.2.1.min.js"></script>
+  <script src="assets/js/script.js"></script>
+  <script src="assets/js/main.js"></script>
+
+  <script src="assets/js/blogCard.js"></script>
+
+</body>
+
+<script>
+  $(function () {
+    var includes = $('[data-include]')
+    $.each(includes, function() {
+      var file = $(this).data('include')
+      $(this).load(file)
+    })
+  })
+</script>
+
+</html>
+

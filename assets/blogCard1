@@ -1,0 +1,40 @@
+<!--- BLOG SECTION -->
+<div class="card" 
+  style="transition: opacity 0.3s ease-out 0s, 
+    transform 0.3s ease-out 0s, box-shadow 0.3s ease-in-out 0s; 
+    opacity: 1; transform-origin: center top;">
+  <div class="card-content" data-last-updated="2124-05-01">
+    <center>
+      <div class="bsa-standard" id="carbon-ad-01"></div>
+      Coming soon.
+      <script>            
+        (function() {
+           if (typeof _bsa !== 'undefined' && _bsa) {
+           _bsa.init('custom', 'CWYD65QY', 'placement:fghiogithubio-standard', 
+           {                     
+              target: '#carbon-ad-01',
+              template:
+   `             <a href='##link##' class='native-banner' 
+                 style='background: ##backgroundColor##' 
+                 rel='sponsored noopener' target='_blank' 
+                 title='##company## — ##tagline##'>
+                 <img class='native-img' width='125' src='##logo##' />
+                 <div class='native-main'>
+                 <div class='native-details' 
+                 style='color: ##textColor##;border-left: solid 1px ##textColor##;'>
+                 <span class='native-company'>Sponsored by ##company##</span>
+                 <span class='native-desc'>##description##</span>
+                 </div>
+                 <span class='native-cta' 
+                  style='color: ##ctaTextColor##;
+                  background-color: ##ctaBackgroundColor##;'>##callToAction##
+                 </span>
+                 </div>
+                 </a>,
+           });
+           }
+           })();
+      </script>
+    </center>
+  </div>
+</div>

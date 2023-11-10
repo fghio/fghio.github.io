@@ -1,0 +1,85 @@
+<div class="card widget" data-type="profile" style="opacity: 1;">
+  <div class="card-content">
+    <nav class="level">
+      <div class="level-item has-text-centered flex-shrink-1">
+        <div>
+          <figure class="image is-128x128 mx-auto mb-2">
+            <img class="avatar" src="assets/images/profile-img-white.png" alt="F. Ghioldi, Ph.D.">
+          </figure>
+          <p class="title is-size-4 is-block" style="line-height:inherit;margin-bottom:0.30rem; font-family: 'PT Sans Narrow', sans-serif; font-weight: bold">Federico Ghioldi</p>
+          <p class="is-block" style="white-space: pre-line; margin-bottom: 0.50rem; font-size: 0.9em; font-family: serif">
+            Aerospace Engineer
+            CFD Analyst and Developer
+            Problem solver
+          </p>
+          <p class="is-size-6 is-flex justify-content-center" style="padding-top: 1em">
+            <i class="fas fa-map-marker-alt mr-1"></i>
+            <span style="font-family: sans-serif; font-size: 1em;">Milano, Italy</span>
+          </p>
+        </div>
+      </div>
+    </nav>
+    <!--
+    <nav class="level is-mobile">
+      <div class="level-item has-text-centered is-marginless">
+        <div>
+          <p class="heading">Posts</p>
+          <a href="/archives"><p class="title">674</p></a>
+        </div>
+      </div>
+      <div class="level-item has-text-centered is-marginless">
+        <div>
+          <p class="heading">Categories</p>
+          <a href="/categories"><p class="title">7</p></a>
+        </div>
+      </div>
+      <div class="level-item has-text-centered is-marginless">
+        <div>
+          <p class="heading">Tags</p>
+          <a href="/tags"><p class="title">421</p></a>
+        </div>
+      </div>
+    </nav>
+    -->
+    <div class="level">
+      <a class="level-item button is-primary is-rounded" href="assets/pdf/ghioldi-CV.pdf" target="_blank" rel="noopener">
+        <i class="fas fa-file"></i></i>&nbsp;&nbsp;<span style="font-family: 'PT Sans Narrow', sans-serif; font-size: 1em;">CV in PDF</span>
+      </a>&nbsp;
+      <a class="level-item button is-primary is-rounded" disabled>
+        <i class="fas fa-briefcase"></i>&nbsp;&nbsp;<span style="font-family: 'PT Sans Narrow', sans-serif; font-size: 1em;">Hire me</span>
+      </a>
+    </div>
+    <div class="level is-mobile is-multiline">
+      <a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Email" href="mailto:federico.ghioldi@polimi.it">
+        <i class="fas fa-envelope-square"></i>
+      </a>
+      <a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="ORCID" href="https://orcid.org/my-orcid?orcid=0000-0002-3711-7208">
+        <i class="fab fa-orcid"></i>
+      </a>
+      <a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/fghio">
+        <i class="fab fa-github"></i>
+      </a>
+      <a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="LinkedIn" href="https://www.linkedin.com/in/federico-ghioldi/">
+        <i class="fab fa-linkedin"></i>
+      </a>
+      <a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Twitter" href="https://twitter.com/im_fghio">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <!-- <a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/atom.xml">
+        <i class="fas fa-rss"></i> -->
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="card widget" data-type="profile" style="opacity: 1;">
+
+  <div class="g-ads-x">
+    <div class="card-content">
+      <center>
+        <p>INSERT A BANNER HERE</p>
+      </center>
+    </div>
+  </div>
+
+</div>

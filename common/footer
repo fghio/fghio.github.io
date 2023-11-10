@@ -1,0 +1,43 @@
+<footer class="footer" style="opacity: 1; padding: 2pt;">
+  <div class="container">
+    <div class="level">
+      <div class="level-start">
+        <p class="is-size-7">
+          <span>© 2023 F. Ghioldi</span>&nbsp;&nbsp;
+          Powered by 
+          <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>
+          &amp;
+          <a href="https://github.com/ppoffice/hexo-theme-icarus" 
+            target="_blank" rel="noopener">Icarus</a>. 
+            Style inspired by 
+            <a href="https://leimao.github.io/" target="_blank">Lei Mao's website</a>
+        </p>
+      </div>
+      <div class="level-end">
+        <div class="field has-addons">
+          <p class="control">
+            <a class="button is-transparent is-large" 
+              target="_blank" rel="noopener" title="Creative Commons" 
+              href="https://creativecommons.org/">
+              <i class="fab fa-creative-commons"></i>
+            </a>
+          </p>
+          <p class="control">
+            <a class="button is-transparent is-large" target="_blank" 
+              rel="noopener" title="Attribution 4.0 International" 
+              href="https://creativecommons.org/licenses/by/4.0/">
+              <i class="fab fa-creative-commons-by"></i>
+            </a>
+          </p>
+          <p class="control">
+            <a class="button is-transparent is-large" target="_blank" 
+              rel="noopener" title="GitHub" href="https://github.com/fghio">
+              <i class="fab fa-github"></i>
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+

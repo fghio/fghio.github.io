@@ -2,307 +2,100 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>FGh.io</title>
+  <title>FGh.io</title>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link rel="preload" as="style" href="assets/css/default.css">
+
+  <link rel="stylesheet" type="text/css" href="assets/css/default.css" />
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=PT+Sans+Narrow:wght@400;700&amp;family=PT+Serif">
+
+
+  <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+  <script>window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
     
-    <!--<link rel="shortcut icon" href="assets/images/fav.jpg">-->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/fontawsom-all.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+        gtag('config', 'G-EJY6FXZBCB');
+  </script>
 
-    <!-- Vendor CSS Files -->
-    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-
+  
 </head>
 
-<body>
+<body class="pace-done is-3-column light" data-new-gr-c-s-check-loaded="14.1134.0" data-gr-ext-installed>
 
-  <!-- SPHERE -->
-  <div data-include="sphere"></div>
-  <div data-include="astronaut"></div>
+  <div class="pace pace-inactive">
+    <div class="pace-progress" data-progress-text="100%" data-progress="99" style="transform: translate3d(100%, 0px, 0px);">
+      <div class="pace-progress-inner"></div>
+    </div>
+    <div class="pace-activity"></div>
+  </div>
+
+  <!-- NAVIGATION BAR -->
+  <div data-include="./common/navBar"></div>
   
-	<div class="container-fluid overcover">
-	  <div class="container profile-box">
-      <div class="top-cover">
-        <div class="covwe-inn">
+  <section class=section style="opacity: 1;">
 
-          <div class="row no-margin">
-            <div class="col-md-4 img-c">
-              <img src="assets/images/profile-img-white.png" alt="">
-            </div>
-            <div class="col-md-8 tit-det">
-              <h2>Federico Ghioldi, Ph.D.</h2>
-              <h4><span class="typed" data-typed-items="A CFD Engineer., A developer., A problem solver."></span></h4>
-              <p>Add a nice description here.<p>
-            </div>
-          </div>
+    <div class="container">
+      <div class="columns">
 
-				</div>
-				<ul class="nav nav-tabs" id="myTab" role="tablist">
-					<li class="nav-item">
-						<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"    aria-selected="true">Home</a>
-					</li>
-          <!--
-					<li class="nav-item">
-						<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile"  role="tab" aria-controls="profile" aria-selected="false">Profile</a>
-					</li>
-					-->
-					<li class="nav-item">
-						<a class="nav-link" id="resume-tab" data-toggle="tab" href="#resume"   role="tab" aria-controls="profile" aria-selected="false">Resume</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" id="portfolio-tab" data-toggle="tab" href="#gallery"  role="tab" aria-controls="profile" aria-selected="false">Portfolio</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" id="blog-tab" data-toggle="tab" href="#blog"     role="tab" aria-controls="profile" aria-selected="false">Blog</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact"  role="tab" aria-controls="contact" aria-selected="false">Contact</a>
-					</li>
-				</ul>
-			</div>
-
-      <!-- HOME -->
-      <div class="tab-content" id="myTabContent">	
-      	<div class="tab-pane show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-        	<div class="row no-margin home-det">
-
-          	<div class="col-md-4 big-img">
-
-          	  <!-- HOME LEFT COLUMN -->
-              <div data-include="columnLeft"></div>
-
-            </div>
-            <div class="col-md-8 home-dat">
-
-              <!-- BUTTONS SOCIAL -->
-              <div data-include="buttonSocial"></div>
-
-              <!-- TECHNICAL SKILLS -->
-              <div data-include="skills"></div>
-                
-              <div class="shownews">
-                <div>
-                  <div class="title">News</div>
-                  <div class="date" id="date"></div>
-                </div>
-                <div id="news">
-                  <span id="text"></span>
-                </div>
-              </div>
-  
-            </div>
-          </div>
+        <!-- CENTRAL PANE -->
+        <div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen">
+          <div data-include="homePane"></div>
         </div>
 
-        <!-- PROFILE -->
-        <!--
-			  <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="contact-tab">
-          <div data-include="profile"></div>
-			  </div>
-        -->
-        
-        <!-- RESUME -->
-        <div class="tab-pane exp-cover formContainer" id="resume" role="tabpanel" aria-labelledby="contact-tab">
-          <div data-include="resume"></div>
-			  </div>
+        <!-- LEFT PANE -->
+        <div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1">
+          <div data-include="./common/leftPane"></div>
+        </div>
 
-        <!-- PORTFOLIO -->
-			  <div class="tab-pane gallcoo formContainer" id="gallery" role="tabpanel" aria-labelledby="portfolio-tab">
-          Coming soon. <!-- <div data-include="portfolio"></div> -->
-			  </div>
+        <!-- RIGHT PANE -->
+        <div class="column column-right is-4-tablet is-4-desktop is-3-widescreen order-3">
+          <div data-include="./common/rightPane"></div>
+        </div>
 
-        <!-- BLOG -->
-			  <div class="tab-pane gallcoo formContainer" id="blog" role="tabpanel" aria-labelledby="blog-tab">
-				  <div id="post-content"></div>
-
-          <div data-include="blog"></div>
-			  </div>
-
-        <!-- CONTACT -->          
-			  <div class="tab-pane contact-tab" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-          <div data-include="contact"></div>
-			  </div>
-          
       </div>
     </div>
-  </div>
+
+    <a id="back-to-top" 
+      title="Back to top" 
+      href="javascript:void(0);" 
+      style="right: 500px; bottom: 35px; width: 50px;" 
+      class="card has-text-centered">
+      <i class="fas fa-chevron-up"></i>
+    </a>
+
+    <script src="./assets/js/back-to-top.js"></script>
+
+
+  </section>
+
+  <!-- FOOTER -->
+  <div data-include="./common/footer"></div>
+
+  <script src="assets/js/columns.js"></script>
+  <!--<script src="assets/js/animation.js"></script>-->
+
+  <script src="assets/js/jquery-3.2.1.min.js"></script>
+  <script src="assets/js/script.js"></script>
+  <script src="assets/js/main.js"></script>
+
 </body>
 
-<script src="assets/js/jquery-3.2.1.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
-
-<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-<script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-<script src="assets/vendor/typed.js/typed.min.js"></script>
-
-<script src="assets/js/script.js"></script>
 
 <script>
   $(function () {
     var includes = $('[data-include]')
     $.each(includes, function() {
-      var file = $(this).data('include') + '.html'
+      var file = $(this).data('include')
       $(this).load(file)
     })
   })
-</script>
-
-<!-- BLOG ARTICLES -->
-<script>
-function loadPost(url) {
-  fetch(url)
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById('post-content').innerHTML = data;
-      document.querySelectorAll('.blog-card').forEach(card => {
-        card.style.display = 'none';
-      });
-    })
-    .catch(error => console.log(error));
-}
-
-function showCards() {
-  document.getElementById('post-content').innerHTML = '';
-  document.querySelectorAll('.blog-card').forEach(card => {
-    card.style.display = 'block';
-  });
-}
-</script>
-
-<!-- NEWS -->
-<script>
-const API_KEY = '37b5d00ca7f34c2ab253c8ddde9399cc';
-const NEWS_SOURCE = 'techcrunch,wired,recode';
-const NEWS_KEYWORD = 'technology';
-
-function fetchNews() {
-  $.get(`https://newsapi.org/v2/everything?q=${NEWS_KEYWORD}&sources=${NEWS_SOURCE}&apiKey=${API_KEY}`, function(data) {
-    const news = data.articles.map(article => ({
-      news: article.title,
-      link: article.url,
-      date: article.publishedAt,
-      sourceArticle: article.source.name
-    }));
-    const shownews = news.map((key) => key.news);
-    const newslink = news.map((key) => key.link);
-    const newsdate = news.map((key) => key.date);
-    const newssource = news.map((key) => key.sourceArticle);
-    showNews(shownews, newslink, newsdate, newssource);
-  });
-}
-
-
-function showNews(shownews, newslink, newsdate, newssource) {
-  let i = 0;
-  setInterval(function () {
-    const date = new Date(newsdate[i]).toLocaleDateString('en-US', {
-      day: 'numeric',
-      month: 'short',
-      year: undefined
-    });
-    const title = `${shownews[i]} - [${newssource[i]}]`;
-    $("#text").html("<a href=" + newslink[i] + ">" + title + "</a>");
-    $("#date").text(date);
-    i++;
-    if (i >= shownews.length) {
-      i = 0;
-      fetchNews(); // fetch news again after displaying all articles
-    }
-  }, 5000);
-}
-
-fetchNews();
-</script>
-
-
-
-<script>
-  const form = document.querySelector('form');
-  form.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    const formData = new FormData(form);
-    const response = await fetch(form.action, {
-      method: form.method,
-      body: formData,
-      headers: { 'Accept': 'application/json' }
-    });
-    const jsonResponse = await response.json();
-    console.log(jsonResponse);
-    form.reset();
-    alert('Thank you for your message!');
-  });
-</script>
-
-
-
-<script>
-(function() {
-  "use strict";
-
-  /**
-   * Easy selector helper function
-   */
-  const select = (el, all = false) => {
-    el = el.trim()
-    if (all) {
-      return [...document.querySelectorAll(el)]
-    } else {
-      return document.querySelector(el)
-    }
-  }
-
-  /**
-   * Hero type effect
-   */
-  const typed = select('.typed')
-  if (typed) {
-    let typed_strings = typed.getAttribute('data-typed-items')
-    typed_strings = typed_strings.split(',')
-    new Typed('.typed', {
-      strings: typed_strings,
-      loop: true,
-      typeSpeed: 100,
-      backSpeed: 50,
-      backDelay: 2000
-    });
-  }
-
-
-  /**
-   * Testimonials slider
-   */
-  new Swiper('.testimonials-slider', {
-    speed: 600,
-    loop: true,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false
-    },
-    slidesPerView: 'auto',
-    pagination: {
-      el: '.swiper-pagination',
-      type: 'bullets',
-      clickable: true
-    },
-    breakpoints: {
-      320: {
-        slidesPerView: 1,
-        spaceBetween: 20
-      },
-
-      1200: {
-        slidesPerView: 3,
-        spaceBetween: 20
-      }
-    }
-  });
-
-})()
 </script>
 
 </html>

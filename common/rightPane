@@ -1,0 +1,56 @@
+<div class="card widget" style="opacity: 1;">
+  <div class="card-content">
+    <div class="menu">
+      <h3 class="menu-label">Projects shortcuts</h3>
+
+        <ul class="menu-list">
+          <li>
+            <a class="level is-mobile is-marginless" href="./projectArchive.html?id=PF">
+              <span class="level-start">
+                <span class="level-item">Personal Finance Spreadsheet</span>
+              </span>
+            </a>
+          </li>
+          
+          <li>
+            <a class="level is-mobile is-marginless" href="./projectArchive.html?id=WEB">
+              <span class="level-start">
+                <span class="level-item">How to make this website</span>
+              </span>
+            </a>
+          </li>
+          
+          <li>
+            <a class="level is-mobile is-marginless" href="./projectArchive.html?id=OF">
+              <span class="level-start">
+                <span class="level-item">CFD Course</span>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="card widget" style="opacity: 1;">
+  <div class="card-content">
+    <div class="menu">
+      <h3 class="menu-label">Blog Tags</h3>
+      <div class="field is-grouped is-grouped-multiline" id="tagsLocation">
+        <!-- HERE WE HAVE THE LIST OF TAGS -->
+      </div>
+      <div class="field is-grouped-multiline">
+        <a class="tags has-addons" href="./tags">
+          <span class="tag">See All &gt;&gt;</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="./assets/js/tags.js"></script>
+

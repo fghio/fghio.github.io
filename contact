@@ -1,0 +1,138 @@
+<html lang="en">
+
+<head>
+  <title>FGh.io</title>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link rel="preload" as="style" href="assets/css/default.css">
+
+  <link rel="stylesheet" type="text/css" href="assets/css/default.css" />
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=PT+Sans+Narrow:wght@400;700&amp;family=PT+Serif">
+
+
+  <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+  <script>window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    
+        gtag('config', 'G-EJY6FXZBCB');
+  </script>
+
+  
+</head>
+
+<body class="pace-done is-3-column light" data-new-gr-c-s-check-loaded="14.1134.0" data-gr-ext-installed>
+
+  <div class="pace pace-inactive">
+    <div class="pace-progress" data-progress-text="100%" data-progress="99" style="transform: translate3d(100%, 0px, 0px);">
+      <div class="pace-progress-inner"></div>
+    </div>
+    <div class="pace-activity"></div>
+  </div>
+
+  <!-- NAVIGATION BAR -->
+  <div data-include="./common/navBar"></div>
+  
+  <section class=section style="opacity: 1;">
+
+    <div class="container">
+      <div class="columns">
+
+        <!-- CONTACT PANE -->
+        <div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen">
+
+
+          <div class="card" style="opacity: 1;">
+              <article class="card-content article">
+                <iframe style="width: 100%; height: 400px;" 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d862.960926870833!2d9.15446182190176!3d45.5014149576092!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786c0fef461bdf3%3A0x766a8647e91a97c1!2sDipartimento%20di%20Scienze%20e%20Tecnologie%20Aerospaziali!5e1!3m2!1sit!2sit!4v1679696166313!5m2!1sit!2sit">
+                </iframe>
+              </article>
+          </div>
+
+          <div class="card" style="opacity: 1;">
+            <div class="columns">
+              <div class="column has-text-centered">
+                <!-- Phone Icon + Phone Number -->
+                <p>
+                  <i class="fas fa-phone" style="margin-right: 10px;"></i> <!-- Added margin-right -->
+                  <a style="font-family: 'PT Sans Narrow', sans-serif; font-size: 1.2em;" 
+                    href="tel:+39 3407202742">(+39) 02 2399 8310</a>
+                </p>
+              </div>
+              <div class="column has-text-centered">
+                <!-- Email Icon + Email Address -->
+                <p>
+                  <i class="fas fa-envelope" style="margin-right: 10px;"></i> <!-- Added margin-right -->
+                  <a style="font-family: 'PT Sans Narrow', sans-serif; font-size: 1.2em;"
+                    href="mailto:federico.ghioldi@polimi.it">federico.ghioldi@polimi.it</a>
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="card" style="opacity: 1;">
+            <article class="card-content article" role="article">
+              <div class="content" style="margin-top: 1.0rem">
+            
+                <h2 id="ReachOffice">
+                  <a href="#ReachOffice" class="headerlink" title="ReachOffice"></a>
+                  <p style="color: #3273dc">How to reach my office</p>
+                </h2>
+                <h4 id="DAER-indications">
+                  <a href="#DAER-indications" class="headerlink" title="DAER-indications"></a> 
+                  <p style="font-weight: 400;">
+                    From either Milano Bovisa or Milano Villapizzone station, make your way to Building B12.<br> 
+                    Take the elevator to the second floor.<br> 
+                    When you exit the elevator, you'll find the Dept. of Aerospace Science and Technology on your left.<br>
+                    Use the phone located to the right of the Department's entrance door to call 8310.
+                    </p>
+                </h4>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- LEFT PANE -->
+        <div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1">
+          <div data-include="./common/leftPane"></div>
+        </div>
+
+        <!-- RIGHT PANE -->
+        <div class="column column-right is-4-tablet is-4-desktop is-3-widescreen order-3">
+          <div data-include="./common/rightPane"></div>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+  <div data-include="./common/footer"></div>
+
+  <script src="assets/js/jquery-3.2.1.min.js"></script>
+  <script src="assets/js/script.js"></script>
+  <script src="assets/js/columns.js"></script>
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+
+<script>
+  $(function () {
+    var includes = $('[data-include]')
+    $.each(includes, function() {
+      var file = $(this).data('include')
+      $(this).load(file)
+    })
+  })
+</script>
+
+</html>

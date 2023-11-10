@@ -1,64 +1,66 @@
+(function () {
+    /**
+     * Icarus 夜间模式 by iMaeGoo
+     * https://www.imaegoo.com/
+     */
+  
+    var isNight = localStorage.getItem('night');
+    var nightNav;
+
+    // console.log("IsNight: ", isNight)
+  
+    function applyNight(value) {
+        if (value.toString() === 'true') {
+            document.body.classList.remove('light');
+            document.body.classList.add('night');
+        } else {
+            document.body.classList.remove('night');
+            document.body.classList.add('light');
+        }
+        // Assuming Disqus was used as the comment plugin.
+        // try {
+        //     DISQUS.reset({ reload: true });
+        // } catch (error) {
+        //     console.error(error);
+        //     // expected output: ReferenceError: nonExistentFunction is not defined
+        //     // Note - error messages will vary depending on browser
+        // }
+        if (typeof DISQUS !== "undefined")
+        {
+            DISQUS.reset({ reload: true });
+        }
+    }
+  
+    function findNightNav() {
+        nightNav = document.getElementById('night-nav');
+        if (!nightNav) {
+            setTimeout(findNightNav, 100);
+        } else {
+            nightNav.addEventListener('click', switchNight);
+        }
+    }
+  
+    function switchNight() {
+        isNight = isNight ? isNight.toString() !== 'true' : true;
+        applyNight(isNight);
+        localStorage.setItem('night', isNight);
+    }
+  
+    findNightNav();
+    isNight && applyNight(isNight);
+  }());
+  
+  
+  
 (function() {
-  "use strict";
-
-
-  /**
-   * Easy selector helper function
-   */
-  const select = (el, all = false) => {
-    el = el.trim()
-    if (all) {
-      return [...document.querySelectorAll(el)]
-    } else {
-      return document.querySelector(el)
-    }
-  }
-
-  /**
-   * Easy event listener function
-   */
-  const on = (type, el, listener, all = false) => {
-    let selectEl = select(el, all)
-    if (selectEl) {
-      if (all) {
-        selectEl.forEach(e => e.addEventListener(type, listener))
-      } else {
-        selectEl.addEventListener(type, listener)
-      }
-    }
-  }
-
-  /**
-   * Porfolio isotope and filter
-   */
-  window.addEventListener('load', () => {
-    let portfolioContainer = select('.portfolio-container');
-    if (portfolioContainer) {
-      let portfolioIsotope = new Isotope(portfolioContainer, {
-        itemSelector: '.portfolio-item',
-        layoutMode: 'fitRows'
-      });
-
-      let portfolioFilters = select('#portfolio-flters li', true);
-
-      on('click', '#portfolio-flters li', function(e) {
-        e.preventDefault();
-        portfolioFilters.forEach(function(el) {
-          el.classList.remove('filter-active');
-        });
-        this.classList.add('filter-active');
-
-        portfolioIsotope.arrange({
-          filter: this.getAttribute('data-filter')
-        });
-        portfolioIsotope.on('arrangeComplete', function() {
-          AOS.refresh()
-        });
-      }, true);
+    function $() {
+        return Array.prototype.slice.call(document.querySelectorAll.apply(document, arguments));
     }
 
-  });
-
-
-
-})()
+    // copy widgets in the right column, when exist, to the bottom of the left column
+    if ($('.columns .column-right').length && $('.columns .column-right-shadow').length && !$('.columns .column-right-shadow')[0].children.length) {
+        for (const child of $('.columns .column-right')[0].children) {
+            $('.columns .column-right-shadow')[0].append(child.cloneNode(true));
+        }
+    }
+}());

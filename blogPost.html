@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>FGh.io</title>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link rel="preload" as="style" href="assets/css/default.css">
+
+  <link rel="stylesheet" type="text/css" href="assets/css/default.css" />
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=PT+Sans+Narrow:wght@400;700&amp;family=PT+Serif">
+
+
+  <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+  <script>window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    
+        gtag('config', 'G-EJY6FXZBCB');
+  </script>
+
+</head>
+
+<body class="pace-done is-3-column light" data-new-gr-c-s-check-loaded="14.1134.0" data-gr-ext-installed>
+
+  <div class="pace pace-inactive">
+    <div class="pace-progress" data-progress-text="100%" data-progress="99" style="transform: translate3d(100%, 0px, 0px);">
+      <div class="pace-progress-inner"></div>
+    </div>
+    <div class="pace-activity"></div>
+  </div>
+
+  <!-- NAVIGATION BAR -->
+  <div data-include="./common/navBar"></div>
+  
+  <section class=section style="opacity: 1;">
+
+    <div class="container">
+      <div class="columns">
+
+        <!-- CENTRAL PANE -->
+        <div class="column order-2 column-main is-8-tablet is-8-desktop is-9-widescreen">
+          <script src="assets/js/jquery-3.2.1.min.js"></script>
+          <script>
+          $(document).ready(function () {
+
+            // This code should be placed here
+            const urlParams = new URLSearchParams(window.location.search);
+            const postTitle = urlParams.get('post');
+            console.log('postTitle:', postTitle);
+            if (postTitle) {
+              // Fetch the content of the blog post based on postTitle
+              $.ajax({
+                url: `./blogCards/${postTitle}.html`, // Adjust the path as needed
+                success: function (postContent) {
+                  // Display the postContent in the central pane of the blogPost.html page
+                  $('.column-main').html(postContent);
+                }
+              });
+            } else {
+              console.log('Post title not found for this card.');
+            }
+          });
+          </script>
+        </div>
+
+        <!-- LEFT PANE -->
+        <div class="column column-left is-4-tablet is-4-desktop is-3-widescreen order-1 is-sticky">
+        
+        
+          <div data-include="./common/leftPane"></div>
+          
+          <div class="card" id="my-table-content" style="margin-top: 20px;">
+            <div class="card-content">
+              <div class="menu">
+                <h3 class="menu-label">Table of content</h3>
+                <ul class="menu-list">
+                  <div id="table-of-contents"></div>
+                </ul>
+              </div>
+            </div>
+          </div>
+         
+        </div>
+      </div>
+    </div>
+
+    <a id="back-to-top" 
+      title="Back to top" 
+      href="javascript:void(0);" 
+      style="right: 150px; bottom: 35px; width: 50px;" 
+      class="card has-text-centered">
+      <i class="fas fa-chevron-up"></i>
+    </a>
+
+    <script src="./assets/js/back-to-top.js"></script>
+
+
+    </body>
+
+    <script>
+      $(function () {
+        var includes = $('[data-include]')
+        $.each(includes, function() {
+          var file = $(this).data('include')
+          $(this).load(file)
+        })
+      })
+    </script>
+
+  </section>
+
+  <!-- FOOTER -->
+  <div data-include="./common/footer"></div>
+
+  <script src="assets/js/columns.js"></script>
+  <!--<script src="assets/js/animation.js"></script>-->
+
+  <script src="assets/js/script.js"></script>
+  <script src="assets/js/main.js"></script>
+
+
+</body>
+
+<script>
+  $(function () {
+    var includes = $('[data-include]')
+    $.each(includes, function() {
+      var file = $(this).data('include')
+      $(this).load(file)
+    })
+  })
+</script>
+
+
+
+</html>
+

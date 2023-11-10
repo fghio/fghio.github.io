@@ -1,0 +1,42 @@
+<nav class="navbar navbar-main" style="opacity: 1">
+  <div class="container navbar-container">
+    <div class="navbar-brand justify-content-center">
+      <a class="navbar-item navbar-logo" href="./">
+        <img src="assets/images/profile-img-white.png" alt="FGh.io" height="28">\ 
+      </a>
+    </div>
+    <div class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item" href="./">FGh.io</a>
+        <a class="navbar-item" href="./curriculum">Curriculum</a>
+        <a class="navbar-item" href="./blog">Blog</a>
+        <a class="navbar-item" href="./projects">Projects</a>
+        <!--
+        <a class="navbar-item" href="/publication">Publications</a>
+        <a class="navbar-item" href="/life">Life</a>
+        <a class="navbar-item" href="/archives">Archives</a>
+        <a class="navbar-item" href="/categories">Categories</a>
+        <a class="navbar-item" href="/tags">Tags</a>
+        -->
+        <a class="navbar-item" href="./contact">Contact</a>
+        <a class="navbar-item" href="./faq">FAQs</a>
+
+      </div>
+      <div class="navbar-end">
+        <a class="navbar-item" target="_blank" rel="noopener" 
+          title="GitHub" href="https://github.com/fghio">
+          <i class="fab fa-github"></i>
+        </a>
+        <a class="navbar-item night" id="night-nav" 
+          title="Switch Color Scheme" href="javascript:;">
+          <i class="fas fa-moon" id="night-icon"></i>
+        </a>
+        <a class="navbar-item search" 
+          title="Search" href="javascript:;">
+          <i class="fas fa-search"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
