@@ -46,18 +46,17 @@
 
         <!-- CENTRAL PANE -->
         <div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen">
-          <div id="blog-preview">
-            <!--<div data-include="./blogCards/blogCard1"></div>-->
 
+          <div class="card widget" style="opacity: 1;">
+            <div class="card-content">
+              <div class="menu">
+                <h3 class="menu-label">Whole list of blog tags</h3>
+                <div class="field is-grouped is-grouped-multiline" id="tagsLocationFull">
+                  <!-- HERE WE HAVE THE LIST OF TAGS -->
+                </div>
+              </div>
+            </div>
           </div>
-          
-          <nav class="pagination" role="navigation" aria-label="pagination">
-            <a class="pagination-previous" href="#">Previous</a>
-            <a class="pagination-next" href="#">Next</a>
-            <ul class="pagination-list">
-              <!-- Pagination links will be generated dynamically by your script -->
-            </ul>
-          </nav>
 
         </div>
 
@@ -96,7 +95,6 @@
   <script src="assets/js/script.js"></script>
   <script src="assets/js/main.js"></script>
 
-  <script src="./assets/js/commonFunctions.js"></script>
   <script src="assets/js/blogCard.js"></script>
 
 </body>
@@ -106,7 +104,7 @@
     var includes = $('[data-include]')
     $.each(includes, function() {
       var file = $(this).data('include')
-      $(this).load(file)
+      $(this).load(file+".html")
     })
   })
 </script>

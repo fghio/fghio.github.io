@@ -201,7 +201,7 @@
               <nav class="breadcrumb" aria-label="breadcrumbs">
                 <ul>
                   <li>
-                    <a href="./tags">Tags</a>
+                    <a href="./tags.html">Tags</a>
                   </li>
                   <li class="is-active-tag">
                     <p style="padding-left: 8pt;">
@@ -262,7 +262,7 @@
     var includes = $('[data-include]')
     $.each(includes, function() {
       var file = $(this).data('include')
-      $(this).load(file)
+      $(this).load(file+".html")
     })
   })
 </script>
