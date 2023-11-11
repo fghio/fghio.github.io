@@ -1,13 +1,23 @@
-(function() {
-    function $() {
-        return Array.prototype.slice.call(document.querySelectorAll.apply(document, arguments));
-    }
+window.onload = function () {
+  const leftStorage = document.getElementById('leftStorageForRightPane');
+  const rightColumn = document.querySelector('.column-right');
 
-    // copy widgets in the right column, when exist, to the bottom of the left column
-    if ($('.columns .column-right').length && $('.columns .column-right-shadow').length && !$('.columns .column-right-shadow')[0].children.length) {
-        for (const child of $('.columns .column-right')[0].children) {
-            $('.columns .column-right-shadow')[0].append(child.cloneNode(true));
-        }
+  function handleResize() {
+    if (window.innerWidth <= 1280) {
+      // Move content to left storage when the screen size is <= 1280px
+      leftStorage.innerHTML = rightColumn.innerHTML;
+      rightColumn.style.display = 'none';
+    } else {
+      // Show right column when the screen size is > 1280px
+      leftStorage.innerHTML = '';
+      rightColumn.style.display = 'block';
     }
-}());
+  }
+
+  // Initial setup on page load
+  handleResize();
+
+  // Check and update on window resize
+  window.addEventListener('resize', handleResize);
+};
 
