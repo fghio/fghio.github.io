@@ -14,6 +14,7 @@ $(document).ready(function () {
         $(data)
           .find('a')
           .attr('href', function (i, val) {
+            console.log(val);
             if (val.match(/\.(html)$/)) {
               blogCards.push(val);
             }
