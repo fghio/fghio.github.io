@@ -5,18 +5,20 @@ $(document).ready(function () {
   const tagsMap = new Map(); // Use a Map to store tags and their counts
 
   function loadBlogCards() {
+    const repoOwner = 'fghio';
+    const repoName = 'fghio.github.io';
+    const path = 'posts/blog';
+
+    const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${path}`;
+
     return new Promise((resolve, reject) => {
       $.ajax({
-        url: 'https://fghio.github.io/posts/blog/',
+        url: apiUrl,
         success: function (data) {
-          blogCards = [];
-          $(data)
-            .find('a')
-            .attr('href', function (i, val) {
-              if (val.match(/\.(html)$/)) {
-                blogCards.push(val);
-              }
-            });
+          blogCards = data
+            .filter(file => file.name.endsWith('.html'))
+            .map(file => file.name);
+
           resolve();
         },
         error: function () {

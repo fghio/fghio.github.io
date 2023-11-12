@@ -94,23 +94,28 @@ $(document).ready(function () {
   }
 
   function loadBlogCards() {
-    $.ajax({
-      url: 'https://fghio.github.io/posts/blog/', // place where the blogCards are located
-      success: function (data) {
-        blogCardsHavingThatTag = [];
-        $(data)
-          .find('a')
-          .attr('href', function (i, val) {
-            if (val.match(/\.(html)$/)) {
-              const postTitle = val.replace(/\.html$/, '');
-              const postContent = loadIndividualBlogPost(postTitle);
-              const tags = extractTags(postContent);
+    const repoOwner = 'fghio';
+    const repoName = 'fghio.github.io';
+    const path = 'posts/blog';
 
-              if (Array.isArray(tags) && tags.includes(tagId)) {
-                blogCardsHavingThatTag.push(val);
-              }
+    const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${path}`;
+
+    $.ajax({
+      url: apiUrl,
+      success: function (data) {
+        blogCardsHavingThatTag = data
+          .filter(file => file.name.endsWith('.html'))
+          .map(file => {
+            const postTitle = file.name.replace(/\.html$/, '');
+            const postContent = loadIndividualBlogPost(postTitle);
+            const tags = extractTags(postContent);
+
+            if (Array.isArray(tags) && tags.includes(tagId)) {
+              return file.name;
             }
-          });
+            return null;
+          })
+          .filter(card => card !== null);
 
         // Sort blogCards based on lastUpdated property (most recent to oldest)
         blogCardsHavingThatTag.sort(function (a, b) {
@@ -122,8 +127,6 @@ $(document).ready(function () {
           const lastUpdatedB = extractLastUpdated(postContentB);
           return new Date(lastUpdatedB) - new Date(lastUpdatedA);
         });
-
-        //console.log(blogCardsHavingThatTag);
 
         // Load and display the first page of blog cards
         showPreview();
