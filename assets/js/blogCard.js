@@ -8,7 +8,7 @@ $(document).ready(function () {
 
   function loadBlogCards() {
     $.ajax({
-      url: 'posts/blog/', // place where the blogCards are located
+      url: 'https://fghio.github.io/posts/blog/', // place where the blogCards are located
       success: function (data) {
         blogCards = [];
         $(data)
