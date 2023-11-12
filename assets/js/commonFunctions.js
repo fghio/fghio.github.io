@@ -38,6 +38,13 @@ function extractTags(postContent) {
   return tags;
 }
 
+function extractRealTitle(postContent) {
+  const articleElement = $(postContent).find('article');
+  const metadata = JSON.parse(articleElement.attr('data-metadata'));
+  const realTitle = metadata.title;
+  return realTitle;
+}
+
 // Function to load individual blog post content
 function loadIndividualBlogPost(postTitle) {
   return $.ajax({

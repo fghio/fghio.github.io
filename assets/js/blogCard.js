@@ -127,9 +127,11 @@ $(document).ready(function () {
       let tagsHTML = '';
       const tags = extractTags(postContent);
 
+      const postRealTitle = extractRealTitle(postContent);
+
       if (Array.isArray(tags)) {
         const tagLinks = tags.map(tag => 
-          `<a class="link-muted" rel="tag" href="./tags/">${tag}</a>`);
+          `<a class="link-muted" rel="tag" href="tagArticles.html?tag=${tag}">${tag}</a>`);
         tagsHTML = tagLinks.join(';&nbsp;');
       }
 
@@ -142,7 +144,7 @@ $(document).ready(function () {
           <article class="card-content article" role="article">
             <h1 class="title is-size-3" style="font-family: 'PT Sans Narrow', sans-serif">
               <a class="has-link-black-ter" href="blogPost.html?post=${postTitle}">
-                ${postTitle}
+                ${postRealTitle}
               </a>
             </h1>
             <div class="article-meta is-size-7 is-uppercase level is-mobile">
