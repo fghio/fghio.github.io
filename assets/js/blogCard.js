@@ -8,7 +8,7 @@ $(document).ready(function () {
 
   function loadBlogCards() {
     $.ajax({
-      url: './blogCards/', // place where the blogCards are located
+      url: './_posts/', // place where the blogCards are located
       success: function (data) {
         blogCards = [];
         $(data)

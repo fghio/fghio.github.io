@@ -7,7 +7,7 @@ $(document).ready(function () {
   function loadBlogCards() {
     return new Promise((resolve, reject) => {
       $.ajax({
-        url: './blogCards/',
+        url: './_posts/',
         success: function (data) {
           blogCards = [];
           $(data)
@@ -36,7 +36,7 @@ $(document).ready(function () {
   async function loadTags() {
     for (const card of blogCards) {
       const postTitle = card.replace(/\.html$/, '');
-      const url = `./blogCards/${postTitle}.html`;
+      const url = `./_posts/${postTitle}.html`;
 
       try {
         const postContent = await $.ajax({ url });
