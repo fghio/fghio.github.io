@@ -41,7 +41,7 @@ function extractTags(postContent) {
 // Function to load individual blog post content
 function loadIndividualBlogPost(postTitle) {
   return $.ajax({
-    url: `./_posts/${postTitle}.html`,
+    url: `./posts/blog/${postTitle}.html`,
     async: false, // Ensure synchronous execution for sorting
   }).responseText;
 }

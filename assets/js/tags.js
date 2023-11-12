@@ -7,7 +7,7 @@ $(document).ready(function () {
   function loadBlogCards() {
     return new Promise((resolve, reject) => {
       $.ajax({
-        url: './_posts/',
+        url: './posts/blog/',
         success: function (data) {
           blogCards = [];
           $(data)
@@ -36,7 +36,7 @@ $(document).ready(function () {
   async function loadTags() {
     for (const card of blogCards) {
       const postTitle = card.replace(/\.html$/, '');
-      const url = `./_posts/${postTitle}.html`;
+      const url = `./posts/blog/${postTitle}.html`;
 
       try {
         const postContent = await $.ajax({ url });
@@ -82,7 +82,7 @@ $(document).ready(function () {
     // Add click event handler to tag links
     $('.control .tags').on('click', function () {
       const tagId = $(this).attr('id'); // Get the id attribute
-      console.log(tagId);
+      //console.log(tagId);
       displayBlogCardsByTag(tagId);
     });
 
