@@ -1,0 +1,4 @@
+title: My Website
+description: This is my awesome website.
+include:
+  - "./blogCards/*"
