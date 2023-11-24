@@ -7,8 +7,8 @@ $(document).ready(function () {
   let blogCards = []; // Array to store all blog cards sorted by lastUpdated
 
   function loadBlogCards() {
-    const repoOwner = 'fghio'; // replace with your GitHub username
-    const repoName = 'fghio.github.io'; // replace with your GitHub repository name
+    const repoOwner = 'fghio';
+    const repoName = 'fghio.github.io';
     const path = 'posts/blog';
 
     const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${path}`;
