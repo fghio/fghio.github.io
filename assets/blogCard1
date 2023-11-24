@@ -1,8 +1,6 @@
 <!--- BLOG SECTION -->
 <div class="card" 
-  style="transition: opacity 0.3s ease-out 0s, 
-    transform 0.3s ease-out 0s, box-shadow 0.3s ease-in-out 0s; 
-    opacity: 1; transform-origin: center top;">
+  style="opacity: 1;">
   <div class="card-content" data-last-updated="2124-05-01">
     <center>
       <div class="bsa-standard" id="carbon-ad-01"></div>
