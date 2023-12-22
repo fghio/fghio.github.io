@@ -1,17 +1,25 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
 
-  <div data-include="./common/head"></div>
-  <script src="./assets/js/jquery-3.7.1.min.js"></script>
-  <script src="./assets/js/script.js"></script>
-  <script src="./assets/js/main.js"></script>
+  <title>FGh.io</title>
 
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="assets/css/default.css">
+  <script src="assets/js/jquery-3.7.1.min.js"></script>
+  
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=PT+Sans+Narrow:wght@400;700&amp;family=PT+Serif">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous">
   
 </head>
 
+
 <body class="pace-done is-3-column light" 
-  data-new-gr-c-s-check-loaded="14.1134.0" data-gr-ext-installed>
+      data-new-gr-c-s-check-loaded="14.1134.0" data-gr-ext-installed>
 
   <div class="pace pace-inactive">
     <div class="pace-progress" data-progress-text="100%" data-progress="100" style="transform: translate3d(100%, 0px, 0px);">
@@ -21,149 +29,150 @@
   </div>
 
   <!-- NAVIGATION BAR -->
-  <div data-include="./common/navBar"></div>
-  
-  <section class=section style="opacity: 1;">
+  <div id="navBarContainer"></div>
+
+  <section class="section" style="opacity: 1;">
 
     <div class="container">
       <div class="columns">
 
         <!-- CURRICULUM PANE -->
         <div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen">
-
-          <div class="card" style="opacity: 1;">
+          <div id="curriculumContainer" class="card" style="opacity: 1;">
             <article class="card-content article" role="article">
-              <h1 class="title is-size-3" style="font-family: 'PT Sans Narrow', sans-serif">
-                Curriculum Vitae
-              </h1>
-              <hr style="height:2px;margin:1rem 0">
-              
-              <div class="content" style="margin-top: 1.0rem">
 
-                <!-- CURRENT OCCUPATION -->
-                <h2 id="CurrentOccupation">
-                  <a href="#CurrentOccupation" class="headerlink" title="CurrentOccupation"></a>
-                  <p style="color: #3273dc">Current occupation</p>
-                </h2>
-                <h4 id="DAER-August-now">
-                  <a href="#DAER-August-now" class="headerlink" title="DAER-August-now"></a> 
-                  <p style="font-weight: 400;">
-                    Assistant Professor, full-time Researcher<br>
-                    <span style="font-size: 14px">
-                    at the Department of Aerospace Science and Technologies (DAER), 
-                    Politecnico di Milano, Italy</span></p>
-                </h4>
+		          <h1 class="title is-size-3" style="font-family: 'PT Sans Narrow', sans-serif">
+		            Curriculum Vitae
+		          </h1>
+		          <hr style="height:2px;margin:1rem 0" />
+		          
+		          <div class="content" style="margin-top: 1.0rem">
 
-                <!-- EDUCATION -->
-                <h2 id="Education">
-                  <a href="#Education" class="headerlink" title="Education">
-                  <p style="color: #3273dc">Education</p>
-                  </a>
-                </h2>
+		            <!-- CURRENT OCCUPATION -->
+		            <h2 id="CurrentOccupation">
+		              <a href="#CurrentOccupation" class="headerlink" title="CurrentOccupation"></a>
+		              <p style="color: #3273dc">Current occupation</p>
+		            </h2>
+		            <h4 id="DAER-August-now">
+		              <a href="#DAER-August-now" class="headerlink" title="DAER-August-now"></a> 
+		              <p style="font-weight: 400;">
+		                Assistant Professor, full-time Researcher<br>
+		                <span style="font-size: 14px">
+		                at the Department of Aerospace Science and Technologies (DAER), 
+		                Politecnico di Milano, Italy</span></p>
+		            </h4>
 
-                <div class="cv-entry">
-                  <div class="left-column">
-                      <h4><p style="font-weight: 400; font-size: 14">11/2019-01/2023</p></h4>
-                  </div>
-                  <div class="right-column">
-                    <h4 id="Doctorate">
-                      <a href="#Doctorate" class="headerlink" title="Doctorate"></a>
-                      <p style="font-weight: 400;">
-                        Doctoral Degree in Aerospace Engineering with honours
-                        <br>
-                        <span style="font-size: 12px;">Politecnico di Milano (Italy)</span>
-                      </p>
-                    </h4>
-                  </div>
-                </div>
+		            <!-- EDUCATION -->
+		            <h2 id="Education">
+		              <a href="#Education" class="headerlink" title="Education">
+		              <p style="color: #3273dc">Education</p>
+		              </a>
+		            </h2>
 
-                <div class="cv-entry">
-                  <div class="left-column">
-                      <h4><p style="font-weight: 400; font-size: 14">10/2016 - 04/2019</p></h4>
-                  </div>
-                  <div class="right-column">
-                    <h4 id="Doctorate">
-                      <a href="#Doctorate" class="headerlink" title="Doctorate"></a>
-                      <p style="font-weight: 400;">
-                        Master Degree in Aeronautical Engineering with honours
-                        <br>
-                        <span style="font-size: 12px;">Politecnico di Milano (Italy)</span>
-                      </p>
-                    </h4>
-                  </div>
-                </div>
-                
-                <div class="cv-entry">
-                  <div class="left-column">
-                      <h4><p style="font-weight: 400; font-size: 14">09/2012 - 09/2016</p></h4>
-                  </div>
-                  <div class="right-column">
-                    <h4 id="Doctorate">
-                      <a href="#Doctorate" class="headerlink" title="Doctorate"></a>
-                      <p style="font-weight: 400;">
-                        Bachelor Degree in Aerospace Engineering
-                        <br>
-                        <span style="font-size: 12px;">Politecnico di Milano (Italy)</span>
-                      </p>
-                    </h4>
-                  </div>
-                </div>
+		            <div class="cv-entry">
+		              <div class="left-column">
+		                  <h4><p style="font-weight: 400; font-size: 14">11/2019-01/2023</p></h4>
+		              </div>
+		              <div class="right-column">
+		                <h4 id="Doctorate">
+		                  <a href="#Doctorate" class="headerlink" title="Doctorate"></a>
+		                  <p style="font-weight: 400;">
+		                    Doctoral Degree in Aerospace Engineering with honours
+		                    <br>
+		                    <span style="font-size: 12px;">Politecnico di Milano (Italy)</span>
+		                  </p>
+		                </h4>
+		              </div>
+		            </div>
 
-                <!-- ACADEMIC EXPERIENCE -->
-                <h2 id="AcademicExperience">
-                  <a href="#AcademicExperience" class="headerlink" title="AcademicExperience">
-                  <p style="color: #3273dc">Academic Experience</p>
-                  </a>
-                </h2>
+		            <div class="cv-entry">
+		              <div class="left-column">
+		                  <h4><p style="font-weight: 400; font-size: 14">10/2016 - 04/2019</p></h4>
+		              </div>
+		              <div class="right-column">
+		                <h4 id="Doctorate">
+		                  <a href="#Doctorate" class="headerlink" title="Doctorate"></a>
+		                  <p style="font-weight: 400;">
+		                    Master Degree in Aeronautical Engineering with honours
+		                    <br>
+		                    <span style="font-size: 12px;">Politecnico di Milano (Italy)</span>
+		                  </p>
+		                </h4>
+		              </div>
+		            </div>
+		            
+		            <div class="cv-entry">
+		              <div class="left-column">
+		                  <h4><p style="font-weight: 400; font-size: 14">09/2012 - 09/2016</p></h4>
+		              </div>
+		              <div class="right-column">
+		                <h4 id="Doctorate">
+		                  <a href="#Doctorate" class="headerlink" title="Doctorate"></a>
+		                  <p style="font-weight: 400;">
+		                    Bachelor Degree in Aerospace Engineering
+		                    <br>
+		                    <span style="font-size: 12px;">Politecnico di Milano (Italy)</span>
+		                  </p>
+		                </h4>
+		              </div>
+		            </div>
 
-                <div class="cv-entry">
-                  <div class="left-column">
-                      <h4><p style="font-weight: 400; font-size: 14">09/2020 - present</p></h4>
-                  </div>
-                  <div class="right-column">
-                    <h4 id="Doctorate">
-                      <a href="#Doctorate" class="headerlink" title="Doctorate"></a>
-                      <p style="font-weight: 400;">
-                        Graduate Teaching Assistant at Politecnico di Milano (Italy)
-                        <br>
-                        <span style="font-size: 12px;">For the M.Sc. course 
-                          Computational Techniques for Thermochemical Propulsion 
-                          (held by Prof. F. Piscaglia)</span>
-                      </p>
-                    </h4>
-                  </div>
-                </div>
+		            <!-- ACADEMIC EXPERIENCE -->
+		            <h2 id="AcademicExperience">
+		              <a href="#AcademicExperience" class="headerlink" title="AcademicExperience">
+		              <p style="color: #3273dc">Academic Experience</p>
+		              </a>
+		            </h2>
 
-                <div class="cv-entry">
-                  <div class="left-column">
-                      <h4><p style="font-weight: 400; font-size: 14">09/2021 - present</p></h4>
-                  </div>
-                  <div class="right-column">
-                    <h4 id="Doctorate">
-                      <a href="#Doctorate" class="headerlink" title="Doctorate"></a>
-                      <p style="font-weight: 400;">
-                        Graduate Teaching Assistant at Politecnico di Milano (Italy)
-                        <br>
-                        <span style="font-size: 12px;">For the M.Sc. course Aerodynamics 
-                          (held by Prof. L. Cortelezzi)</span>
-                      </p>
-                    </h4>
-                  </div>
-                </div>
+		            <div class="cv-entry">
+		              <div class="left-column">
+		                  <h4><p style="font-weight: 400; font-size: 14">09/2020 - present</p></h4>
+		              </div>
+		              <div class="right-column">
+		                <h4 id="Doctorate">
+		                  <a href="#Doctorate" class="headerlink" title="Doctorate"></a>
+		                  <p style="font-weight: 400;">
+		                    Graduate Teaching Assistant at Politecnico di Milano (Italy)
+		                    <br>
+		                    <span style="font-size: 12px;">For the M.Sc. course 
+		                      Computational Techniques for Thermochemical Propulsion 
+		                      (held by Prof. F. Piscaglia)</span>
+		                  </p>
+		                </h4>
+		              </div>
+		            </div>
+
+		            <div class="cv-entry">
+		              <div class="left-column">
+		                  <h4><p style="font-weight: 400; font-size: 14">09/2021 - present</p></h4>
+		              </div>
+		              <div class="right-column">
+		                <h4 id="Doctorate">
+		                  <a href="#Doctorate" class="headerlink" title="Doctorate"></a>
+		                  <p style="font-weight: 400;">
+		                    Graduate Teaching Assistant at Politecnico di Milano (Italy)
+		                    <br>
+		                    <span style="font-size: 12px;">For the M.Sc. course Aerodynamics 
+		                      (held by Prof. L. Cortelezzi)</span>
+		                  </p>
+		                </h4>
+		              </div>
+		            </div>
+
+	            </div>
 
             </article>
           </div>
-
         </div>
 
         <!-- LEFT PANE -->
-        <div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1">
-          <div data-include="./common/leftPane"></div>
+        <div class="column column-left is-4-tablet is-4-desktop is-3-widescreen order-1">
+          <div id="leftPaneContainer"></div>
         </div>
 
         <!-- RIGHT PANE -->
         <div class="column column-right is-4-tablet is-4-desktop is-3-widescreen order-3">
-          <div data-include="./common/rightPane"></div>
+          <div id="rightPaneContainer"></div>
         </div>
 
       </div>
@@ -172,20 +181,22 @@
   </section>
 
   <!-- FOOTER -->
-  <div data-include="./common/footer"></div>
+  <div id="footerContainer"></div>
 
-  <script src="./assets/js/columns.js"></script>
-  
+  <script src="assets/js/columns.js"></script>
+  <script src="./assets/js/script.js"></script>
+  <script src="./assets/js/main.js"></script>
+
+  <script>
+    $(function () {
+      // Load content dynamically
+      $("#navBarContainer").load("./common/navBar.html");
+      $("#leftPaneContainer").load("./common/leftPane.html");
+      $("#rightPaneContainer").load("./common/rightPane.html");
+      $("#footerContainer").load("./common/footer.html");
+    });
+  </script>
+
 </body>
-
-<script>
-  $(function () {
-    var includes = $('[data-include]')
-    $.each(includes, function() {
-      var file = $(this).data('include')
-      $(this).load(file+".html")
-    })
-  })
-</script>
 
 </html>

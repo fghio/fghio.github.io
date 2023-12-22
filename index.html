@@ -1,17 +1,24 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
 
-  <div data-include="./common/head"></div>
+	<title>FGh.io</title>
+	
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="assets/css/default.css">
   <script src="assets/js/jquery-3.7.1.min.js"></script>
-  <script src="./assets/js/script.js"></script>
-  <script src="./assets/js/main.js"></script>
+  
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=PT+Sans+Narrow:wght@400;700&amp;family=PT+Serif">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous">
   
 </head>
 
 <body class="pace-done is-3-column light" 
-  data-new-gr-c-s-check-loaded="14.1134.0" data-gr-ext-installed>
+      data-new-gr-c-s-check-loaded="14.1134.0" data-gr-ext-installed>
 
   <div class="pace pace-inactive">
     <div class="pace-progress" data-progress-text="100%" data-progress="100" style="transform: translate3d(100%, 0px, 0px);">
@@ -21,26 +28,26 @@
   </div>
 
   <!-- NAVIGATION BAR -->
-  <div data-include="./common/navBar"></div>
-  
-  <section class=section style="opacity: 1;">
+  <div id="navBarContainer"></div>
+
+  <section class="section" style="opacity: 1;">
 
     <div class="container">
       <div class="columns">
 
         <!-- CENTRAL PANE -->
         <div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen">
-          <div data-include="homePane"></div>
+          <div id="homePaneContainer"></div>
         </div>
 
         <!-- LEFT PANE -->
-        <div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1">
-          <div data-include="./common/leftPane"></div>
+        <div class="column column-left is-4-tablet is-4-desktop is-3-widescreen order-1">
+          <div id="leftPaneContainer"></div>
         </div>
 
         <!-- RIGHT PANE -->
         <div class="column column-right is-4-tablet is-4-desktop is-3-widescreen order-3">
-          <div data-include="./common/rightPane"></div>
+          <div id="rightPaneContainer"></div>
         </div>
 
       </div>
@@ -54,25 +61,28 @@
       <i class="fas fa-chevron-up"></i>
     </a>
 
-    <script src="./assets/js/back-to-top.js"></script>
-
   </section>
 
   <!-- FOOTER -->
-  <div data-include="./common/footer"></div>
+  <div id="footerContainer"></div>
 
   <script src="assets/js/columns.js"></script>
+  <script src="./assets/js/back-to-top.js"></script>
+  <script src="./assets/js/script.js"></script>
+  <script src="./assets/js/main.js"></script>
+
+  <script>
+    $(function () {
+      // Load content dynamically
+      $("#navBarContainer").load("./common/navBar.html");
+      $("#homePaneContainer").load("homePane.html");
+      $("#leftPaneContainer").load("./common/leftPane.html");
+      $("#rightPaneContainer").load("./common/rightPane.html");
+      $("#footerContainer").load("./common/footer.html");
+    });
+  </script>
 
 </body>
 
-<script>
-  $(function () {
-    var includes = $('[data-include]')
-    $.each(includes, function() {
-      var file = $(this).data('include')
-      $(this).load(file+".html")
-    })
-  })
-</script>
-
 </html>
+
