@@ -85,6 +85,8 @@
   <script src="./assets/js/back-to-top.js"></script>
   <script src="./assets/js/script.js"></script>
   <script src="./assets/js/main.js"></script>
+  <script src="./assets/js/commonFunctions.js"></script>
+  <script src="./assets/js/blogCard.js"></script>
 
   <script>
     $(function () {
@@ -97,6 +99,16 @@
   </script>
 
 </body>
+
+<script>
+  $(function () {
+    var includes = $('[data-include]')
+    $.each(includes, function() {
+      var file = $(this).data('include')
+      $(this).load(file+".html")
+    })
+  })
+</script>
 
 </html>
 
