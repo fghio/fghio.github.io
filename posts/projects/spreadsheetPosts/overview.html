@@ -12,6 +12,7 @@
     <h1 class="title is-size-3" style="font-family: 'PT Sans Narrow', sans-serif">
       Personal Finance Google Sheet: overview
     </h1>
+    
     <div class="article-meta is-size-7 is-uppercase level is-mobile">
       <div class="level-left" style="margin-bottom: 0.50rem">
         <span class="level-item">
@@ -50,6 +51,8 @@
       farlo. Occorrerà semplicemente sfruttare le controparti Excel alle 
       funzioni implementate nel presente Google Sheet. Possibili numeri 
       mostrati in figura sono solo esemplificativi e generati randomicamente.
+      Alcuni termini nelle immagini sono in italiano per ovvi motivi.
+      La comodità è uno di questi motivi.
       </p>
 
       <h2 id="Cash-Flow" style="scroll-margin: 1em;">
@@ -91,14 +94,66 @@
       </ul>
       </p>
 
-      <a class="gallery-item" 
-        href="./assets/images/spreadsheet/cashFlow.webp">
-        <img src="./assets/images/spreadsheet/cashFlow.webp"
-          class="box px-0 py-0 ml-auto mr-auto" width="720" 
-          title="picture1 of slideshow" 
-          alt="A screenshot of the GUI pane.">
-      </a>
+      <div class="slideshow-container">
+        <div class="mySlides">
+          <a class="gallery-item" 
+            href="./assets/images/spreadsheet/cashFlow.webp">
+            <img src="./assets/images/spreadsheet/cashFlow.webp"
+              class="box px-0 py-0 ml-auto mr-auto" width="720" 
+              title="picture1 of slideshow" 
+              alt="A screenshot of the cashFlow (ListaMovimenti) pane.">
+          </a>
+        </div>
+
+        <div class="mySlides">
+          <a class="gallery-item" 
+            href="./assets/images/spreadsheet/dashboard.webp">
+            <img src="./assets/images/spreadsheet/dashboard.webp"
+              class="box px-0 py-0 ml-auto mr-auto" width="720" 
+              title="picture1 of slideshow" 
+              alt="A screenshot of the Dashboard pane.">
+          </a>
+        </div>
+
+        <div class="mySlides">
+          <a class="gallery-item" 
+            href="./assets/images/spreadsheet/subdivision.webp">
+            <img src="./assets/images/spreadsheet/subdivision.webp"
+              class="box px-0 py-0 ml-auto mr-auto" width="720" 
+              title="picture1 of slideshow" 
+              alt="A screenshot of the Subdivision pane.">
+          </a>
+        </div>
+
+        <!-- Add more mySlides divs for additional images -->
+
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+      </div>
       <br>
+
+      <script>
+        let slideIndex = 1;
+
+        function showSlides(n) {
+          let i;
+          const slides = document.getElementsByClassName("mySlides");
+          if (n > slides.length) { slideIndex = 1; }
+          if (n < 1) { slideIndex = slides.length; }
+          for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+          }
+          slides[slideIndex - 1].style.display = "block";
+        }
+
+        function plusSlides(n) {
+          showSlides(slideIndex += n);
+        }
+
+        // Initialize the slideshow
+        showSlides(slideIndex);
+        
+      </script>
 
       <p style="text-align: justify;">
         A partire da questa tab (e dalla rispettiva tabella) verranno prodotti 
