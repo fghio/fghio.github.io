@@ -1,0 +1,400 @@
+<div class="card" id="my-blog-post-card">
+  <article class="card-content article" 
+    data-metadata='{
+      "creationDate": "2023-12-20", 
+      "lastModificationDate": "2023-12-23", 
+      "title": "Personal Finance Google Sheet: cashFlow tab", 
+      "views": 1000, 
+      "wordCount": 500,
+      "readTime": "5 min",
+      "tags": ["Google Sheet", "Personal Finance"]
+    }'>
+    <h1 class="title is-size-3" style="font-family: 'PT Sans Narrow', sans-serif">
+      Personal Finance Google Sheet: cashFlow tab
+    </h1>
+    
+    <div class="article-meta is-size-7 is-uppercase level is-mobile">
+      <div class="level-left" style="margin-bottom: 0.50rem">
+        <span class="level-item">
+          <i class="far fa-calendar-alt">&nbsp;</i>
+          <time>
+            <div class="post-date">26/12/2023</div>
+          </time>
+        </span>
+        <span class="level-item is-hidden-mobile">
+          <i class="far fa-calendar-check">&nbsp;</i>
+          <time>
+            <div class="last-updated">26/12/2023</div>
+          </time>
+        </span>
+        <span class="level-item">
+          <i class="far fa-folder-open has-text-grey"></i>&nbsp;
+          <a class="link-muted" href="./projectArchive.html?id=PF">back to posts list</a>
+        </span>
+        <span class="level-item">
+          <i class="far fa-folder-open has-text-grey"></i>&nbsp;
+          <a class="link-muted" href="./projects.html">list of projects</a>
+        </span>
+        <span class="level-item">
+          <i class="far fa-clock"></i>&nbsp;
+          <div class="read-time">5 minutes</div>
+        </span>
+      </div>
+    </div>
+    <div class="content" style="margin-top: 1.0rem">
+  
+
+    <div id="difficulty-container"></div>
+
+  <script>
+    function generateStars(rating) {
+      const yellowStars = '★'.repeat(rating);
+      const grayStars = '☆'.repeat(5 - rating);
+      const starsHTML = `<span class="star-rating">${yellowStars}</span><span class="gray-star">${grayStars}</span>`;
+      document.getElementById('difficulty-container').innerHTML = `<p>Difficulty Level: ${starsHTML}</p>`;
+    }
+  </script>
+
+  <script>
+    // Example usage
+    generateStars(1); // Change the rating as needed
+  </script>
+    
+      <h2 id="Introduction" style="scroll-margin: 1em;">
+        <a href="#Introduction" class="headerlink" title="Introduction"></a>
+        Introduzione
+      </h2>
+      <p style="text-align: justify;">
+        Partiamo ovviamente da un foglio vuoto. "Foglio di lavoro senza nome"
+        può essere rinominato in "PersonalFinance". "Foglio1" (nome della tab) 
+        può essere rinominato in "ListaMovimenti". Attenzione al fatto che 
+        quest'ultimo nome è importante per i futuri riferimenti che verranno 
+        introdotti in altre tab di questo Google Sheet. Creiamo la tabella 
+        che ci permetterà di tracciare il cash flow.
+      </p>
+
+      <p>
+        Partendo da casella A1, lungo la riga, iniziamo a inserire le seguenti 
+        categorie: month; year; date; description; method; category; 
+        income; debit; balance; note. Segue descrizione della motivazione per 
+        ciascuna colonna.
+        <ul>
+          <li>month: vorremo estrarre informazioni mensili;</li>
+          <li>year: potenzialmente ridondante, permette di tenere traccia 
+          di cash flow per più anni senza dover sostituire la tab anno dopo anno;</li>
+          <li>date: informazione molto rilevante in fase di check; rapido 
+          controllo del giorno di avvenuta spesa, così da poter verificare il 
+          corretto addebito sul conto;</li>
+          <li>description: assieme a "date" permette di identificare in modo 
+          rapido un incasso o una spesa (usare descrizioni sensate!); </li>
+          <li>method: metodo di incasso o pagamento (conto, carta prepagata, cash...); 
+          utile per costituire la tab "Subdivision";</li>
+          <li>category: basata su una lista di categorie, permette di suddividere 
+          le spese e tenerne traccia in modo più preciso, individuando possibili 
+          scialacquamenti;</li>
+          <li>income: colonna in cui inserire gli incassi;</li>
+          <li>debit: colonna in cui inserire le spese;</li>
+          <li>balance: colonna che si auto-aggiorna con valore di liquidità posseduta;</li>
+          <li>note: colonna per poter aggiungere ulteriori note (sarà utile per facilitare 
+          la compilazione (o il controllo) del documento 730.</li>
+        </ul>
+      </p>
+
+      <a class="gallery-item" 
+        href="./assets/images/spreadsheet/firstRowListaMovimenti.webp">
+        <img src="./assets/images/spreadsheet/firstRowListaMovimenti.webp"
+          class="box px-0 py-0 ml-auto mr-auto" width="1080" 
+          title="picture1 of slideshow" 
+          alt="A screenshot of the first row in the ListaMovimenti pane.">
+        <p class="has-text-centered is-size-6 caption">
+          A screenshot of the first row in the ListaMovimenti pane.</p>
+      </a>
+
+      <h2 id="MethodeCategory" style="scroll-margin: 1em;">
+        <a href="#MethodeCategory" class="headerlink" title="MethodeCategory"></a>
+        Lista di Method e Category
+      </h2>
+
+      <p>
+        La compilazione di alcune colonne è sicuramente forzata (month, anno, date, 
+        income, debit, balance...); per alcune colonne c'è una infinita possibilità 
+        di compilazione (description, note...); per altre è bene limitare la scelta 
+        ad alcune semplici possibilità. È questo il caso di method e category.
+      </p>
+
+      <p>
+        Ogni riga della colonna Method è una casella che verrà riempita con il 
+        metodo di pagamento (o di incasso) per la rispettiva spesa (o incasso). 
+      </p>
+      <p>
+        Supponiamo di possedere due conti, una carta prepagata, e di pagare il 
+        caffè al bar in contanti. Sapremo che i nostri principali metodi di 
+        pagamento saranno: cash, carta prepagata, carta di credito/debito 
+        associata al conto 1, carta di credito/debito associata al conto 2.
+      </p>
+      <p>
+        Per comodità (visto che lo stipendio sarà accreditato sul conto, e 
+        non su una carta associata ad un conto), identifichiamo i seguenti 
+        metodi: cash, card (o nome della carta, e.g. PayPal, Revolut, ...), 
+        conto1, conto2. In casella L1 inseriamo quindi la scritta "Method"; 
+        proseguendo in colonna, aggiungiamo in ogni casella uno dei suddetti 
+        metodi. Modifichiamo quindi lo stile di queste caselle (una volta 
+        selezionate) usando "Colori Alternati". 
+      </p>
+
+      <p>
+        Sulla falsa riga di quanto appena fatto, possiamo identificare 
+        una lista limitata di categorie di spesa e incasso. Per 
+        la parte positiva, si può certamente pensare di categorizzare 
+        almeno in "Stipendio" e "Altre entrate"; per quella negativa 
+        (spese), si avranno: Spese Necessarie; Spese Utili; Spesa supermercato; 
+        Spese Mediche; Spese Trasporti; Abbonamenti; Intrattenimento; 
+        Food/Restaurant; Viaggi; Spese Bancarie; Regali; Spese inutili; 
+        e infine "Movimenti interbancari". L'ultimo sarà utile verso la fine di 
+        questo post. In casella N1 inseriamo quindi la scritta "Category"; 
+        proseguendo in colonna, aggiungiamo in ogni casella una delle suddette
+        categorie. Modifichiamo ancora una volta (se necessario) lo stile 
+        di queste caselle usando "Colori Alternati". 
+      </p>
+
+      <a class="gallery-item" 
+        href="./assets/images/spreadsheet/methodsAndCategories.webp">
+        <img src="./assets/images/spreadsheet/methodsAndCategories.webp"
+          class="box px-0 py-0 ml-auto mr-auto" width="220" 
+          title="picture1 of slideshow" 
+          alt="A screenshot of the methods and categories lists 
+          in the ListaMovimenti pane.">
+        <p class="has-text-centered is-size-6 caption">
+          A screenshot of the methods and categories lists 
+          in the ListaMovimenti pane.</p>
+      </a>
+
+      <h2 id="PuntoIniziale" style="scroll-margin: 1em;">
+        <a href="#PuntoIniziale" class="headerlink" title="PuntoIniziale"></a>
+        Punto Iniziale
+      </h2>
+
+      <p>
+        A questo punto abbiamo tutto quello che ci serve per 
+        costituire il punto iniziale della tabella. Selezioniamo 
+        tutta la colonna E (Method) cliccando sulla lettera in cima 
+        alla colonna. Rimuoviamo dalla selezione la casella Method 
+        in posizione E1. In seguito: inserisci, elenco a distesa. 
+        Nella side window selezioniamo il criterio "Menù a discesa 
+        (da un intervallo)". Come intervallo selezioniamo tutte 
+        le caselle in colonna L sotto l'intestazione "Method" 
+        (Method non è da includere). Le alternative verranno 
+        quindi elencate nella side window. Possiamo associare 
+        a ciascuna alternativa un colore specifico; servirà 
+        da aiuto visivo per non sbagliare successivamente ad 
+        inserire le entries. Clicchiamo su fine. 
+      </p>
+
+      <p>
+        Ripetiamo la stessa operazione per la colonna F (Category) 
+        con la lista di categorie contenute da N2 a N13.
+      </p>
+
+      <a class="gallery-item" 
+        href="./assets/images/spreadsheet/convalidaDati.webp">
+        <img src="./assets/images/spreadsheet/convalidaDati.webp"
+          class="box px-0 py-0 ml-auto mr-auto" width="420" 
+          title="picture1 of slideshow" 
+          alt="A screenshot of the data validation for columns E (left) 
+          and F (right).">
+        <p class="has-text-centered is-size-6 caption">
+          A screenshot of the data validation for columns E (left) 
+          and F (right).</p>
+      </a>
+
+      <br>
+
+      <p>
+        Contiamo l'ammontare di cash a disposizione; apriamo 
+        l'app di carta prepagata e quella/e relative al 
+        conto/i. Recuperiamo i valori correnti. Nelle prime 
+        righe, per ciascun metodo inseriamo l'initial balance. 
+        Selezioniamo colonna G, H, I (a meno delle intestazioni) 
+        e formattiamo le caselle come contabilità. Inseriamo 
+        nella colonna Income i valori correnti. Nella colonna 
+        balance usiamo per la prima riga (casella I2) la seguente 
+        formula:
+      <div class="code-container">
+        = G2 - H2
+      </div>
+      </p>
+       
+      <p>
+        Mentre in casella I3 la formula diventa:
+
+      <div class="code-container">
+        = I2 + G3 - H3
+      </div>
+      </p>
+
+      <p>
+        Con un semplice drag and drop estendiamo questa formula a tutte 
+        le caselle sottostanti in colonna I.
+      </p>
+
+      <a class="gallery-item" 
+        href="./assets/images/spreadsheet/startingPoint.webp">
+        <img src="./assets/images/spreadsheet/startingPoint.webp"
+          class="box px-0 py-0 ml-auto mr-auto" width="1080" 
+          title="picture1 of slideshow" 
+          alt="A screenshot of the starting point in the ListaMovimenti pane.">
+        <p class="has-text-centered is-size-6 caption">
+          A screenshot of the starting point in the ListaMovimenti pane.</p>
+      </a>
+     
+      <h2 id="InserimentoInput" style="scroll-margin: 1em;">
+        <a href="#InserimentoInput" class="headerlink" title="InserimentoInput"></a>
+        Inserimento degli Input
+      </h2>     
+      
+      <p>
+        Siamo quindi pronti ad inserire le entries per ogni spesa o incasso 
+        (income o debit). Per ogni input dovremo inserire: data e una piccola 
+        descrizione che può essere utile per il check di fine mese; selezioneremo 
+        con drop-down menù il metodo di pagamento/incasso e la categoria. 
+        Ad esempio, per la riga 6, il mese può essere calcolato in 
+        automatico usando la seguente formula:
+
+      <div class="code-container">
+        = TESTO(C6,"MMMM")
+      </div>
+      </p>      
+      
+      <p>
+        L'anno è automaticamente definito usando la seguente formula:
+
+      <div class="code-container">
+        = TESTO(C6,"YYYY")
+      </div>
+      </p>      
+
+      <a class="gallery-item" 
+        href="./assets/images/spreadsheet/table.webp">
+        <img src="./assets/images/spreadsheet/table.webp"
+          class="box px-0 py-0 ml-auto mr-auto" width="1080" 
+          title="picture1 of slideshow" 
+          alt="A screenshot of the table in the ListaMovimenti pane (numbers are 
+          randomly generated).">
+        <p class="has-text-centered is-size-6 caption">
+          A screenshot of the table in the ListaMovimenti pane (numbers are 
+          randomly generated).</p>
+      </a>
+
+    </div>
+
+    <div class="article-licensing box">
+      <div class="licensing-title">
+        <p>Personal Finance Google Sheet: cashFlow tab</p>
+        <p>
+          <a href="https://fghio.github.io/projectPost.html?project=spreadsheet&post=cashFlow">
+            https://fghio.github.io/projectPost.html?project=spreadsheet&post=cashFlow
+          </a>
+        </p>
+      </div>
+      <div class="licensing-meta level is-mobile">
+        <div class="level-left">
+          <div class="level-item is-narrow">
+            <div>
+              <h6>Author</h6>
+              <p>F. Ghioldi</p>
+            </div>
+          </div>
+          <div class="level-item is-narrow">
+            <div>
+              <h6>Posted on</h6>
+              <p>26-12-2023</p>
+            </div>
+          </div>
+          <div class="level-item is-narrow">
+            <div>
+              <h6>Updated on</h6>
+              <p>26-12-2023</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr style="height:1px;margin:1rem 0">
+      <div class="level is-mobile is-flex">
+        <div class="article-tags is-size-7 is-uppercase">
+          <i class="fas fa-tag has-text-grey"
+            style="transform: translateY(20%);"></i>&nbsp;&nbsp;
+        <div>
+        Google Sheet,
+        &nbsp;
+      </div>
+      <div>
+        Personal Finance
+        &nbsp;
+      </div>
+    </div>
+  </div>
+
+  <div class="sharethis-inline-share-buttons st-center st-inline-share-buttons st-animated" id="st-1">
+
+    <div class="st-btn" data-network="twitter" style="display: inline-block;">
+      <img alt="twitter sharing button" src="https://platform-cdn.sharethis.com/img/twitter.svg">
+    </div>
+    
+    <div class="st-btn" data-network="linkedin" style="display: inline-block;">
+      <img alt="linkedin sharing button" src="https://platform-cdn.sharethis.com/img/linkedin.svg">
+    </div>
+
+    <div class="st-btn" data-network="email" style="display: inline-block;">
+      <img alt="email sharing button" src="https://platform-cdn.sharethis.com/img/email.svg">
+    </div>
+    
+    <div class="st-btn st-last" data-network="sharethis" style="display: inline-block;">
+      <img alt="sharethis sharing button" src="https://platform-cdn.sharethis.com/img/sharethis.svg">
+    </div>
+
+  </div>
+
+  <script 
+    src="https://platform-api.sharethis.com/js/sharethis.js#property=61b5930d440224001908310c&amp;product=inline-share-buttons" defer="">
+  </script>
+  <style>
+  .st-total {
+    display: none !important;
+  }
+  </style>
+  
+
+  </article>
+</div>
+
+<script src=assets/js/tableContent.js></script>
+
+<script src="./assets/js/slideshow.js"></script>
+
+<div class="card" id="comment-card" style="margin-top: 20px; opacity: 1; transform-origin: center top;">
+  <div class="card-content">
+    <h3 class="title is-5">Comments</h3>
+
+    <!-- DISQUS COMMENTS -->
+    <div id="disqus_thread"></div>
+
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://fghio.github.io/projectPost.html?project=spreadsheet&post=cashFlow';
+        this.page.identifier = '/posts/projects/spreadsheetPosts/cashFlow.html';
+      };
+
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = '//' + 'https-fghio-github-io' + '.disqus.com/embed.js'; // Update the shortname here
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+</div>
+
+
+
