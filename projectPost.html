@@ -21,6 +21,39 @@
     .st-total {
       display: none !important;
     }
+    
+    .code-container {
+      background-color: #f4f4f4;
+      padding: 10px;
+      border-radius: 5px;
+      margin: 10px 0;
+      color: #363636; 
+    }
+    
+
+     /* Difficulty stars */  
+    .star-rating {
+      color: #ffd700; /* Gold color for stars in light mode */
+      font-size: 18px; /* Adjust the font size as needed */
+      display: inline-block; /* Display stars inline */
+    }
+
+    .gray-star {
+      color: #808080; /* Gray color for stars in light mode */
+      font-size: 18px; /* Adjust the font size as needed */
+      display: inline-block; /* Display stars inline */
+    }
+
+    /* Dark mode styles */
+    @media (prefers-color-scheme: dark) {
+      .star-rating {
+        color: #fdd835; /* Yellow color for stars in dark mode */
+      }
+
+      .gray-star {
+        color: #e0e0e0; /* Gray color for stars in dark mode */
+      }
+    }
   </style>
 
   <script src="./assets/js/slideshow.js"></script>
