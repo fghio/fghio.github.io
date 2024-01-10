@@ -512,7 +512,7 @@
 					<li style="margin-bottom: 20px;">Totale risparmiato rispetto mese scorso: 
 
 				    <div class="code-container">
-							=C7 - SOMMA.PIÙ.SE(ListaMovimenti!G:G;ListaMovimenti!A:A;TESTO(DATA(ANNO(OGGI());MESE(OGGI())-1;1);"MM");ListaMovimenti!F:F;"<>Movimenti Interbancari")
+							=C7 - SOMMA.PIÙ.SE(ListaMovimenti!G:G;ListaMovimenti!A:A;TESTO(DATA(ANNO(OGGI());MESE(OGGI())-1;1);"MMMM");ListaMovimenti!F:F;"<>Movimenti Interbancari")
 				    </div>
 
 					</li>
@@ -520,7 +520,7 @@
 					<li style="margin-bottom: 20px;">Incremento/decremento di spese: 
 
 				    <div class="code-container">
-							=C22-SOMMA.PIÙ.SE(ListaMovimenti!H:H;ListaMovimenti!A:A;TESTO(DATA(ANNO(OGGI());MESE(OGGI())-1;1);"MM");ListaMovimenti!F:F;"<>Movimenti Interbancari")
+							=C22-SOMMA.PIÙ.SE(ListaMovimenti!H:H;ListaMovimenti!A:A;TESTO(DATA(ANNO(OGGI());MESE(OGGI())-1;1);"MMMM");ListaMovimenti!F:F;"<>Movimenti Interbancari")
 				    </div>
 
 					</li>
@@ -537,7 +537,7 @@
 						mese precedente: 
 
 				    <div class="code-container">
-							=((SOMMA.PIÙ.SE(ListaMovimenti!G:G;ListaMovimenti!A:A;TESTO(DATA(ANNO(OGGI());MESE(OGGI());1);"MM");ListaMovimenti!F:F;"<>Movimenti Interbancari")-SOMMA.PIÙ.SE(ListaMovimenti!H:H;ListaMovimenti!A:A;TESTO(DATA(ANNO(OGGI());MESE(OGGI());1);"MM");ListaMovimenti!F:F;"<>Movimenti Interbancari"))-(SOMMA.PIÙ.SE(ListaMovimenti!G:G;ListaMovimenti!A:A;TESTO(DATA(ANNO(OGGI());MESE(OGGI())-1;1);"MM");ListaMovimenti!F:F;"<>Movimenti Interbancari")-SOMMA.PIÙ.SE(ListaMovimenti!H:H;ListaMovimenti!A:A;TESTO(DATA(ANNO(OGGI());MESE(OGGI())-1;1);"MM");ListaMovimenti!F:F;"<>Movimenti Interbancari")))/(SOMMA.PIÙ.SE(ListaMovimenti!G:G;ListaMovimenti!A:A;TESTO(DATA(ANNO(OGGI());MESE(OGGI())-1;1);"MM");ListaMovimenti!F:F;"<>Movimenti Interbancari")-SOMMA.PIÙ.SE(ListaMovimenti!H:H;ListaMovimenti!A:A;TESTO(DATA(ANNO(OGGI());MESE(OGGI())-1;1);"MM");ListaMovimenti!F:F;"<>Movimenti Interbancari"))
+							=((SOMMA.PIÙ.SE(ListaMovimenti!G:G;ListaMovimenti!A:A;TESTO(DATA(ANNO(OGGI());MESE(OGGI());1);"MMMM");ListaMovimenti!F:F;"<>Movimenti Interbancari")-SOMMA.PIÙ.SE(ListaMovimenti!H:H;ListaMovimenti!A:A;TESTO(DATA(ANNO(OGGI());MESE(OGGI());1);"MMMM");ListaMovimenti!F:F;"<>Movimenti Interbancari"))-(SOMMA.PIÙ.SE(ListaMovimenti!G:G;ListaMovimenti!A:A;TESTO(DATA(ANNO(OGGI());MESE(OGGI())-1;1);"MMMM");ListaMovimenti!F:F;"<>Movimenti Interbancari")-SOMMA.PIÙ.SE(ListaMovimenti!H:H;ListaMovimenti!A:A;TESTO(DATA(ANNO(OGGI());MESE(OGGI())-1;1);"MMMM");ListaMovimenti!F:F;"<>Movimenti Interbancari")))/(SOMMA.PIÙ.SE(ListaMovimenti!G:G;ListaMovimenti!A:A;TESTO(DATA(ANNO(OGGI());MESE(OGGI())-1;1);"MMMM");ListaMovimenti!F:F;"<>Movimenti Interbancari")-SOMMA.PIÙ.SE(ListaMovimenti!H:H;ListaMovimenti!A:A;TESTO(DATA(ANNO(OGGI());MESE(OGGI())-1;1);"MMMM");ListaMovimenti!F:F;"<>Movimenti Interbancari"))
 				    </div>
 
 					</li>
