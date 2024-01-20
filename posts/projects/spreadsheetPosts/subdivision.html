@@ -1,0 +1,547 @@
+<div class="card" id="my-blog-post-card">
+  <article class="card-content article" 
+    data-metadata='{
+      "creationDate": "2023-12-20", 
+      "lastModificationDate": "2023-12-23", 
+      "title": "Personal Finance Google Sheet: subdivision tab", 
+      "views": 1000, 
+      "wordCount": 500,
+      "readTime": "8 min",
+      "tags": ["Google Sheet", "Personal Finance"]
+    }'>
+    <h1 class="title is-size-3" style="font-family: 'PT Sans Narrow', sans-serif">
+      Personal Finance Google Sheet: subdivision tab
+    </h1>
+    
+    <div class="article-meta is-size-7 is-uppercase level is-mobile">
+      <div class="level-left" style="margin-bottom: 0.50rem">
+        <span class="level-item">
+          <i class="far fa-calendar-alt">&nbsp;</i>
+          <time>
+            <div class="post-date">17/01/2024</div>
+          </time>
+        </span>
+        <span class="level-item is-hidden-mobile">
+          <i class="far fa-calendar-check">&nbsp;</i>
+          <time>
+            <div class="last-updated">20/01/2024</div>
+          </time>
+        </span>
+        <span class="level-item">
+          <i class="far fa-folder-open has-text-grey"></i>&nbsp;
+          <a class="link-muted" href="./projectArchive.html?id=PF">back to posts list</a>
+        </span>
+        <span class="level-item">
+          <i class="far fa-folder-open has-text-grey"></i>&nbsp;
+          <a class="link-muted" href="./projects.html">list of projects</a>
+        </span>
+        <span class="level-item">
+          <i class="far fa-clock"></i>&nbsp;
+          <div class="read-time">8 minutes</div>
+        </span>
+      </div>
+    </div>
+    <div class="content" style="margin-top: 1.0rem">
+  
+
+    <div id="difficulty-container"></div>
+
+  <script>
+    function generateStars(rating) {
+      const yellowStars = '★'.repeat(rating);
+      const grayStars = '☆'.repeat(5 - rating);
+      const starsHTML = `<span class="star-rating">${yellowStars}</span><span class="gray-star">${grayStars}</span>`;
+      document.getElementById('difficulty-container').innerHTML = `<p>Difficulty Level: ${starsHTML}</p>`;
+    }
+  </script>
+
+  <script>
+    // Example usage
+    generateStars(2); // Change the rating as needed
+  </script>
+    
+      <h2 id="Introduction" style="scroll-margin: 1em;">
+        <a href="#Introduction" class="headerlink" title="Introduction"></a>
+        Introduzione
+      </h2>
+      <p style="text-align: justify;">
+        In questo post viene presentata l'ultima tab che ritengo 
+        necessaria per avere una idea chiara dell'evoluzione del 
+        proprio cash flow. Il prossimo post servirà per costruire 
+        una "GUI" pane; ciò permetterà a chi non ha investimenti 
+        o non vuole tracciare l'andamento degli stessi (male, 
+        in questo secondo caso) di prendersi una pausa. Per loro 
+        il prossimo post utile sarà quello sulle tab "extra". 
+      </p>
+
+      <p style="text-align: justify;">
+        L'obiettivo di questa tab (subdivision) è quello di visualizzare
+        incassi e spese in dettaglio per il mese e l'anno corrente 
+        suddivisi per metodo (conto1, conto2, carte prepagate, contanti). 
+        Questo torna molto utile ad esempio per chi usa questo 
+        Google Sheet per personal finance di una intera famiglia 
+        (conti diversi intestati a persone diverse). Risulta anche 
+        utile per: individuare trend mensili di cash flow per i 
+        diversi conti; capire come e quanto frequentemente 
+        vengono eseguiti spostamenti interbancari (fra diversi conti, 
+        o da conto verso carta prepagata); suddividere le spese 
+        correnti su diversi conti, con avvisi luminosi di eccesso 
+        di spesa.
+      </p>
+
+      <p style="text-align: justify;">
+				Anche in questo caso, iniziamo creando una nuova tab, 
+				e rinominiamola "Subdivision". Di nuovo, separaremo 
+				il foglio in due diverse parti. Superiormente avremo
+				un dettaglio mensile di incassi e spese suddivisi per 
+				metodologia; al di sotto, due tabelle pemetteranno di 
+				visualizzare mensilmente flusso di cassa positivo e 
+				negativo per metodo. 
+      </p>
+
+      <h2 id="FirstMethod" style="scroll-margin: 1em;">
+        <a href="#FirstMethod" class="headerlink" title="FirstMethod"></a>
+        Prima tabella "method": conto1
+      </h2>
+
+      <p>
+        Lasciamo la prima riga e la prima colonna vuote, come 
+        fatto per la dashboard. Uniamo celle B2:E2 e inseriamo all'interno 
+        il nome di uno dei metodi usati in tab "ListaMovimenti", ad esempio 
+        "Conto1". 
+        <br>
+        Lasciamo sufficiente spazio per l'aggiunta di grafici, e spostiamoci 
+        in casella B20. Qui, e usando le 3 colonne successive, introduciamo 
+        una copia di quanto abbiamo in dashboard. Useremo quindi (seguendo 
+        l'esempio del post precedente) riga 21 per "Stipendio", riga 22 per 
+        "Altre entrate", riga 23 per "Totale". Useremo colonna C per il "Totale", 
+        colonna D per il "Preventivato", e colonna E per "vs. Preventivato". 
+        In casella B20 inseriamo la scritta "Entrate". 
+        <br>
+        In casella C21 (e seguenti) vogliamo inserire per il mese corrente 
+        la somma di tutte le entries che in "ListaMovimenti" hanno 
+        categoria corrispondente al nome di casella B21 (e seguenti), e il 
+        cui metodo corrisponde al testo inserito in cella B2. Certamente 
+        questa operazione si può ottenere facilmente usando delle pivot table. 
+        Queste però sono dipendenti dal numero di categorie e in particolare 
+        da quali categorie sono "non-vuote" per il mese corrente. Per questione 
+        di pulizia, quindi, procediamo con il modo che segue. In cella C21 usiamo 
+        la seguente formula:
+      </p>
+
+      <div class="code-container">
+        =SOMMA.PIÙ.SE(ListaMovimenti!$G:$G;ListaMovimenti!$A:$A;TESTO(OGGI();"MMMM");ListaMovimenti!$E:$E;$B$2;ListaMovimenti!$F:$F;$B21)
+      </div>
+
+      <p style="text-align: justify;">
+        L'informazione del mese corrente potrebbe anche essere presa da 
+        tab Dashboard (casella D2). Tuttavia, per mantenere la tab standalone 
+        è corretto usare quanto inserito nella formula precedente. Ripetiamo 
+        l'operazione con casella C22, usando un drag and drop. All'interno 
+        di caselle D21 e D22 possiamo inserire il valore preventivato per 
+        la combinazione di categoria e metodo considerati, magari facendoci 
+        aiutare dai valori messi in tab Dashboard. 
+        <br>
+        In riga 23 costruiamo il totale tramite la funzione somma, usando 
+        le due righe superiori della stessa colonna. Le celle in colonna E 
+        vengono colorate basandosi sul principio espresso già nel 
+        <a href="https://fghio.github.io/projectPost.html?project=spreadsheet&post=dashboard#MonthToDate" 
+        target=blank_> 
+        post precedente (vedi sez. 2). </a> Il principio in questo caso è 
+        che la cella in E si colori di verde quando cella C ha un valore 
+        maggiore di cella D.
+        <br>
+        Usando le stesse colonne, costruiamo da riga 25 a riga 38 una tabella 
+        per le categorie di spesa. Replicando quanto fatto in dashboard 
+        inseriamo quindi in riga 25: "Uscite", "Totale", "Preventivato" e 
+        "vs. Preventivato". La colonna B conterrà la lista di categorie 
+        di spesa prese dalla tab "ListaMovimenti"; differentemente da quanto 
+        visto in precedenza useremo la colonna H (e non la G) per estrarre 
+        la somma delle spese per mese corrente corrispondente sia alla categoria 
+        (celle in colonna B), sia al metodo (cella B2). La funzione da inserire 
+        in cella C26 quindi sarà:
+      </p>
+
+      <div class="code-container">
+        =SOMMA.PIÙ.SE(ListaMovimenti!$H:$H;ListaMovimenti!$A:$A;TESTO(OGGI();"MMMM");ListaMovimenti!$E:$E;$B$2;ListaMovimenti!$F:$F;$B26)
+      </div>
+
+      <p style="text-align: justify;">
+        Con un drag and drop riempiamo le altre celle in colonna C; in colonna D 
+        inseriamo il preventivo di spesa tenendo conto di: 1) categoria considerata, 
+        2) method (cella B2). Facciamoci di nuovo aiutare da quanto già messo 
+        in tab Dashboard. Indicativamente, per ciascuna categoria, la somma 
+        dei preventivati attraverso tutti i method deve dare lo stesso 
+        valore inserito in Dashboard tab. In questo modo, anche la somma dei 
+        totali sarà consistente e corretta.
+        <br>
+        Infine, costruiamo i totali in riga 38 come somma delle colonne 
+        corrispondenti, da riga 26 a 37. Per colonna E, replichiamo quanto fatto 
+        per la tabella "Entrate", colorando di rosso quando la cella in colonna 
+        C ha un valore maggiore di quanto preventivato sulla stessa riga in 
+        colonna D. A questo punto, a valle di un processo di miglioramento 
+        puramente estetico, il foglio apparirà in questo modo.
+      </p>
+
+	    <a class="gallery-item" 
+	      href="./assets/images/spreadsheet/subdivision-fig1.webp">
+	      <img src="./assets/images/spreadsheet/subdivision-fig1.webp"
+	        class="box px-0 py-0 ml-auto mr-auto" width="280" 
+	        title="picture1 of slideshow" 
+	        alt="A screenshot of the boxes for Conto1 method in 
+	        the Subdivision pane.">
+	      <p class="has-text-centered is-size-6 caption">
+	        A screenshot of the boxes for Conto1 method in 
+	        the Subdivision pane.</p>
+        </br>
+	    </a>
+
+      <p style="text-align: justify;">
+        Riempiamo quindi parte dello spazio lasciato vuoto tra riga 2 e 20 
+        con un grafico a torta (o ad anello) delle spese per metodo. Sarà 
+        utile per capire per quali spese usiamo maggiormente carte 
+        prepagate, conti, o contanti. Piccola nota: questa tipologia 
+        di suddivisione può essere dettagliata ancora di più. Se la spesa 
+        di tutte le utenze domestiche è addebitata sullo stesso conto, 
+        una suddivisione di dettaglio permetterà di individuare 
+        l'utenza più costosa e quella più economica. 
+        <br>
+        Selezioniamo celle B26:C37; inseriamo un grafico ad anello; 
+        aggiustiamo lo stile a piacere (similmente a quanto già fatto 
+        per la tab Dashboard). Il risultato sarà il seguente.
+      </p>
+
+	    <a class="gallery-item" 
+	      href="./assets/images/spreadsheet/subdivision-fig2.webp">
+	      <img src="./assets/images/spreadsheet/subdivision-fig2.webp"
+	        class="box px-0 py-0 ml-auto mr-auto" width="280" 
+	        title="picture1 of slideshow" 
+	        alt="A screenshot of the boxes for Conto1 method with 
+	        the first additional figure in the Subdivision pane.">
+	      <p class="has-text-centered is-size-6 caption">
+          A screenshot of the boxes for Conto1 method with 
+	        the first additional figure in the Subdivision pane.</p>
+        </br>
+	    </a>
+
+      <p style="text-align: justify;">
+        Lasciamo dello spazio vuoto, servirà per un'altra figura che 
+        aggiungeremo in seguito!
+      </p>
+
+      <h2 id="OtherMethods" style="scroll-margin: 1em;">
+        <a href="#OtherMethods" class="headerlink" title="OtherMethods"></a>
+        Replica per altri "methods"
+      </h2>
+
+      <p style="text-align: justify;">
+        L'operazione deve essere replicata per ogni metodo (method) di 
+        interesse. Tale operazione si può fare ripetendo gli step della 
+        sezione precedente (lasciando una colonna libera tra un metodo 
+        e l'altro), oppure seguendo i passaggi che qui di seguito vengono 
+        proposti. Anzitutto copiamo celle B2:E38; incolliamole in cella 
+        G2. Occuperanno lo spazio tra G2 e J38. Certamente delle modifiche 
+        sono necessarie. In cella G2 cambiamo la scritta: "Conto2". In
+        cella H2 inseriamo:
+      </p>
+
+      <div class="code-container">
+        =SOMMA.PIÙ.SE(ListaMovimenti!$G:$G;ListaMovimenti!$A:$A;Dashboard!$D$2;ListaMovimenti!$E:$E;$G$2;ListaMovimenti!$F:$F;$G21)
+      </div>
+
+      <p style="text-align: justify;">
+        Rispetto alla funzione precedente, l'input del metodo diventa 
+        la casella G2 (unione tra G2 e J2); inoltre ci si aspetta che 
+        casella G21 contenga lo stesso nome (e quindi categoria) di 
+        B21. Usiamo il drag and drop per completare la lista in colonna 
+        H per tutte le categorie di "entrata". 
+        <br>
+        L'operazione è identica per la tabella delle uscite. Di nuovo 
+        si userà la colonna H al posto della G (da ListaMovimenti); 
+        di nuovo l'input method viene dalla casella G2 (anzichè B2); 
+        di nuovo l'input categoria viene da casella G26 (che 
+        corrisponde a cella B26). La funzione diventa:
+      </p>
+
+      <div class="code-container">
+        =SOMMA.PIÙ.SE(ListaMovimenti!$H:$H;ListaMovimenti!$A:$A;Dashboard!$D$2;ListaMovimenti!$E:$E;$G$2;ListaMovimenti!$F:$F;$G26)
+      </div>
+
+      <p style="text-align: justify;">
+        Drag and drop per avere i valori corretti in colonna H; un check 
+        (e un adattamento) della formattazione condizionale per colonna 
+        J. In questo caso è necessario che la cella in colonna J si 
+        colori di verde (entrate) o rosso (uscite) quando il corrispondente 
+        valore in colonna H è maggiore di quello in colonna I. Rapido 
+        check ai valori totali; modifica dei valori preventivati aiutandosi 
+        con quanto inserito in Dashboard (la somma del preventivato 
+        per ciascuna categoria attraverso i diversi metodi deve ritornare 
+        il corrispettivo valore in Dashboard). Infine, creiamo un nuovo 
+        grafico ad anello usando celle G26:H37. Il risultato sarà il seguente.
+      </p>
+
+	    <a class="gallery-item" 
+	      href="./assets/images/spreadsheet/subdivision-fig3.webp">
+	      <img src="./assets/images/spreadsheet/subdivision-fig3.webp"
+	        class="box px-0 py-0 ml-auto mr-auto" width="460" 
+	        title="picture1 of slideshow" 
+	        alt="A screenshot of the boxes for Conto1 method along 
+	        the year in the Subdivision pane.">
+	      <p class="has-text-centered is-size-6 caption">
+          A screenshot of the boxes for Conto1 method along 
+	        the year in the Subdivision pane.</p>
+        </br>
+	    </a>
+
+      <p style="text-align: justify;">
+        Rifacciamo la procedura per tutti gli altri metodi. 
+        Questo passaggio non viene spiegato in dettaglio in 
+        questo post per non tediare il lettore. Al termine del 
+        processo, per questo esempio, si avrà quanto segue.
+      </p>
+
+	    <a class="gallery-item" 
+	      href="./assets/images/spreadsheet/subdivision-fig4.webp">
+	      <img src="./assets/images/spreadsheet/subdivision-fig4.webp"
+	        class="box px-0 py-0 ml-auto mr-auto" width="680" 
+	        title="picture1 of slideshow" 
+	        alt="A screenshot of the boxes for all methods along 
+	        the year in the Subdivision pane.">
+	      <p class="has-text-centered is-size-6 caption">
+          A screenshot of the boxes for all methods along 
+	        the year in the Subdivision pane.</p>
+	    </a>
+
+      <h2 id="TabelleAnnuali" style="scroll-margin: 1em;">
+        <a href="#TabelleAnnuali" class="headerlink" title="TabelleAnnuali"></a>
+        Evoluzione annuale per "method"
+      </h2>
+
+      <p style="text-align: justify;">
+        Quanto prodotto nella parte superiore serve per fornire 
+        indicazioni mensili. Per indicazioni annuali costruiamo una 
+        ulteriore tabella per ogni method. Partiamo da riga 41. 
+        In colonna B inseriamo la scritta "Method"; nelle 13 
+        colonne successive (C:O) scriviamo "Start" seguito da 
+        ogni mese dell'anno. Usiamo la stessa lingua della colonna 
+        "Month" della tabella in "ListaMovimenti": useremo quel 
+        testo per raccogliere dati come fatto in Dashboard.
+      </p>
+
+      <p style="text-align: justify;">
+        Usiamo righe 42:44 per il method "Conto1". B42 contiene 
+        "Conto1 +"; B43 contiene "Conto1 -"; B44 contiene "Evo Conto1". 
+        Usiamo la colonna "Start" per contenere in riga 44 lo starting 
+        point annuale del metodo scelto. In questo caso 
+      </p>
+
+      <div class="code-container">
+        =ListaMovimenti!G4
+      </div>
+
+      <p style="text-align: justify;">
+        Anneriamo celle C42 e C43: non ci servono.<br>Da colonna D a 
+        colonna O serve raccogliere la somma di entrate ("Conto1 +") 
+        e uscite ("Conto1 -") per metodo indipendentemente dalla 
+        categoria. Per le entrate, in colonna D, usiamo:
+      </p>
+      
+      <div class="code-container">
+        =SOMMA.PIÙ.SE(ListaMovimenti!$G:$G;ListaMovimenti!$E:$E;$B$2;ListaMovimenti!$A:$A;D$41)
+      </div>
+
+      <p style="text-align: justify;">
+        Per le uscite, invece:
+      </p>
+
+      <div class="code-container">
+        =SOMMA.PIÙ.SE(ListaMovimenti!$H:$H;ListaMovimenti!$E:$E;$B$2;ListaMovimenti!$A:$A;D$41)
+      </div>
+
+      <p style="text-align: justify;">
+        Solito drag and drop lungo le colonne (fino alla O) per 
+        riempire righe 42 e 43.<br>
+        Infine, per riga 44, in cella D usiamo la formula
+      </p>
+
+      <div class="code-container">
+        =C44+D42-D43
+      </div>
+
+      <p style="text-align: justify;">
+        La funzione implica che al valore del mese precente (o "Start") 
+        bisogna sommare le entrate del mese corrente, e sottrarre 
+        le uscite. Usiamo il solito drag and drop lungo la riga per 
+        ottenere l'evoluzione annuale. Ecco il risultato:
+      </p>
+
+	    <a class="gallery-item" 
+	      href="./assets/images/spreadsheet/subdivision-fig5.webp">
+	      <img src="./assets/images/spreadsheet/subdivision-fig5.webp"
+	        class="box px-0 py-0 ml-auto mr-auto" width="680" 
+	        title="picture1 of slideshow" 
+	        alt="A screenshot of the boxes for all methods along 
+	        the year in the Subdivision pane.">
+	      <p class="has-text-centered is-size-6 caption">
+          A screenshot of the boxes for all methods along 
+	        the year in the Subdivision pane (bottom).</p>
+        <br>
+	    </a>
+
+      <p style="text-align: justify;">
+        La nuova tabella permette di generare una figura che rappresenti 
+        l'evoluzione per l'anno corrente. Selezioniamo celle C41:O41 e 
+        C44:O44. Inseriamo nel documento una figura contenente un grafico 
+        ad area in pila; cancelliamo gli assi orizzontali e in seguito 
+        a qualche aggiustamento grafico posizioniamo la figura in cella 
+        B3. <br>
+        Ripetiamo il procedimento per tutti i metodi inseriti nella tab 
+        Subdivision. Il risultato sarà il seguente.
+      </p>
+
+	    <a class="gallery-item" 
+	      href="./assets/images/spreadsheet/subdivision-fig7.webp">
+	      <img src="./assets/images/spreadsheet/subdivision-fig7.webp"
+	        class="box px-0 py-0 ml-auto mr-auto" width="680" 
+	        title="picture1 of slideshow" 
+	        alt="A screenshot of the boxes for all methods along 
+	        the year in the Subdivision pane.">
+	      <p class="has-text-centered is-size-6 caption">
+          A screenshot of the whole Subdivision pane.</p>
+	    </a>
+
+      <h2 id="Conclusioni" style="scroll-margin: 1em;">
+        <a href="#Conclusioni" class="headerlink" title="Conclusioni"></a>
+        Conclusioni
+      </h2>
+      
+      <p style="text-align: justify;">
+        La tab Subdivision è così completata. Di nuovo, la tab è 
+        stand-alone e non richiede aggiustamenti durante l'anno. 
+        L'evoluzione mensile e annuale si basa sulla sola tab 
+        "ListaMovimenti" da cui provengono gli input necessari per 
+        riempire le tabelle e le figure mostrate in questo foglio.
+        <br>
+        Chi non ha investimenti o non vuole tracciare l'evoluzione 
+        degli stessi spero abbia trovato comunque utilità nello 
+        sviluppo di queste prime tab. L'utente può saltare tutti i 
+        post successivi ("Bond", "Stocks", "PAC") e proseguire 
+        visionando direttamente il post che tratta la costruzione 
+        della <a href="https://youtu.be/5h-33h3Ji0Q?si=QAf4uBpqYEDOhkg5&t=83" 
+        target=blank_>tab "GUI"</a>.
+      </p>
+
+
+    </div>
+
+    <div class="article-licensing box">
+      <div class="licensing-title">
+        <p>Personal Finance Google Sheet: subdivision tab</p>
+        <p>
+          <a href="https://fghio.github.io/projectPost.html?project=spreadsheet&post=subdivision">
+            https://fghio.github.io/projectPost.html?project=spreadsheet&post=subdivision
+          </a>
+        </p>
+      </div>
+      <div class="licensing-meta level is-mobile">
+        <div class="level-left">
+          <div class="level-item is-narrow">
+            <div>
+              <h6>Author</h6>
+              <p>F. Ghioldi</p>
+            </div>
+          </div>
+          <div class="level-item is-narrow">
+            <div>
+              <h6>Posted on</h6>
+              <p>17-01-2024</p>
+            </div>
+          </div>
+          <div class="level-item is-narrow">
+            <div>
+              <h6>Updated on</h6>
+              <p>20-01-2024</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr style="height:1px;margin:1rem 0">
+      <div class="level is-mobile is-flex">
+        <div class="article-tags is-size-7 is-uppercase">
+          <i class="fas fa-tag has-text-grey"
+            style="transform: translateY(20%);"></i>&nbsp;&nbsp;
+        <div>
+        Google Sheet,
+        &nbsp;
+      </div>
+      <div>
+        Personal Finance
+        &nbsp;
+      </div>
+    </div>
+  </div>
+
+  <div class="sharethis-inline-share-buttons st-center st-inline-share-buttons st-animated" id="st-1">
+
+    <div class="st-btn" data-network="twitter" style="display: inline-block;">
+      <img alt="twitter sharing button" src="https://platform-cdn.sharethis.com/img/twitter.svg">
+    </div>
+    
+    <div class="st-btn" data-network="linkedin" style="display: inline-block;">
+      <img alt="linkedin sharing button" src="https://platform-cdn.sharethis.com/img/linkedin.svg">
+    </div>
+
+    <div class="st-btn" data-network="email" style="display: inline-block;">
+      <img alt="email sharing button" src="https://platform-cdn.sharethis.com/img/email.svg">
+    </div>
+    
+    <div class="st-btn st-last" data-network="sharethis" style="display: inline-block;">
+      <img alt="sharethis sharing button" src="https://platform-cdn.sharethis.com/img/sharethis.svg">
+    </div>
+
+  </div>
+
+  <script 
+    src="https://platform-api.sharethis.com/js/sharethis.js#property=61b5930d440224001908310c&amp;product=inline-share-buttons" defer="">
+  </script>
+  <style>
+  .st-total {
+    display: none !important;
+  }
+  </style>
+  
+
+  </article>
+</div>
+
+<script src=assets/js/tableContent.js></script>
+
+<script src="./assets/js/slideshow.js"></script>
+
+<div class="card" id="comment-card" style="margin-top: 20px; opacity: 1; transform-origin: center top;">
+  <div class="card-content">
+    <h3 class="title is-5">Comments</h3>
+
+    <!-- DISQUS COMMENTS -->
+    <div id="disqus_thread"></div>
+
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://fghio.github.io/projectPost.html?project=spreadsheet&post=subdivision';
+        this.page.identifier = '/posts/projects/spreadsheetPosts/subdivision.html';
+      };
+
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = '//' + 'https-fghio-github-io' + '.disqus.com/embed.js'; // Update the shortname here
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+</div>
+
+
+

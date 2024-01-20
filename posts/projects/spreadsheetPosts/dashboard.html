@@ -3,7 +3,7 @@
     data-metadata='{
       "creationDate": "2023-12-20", 
       "lastModificationDate": "2023-12-23", 
-      "title": "Personal Finance Google Sheet: cashFlow tab", 
+      "title": "Personal Finance Google Sheet: dashboard tab", 
       "views": 1000, 
       "wordCount": 500,
       "readTime": "12 min",
@@ -72,7 +72,7 @@
         riferimenti che verranno introdotti in questo Google Sheet. 
       </p>
 
-      <p>
+      <p style="text-align: justify;">
         L'obiettivo di questa tab (Dashboard) è quello di visualizzare: 
         <ul>
           <li>incassi e spese in dettaglio per il mese e l'anno  corrente;</li>
@@ -83,7 +83,7 @@
         </ul>
       </p>
 
-      <p>
+      <p style="text-align: justify;">
 				Da questi dati ci si aspetta di poter ottenere importanti informazioni. 
 				Ad esempio, si può associare a ciascuna categoria di spesa la propria 
 				percentuale rispetto al totale delle uscite. 
@@ -91,7 +91,7 @@
 				uscite; si può ragionare sull'andamento annuale e pianificare spese future.
       </p>
 
-      <p>
+      <p style="text-align: justify;">
 				Per avere informazioni utili e dettagliate, separiamo il foglio in due parti. 
 				A sinistra avremo le informazioni "month to date" (per mese corrente, da inizio 
 				mese ad oggi); a destra quelle "year to date" (per l'anno corrente, da inizio 
@@ -103,17 +103,19 @@
         Month to date (mese corrente)
       </h2>
 
-      <p>
+      <p style="text-align: justify;">
 				Lasciamo la prima riga e la prima colonna vuote (per questioni di stile). 
 				Riduciamo la larghezza della colonna A, per lo stesso motivo. In seconda 
 				riga, seconda colonna, uniamo le celle B2 e C2, così come le caselle D2 e E2.
 				Nella prima unione (B2) inseriamo la scritta "Month to date"; nella seconda 
 				unione (D2) usiamo una funzione che ci restituisca sempre il mese corrente.
+			</p>
 				
       <div class="code-container">
 				=TESTO(OGGI();"MMMM")
       </div>
 				
+      <p style="text-align: justify;">
 				Dalla riga 4 alla riga 7, dalla colonna B alla colonna E (comprese), 
 				creiamo una box, un riquadro, usando la funzione "bordi" di Google Sheet.
 				Nella box, usiamo la riga 4 per l'intestazione: riempiamo le caselle 
@@ -121,7 +123,7 @@
 				I più british, o gli imprenditori digitali, useranno la versione inglese.
       </p>
 
-      <p>				
+      <p style="text-align: justify;">				
 				Le due righe sottostanti (5 e 6) verranno occupate dalle 2 categorie 
 				scelte per identificare le entrate. Per il nostro esempio, dalla 
 				tabella usata in "ListaMovimenti", abbiamo "Stipendio" e "Altre entrate".
@@ -129,26 +131,28 @@
 				incoraggiato a inserirle tutte, aumentando il numero di righe della box.
       </p>
       				
-      <p>
+      <p style="text-align: justify;">
 				L'ultima riga viene usata per il totale. Quindi, in casella B5 inseriamo 
 				"Stipendio"; in casella B6 "Altre entrate"; in casella B7 "Totale".
       </p>
 
-      <p>
+      <p style="text-align: justify;">
 				Veniamo alla parte complicata. Vogliamo raccogliere in casella C5 la somma 
 				delle entrate per il mese corrente (in D2) la cui categoria è "Stipendio" 
 				(in B5), indipendentemente dal metodo di incasso. Useremo la seguente formula:
+		  </p>
 
       <div class="code-container">				
 				=SOMMA.PIÙ.SE(ListaMovimenti!$G:$G;ListaMovimenti!$F:$F;$B5;ListaMovimenti!$A:$A;$D$2)
       </div>
 
+      <p style="text-align: justify;">
 				Facciamo un drag di questa formula anche nella riga successiva (sempre in 
 				colonna C). Se il blocco celle (imposto dai simboli del $ sarà corretto), 
 				avremo in output la somma corretta per la categoria "Altre entrate". 
       </p>
       
-      <p>
+      <p style="text-align: justify;">
 				Riempiamo la colonna D, celle D5 e D6 con dei valori attesi (se ci attendiamo 
 				dei valori). Mettiamo 0 (zero) in caso contrario. Usiamo l'ultima colonna (E, 
 				"vs. Pianificato") per contenere un indicatore che si triggeri (si accenda) 
@@ -156,18 +160,20 @@
 				Per farlo, selezioniamo casella E5, usiamo la formattazione condizionale e 
 				selezioniamo "Formatta la cella se... La formula personalizzata è". 
 				Inseriamo la seguente formula:
+			</p>
 				
       <div class="code-container">
 				=$C5>$D5
       </div>
 
+      <p style="text-align: justify;">
 				e impostiamo un bel colore verde brillante. Dopo aver premuto "Fine", con 
 				un drag and drop possiamo applicare la stessa formattazione condizionale 
 				anche in riga E6 ed E7. Per la riga 7, caselle C e D, usiamo la funzione 
 				somma per cumulare i valori di C5, C6, e D5, D6 rispettivamente.				
       </p>
       
-      <p>
+      <p style="text-align: justify;">
 				In seguito a qualche modifica di stile, colori, font style, e dopo 
 				aver applicato il formato contabilità alle caselle C5:D7, si avrà 
 				il seguente risultato.
@@ -183,9 +189,10 @@
 	      <p class="has-text-centered is-size-6 caption">
 	        A screenshot of the month to date (income part) box 
 	        in the Dashboard pane.</p>
+        </br>
 	    </a>
 					
-      <p>
+      <p style="text-align: justify;">
       	Replichiamo quanto appena fatto per tutte le categorie di spesa che 
       	possono essere copiate dalla tabella in colonna N della tab 
       	"ListaMovimenti". Creiamo una box da riga 9 a riga 22; in riga 9 
@@ -194,11 +201,13 @@
       	Nelle righe intermedie raccogliamo i valori usando la funzione 
       	"SOMMA.PIÙ.SE" vista prima, usando però colonna H al posto di 
       	colonna G dalla "ListaMovimenti". 
+      </p>
       
       <div class="code-container">				
 				=SOMMA.PIÙ.SE(ListaMovimenti!$H:$H;ListaMovimenti!$F:$F;$B10;ListaMovimenti!$A:$A;$D$2)
       </div>
 
+      <p style="text-align: justify;">
       	Applicando la stessa formattazione condizionale, 
       	ma di colore rosso, si avrà il seguente risultato.
       </p>
@@ -220,22 +229,24 @@
 				Year to date (anno corrente)
       </h2>
 
-      <p>
+      <p style="text-align: justify;">
         Le informazioni del mese corrente sono certamente interessanti, 
         ma ancora più importante è tenere traccia dell'evoluzione mese per mese 
         per l'anno corrente. 
       </p>			
 
-      <p>
+      <p style="text-align: justify;">
 				In riga 2, uniamo le celle da colonna G a colonna S. Inseriamo 
 				la scritta "Anno corrente" (o "Year to date"). In colonna 
 				T inseriamo l'aggiornamento automatico dell'anno corrente con 
 				la formula 
+      </p>			
 
       <div class="code-container">
 				=ANNO(OGGI())
       </div>
 
+      <p style="text-align: justify;">
 				Creiamo due box, una per le celle G4:T7; una per le celle 
 				G9:T22.
 				Copiamo e incolliamo celle B4:B22 in G4:G22. Completiamo 
@@ -247,11 +258,13 @@
 				(mesi in formato testuale) in quella tabella. Formattiamo 
 				celle H5:S7 come contabilità. Inseriamo in cella H5 la seguente 
 				formula:
+      </p>			
 
       <div class="code-container">
 				=SOMMA.PIÙ.SE(ListaMovimenti!$G:$G;ListaMovimenti!$F:$F;$B5;ListaMovimenti!$A:$A;H$4)
       </div>
-				
+
+      <p style="text-align: justify;">				
 				Con un drag and drop lungo riga 5, e poi lungo le colonne H:S 
 				riempiamo completamente le righe intermedie della box "Year to date", 
 				ad eccezione della colonna T, in cui effettuiamo una somma per riga.
@@ -270,9 +283,10 @@
 	      <p class="has-text-centered is-size-6 caption">
 	        A screenshot of the year to date (income part) box 
 	        in the Dashboard pane.</p>
+	        </br>
 	    </a>
 
-      <p>
+      <p style="text-align: justify;">
 				Per ottenere la colorazione verde in riga 7 è sufficiente usare una 
 				formattazione condizionale con scala colori bianco-verde. Questa 
 				formattazione condizionale può essere usata per individuare a colpo 
@@ -280,7 +294,7 @@
 				essere usata anche nelle righe 5 e 6 per ciascuna categoria.
       </p>
 
-      <p>
+      <p style="text-align: justify;">
 				A tal proposito, per le spese, inseriamo in cella H10 la seguente 
 				formula:
 
@@ -309,14 +323,14 @@
 	        in the Dashboard pane.</p>
 	    </a>
 
-      <p>
+      <p style="text-align: justify;">
 				Come descritto precedentemente, è possibile fare una formattazione 
 				condizionale bianco-rossa per tutte le celle contenute nella box 
 				delle spese per anno (H10:S21). L'obiettivo è quello di individuare 
 				rapidamente la categoria e il mese in cui ci sono state le spese più alte.		
       </p>
 
-      <p>
+      <p style="text-align: justify;">
 				Al di sotto della seconda box (spese), andiamo ad inserire ulteriori 
 				importanti informazioni. Racchiudiamo in box le caselle G24:T25. 
 				In G24 inseriamo "Guadagno/Perdita netta"; in G25 "Guadagno/Perdita netta %".
@@ -362,7 +376,7 @@
 				spese".
       </p>
 
-      <p>
+      <p style="text-align: justify;">
 				Il secondo grafico è l'andamento del cash flow netto; lo inseriamo sotto 
 				alla box "Year to date". Per costruirlo, selezioniamo la riga del 
 				Guadagno/Perdita netta (24), da colonna H a colonna S. Cambiamo lo stile, 
@@ -372,7 +386,7 @@
 				stile, e dimensione delle label.
       </p>
 
-      <p>
+      <p style="text-align: justify;">
 				A questo punto possiamo costruire due grafici che sostanzialmente forniscono 
 				la stessa informazione, ma con sfaccettature diverse. Il primo è un grafico 
 				a barre sulle categorie di spesa per mese nell'anno corrente. Selezioniamo 
@@ -401,7 +415,7 @@
         Informazioni utili addizionali
       </h2>
 
-			<p>
+			<p style="text-align: justify;">
 				Per concludere la costruzione di questa tab, mettiamo una serie di 
 				informazioni utili che si aggiornano automaticamente. Riempiamo 
 				in questo modo lo spazio in basso a sinistra presente nella figura 
@@ -413,7 +427,7 @@
         Info-Box 1
       </h3>
 			
-			<p>
+			<p style="text-align: justify;">
 				Creiamo una box che racchiuda celle B39:E44. Raggruppiamo le celle 
 				in box in riga 39 e inseriamo la scritta "Informazioni utili per mese".
 				Completiamo raggruppando colonne B e C, D ed E, riga per riga. 
@@ -447,11 +461,12 @@
         Info-Box 2
       </h3>
 
-			<p>
+			<p style="text-align: justify;">
 				Sotto questa box inseriamone un'altra di rapid check. Racchiudiamo B46:E50;
 				Usiamo come intestazione in riga 46 "Controllo rapido"; inseriamo i seguenti 
 				controlli:
-
+			</p>
+			
 				<ul>
 					<li style="margin-bottom: 20px;">Guadagno > Spese mensili: 
 						<span class="code-container-inline">=SE(C7>C22;"YES";"NO")</span></li>
@@ -460,7 +475,7 @@
 						<span class="code-container-inline">=SE(C7>D7;"YES";"NO")</span></li>
 
 					<li style="margin-bottom: 20px;">Spese minori di quanto atteso: 
-						<span class="code-container-inline">=SE(C22&lt;D22;"YES";"NO")</span></li>
+						<span class="code-container-inline">=SE(C22<D22;"YES";"NO")</span></li>
 
 					<li style="margin-bottom: 20px;">Variazione % > 0: 
 						<span class="code-container-inline">=SE(D44>0;"YES";"NO")</span></li>
@@ -478,7 +493,8 @@
 						<span class="code-container-inline">=E49-E48</span></li>
 
 				</ul>
-				
+		
+  		<p style="text-align: justify;">		
 				È buona cosa per facilitare la lettura di questa box di informazioni mettere 
 				una formattazione condizionale (testuale) così che la casella 
 				diventi verde se il testo è esattamente "YES" e rosso in caso la scritta 
@@ -490,7 +506,7 @@
         Info-Box 3
       </h3>
 
-			<p>
+			<p style="text-align: justify;">
 				Terza (e penultima) box fornisce dati utili relativi al mese precedente.
 				A causa della costruzione fatta (in particolare per la tab ListaMovimenti), 
 				a gennaio non si hanno direttamente note le informazioni per il mese di dicembre 
@@ -498,11 +514,13 @@
 				in poi. Ciò nonostante, si può racchiudere in box lo spazio B52:E56. 
 				L'intestazione può essere "Dati rispetto al mese precedente" unendo B e C; 
 				in D ed E possiamo inserire il calcolo automatico del mese precedente:
+      </p>
 
       <div class="code-container">
 				=TESTO(MESE(OGGI()-1);"MMMM")
       </div>
 				
+			<p style="text-align: justify;">
 				Uniamo caselle B e C per riga; teniamo separate D ed E (per riga), in modo da
 				semplificarci la vita. Riempiamo le righe con: testo (B:C); calcolo (D); 
 				output (E). Nascondiamo poi il risultato del calcolo (in colonna D) usando 
@@ -512,7 +530,7 @@
 					<li style="margin-bottom: 20px;">Totale risparmiato rispetto mese scorso: 
 
 				    <div class="code-container">
-							=C7 - SOMMA.PIÙ.SE(ListaMovimenti!G:G;ListaMovimenti!A:A;TESTO(DATA(ANNO(OGGI());MESE(OGGI())-1;1);"MMMM");ListaMovimenti!F:F;"<>Movimenti Interbancari")
+							=C7 - SOMMA.PIÙ.SE(ListaMovimenti!G:G;ListaMovimenti!A:A;TESTO(DATA(ANNO(OGGI());MESE(OGGI())-1;1);"MM");ListaMovimenti!F:F;"<>Movimenti Interbancari")
 				    </div>
 
 					</li>
@@ -520,7 +538,7 @@
 					<li style="margin-bottom: 20px;">Incremento/decremento di spese: 
 
 				    <div class="code-container">
-							=C22-SOMMA.PIÙ.SE(ListaMovimenti!H:H;ListaMovimenti!A:A;TESTO(DATA(ANNO(OGGI());MESE(OGGI())-1;1);"MMMM");ListaMovimenti!F:F;"<>Movimenti Interbancari")
+							=C22-SOMMA.PIÙ.SE(ListaMovimenti!H:H;ListaMovimenti!A:A;TESTO(DATA(ANNO(OGGI());MESE(OGGI())-1;1);"MM");ListaMovimenti!F:F;"<>Movimenti Interbancari")
 				    </div>
 
 					</li>
@@ -537,13 +555,16 @@
 						mese precedente: 
 
 				    <div class="code-container">
-							=((SOMMA.PIÙ.SE(ListaMovimenti!G:G;ListaMovimenti!A:A;TESTO(DATA(ANNO(OGGI());MESE(OGGI());1);"MMMM");ListaMovimenti!F:F;"<>Movimenti Interbancari")-SOMMA.PIÙ.SE(ListaMovimenti!H:H;ListaMovimenti!A:A;TESTO(DATA(ANNO(OGGI());MESE(OGGI());1);"MMMM");ListaMovimenti!F:F;"<>Movimenti Interbancari"))-(SOMMA.PIÙ.SE(ListaMovimenti!G:G;ListaMovimenti!A:A;TESTO(DATA(ANNO(OGGI());MESE(OGGI())-1;1);"MMMM");ListaMovimenti!F:F;"<>Movimenti Interbancari")-SOMMA.PIÙ.SE(ListaMovimenti!H:H;ListaMovimenti!A:A;TESTO(DATA(ANNO(OGGI());MESE(OGGI())-1;1);"MMMM");ListaMovimenti!F:F;"<>Movimenti Interbancari")))/(SOMMA.PIÙ.SE(ListaMovimenti!G:G;ListaMovimenti!A:A;TESTO(DATA(ANNO(OGGI());MESE(OGGI())-1;1);"MMMM");ListaMovimenti!F:F;"<>Movimenti Interbancari")-SOMMA.PIÙ.SE(ListaMovimenti!H:H;ListaMovimenti!A:A;TESTO(DATA(ANNO(OGGI());MESE(OGGI())-1;1);"MMMM");ListaMovimenti!F:F;"<>Movimenti Interbancari"))
+							=((SOMMA.PIÙ.SE(ListaMovimenti!G:G;ListaMovimenti!A:A;TESTO(DATA(ANNO(OGGI());MESE(OGGI());1);"MM");ListaMovimenti!F:F;"<>Movimenti Interbancari")-SOMMA.PIÙ.SE(ListaMovimenti!H:H;ListaMovimenti!A:A;TESTO(DATA(ANNO(OGGI());MESE(OGGI());1);"MM");ListaMovimenti!F:F;"<>Movimenti Interbancari"))-(SOMMA.PIÙ.SE(ListaMovimenti!G:G;ListaMovimenti!A:A;TESTO(DATA(ANNO(OGGI());MESE(OGGI())-1;1);"MM");ListaMovimenti!F:F;"<>Movimenti Interbancari")-SOMMA.PIÙ.SE(ListaMovimenti!H:H;ListaMovimenti!A:A;TESTO(DATA(ANNO(OGGI());MESE(OGGI())-1;1);"MM");ListaMovimenti!F:F;"<>Movimenti Interbancari")))/(SOMMA.PIÙ.SE(ListaMovimenti!G:G;ListaMovimenti!A:A;TESTO(DATA(ANNO(OGGI());MESE(OGGI())-1;1);"MM");ListaMovimenti!F:F;"<>Movimenti Interbancari")-SOMMA.PIÙ.SE(ListaMovimenti!H:H;ListaMovimenti!A:A;TESTO(DATA(ANNO(OGGI());MESE(OGGI())-1;1);"MM");ListaMovimenti!F:F;"<>Movimenti Interbancari"))
 				    </div>
 
 					</li>
 				
 				</ul>
+			</p>		
+		
 				
+			<p style="text-align: justify;">
 					A chi non si è fatto spaventare dalla lunghezza del codice precedente 
 					(che nasconde una semplice divisione tra incassi e spese di mese corrente e 
 					precedente), i miei complimenti. In righe 53:56, colonna E, sarà quindi sufficiente 
@@ -563,7 +584,7 @@
         Info-Box 4
       </h3>
 
-			<p>
+			<p style="text-align: justify;">
 				L'ultima box viene introdota per mostrare rapide informazioni utili annuali.
 				Racchiudiamo celle B58:E63; usiamo come intestazione "Informazioni utili (per 
 				anno)"; inseriamo in celle B:C il testo, e in celle D:E l'output come di seguito:
@@ -591,7 +612,9 @@
 					</li>
 				
 				</ul>
+			</p>
 				
+			<p style="text-align: justify;">
 				Inutile spiegare che l'obiettivo è tenere l'ultimo dato praticamente nullo;
 				il primo maggiore di 0, e il secondo maggiore di quanto ci si era prefissati.
 				Al netto di formattazione condizionale, di tipo di dati 
@@ -609,6 +632,23 @@
 	        A screenshot of the finished Dashboard pane.</p>
 	    </a>
 
+      <h2 id="Conclusions" style="scroll-margin: 1em;">
+        <a href="#Conclusions" class="headerlink" title="Conclusions"></a>
+        Conclusioni
+      </h2>
+
+			<p style="text-align: justify;">
+        Gli obiettivi della tab sono quindi raggiunti. Progressivamente nell'anno 
+        le informazioni vengono automaticamente aggiornate. Le caselle vengono 
+        riempite basandosi sulla tabella contenuta nella tab "ListaMovimenti". 
+        Nessuna modifica o azione è necessaria in questa tab durante l'anno in 
+        corso. 
+			</p>
+
+			<p style="text-align: justify;">
+        Nonostante questo, aggiornamenti alla tab potrebbero arrivare al termine 
+        dello sviluppo base del progetto... anche grazie a commenti degli utilizzatori.
+			</p>
 
     </div>
 
