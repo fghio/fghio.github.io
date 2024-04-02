@@ -1,0 +1,510 @@
+<div class="card" id="my-blog-post-card">
+  <article class="card-content article" 
+    data-metadata='{
+      "creationDate": "2024-03-10", 
+      "lastModificationDate": "2024-04-02", 
+      "title": "Personal Finance Google Sheet: stocks tab", 
+      "views": 1000, 
+      "wordCount": 500,
+      "readTime": "30 min",
+      "tags": ["Google Sheet", "Personal Finance"]
+    }'>
+    <h1 class="title is-size-3" style="font-family: 'PT Sans Narrow', sans-serif">
+      Personal Finance Google Sheet: stocks tab
+    </h1>
+    
+    <div class="article-meta is-size-7 is-uppercase level is-mobile">
+      <div class="level-left" style="margin-bottom: 0.50rem">
+        <span class="level-item">
+          <i class="far fa-calendar-alt">&nbsp;</i>
+          <time>
+            <div class="post-date">10/03/2024</div>
+          </time>
+        </span>
+        <span class="level-item is-hidden-mobile">
+          <i class="far fa-calendar-check">&nbsp;</i>
+          <time>
+            <div class="last-updated">02/04/2024</div>
+          </time>
+        </span>
+        <span class="level-item">
+          <i class="far fa-folder-open has-text-grey"></i>&nbsp;
+          <a class="link-muted" href="./projectArchive.html?id=PF">back to posts list</a>
+        </span>
+        <span class="level-item">
+          <i class="far fa-folder-open has-text-grey"></i>&nbsp;
+          <a class="link-muted" href="./projects.html">list of projects</a>
+        </span>
+        <span class="level-item">
+          <i class="far fa-clock"></i>&nbsp;
+          <div class="read-time">15 minutes</div>
+        </span>
+      </div>
+    </div>
+    <div class="content" style="margin-top: 1.0rem">
+  
+
+    <div id="difficulty-container"></div>
+
+  <script>
+    function generateStars(rating) {
+      const yellowStars = '★'.repeat(rating);
+      const grayStars = '☆'.repeat(5 - rating);
+      const starsHTML = `<span class="star-rating">${yellowStars}</span><span class="gray-star">${grayStars}</span>`;
+      document.getElementById('difficulty-container').innerHTML = `<p>Difficulty Level: ${starsHTML}</p>`;
+    }
+  </script>
+
+  <script>
+    // Example usage
+    generateStars(5); // Change the rating as needed
+  </script>
+    
+      <h2 id="Introduction" style="scroll-margin: 1em;">
+        <a href="#Introduction" class="headerlink" title="Introduction"></a>
+        Introduzione
+      </h2>
+
+      <p style="text-align: justify;">
+        Prosegue la serie di post sulla creazione di tab che forniscano 
+        indicazioni più dettagliate sull'andamento dei prodotti finanziari. 
+        L'obiettivo di questo post è facilitare la creazione di una tab 
+        "stocks" in cui tracciare l'andamento di: fondi, etf azionari, ed 
+        etf obbligazionari. Per piani di accumulo (PAC) si rimanda ad un 
+        post successivo.
+      </p>
+
+      <h2 id="Disclaimer" style="scroll-margin: 1em;">
+        <a href="#Disclaimer" class="headerlink" title="Disclaimer"></a>
+        Disclaimer
+      </h2>
+
+      <p style="text-align: justify;">
+        In nessun modo l'allocazione mostrata in questo post è da considerarsi
+        consiglio finanziario. I ticker usati sono reali, ma le quote e i numeri 
+        mostrati sono stati scelti randomicamente e sono inclusi a puro scopo 
+        di validazione del corretto inserimento delle formule. 
+      </p>
+
+      <h2 id="PimiPassi" style="scroll-margin: 1em;">
+        <a href="#PimiPassi" class="headerlink" title="PimiPassi"></a>
+        Bond ETF: valore corrente
+      </h2>
+
+      <p style="text-align: justify;">
+        Creiamo una nuova tab e rinominiamola "stocks". Lasciamo la prima 
+        riga e colonna vuote. Suddividiamo in box differenti ETF obbligazionari 
+        e azionari. Per fondi (attivi o passivi) non facilmente reperibili mediante 
+        funzione GOOGLEFINANCE ci sarà un approfondimento più avanti in questo post.
+       <br>
+       Iniziamo con ETF obbligazionari. Da cella B2 a cella R2 inseriamo i seguenti 
+       titoli: 
+      </p>
+
+      <ul>
+        <li><span style="font-weight: 800">Bond fund name:</span> 
+          per indicare chiaramente a che ETF obbligazionario ci riferiremo;</li>      
+        <li><span style="font-weight: 800">ISIN:</span> 
+          così da poter facilitare la ricerca su Google dell'ETF stesso;</li>      
+        <li><span style="font-weight: 800">Regione:</span> 
+          stato di emissione del bond, per future analisi geografiche;</li>      
+        <li><span style="font-weight: 800">Field:</span> 
+          piccola descrizione che faciliti l'identificazione geografica o settoriale;</li>
+        <li><span style="font-weight: 800">Index/Ticker:</span> 
+          il corretto ticker del prodotto;</li>
+        <li><span style="font-weight: 800">% of total:</span> 
+          si capisce da sè;</li>
+        <li><span style="font-weight: 800">Shares:</span>  
+          numero di quote;</li>
+        <li><span style="font-weight: 800">Init. controv.:</span> 
+          quantità di denaro allocata;</li>
+        <li><span style="font-weight: 800">Price at buy:</span>  
+          prezzo di carico;</li>
+        <li><span style="font-weight: 800">Price now x stock:</span> 
+          prezzo attuale;</li>
+        <li><span style="font-weight: 800">Daily change:</span> 
+          questa entry per la variazione giornaliera deve occupare 2 colonne (L, M);</li>
+        <li><span style="font-weight: 800">Overall G/L:</span> 
+          guadagno/perdita totale;</li>
+        <li><span style="font-weight: 800">Before tax:</span> 
+          valore effettivo pre-tassazione;</li>
+        <li><span style="font-weight: 800">Int Tax Factor:</span>  
+          tassazione da applicare (valore percentuale);</li>
+        <li><span style="font-weight: 800">Taxes:</span> 
+          se in attivo, valore delle tasse da pagare a chiusura dell'operazione;</li>
+        <li><span style="font-weight: 800">Total after tax:</span>  
+          valore netto post-tassazione.</li>          
+      </ul>
+
+      <p style="text-align: justify;">
+        Procediamo quindi con un esempio. Supponiamo di prendere BIT:CNYB (ISIN: 
+        IE00BYPC1H27), a patto che ancora esista al momento della lettura di questo post. 
+        Indicheremo in cella B3 il nome: "iShs China CNY Bd ETF USD D"; 
+        in cella C3 l'ISIN di cui sopra; metteremo come regione "ASIA", e come 
+        field una indicazione del tipo "Bond Cina". Il ticker (da usare in funzione 
+        GOOGLEFINANCE) è BIT:CNYB; BIT è legato a "borsa italiana". Il numero di 
+        shares (colonna H) è 80 (numero casuale). Il price at buy è $5.06 (è possibile 
+        convertirlo in euro). Questo produce un controvalore (cella I3) pari a 
+      </p>
+  
+      <div class="code-container">				
+				=J3*H3
+      </div>
+
+      <p style="text-align: justify;">
+        Il prezzo corrente (in cella K33) è determinabile come   
+      </p>
+      
+      <div class="code-container">				
+        =GOOGLEFINANCE(F3;"price")
+      </div>
+      
+      <p style="text-align: justify;">
+        Nel caso si necessiti una conversione dollaro-euro si può usare 
+        una moltiplicazione con GOOGLEFINANCE("CURRENCY:USDEUR"). 
+        La variazione giornaliera si potrebbe calcolare in diversi modi, 
+        ma quello che preferisco, in cella M3, è:
+      </p>
+
+      <div class="code-container">				
+        =GOOGLEFINANCE(F3;"change")/GOOGLEFINANCE(F3;"priceopen")
+      </div>
+
+      <p style="text-align: justify;">
+        A fronte dell'ammontare allocato per questo investimento, 
+        questa percentuale corrisponde in cella L3 ad una variazione 
+        giornaliera complessiva pari a:
+      </p>
+
+      <div class="code-container">				
+        =GOOGLEFINANCE(F3;"change")*H3
+      </div>
+
+      <p style="text-align: justify;">
+        In cella N3, il guadagno o perdita totale è presto calcolato: 
+      </p>
+
+      <div class="code-container">				
+        =(K3-J3)*H3 
+      </div>
+
+      <p style="text-align: justify;">
+        Così come il valore pre-tassazione, in cella O3:
+      </p>
+
+      <div class="code-container">       
+        =I3+N3
+      </div>
+
+      <p style="text-align: justify;">
+        A questo punto si può inserire la quantità di tasse da pagare 
+        sullo strumento in cella P3. Personalmente, preferisco 
+        tenere traccia del valore netto ai fini del calcolo del patrimonio. 
+        Indicativamente, la tassazione italiana prevede una tassazione 
+        al 26%. Da qui, il conto delle tasse da pagare in cella Q3, 
+        solo se l'investimento è in positivo al momento della chiusura. 
+        Ne consegue, per cella Q3, la seguente formula:
+      </p>
+
+      <div class="code-container">
+        =SE(N3>0;N3*P3;0)
+      </div>
+
+      <p style="text-align: justify;">
+        E quindi in cella R3:
+      </p>
+
+      <div class="code-container">
+        =SE(E(N3>0;O3>I3);O3-Q3;O3)
+      </div>
+
+      <p style="text-align: justify;">
+        A completamento della riga manca la cella G3. Se questa 
+        è l'unica entry (riga) corrispondente all'unico ETF 
+        obbligazionario che possediamo, il valore in cella G3 è 
+        ovviamente 100%. Altrimenti, il valore è pari al 
+        controvalore attuale (si può scegliere before tax o 
+        after tax) diviso la somma dei controvalori attuali 
+        per tutti gli strumenti del gruppo. Ciò sarà più chiaro 
+        per il prossimo gruppo: gli ETF azionari. Prima 
+        però, diamo uno sguardo al risultato delle operazioni 
+        fatte fin qui (a seguito un piccolo lavoro di abbellimento 
+        grafico).
+      </p>
+
+      <!-- FIGURA 1 ETF obbligazionari -->
+	    <a class="gallery-item" 
+	      href="./assets/images/spreadsheet/stocks-fig1.webp">
+	      <img src="./assets/images/spreadsheet/stocks-fig1.webp"
+	        class="box px-0 py-0 ml-auto mr-auto" width="480" 
+	        title="picture1 of slideshow" 
+	        alt="A screenshot of the box including Bond ETFs.">
+	      <p class="has-text-centered is-size-6 caption">
+	        A screenshot of the box including Bond ETFs.</p>
+	    </a>
+
+      <h2 id="PimiPassi" style="scroll-margin: 1em;">
+        <a href="#PimiPassi" class="headerlink" title="PimiPassi"></a>
+        Stock ETF: valore corrente
+      </h2>
+
+      <p style="text-align: justify;">
+        Ripetiamo la procedura per gli ETF azionari. Lasciamo 
+        libera una riga dopo l'ultima entry degli ETF obbligazionari. 
+        In questo caso, in riga 5, ripetiamo i titoli. Prestiamo 
+        attenzione ad essere consistenti con le terminologie: 
+        stock dovrà sostituire bond. 
+        In questo caso si mostrano 6 ETF presi dal sito 
+        <a target=blank_ href="https://www.justetf.com/it/">justetf.com</a>. 
+        Coprono in parte gli Stati Uniti, in parte l'Europa, in 
+        parte l'Asia, e uno è persino settoriale. L'ultimo 
+        ha un ticker che non si basa su "BIT" come visto precedentemente, 
+        ma su AMS (borsa di Amsterdam). 
+        <br> 
+        Scelto lo strumento di interesse sul sito di 
+        <a target=blank_ href="https://www.justetf.com/it/">justetf.com</a>, tutte 
+        le informazioni tecniche sono praticamente note. Quelle 
+        specifiche (personali) come prezzo di carico, numero di shares, 
+        ecc. devono essere recuperate sul sito della banca 
+        (o del broker) al termine dell'operazione di acquisto.
+        <br>
+        A seguito dell'inserimento di dati e formule (secondo quanto 
+        visto nella sezione precedente), si ha il risultato che 
+        viene ora mostrato. Si presti attenzione al fatto che 
+        i valori di "% of total" sono calcolati sulle cifre 
+        pre-tassazione.      
+      </p>
+
+      <!-- FIGURA 2 ETF azionari -->
+	    <a class="gallery-item" 
+	      href="./assets/images/spreadsheet/stocks-fig2.webp">
+	      <img src="./assets/images/spreadsheet/stocks-fig2.webp"
+	        class="box px-0 py-0 ml-auto mr-auto" width="480" 
+	        title="picture1 of slideshow" 
+	        alt="A screenshot of the box including Stock ETFs.">
+	      <p class="has-text-centered is-size-6 caption">
+	        A screenshot of the box including Stock ETFs.</p>
+	    </a>
+	   
+      <h2 id="PimiPassi" style="scroll-margin: 1em;">
+        <a href="#PimiPassi" class="headerlink" title="PimiPassi"></a>
+        Fondi: valore corrente
+      </h2>
+	    
+      <p style="text-align: justify;">
+        Se non avete acquistato fondi bancari attivi o passivi, 
+        skippate questa sezione.
+        <br> 
+        <br> 
+        Per gli altri: si comincia dicendo che talvolta questi 
+        strumenti sono difficilmente inquadrabili come puramente 
+        obbligazionari o azionari. 
+        Tendenzialmente è difficile inquadrarli settorialmente.
+        Inoltre, se si tratta di "fondi di fondi", scoprire la precisa 
+        suddivisione del sottostante può risultare complesso.
+        Poichè il sottostante (o parti di esso) può cambiare 
+        con una certa frequenza, è difficile anche tenere traccia 
+        degli effettivi costi di gestione (sicuramente ben più alti 
+        di ETF obbligazionari o azionari standard). Infine, 
+        essendo difficilmente reperibili sul mercato secondario, 
+        conviene procedere facendo per questi strumenti una box 
+        separata. 
+        <br> 
+        <br> 
+        Si lasci una riga vuota al termine della box precedente 
+        e si crei una nuova riga di titoli come già visto in 
+        precedenza. In cella B13, in questo caso, si metta 
+        "Fund Name". Si inquadri la regione e il field di 
+        riferimento del fondo (se fosse troppo difficile, si 
+        può lasciare vuota la casella). 
+        <br> 
+        Per quanto riguarda il riempimento delle altre colonne, 
+        ogni fondo è una questione a sè stante. Nome, ISIN, 
+        Regione, Field sono tutti più o meno facilmente reperibili. 
+        Il ticker, al contrario, è spesso difficile da individuare.
+        È meglio procedere con una strategia basata sull'ISIN
+        se si vuole avere un update quanto più automatico possibile. 
+        Il prezzo di carico (colonna J) è reperibile sui 
+        documenti bancari. 
+      </p>
+      
+      <p class="noteBoxes type1"><i class="fas fa-exclamation-triangle"></i><span>
+        Chiedete l'azzeramento dei costi di ingresso per 
+        fondi attivi. Se presente, tale costo può essere molto elevato. 
+      </p>
+     
+      <p style="text-align: justify;">
+        Conoscendo il controvalore 
+        investito e il prezzo di carico, si può recuperare il numero 
+        di quote possedute. Controllate (o chiedete di avere) 
+        il numero di quote possedute per quell'investimento. 
+        Tale numero è inficiato dai costi di sottoscrizione (ingresso) 
+        Quindi un doppio-check è consigliato. Il prezzo attuale si può 
+        quasi sempre recuperare tramite il sito di 
+        <a target=blank_ href="https://www.borsaitaliana.it/homepage/homepage.htm">borsaitaliana.it</a>.
+        Questo vale per fondi sufficientemente grandi; per fondi 
+        piccoli di banche locali tale informazione potrebbe 
+        non essere disponibile su <a target=blank_ href="https://www.borsaitaliana.it/homepage/homepage.htm">borsaitaliana.it</a>. Se si hanno a disposizione 
+        altri siti, la procedura comunque dovrebbe essere la medesima 
+        di quanto si sta per descrivere.
+        <br>
+        Si procede usando una combinazione di funzioni per estrarre da un 
+        sito internet valori tabulati. Tale procedura è già stata mostrata 
+        durante la creazione della tab Bond (si veda post precedente). 
+        Ad esempio, per il fondo avente ISIN LU2178929456, 
+        <a target=blank_ href="https://www.borsaitaliana.it/homepage/homepage.htm">borsaitaliana.it</a> 
+        fornisce un valore aggiornato a questo <a target=blank_ href="https://www.borsaitaliana.it/borsa/fondi/dettaglio/2FADB602820.html">link</a> che chiameremo LINK-A.
+        È quindi possibile usare la seguente funzione:
+      </p>
+   
+      <div class="code-container">   
+        =INDICE(IMPORTHTML("LINK-A";"table";1);3;1)
+      </div>   
+   
+      <p style="text-align: justify;">
+        Al posto di LINK-A mettiamo l'indirizzo html per esteso; la funzione indice prenderà 
+        dalla tabella il valore disponibile nell'ultima contrattazione. Questo 
+        rappresenterà il valore corrente da inserire in colonna K. Dalla stessa tabella 
+        è possibile prendere anche il valore di "variazione" 
+        (non percentuale ahimè, ma è già qualcosa). 
+      </p>
+   
+      <div class="code-container">   
+        =INDICE(IMPORTHTML("LINK-A";"table";1);3;5)
+      </div>   
+   
+      <p style="text-align: justify;">
+        Questo, si può usare per calcolare 
+        in colonna L la variazione giornaliera effettiva basata sul numero di quote possedute.
+        Il resto delle colonne si può riempire come già visto per ETF obbligazionari e 
+        azionari. Prima di procedere oltre, si ribadisce che l'uso e la costruzione di queste 
+        ultime due funzioni possono variare molto in base a: sito da cui le informazioni 
+        vengono reperite; fondo considerato. In caso di malfunzionamento, è 
+        possibile consultare questo 
+        <a target=blank_ href="https://youtu.be/IzzZTVCblM8?si=etMTrG5Vk5Yoq-8D&t=32">link</a>
+      </p>
+   
+      <h2 id="Introduction" style="scroll-margin: 1em;">
+        <a href="#Introduction" class="headerlink" title="Introduction"></a>
+        Box "Overall": altre info utili
+      </h2>
+	    
+	    
+	    
+    </div>
+
+
+
+
+
+    <div class="article-licensing box">
+      <div class="licensing-title">
+        <p>Personal Finance Google Sheet: stocks tab</p>
+        <p>
+          <a href="https://fghio.github.io/projectPost.html?project=spreadsheet&post=stocks">
+            https://fghio.github.io/projectPost.html?project=spreadsheet&post=stocks
+          </a>
+        </p>
+      </div>
+      <div class="licensing-meta level is-mobile">
+        <div class="level-left">
+          <div class="level-item is-narrow">
+            <div>
+              <h6>Author</h6>
+              <p>F. Ghioldi</p>
+            </div>
+          </div>
+          <div class="level-item is-narrow">
+            <div>
+              <h6>Posted on</h6>
+              <p>10-03-2024</p>
+            </div>
+          </div>
+          <div class="level-item is-narrow">
+            <div>
+              <h6>Updated on</h6>
+              <p>02-04-2024</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr style="height:1px;margin:1rem 0">
+      <div class="level is-mobile is-flex">
+        <div class="article-tags is-size-7 is-uppercase">
+          <i class="fas fa-tag has-text-grey"
+            style="transform: translateY(20%);"></i>&nbsp;&nbsp;
+        <div>
+        Google Sheet,
+        &nbsp;
+      </div>
+      <div>
+        Personal Finance
+        &nbsp;
+      </div>
+    </div>
+  </div>
+
+  <div class="sharethis-inline-share-buttons st-center st-inline-share-buttons st-animated" id="st-1">
+
+    <div class="st-btn" data-network="twitter" style="display: inline-block;">
+      <img alt="twitter sharing button" src="https://platform-cdn.sharethis.com/img/twitter.svg">
+    </div>
+    
+    <div class="st-btn" data-network="linkedin" style="display: inline-block;">
+      <img alt="linkedin sharing button" src="https://platform-cdn.sharethis.com/img/linkedin.svg">
+    </div>
+
+    <div class="st-btn" data-network="email" style="display: inline-block;">
+      <img alt="email sharing button" src="https://platform-cdn.sharethis.com/img/email.svg">
+    </div>
+    
+    <div class="st-btn st-last" data-network="sharethis" style="display: inline-block;">
+      <img alt="sharethis sharing button" src="https://platform-cdn.sharethis.com/img/sharethis.svg">
+    </div>
+
+  </div>
+
+  <script 
+    src="https://platform-api.sharethis.com/js/sharethis.js#property=61b5930d440224001908310c&amp;product=inline-share-buttons" defer="">
+  </script>
+  <style>
+  .st-total {
+    display: none !important;
+  }
+  </style>
+  
+
+  </article>
+</div>
+
+<script src=assets/js/tableContent.js></script>
+
+<script src="./assets/js/slideshow.js"></script>
+
+<div class="card" id="comment-card" style="margin-top: 20px; opacity: 1; transform-origin: center top;">
+  <div class="card-content">
+    <h3 class="title is-5">Comments</h3>
+
+    <!-- DISQUS COMMENTS -->
+    <div id="disqus_thread"></div>
+
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://fghio.github.io/projectPost.html?project=spreadsheet&post=stocks';
+        this.page.identifier = '/posts/projects/spreadsheetPosts/stocks.html';
+      };
+
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = '//' + 'https-fghio-github-io' + '.disqus.com/embed.js'; // Update the shortname here
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+</div>
+
+
+
