@@ -6,7 +6,7 @@
       "title": "Personal Finance Google Sheet: stocks tab", 
       "views": 1000, 
       "wordCount": 500,
-      "readTime": "30 min",
+      "readTime": "25 min",
       "tags": ["Google Sheet", "Personal Finance"]
     }'>
     <h1 class="title is-size-3" style="font-family: 'PT Sans Narrow', sans-serif">
@@ -37,7 +37,7 @@
         </span>
         <span class="level-item">
           <i class="far fa-clock"></i>&nbsp;
-          <div class="read-time">15 minutes</div>
+          <div class="read-time">25 minutes</div>
         </span>
       </div>
     </div>
@@ -57,7 +57,7 @@
 
   <script>
     // Example usage
-    generateStars(5); // Change the rating as needed
+    generateStars(4); // Change the rating as needed
   </script>
     
       <h2 id="Introduction" style="scroll-margin: 1em;">
@@ -86,8 +86,8 @@
         di validazione del corretto inserimento delle formule. 
       </p>
 
-      <h2 id="PimiPassi" style="scroll-margin: 1em;">
-        <a href="#PimiPassi" class="headerlink" title="PimiPassi"></a>
+      <h2 id="ETFObb" style="scroll-margin: 1em;">
+        <a href="#ETFObb" class="headerlink" title="ETFObb"></a>
         Bond ETF: valore corrente
       </h2>
 
@@ -243,8 +243,8 @@
 	        A screenshot of the box including Bond ETFs.</p>
 	    </a>
 
-      <h2 id="PimiPassi" style="scroll-margin: 1em;">
-        <a href="#PimiPassi" class="headerlink" title="PimiPassi"></a>
+      <h2 id="ETFAz" style="scroll-margin: 1em;">
+        <a href="#ETFAz" class="headerlink" title="ETFAz"></a>
         Stock ETF: valore corrente
       </h2>
 
@@ -286,8 +286,8 @@
 	        A screenshot of the box including Stock ETFs.</p>
 	    </a>
 	   
-      <h2 id="PimiPassi" style="scroll-margin: 1em;">
-        <a href="#PimiPassi" class="headerlink" title="PimiPassi"></a>
+      <h2 id="Fondi" style="scroll-margin: 1em;">
+        <a href="#Fondi" class="headerlink" title="Fondi"></a>
         Fondi: valore corrente
       </h2>
 	    
@@ -381,20 +381,184 @@
         ultime due funzioni possono variare molto in base a: sito da cui le informazioni 
         vengono reperite; fondo considerato. In caso di malfunzionamento, è 
         possibile consultare questo 
-        <a target=blank_ href="https://youtu.be/IzzZTVCblM8?si=etMTrG5Vk5Yoq-8D&t=32">link</a>
+        <a target=blank_ href="https://youtu.be/IzzZTVCblM8?si=etMTrG5Vk5Yoq-8D&t=32">link</a>. 
       </p>
+
+      <h2 id="Azioni" style="scroll-margin: 1em;">
+        <a href="#Azioni" class="headerlink" title="Azioni"></a>
+        Azioni singole: valore corrente
+      </h2>
+
+      <p style="text-align: justify;">
+        Queste operazioni possono essere ripetute per tenere traccia dell'evoluzione 
+        anche di azioni singole. È notevolmente più semplice usare GOOGLEFINANCE per 
+        recuperare informazioni (prezzo corrente, variazione) per azioni singole, e 
+        la complessa procedura impiegata per i fondi è molto spesso non necessaria 
+        in questo caso. L'aggiunta di una eventuale box per azioni singole è lasciata 
+        al lettore interessato.
+      </p>
+
    
-      <h2 id="Introduction" style="scroll-margin: 1em;">
-        <a href="#Introduction" class="headerlink" title="Introduction"></a>
+      <h2 id="BoxOverall" style="scroll-margin: 1em;">
+        <a href="#BoxOverall" class="headerlink" title="BoxOverall"></a>
         Box "Overall": altre info utili
       </h2>
+
+      <p style="text-align: justify;">
+        Creiamo altre box a lato di quelle appena prodotte. Usiamo la colonna 
+        T, lasciando quindi una colonna di spazio (vuota). Mettiamo il primo 
+        titolo in riga 2: "% from begin". L'intenzione è quella di usare 
+        le righe sottostanti per indicare la percentuale di cambiamento (guadagno 
+        o perdita) dall'inizio dell'investimento. In cella T3 (corrispondente 
+        al primo ETF obbligazionario inserito), usiamo la formula
+      </p>
 	    
+      <div class="code-container">   
+        =N3/I3
+      </div>   
 	    
+      <p style="text-align: justify;">
+	      E formattiamo come percentuale. Lasciamo quindi un'altra colonna vuota, 
+	      e in cella V2 scriviamo "actual net gain/loss". In cella V3 inseriamo 
+	      la formula
+      </p>
 	    
+      <div class="code-container">   
+        =N3-Q3
+      </div>   
+
+      <p style="text-align: justify;">
+	      La formula permette di sottrarre le tasse (da pagare in fase di vendita) 
+	      se l'investimento è in positivo; alternativamente mostrerà il valore 
+	      della minusvalenza maturata. Ripetiamo questa operazione anche per i restanti 
+	      ETF obbligazionari; e ricreiamo nuove box anche per ETF azionari e fondi. 
+	      Al termine di questa operazione avremo le informazioni puntuali e cumulate 
+	      per ciascun investimento "one-shot". Per piano/i di accumulo si vedrà come 
+	      procedere nel prossimo post. Il risultato sarà il seguente.
+      </p>
+	      
+      <!-- FIGURA 3 Box laterali -->
+	    <a class="gallery-item" 
+	      href="./assets/images/spreadsheet/stocks-fig3.webp">
+	      <img src="./assets/images/spreadsheet/stocks-fig3.webp"
+	        class="box px-0 py-0 ml-auto mr-auto" width="480" 
+	        title="picture1 of slideshow" 
+	        alt="A screenshot of the boxes for cumulative data wrt start.">
+	      <p class="has-text-centered is-size-6 caption">
+	        A screenshot of the boxes for cumulative data wrt start.</p>
+	    </a>
+	      
+      <p style="text-align: justify;">
+	      Queste informazioni sono sicuramente utili, ma potrebbero essere un po' 
+	      dispersive se, per qualsiasi motivo, il numero di entries fosse elevato. 
+	      Per cui, creiamo una box orizzontale (colonne B to R) che raggruppi le 
+	      informazioni per categoria (ETF obbligazionario, azionario, e fondi).
+	      <br>
+	      Lasciamo una riga vuota sotto l'ultima entry d'investimento. Creiamo 
+	      una nuova riga di titoli: Overall (in colonna B); Type (colonna F); 
+	      "% of total" (colonna G); shares (colonna H); "Init. Controv." 
+	      (colonna I); "Diff. wrt start %" (colonna K); "Daily change" (colonne 
+	      L, M); "Overall G/L" e "Before tax" in colonne N e O rispettivamente.
+	      Infine, "Taxes" e "After tax" in colonne Q e R.
+	      <br>
+	      Riempiamo le righe sottostanti. La prima sarà dedicata a 
+	      "ETF obbligazionari" (colonna B); la seconda a "ETF azionari";
+	      e poi di seguito "Fondi" e "Azioni singole" ove presenti. 
+	      Queste corrisponderanno ai seguenti "Type": BND, STK, FND, AZN.
+	      Si procede quindi con il riempimento della prima delle quattro 
+	      righe menzionate. Per le altre si procede nello stesso modo, 
+	      e tale operazione non è mostrata qui per non appesantire la lettura.
+	      <br>
+	      In colonna H, inseriamo la somma delle quote possedute 
+	      per la categoria considerata. In colonna I, la sommma 
+	      dei controvalori. Facendo questa operazione per ogni tipo, 
+	      si riempirà tutta la colonna I. A questo punto, la divisione 
+	      di ciascun valore di colonna I (e.g. I14 in figura) per la 
+	      somma di tutte le entries (e.g. I14:I15 in figura) dà 
+	      l'informazione "% of total" in colonna G. Per ciascun tipo, 
+	      il daily change (colonna L) è la somma dei daily change 
+	      di ogni entry di quel tipo. Stessa cosa per l'overall Gain/Loss 
+	      (colonna N). Idem per i valori before tax in colonna O, 
+	      per le tasse in colonna Q e total after tax in colonna R. 
+	      Noti questo dati, si può riempire colonna K usando 
+	      la seguente formula (e.g. cella K14):
+      </p>
+
+      <div class="code-container">
+        =N14/I14
+      </div>
+
+      <p style="text-align: justify;">
+        Una formula simile permette di ottenere il daily change in 
+        percentuale in colonna M (e.g. M14):
+      </p>
+	    
+      <div class="code-container">
+  	    =L14/(I14-L14)
+      </div>
+
+      <p style="text-align: justify;">
+        Terminiamo questa box andando a mettere un'ultima riga di 
+        somme complessive. In colonna B inseriamo "Total"; 
+        controlliamo in colonna G che somma delle percentuali faccia 
+        100%; sommiamo le share se è di interesse; sommiamo i 
+        controvalori in colonna I. Colonne L, N, O, Q e R hanno valori 
+        dati dalle somme delle righe sovrastanti. Il valore in 
+        colonna K (cella K16) è dato da:
+      </p>
+
+      <div class="code-container">
+        =N16/I16
+      </div>
+
+      <p style="text-align: justify;">
+        Similmente, colonna M viene determinata mediante 
+        funzione
+      </p>
+
+      <div class="code-container">
+        =L16/(I16-L16)
+      </div>
+
+      <p style="text-align: justify;">
+        Finiamo con un'ultima informazione: il net gain. 
+        L'utente può scegliere dove andare ad inserirla; 
+        personalmente preferisco lasciare una colonna vuota 
+        e occupare la cella sulla stessa riga del valore 
+        finale after tax. Il net gain è dato da
+      </p>
+
+      <div class="code-container">
+        =R16-I16
+      </div>
+
+      <p style="text-align: justify;">
+        Dopo un po' di pulizia e abbellimento, il risultato 
+        è il seguente. 
+      </p>
+
+      <!-- FIGURA 4 Box di recap -->
+	    <a class="gallery-item" 
+	      href="./assets/images/spreadsheet/stocks-fig4.webp">
+	      <img src="./assets/images/spreadsheet/stocks-fig4.webp"
+	        class="box px-0 py-0 ml-auto mr-auto" width="480" 
+	        title="picture1 of slideshow" 
+	        alt="A screenshot of the recap box for cumulative data.">
+	      <p class="has-text-centered is-size-6 caption">
+	        A screenshot of the recap box for cumulative data.</p>
+	    </a>
+
+      <h2 id="Annuale" style="scroll-margin: 1em;">
+        <a href="#Annuale" class="headerlink" title="Annuale"></a>
+        Evoluzione annuale: pre-/post tax 
+      </h2>
+
+      <h2 id="Annuale" style="scroll-margin: 1em;">
+        <a href="#Annuale" class="headerlink" title="Annuale"></a>
+        Aggiunta a Subdivision Tab
+      </h2>
+
     </div>
-
-
-
 
 
     <div class="article-licensing box">
