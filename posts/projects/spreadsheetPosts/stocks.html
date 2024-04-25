@@ -2,7 +2,7 @@
   <article class="card-content article" 
     data-metadata='{
       "creationDate": "2024-03-10", 
-      "lastModificationDate": "2024-04-02", 
+      "lastModificationDate": "2024-04-25", 
       "title": "Personal Finance Google Sheet: stocks tab", 
       "views": 1000, 
       "wordCount": 500,
@@ -236,7 +236,7 @@
 	    <a class="gallery-item" 
 	      href="./assets/images/spreadsheet/stocks-fig1.webp">
 	      <img src="./assets/images/spreadsheet/stocks-fig1.webp"
-	        class="box px-0 py-0 ml-auto mr-auto" width="480" 
+	        class="box px-0 py-0 ml-auto mr-auto" width="1080" 
 	        title="picture1 of slideshow" 
 	        alt="A screenshot of the box including Bond ETFs.">
 	      <p class="has-text-centered is-size-6 caption">
@@ -279,7 +279,7 @@
 	    <a class="gallery-item" 
 	      href="./assets/images/spreadsheet/stocks-fig2.webp">
 	      <img src="./assets/images/spreadsheet/stocks-fig2.webp"
-	        class="box px-0 py-0 ml-auto mr-auto" width="480" 
+	        class="box px-0 py-0 ml-auto mr-auto" width="1080" 
 	        title="picture1 of slideshow" 
 	        alt="A screenshot of the box including Stock ETFs.">
 	      <p class="has-text-centered is-size-6 caption">
@@ -441,7 +441,7 @@
 	    <a class="gallery-item" 
 	      href="./assets/images/spreadsheet/stocks-fig3.webp">
 	      <img src="./assets/images/spreadsheet/stocks-fig3.webp"
-	        class="box px-0 py-0 ml-auto mr-auto" width="480" 
+	        class="box px-0 py-0 ml-auto mr-auto" width="250" 
 	        title="picture1 of slideshow" 
 	        alt="A screenshot of the boxes for cumulative data wrt start.">
 	      <p class="has-text-centered is-size-6 caption">
@@ -541,7 +541,7 @@
 	    <a class="gallery-item" 
 	      href="./assets/images/spreadsheet/stocks-fig4.webp">
 	      <img src="./assets/images/spreadsheet/stocks-fig4.webp"
-	        class="box px-0 py-0 ml-auto mr-auto" width="480" 
+	        class="box px-0 py-0 ml-auto mr-auto" width="1080" 
 	        title="picture1 of slideshow" 
 	        alt="A screenshot of the recap box for cumulative data.">
 	      <p class="has-text-centered is-size-6 caption">
@@ -553,10 +553,102 @@
         Evoluzione annuale: pre-/post tax 
       </h2>
 
+      <p style="text-align: justify;">
+        Per chi desidera, può essere utile tracciare l'evoluzione 
+        o l'andamento degli investimenti durante l'anno, mese per mese. 
+        Questo richiede una nuova box. Occupiamo le colonne B:Q per questo. 
+        Sotto la box di recap appena costruita lasciamo una riga vuota; 
+        inseriamo quindi le seguenti entries: "Name"; "Start"; tutti 
+        i nomi dei mesi dell'anno; "G/L"; "Total".
+        In colonna B, sotto "Name", inseriamo i nomi o i ticker degli 
+        investimenti che stiamo tracciando (usare lo stesso ordine 
+        delle box sovrastanti può essere utile). In colonna C, 
+        sotto "Start", inseriamo il valore dell'investimento a inizio 
+        anno. In colonna Q, sotto "Total", mettiamo il valore attuale 
+        di ogni investimento al lordo delle tasse. Riempiamo quindi 
+        le colonne D:O facendo per ciascuna riga la copia del valore 
+        corrispondente in colonna Q. I valori nella colonna del mese 
+        dovranno essere freezati al termine del mese stesso, così 
+        da permettere di tracciare l'andamento di ogni investimento 
+        mese per mese.
+        <br>
+        Ne consegue che nell'ultima riga (la prima sotto l'ultima entry) 
+        possiamo anche tracciare il totale mese per mese. La somma delle 
+        righe sotto "Start" darà il valore di partenza a inizio anno; 
+        la somma delle righe da colonna D a colonna O darà l'evoluzione 
+        mese per mese. 
+        <br>
+        Si può usare una formattazione condizionale 
+        (per colore) per avere chiaro quali investimenti stanno salendo 
+        o scendendo nel mese corrente rispetto ai mesi precedenti. 
+        Si può usare un'ulteriore riga sottostante per tracciare 
+        l'evoluzione (crescita o descrescita) del patrimonio investito 
+        mese per mese: la differenza tra il totale del mese corrente 
+        e quello del mese precedente, divisa per il totale del mese 
+        precedente dà una misura della variazione (percentuale, se x100). 
+        Il risultato è il seguente.
+      </p>
+
+      <!-- FIGURA 5 Box di recap -->
+	    <a class="gallery-item" 
+	      href="./assets/images/spreadsheet/stocks-fig5.webp">
+	      <img src="./assets/images/spreadsheet/stocks-fig5.webp"
+	        class="box px-0 py-0 ml-auto mr-auto" width="1080" 
+	        title="picture1 of slideshow" 
+	        alt="A screenshot of the recap box for evolution across the year (gross).">
+	      <p class="has-text-centered is-size-6 caption">
+	        A screenshot of the recap box for evolution across the year (gross).</p>
+	    </a>
+
+      <p style="text-align: justify;">
+        Personalmente preferisco considerare l'evoluzione al netto 
+        delle tasse. Facciamo quindi un'ultima box con poche righe. 
+        Il numero di righe corrisponde al numero di gruppi tracciati 
+        (i.e. ETF obbligazionari, ETF azionari, Fondi, Azioni singole).
+        In colonna B facciamo un raggruppamento di celle vericale 
+        e inseriamo il testo "After tax"; il raggruppamento comprenderà 
+        un numero di celle pari al numero di righe da riempire, pari 
+        al numero di categorie considerate. In colonna C, per ogni riga 
+        inseriamo il nome della categoria (i.e. "BondETF", "StockETF", 
+        "Fund", "Stocks"). In colonna P mettiamo il totale di categoria 
+        al netto delle tasse. La somma dei valori netti degli 
+        investimenti in una categoria restituisce il totale di 
+        categoria al netto delle tasse. A inizio anno si riempiono le 
+        celle in colonne D:O (ogni colonna rappresenta un mese dell'anno). 
+        Per ogni riga, il valore nelle celle verrà posto uguale al 
+        corrispondente totale presente in coilonna P. Al termine di ogni mese 
+        si freezerà la colonna corrispondente. Il risultato è il seguente.
+      </p>
+
+      <!-- FIGURA 5 Box di recap -->
+	    <a class="gallery-item" 
+	      href="./assets/images/spreadsheet/stocks-fig6.webp">
+	      <img src="./assets/images/spreadsheet/stocks-fig6.webp"
+	        class="box px-0 py-0 ml-auto mr-auto" width="1080" 
+	        title="picture1 of slideshow" 
+	        alt="A screenshot of the recap box for evolution across the year (net).">
+	      <p class="has-text-centered is-size-6 caption">
+	        A screenshot of the recap box for evolution across the year (net).</p>
+	    </a>
+
       <h2 id="Annuale" style="scroll-margin: 1em;">
         <a href="#Annuale" class="headerlink" title="Annuale"></a>
         Aggiunta a Subdivision Tab
       </h2>
+
+      <p style="text-align: justify;">
+      In fase di scrittura.
+      <!--
+        Terminiamo questo (lunghissimo) post con l'aggiornamento della tab 
+        Subdivision. Chi non ha creato la tab Subdivision può ovviamente 
+        terminare qui la lettura. Stesso consiglio per chi non ha intenzione 
+        di aggiungere l'informazione sugli investimenti alla tab Subdivision. 
+        Per gli altri, vediamo come procedere.
+        <br>
+        Torniamo alla tab Subdivision; andiamo a creare nuove colonne per 
+        inserire le informazioni sugli investimenti.
+      -->
+      </p>
 
     </div>
 
@@ -587,7 +679,7 @@
           <div class="level-item is-narrow">
             <div>
               <h6>Updated on</h6>
-              <p>02-04-2024</p>
+              <p>25-04-2024</p>
             </div>
           </div>
         </div>
