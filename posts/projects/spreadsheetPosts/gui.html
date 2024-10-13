@@ -1,0 +1,548 @@
+<div class="card" id="my-blog-post-card">
+  <article class="card-content article" 
+    data-metadata='{
+      "creationDate": "2024-04-25", 
+      "lastModificationDate": "2024-04-28", 
+      "title": "Personal Finance Google Sheet: GUI", 
+      "views": 1000,
+      "wordCount": 500,
+      "readTime": "19 min",
+      "tags": ["Google Sheet", "Personal Finance"]
+    }'>
+    <h1 class="title is-size-3" style="font-family: 'PT Sans Narrow', sans-serif">
+      Personal Finance Google Sheet: GUI tab
+    </h1>
+    
+    <div class="article-meta is-size-7 is-uppercase level is-mobile">
+      <div class="level-left" style="margin-bottom: 0.50rem">
+        <span class="level-item">
+          <i class="far fa-calendar-alt">&nbsp;</i>
+          <time>
+            <div class="post-date">21/07/2024</div>
+          </time>
+        </span>
+        <span class="level-item is-hidden-mobile">
+          <i class="far fa-calendar-check">&nbsp;</i>
+          <time>
+            <div class="last-updated">12/11/2024</div>
+          </time>
+        </span>
+        <span class="level-item">
+          <i class="far fa-folder-open has-text-grey"></i>&nbsp;
+          <a class="link-muted" href="./projectArchive.html?id=PF">back to posts list</a>
+        </span>
+        <span class="level-item">
+          <i class="far fa-folder-open has-text-grey"></i>&nbsp;
+          <a class="link-muted" href="./projects.html">list of projects</a>
+        </span>
+        <span class="level-item">
+          <i class="far fa-clock"></i>&nbsp;
+          <div class="read-time">19 minutes</div>
+        </span>
+      </div>
+    </div>
+    <div class="content" style="margin-top: 1.0rem">
+  
+
+      <div id="difficulty-container"></div>
+
+      <script>
+      function generateStars(rating) {
+      const yellowStars = '★'.repeat(rating);
+      const grayStars = '☆'.repeat(5 - rating);
+      const starsHTML = `<span class="star-rating">${yellowStars}</span><span class="gray-star">${grayStars}</span>`;
+      document.getElementById('difficulty-container').innerHTML = `<p>Difficulty Level: ${starsHTML}</p>`;
+      }
+      </script>
+
+      <script>
+      // Example usage
+      generateStars(2); // Change the rating as needed
+      </script>
+
+      <h2 id="Introduction" style="scroll-margin: 1em;">
+        <a href="#Introduction" class="headerlink" title="Introduction"></a>
+        Introduzione
+      </h2>
+
+      <p style="text-align: justify;">
+        A questo punto ci ritroviamo con una serie di tab ciascuna 
+        dedicata ad un topic diverso. Eppure nelle motivations si 
+        è detto che è comodo avere un solo valore finale complessivo 
+        da monitorare: il patrimonio totale. Non solo, sarebbe 
+        comodo avere una sola tab che a colpo d'occhio indichi le 
+        informazioni principali (mensili, annuali, ripartizioni, ecc). 
+        Questo eviterebbe di dover andare avanti e indietro tra le 
+        tab quando non è strettamente necessario. Per tali scopi 
+        creiamo una GUI.  
+      </p>
+
+      <p style="text-align: justify;">
+				La GUI qui proposta può essere divisa in 3 macro sezioni. 
+				Partiamo con la prima, orizzontale, in alto.
+      </p>
+
+      <h2 id="VPFD" style="scroll-margin: 1em;">
+        <a href="#VPFD" class="headerlink" title="VPFD"></a>
+        Visual Dashboard
+      </h2>
+
+      <p style="text-align: justify;">
+				Lasciamo libera la prima riga; lasciamo libera la prima colonna.
+				Uniamo celle B2:J2; inseriamo il testo "Visual Personal Finance Dashboard".
+				Creiamo una box che comprenda celle B3:J7. In cella C4 scriviamo: "Current 
+				Net Worth"; in celle E4:F4 (unite) scriviamo "Cash flow"; in celle E6:F6 (unite)
+				scriviamo "since last month"; in celle H6:I6 scriviamo "current saving rate". 
+				Il resto della box lo riempiremo successivamente con informazioni presenti 
+				in questa tab (evitiamo duplicati). 
+      </p>
+
+      <p style="text-align: justify;">
+				Uniamo celle K2:N2 e inseriamo all'interno una copia di quanto già 
+				presente in Dashboard tab:
+      </p>
+
+      <div class="code-container">   
+				=Dashboard!D2
+      </div>
+
+      <p style="text-align: justify;">
+				Creiamo una box che racchiuda celle K3:N7. In cella L4 scriviamo "Start";
+				in cella N4 scriviamo "XXXX saving goal", dove XXXX indica l'anno in corso.
+				In cella L5 va messa la somma (patrimonio) complessiva di inizio 
+				tracciamento; questo valore andrà aggiornato all'inizio di ogni anno, 
+				inserendo il numero risultante al termine dell'anno prima. In cella N5 
+				bisogna inserire l'obiettivo (numero) che si spera di raggiungere 
+				nell'anno corrente. Subito sotto, in cella N6, inseriamo la scritta 
+				"Missing at target". Sotto, in cella N7, inseriamo la seguente funzione:
+      </p>
+
+      <div class="code-container">   
+				=(1-M6/100)*(N5-L5)
+      </div>
+
+      <p style="text-align: justify;">
+				La formula dipende dalle informazioni contenute nella colonna M, 
+				che andiamo a inserire ora. In particolare, usiamo la colonna M 
+				per identificare la percentuale di progressione nell'anno corrente 
+				(da start verso goal). 
+				<br>
+				Partiamo con cella M3: inseriamo "50%", e coloriamolo di bianco 
+				(così da non vedere la scritta); in cella M4 inseriamo la seguente 
+				formula:
+      </p>		
+
+      <div class="code-container">
+				=(C5-L5)/(N5-L5)*0,5
+      </div>
+
+      <p style="text-align: justify;">
+				Questa formula dipende dal valore corrente del patrimonio 
+				messo in cella C5 (che ancora dobbiamo inserire). In cella 
+				M5 inseriamo la formula
+      </p>
+
+      <div class="code-container">
+				=50%-M4
+      </div>
+
+      <p style="text-align: justify;">
+				che coloreremo di bianco; subito sotto, in cella M6 scriviamo
+      </p>
+
+      <div class="code-container">
+				=M4*2*100
+      </div>
+
+      <p style="text-align: justify;">
+				Coloriamo di bianco anche la scritta in questa cella.
+				<br>
+				Queste formule "riscalano" la percentuale 
+				di progressione (0%-100%) su una apertura 0%-50%. Il motivo 
+				è semplice: se usassimo Excel si potrebbe così creare un 
+				semi-anello e rappresentare l'evoluzione totale del patrimonio 
+				verso il goal in maniera corretta. Inseriamo un "Gauge 
+				chart" (grafico stile contachilometri) e posizioniamolo sopra 
+				la colonna M. Il campo di data range viene riempito con M6. 
+				Nella tab "Personalizzazione" del grafico possiamo scegliere 
+				i colori dei 3 range (rosso, arancione, verde) e le 
+				percentuali di inizio e fine dei range (0%-50%, 50%-80%, 80%-100%).
+				<br>
+				Dobbiamo quindi riempire le celle C5, E5:F5, e H5:I5. 
+				Il valore in C5 viene dai dati della tab Subdivision. 
+				Di seguito, la formula è strettamente legata all'esempio 
+				sviluppato in questo progetto. La formula è:
+      </p>
+
+      <div class="code-container">
+				=Subdivision!O44+Subdivision!O40+PAC!E3+Stocks!T16+Bonds!D57+Bonds!F57
+      </div>			
+
+      <p style="text-align: justify;">
+				Diamo una spiegazione: il patrimonio è dato dalla somma 
+				di tutte le categorie (conto/i, cash, bond, stocks, PAC, ...). 
+				Se durante lo sviluppo alcune delle categorie non sono 
+				state create (o se ne sono state create in più rispetto 
+				a quelle qui elencate), la formula appena presentata sarà 
+				diversa. Per tutti invece vale il valore da inserire in cella F5:
+      </p>
+
+      <div class="code-container">
+				=Dashboard!C7-Dashboard!C19
+      </div>
+
+      <p style="text-align: justify;">
+				Allo stesso modo, in cella I5, per tutti si potrà inserire
+      </p>
+
+      <div class="code-container">
+				=Dashboard!D38
+      </div>
+
+      <p style="text-align: justify;">
+				In celle E5 e H5 possiamo usare una formula condizionale 
+				e migliorare la visualizzazione inserendo "+" o "-" sulla 
+				base del contenuto delle celle contigue. Ad esempio, 
+				per cella E5 si ha:
+      </p>
+
+      <div class="code-container">
+				=IF(F5>0;"+";"")
+      </div>
+
+      <p style="text-align: justify;">
+				Dopo un po' di aggiustamenti di spazio, colorazione 
+				condizionale delle celle, e formattazione, il risultato 
+				sarà come da figura seguente.
+      </p>
+
+      <!-- FIGURA SOLO BOX SOPRA -->
+      <a class="gallery-item" 
+	      href="./assets/images/spreadsheet/gui-fig1.webp">
+	      <img src="./assets/images/spreadsheet/gui-fig1.webp"
+	        class="box px-0 py-0 ml-auto mr-auto" width="1920" 
+	        title="picture1 of slideshow" 
+	        alt="Top box in the GUI pane.">
+	      <p class="has-text-centered is-size-6 caption">
+	        Top box in the GUI pane.</p>
+	    </a>
+      
+      <p style="text-align: justify;">
+				Personalmente, ci sono altre due informazioni che mi piace 
+				tenere sott'occhio, attivando degli alert quando necessario.
+				La prima è una indicazione per lo smart PAC: in cella C6 
+				si può inserire:
+      </p>
+
+      <div class="code-container">
+				=IF(PAC!Y21<-5%;"PAC TRIGGER! INVEST!";"")
+      </div>
+      
+      <p style="text-align: justify;">
+				Il secondo è un avviso sulla data di stacco cedolare. 
+				Se apriamo la GUI tab in una giornata di stacco cedolare, 
+				è buona cosa essere informato dell'evento. Questo è possibile 
+				mediante la formula:
+      </p>
+
+      <div class="code-container">
+				=IF(OR(TODAY()=Bonds!F51;TODAY()=Bonds!D51);"GIORNO DI PAGA (CEDOLA)";"")
+      </div>
+
+
+      <p style="text-align: justify;">
+				La formula, messa in cella C7, considera il giorno 
+				di prossimo stacco cedolare per ogni obbligazione acquistata. 
+				Se si possiede un numero maggiore di obbligazioni, o se si aggiunge 
+				una obbligazione, è necessario aggiornare questa formula. 
+				<br>
+				Se i trigger non sono attivi, le celle restano vuote.
+      </p>
+      
+      
+      <h2 id="SecondBox" style="scroll-margin: 1em;">
+        <a href="#SecondBox" class="headerlink" title="SecondBox"></a>
+        Other tables
+      </h2>
+
+      <p style="text-align: justify;">
+				Lasciamo un po' di spazio e costruiamo un altro paio di tabelle di recap. 
+				Uniamo le celle in riga 21, colonne C:I. Mettiamo il testo "Useful info per month".
+				Sotto creiamo una suddivisione in due colonne unendo C22:D22 e E22:I22. 
+				In riga 22 mettiamo "Total saved" e la formula 
+      </p>
+
+      <div class="code-container">
+				=Dashboard!C7-Dashboard!C19
+      </div>
+
+      <p style="text-align: justify;">
+				Sotto, facciamo la stessa cosa e usiamo riga 23 per indicare "Total expense" e 
+				la formula
+      </p>
+
+      <div class="code-container">
+	      =Dashboard!C19
+      </div>
+
+    
+    	<p style="text-align: justify;">
+				Le altre due box sono in celle C25:D30 e F25:I30. Nella prima, 
+				uniamo celle C25:D25; inseriamo "Useful info per year". 
+				Sotto, usiamo colonna C per inserire le seguenti entries (con le 
+				rispettive formule in colonna D):
+      </p>
+      
+      <ul>
+      <li>Total saved; <span class="code-container-inline">=Dashboard!S21</span></li>
+      <li>% saving; <span class="code-container-inline">=Dashboard!S22</span></li>
+      <li>Max. gain in month (ex inv.); <span class="code-container-inline">=MAX(Dashboard!G7:R7)</span></li>
+      <li>Max exp in month; <span class="code-container-inline">=MAX(Dashboard!G19:R19)</span></li>
+      <li>nMonths with neg cash flow; <span class="code-container-inline">=CONTA.SE(Dashboard!G21:R21;"<0")</span></li>
+      </ul>
+      
+    	<p style="text-align: justify;">
+				In celle unite F25:I25 mettiamo il testo "Cash / Conto / Card / Pac / Investments".
+				Sotto, completiamo con una unione di colonne F:G e H:I, riempiendo progressivamente 
+				come segue
+      </p>
+
+      <ul>
+      <li>Cash; <span class="code-container-inline">=Subdivision!O44</span></li>
+      <li>Conto; <span class="code-container-inline">=Subdivision!O40</span></li>
+      <li>PAC; <span class="code-container-inline">=PAC!E3</span></li>
+      <li>Investments; <span class="code-container-inline">=Stocks!T16+Bonds!D57+Bonds!F57</span></li>
+      <li>Tot check; <span class="code-container-inline">=SOMMA(H26:I29)</span></li>
+      </ul>
+      
+    	<p style="text-align: justify;">
+				Il risultato è quello mostrato in figura che segue (i numeri sono puramente 
+				indicativi e generati randomicamente).
+      </p>      
+      
+      <!-- FIGURA SOLO BOX SOTTO -->
+	    <a class="gallery-item" 
+	      href="./assets/images/spreadsheet/gui-fig2.webp">
+	      <img src="./assets/images/spreadsheet/gui-fig2.webp"
+	        class="box px-0 py-0 ml-auto mr-auto" width="1920" 
+	        title="picture1 of slideshow" 
+	        alt="Bottom boxes in the GUI pane.">
+	      <p class="has-text-centered is-size-6 caption">
+	        Bottom boxes in the GUI pane.</p>
+	    </a>
+      
+      
+      <h2 id="Figures" style="scroll-margin: 1em;">
+        <a href="#Figures" class="headerlink" title="Figures"></a>
+      	Figures
+      </h2>
+      
+    	<p style="text-align: justify;">
+				Aggiungiamo due figure riepilogative. La prima sta tra la box superiore e le due 
+				box che abbiamo appena creato. È la combinazione di due grafici, quindi avrà due 
+				assi verticali, e uno orizzontale in comune: sarà un grafico a barre e linea. 
+				La linea rappresenterà l'evoluzione annuale del patrimonio; le barre identificano 
+				la percentuale di saving per ogni mese (messe di default a 75% per i mesi che 
+				ancora mancano). L'immagine coprirà celle C9:J19. 
+				<br>
+				Per prima cosa creiamo una tab di supporto (sarà utile anche in seguito)
+				e chiamiamola "ConstantAndFunctions". All'interno, lasciamo la prima colonna 
+				e riga vuote; in cella B2 inseriamo il testo "Starting point". In cella 
+				B3 inseriamo il valore di partenza (lo stesso messo in cella L5 della tab GUI). 
+				Da colonna C (riga 3) in poi, possiamo usare la seguente formula, e completare 
+				tutti i mesi successivi:
+      </p>
+
+      <div class="code-container">      				
+				=Subdivision!D40+Subdivision!D44+Subdivision!C50
+      </div>
+				
+    	<p style="text-align: justify;">
+    	  Per le colonne successive (D3:N3) bisognerà solo scalare di uno 
+    	  (D->E, C->D, ...) le lettere nella formula precedente.
+    	  La tab ConstantAndFunctions può essere nascosta, servendo solo da supporto.
+    	  <br>
+    	  Torniamo alla tab GUI.
+				Creiamo un grafico della tipologia "grafico combinato". Definiamo l'unione 
+				degli intervalli in modo verticale. Nel caso in esame prendiamo come 
+				dati di riferimento (intervallo) i seguenti range: 
+      </p>
+      				
+      <div class="code-container">
+				Dashboard!G22:R22,Dashboard!G4:R4,ConstantsAndFunctions!B3:N3,Dashboard!F4:R4,Dashboard!F22:R22
+      </div>
+
+    	<p style="text-align: justify;">
+				Usiamo per l'asse X il range "Dashboard!F4:R4"; le due serie invece 
+				sono "CostantAndFunctions!B3:N3" e "Dashboard!F22:R22". Spuntiamo 
+				le caselle "inverti righe/colonne" e usiamo la riga 4 per le etichette.
+				Con un po' di personalizzazione del grafico, il risultato sarà il seguente.
+      </p>
+
+      <!-- FIGURA PRIMO GRAFICO -->
+	    <a class="gallery-item" 
+	      href="./assets/images/spreadsheet/gui-fig3.webp">
+	      <img src="./assets/images/spreadsheet/gui-fig3.webp"
+	        class="box px-0 py-0 ml-auto mr-auto" width="1920" 
+	        title="picture1 of slideshow" 
+	        alt="Left side of the GUI pane.">
+	      <p class="has-text-centered is-size-6 caption">
+	        Left side of the GUI pane.</p>
+	    </a>
+
+      
+      
+    	<p style="text-align: justify;">
+				Il secondo grafico è a barre orizzontali. Non sono barre impilate (opzione 
+				nessuno). L'intervallo di dati è il seguente:
+      </p>
+
+      <div class="code-container">      
+	      Dashboard!G7:R7,Dashboard!G4:R4,Dashboard!G19:R19,Dashboard!G21:R21
+      </div>
+
+    	<p style="text-align: justify;">
+				Uniamo gli intervalli verticalmente; Usiamo "Dashboard!G4:R4" per l'asse 
+				verticale (saranno le nostre labels); Usiamo "Dashboard!G7:R7", 
+				"Dashboard!G19:R19", "Dashboard!G21:R21" come barre rappresentati. 
+				Invertiamo righe/colonne; e usiamo riga 4 per le intestazioni. 
+				Con un po' di personalizzazione, il risultato sarà come da figura sottostante, 
+				e la GUI tab è completata.
+      </p>
+      
+      <!-- FIGURA SECONDO GRAFICO -->
+	    <a class="gallery-item" 
+	      href="./assets/images/spreadsheet/gui-fig4.webp">
+	      <img src="./assets/images/spreadsheet/gui-fig4.webp"
+	        class="box px-0 py-0 ml-auto mr-auto" width="1920" 
+	        title="picture1 of slideshow" 
+	        alt="Final view of the GUI pane">
+	      <p class="has-text-centered is-size-6 caption">
+	        Final view of the GUI pane.</p>
+	    </a>
+      
+      <!--
+	    <a class="gallery-item" 
+	      href="./assets/images/spreadsheet/pac-fig4.webp">
+	      <img src="./assets/images/spreadsheet/pac-fig4.webp"
+	        class="box px-0 py-0 ml-auto mr-auto" width="380" 
+	        title="picture1 of slideshow" 
+	        alt="Right box (progression).">
+	      <p class="has-text-centered is-size-6 caption">
+	        Right box (progression).</p>
+	    </a>
+
+      <div class="code-container">   
+        =V3*V5
+      </div>
+			-->      
+
+    </div> 
+
+    <div class="article-licensing box">
+      <div class="licensing-title">
+        <p>Personal Finance Google Sheet: GUI</p>
+        <p>
+          <a href="https://fghio.github.io/projectPost.html?project=spreadsheet&post=gui">
+            https://fghio.github.io/projectPost.html?project=spreadsheet&post=gui
+          </a>
+        </p>
+      </div>
+      <div class="licensing-meta level is-mobile">
+        <div class="level-left">
+          <div class="level-item is-narrow">
+            <div>
+              <h6>Author</h6>
+              <p>F. Ghioldi</p>
+            </div>
+          </div>
+          <div class="level-item is-narrow">
+            <div>
+              <h6>Posted on</h6>
+              <p>21-07-2024</p>
+            </div>
+          </div>
+          <div class="level-item is-narrow">
+            <div>
+              <h6>Updated on</h6>
+              <p>12-10-2024</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr style="height:1px;margin:1rem 0">
+      <div class="level is-mobile is-flex">
+        <div class="article-tags is-size-7 is-uppercase">
+          <i class="fas fa-tag has-text-grey"
+            style="transform: translateY(20%);"></i>&nbsp;&nbsp;
+        <div>
+        Google Sheet,
+        &nbsp;
+      </div>
+      <div>
+        Personal Finance
+        &nbsp;
+      </div>
+    </div>
+  </div>
+
+  <div class="sharethis-inline-share-buttons st-center  st-inline-share-buttons st-animated" id="st-1">
+
+    <div class="st-btn" data-network="twitter" style="display: inline-block;">
+      <img alt="twitter sharing button" src="https://platform-cdn.sharethis.com/img/twitter.svg">
+    </div>
+    
+    <div class="st-btn" data-network="linkedin" style="display: inline-block;">
+      <img alt="linkedin sharing button" src="https://platform-cdn.sharethis.com/img/linkedin.svg">
+    </div>
+
+    <div class="st-btn" data-network="email" style="display: inline-block;">
+      <img alt="email sharing button" src="https://platform-cdn.sharethis.com/img/email.svg">
+    </div>
+    
+    <div class="st-btn st-last" data-network="sharethis" style="display: inline-block;">
+      <img alt="sharethis sharing button" src="https://platform-cdn.sharethis.com/img/sharethis.svg">
+    </div>
+
+  </div>
+
+  <script 
+    src="https://platform-api.sharethis.com/js/sharethis.js#property=61b5930d440224001908310c&amp;product=inline-share-buttons" defer="">
+  </script>
+
+  </article>
+</div>
+
+
+<script src=assets/js/tableContent.js></script>
+
+
+<script src="./assets/js/slideshow.js"></script>
+
+<div class="card" id="comment-card" style="margin-top: 20px; opacity: 1; transform-origin: center top;">
+  <div class="card-content">
+    <h3 class="title is-5">Comments</h3>
+
+    <!-- DISQUS COMMENTS -->
+    <div id="disqus_thread"></div>
+
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://fghio.github.io/projectPost.html?project=spreadsheet&post=gui';
+        this.page.identifier = '/posts/projects/spreadsheetPosts/gui.html';
+      };
+
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = '//' + 'https-fghio-github-io' + '.disqus.com/embed.js'; // Update the shortname here
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+</div>
+
+
+

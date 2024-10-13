@@ -1,0 +1,383 @@
+<div class="card" id="my-blog-post-card">
+  <article class="card-content article" 
+    data-metadata='{
+      "creationDate": "2024-04-25", 
+      "lastModificationDate": "2024-04-28", 
+      "title": "Personal Finance Google Sheet: adjustments", 
+      "views": 1000,
+      "wordCount": 500,
+      "readTime": "8 min",
+      "tags": ["Google Sheet", "Personal Finance"]
+    }'>
+    <h1 class="title is-size-3" style="font-family: 'PT Sans Narrow', sans-serif">
+      Personal Finance Google Sheet: Adjust 
+        Subdivision Tab with investments
+    </h1>
+    
+    <div class="article-meta is-size-7 is-uppercase level is-mobile">
+      <div class="level-left" style="margin-bottom: 0.50rem">
+        <span class="level-item">
+          <i class="far fa-calendar-alt">&nbsp;</i>
+          <time>
+            <div class="post-date">11/06/2024</div>
+          </time>
+        </span>
+        <span class="level-item is-hidden-mobile">
+          <i class="far fa-calendar-check">&nbsp;</i>
+          <time>
+            <div class="last-updated">12/10/2024</div>
+          </time>
+        </span>
+        <span class="level-item">
+          <i class="far fa-folder-open has-text-grey"></i>&nbsp;
+          <a class="link-muted" href="./projectArchive.html?id=PF">back to posts list</a>
+        </span>
+        <span class="level-item">
+          <i class="far fa-folder-open has-text-grey"></i>&nbsp;
+          <a class="link-muted" href="./projects.html">list of projects</a>
+        </span>
+        <span class="level-item">
+          <i class="far fa-clock"></i>&nbsp;
+          <div class="read-time">8 minutes</div>
+        </span>
+      </div>
+    </div>
+    <div class="content" style="margin-top: 1.0rem">
+  
+
+      <div id="difficulty-container"></div>
+
+      <script>
+      function generateStars(rating) {
+      const yellowStars = '★'.repeat(rating);
+      const grayStars = '☆'.repeat(5 - rating);
+      const starsHTML = `<span class="star-rating">${yellowStars}</span><span class="gray-star">${grayStars}</span>`;
+      document.getElementById('difficulty-container').innerHTML = `<p>Difficulty Level: ${starsHTML}</p>`;
+      }
+      </script>
+
+      <script>
+      // Example usage
+      generateStars(2); // Change the rating as needed
+      </script>
+
+      <h2 id="Introduction" style="scroll-margin: 1em;">
+        <a href="#Introduction" class="headerlink" title="Introduction"></a>
+        Introduzione
+      </h2>
+
+      <p style="text-align: justify;">
+        Per coloro i quali hanno costruito anche tab di investimento (Stocks, 
+        Bond, PAC), è il caso di riprendere la tab Subdivision e aggiornarla 
+        con nuove informazioni. 
+      </p>
+
+      <h2 id="EvoAnnuale" style="scroll-margin: 1em;">
+        <a href="#EvoAnnuale" class="headerlink" title="EvoAnnuale"></a>
+        Evoluzione annuale
+      </h2>
+      
+      <p style="text-align: justify;">
+        Iniziamo con l'evoluzione annuale. Nella tab Subdivision andiamo all'ultima
+        riga costruita (e riempita) in precedenza. Sotto, lasciamo una riga vuota. 
+        Ancora più sotto, facciamo una nuova tabella. Da colonna C (in questo esempio 
+        cella C50), verso destra, inseriamo tutti i mesi dell'anno. In cella O50 scriviamo 
+        "BONDS"; in cella O52 scriviamo "PAC".<br>
+        In cella O51 possiamo mettere la somma dei valori correnti degli ivestimenti 
+        in obbligazioni. Considerando due obbligazioni nella tab BONDS presenti 
+        in colonne D e F, si userà in cella O51 la seguente formula:
+      </p>
+      
+			<div class="code-container">
+				=Bonds!D57+Bonds!F57
+			</div>
+      
+			<p style="text-align: justify;">
+				Invece, in cella O53 possiamo mettere la somma (al netto delle tasse) 
+				del PAC. Usiamo la seguente formula:
+			</p>
+      
+			<div class="code-container">
+				=PAC!E3
+			</div>
+
+			<p style="text-align: justify;">
+				Torniamo alla colonna B. Inseriamo in celle B51 e successive (a scendere) 
+				le parole: "Stocks", "Bonds", "PAC", "Total".<br>
+				Riempiamo per prima la riga dei totali. Da colonna C (presa ad esempio) 
+				fino a colonna N, in riga 54 abbiamo la seguente formula:
+			</p>
+
+			<div class="code-container">
+	      =SOMMA(C51:C53)
+			</div>
+
+			<p style="text-align: justify;">
+				Nella riga delle "Stocks" (51, in questo caso), andiamo a prendere 
+				l'informazione salvata nella tab omonima. Questa informazione, 
+				verrà automaticamente aggiornata e preservata nella tab Subdivision 
+			  una volta che sarà congelata ad ogni termine di mese nella tab Stocks. 
+			  In cella C51 (e seguenti, in riga) la funzione da usare è la seguente:
+			</p>
+
+			<div class="code-container">
+				=Stocks!E30
+			</div>
+				
+			<p style="text-align: justify;">
+				Un semplice drag and drop verso destra permette di completare tutta la riga.<br>
+				Per la riga "Bonds" occorre prestare leggermente più attenzione. 
+				Il valore può venire da più tab: possiamo avere ETF obbligazionari (tab 
+				Stocks), ed obbligazioni singole (tab Bonds). 
+				Il primo contributo può essere preso da riga 29 della tab Stocks 
+				(per l'esempio corrente). La seconda parte dell'informazione viene 
+				proprio dalla cella O51 che abbiamo creato poco fa. Ne consegue che 
+				la formula in cella C52 deve essere
+			</p>
+
+			<div class="code-container">
+				=Stocks!E29 + O51
+			</div>
+
+			<p style="text-align: justify;">
+				Inoltre, ad ogni mese la entry in riga 52 della tab Subdivision 
+				deve essere congelata! Questo perchè: 1) il contributo dalla 
+				tab Stocks viene automaticamente aggiornato in modo corretto, 
+				ma 2)	la tab Bonds (da cui cella O51) non ha un salvataggio 
+				mese per mese del valore totale.<br>
+				In riga 53, da colonna C ad N inseriamo la formula
+			</p>
+			
+			<div class="code-container">
+				=$O$53
+			</div>
+
+			<p style="text-align: justify;">
+				Così ogni cella avrà inizialmente lo stesso valore corrente 
+				dell'investimento in PAC (al netto delle tasse). Ogni fine 
+				mese l'utente dovrà congelare anche la cella nella colonna 
+				corrispondente (C:N). Ad esempio, a fine gennaio andrà congelata 
+				casella C53.<br> 
+				Il risultato della tabella sarà come mostrato in figura 1, 
+				al netto degli abbellimenti grafici del caso.
+			</p>
+			
+	    <a class="gallery-item" 
+	      href="./assets/images/spreadsheet/adjustments-fig1.webp">
+	      <img src="./assets/images/spreadsheet/adjustments-fig1.webp"
+	        class="box px-0 py-0 ml-auto mr-auto" width="1920" 
+	        title="Evolution of investments through the year" 
+	        alt="Evolution of investments through the year">
+	      <p class="has-text-centered is-size-6 caption">
+	        Evolution of investments through the year.</p>
+	    </a>      
+
+      <h2 id="ColonnaTab" style="scroll-margin: 1em;">
+        <a href="#ColonnaTab" class="headerlink" title="ColonnaTab"></a>
+        Tabella "Colonna" degli investimenti
+      </h2>
+
+			<p style="text-align: justify;">
+				Ora è possibile generare una nuova tabella "colonna" 
+				simile a quanto fatto con gli altri metodi (Conto 1, Conto 2, Cash, ...). 
+				<br>
+				Supponiamo che l'ultima tabella "colonna" finisca a colonna O di 
+				tab Subdivision. Uniamo celle Q2:T2 e scriviamo "Investimenti". 
+				Usiamo celle Q20:T24 per creare una piccola tabella composta come segue.
+				<br>
+				In riga 20 inseriamo i titoli: "Stocks", "Gain/Losses", "Before Taxes Tot", 
+				"After taxes".<br>
+				In celle Q21:Q24 inseriamo "Stocks", "Bonds", "PAC", "Total".<br>
+				Per celle R21:R24 le informazioni vengono recuperate in questo modo:
+				<ul>
+				<li>R21: <span class="code-container-inline">=Stocks!N15</span></li>
+				<li>R22: <span class="code-container-inline">=Stocks!N14+Bonds!D58+Bonds!F58
+					</span></li>
+				<li>R23: <span class="code-container-inline">=PAC!E15</span></li>
+				</ul>
+			</p>
+
+			<p style="text-align: justify;">
+				Per celle S21:S24 le informazioni vengono recuperate in questo modo:
+				<ul>
+				<li>S21: <span class="code-container-inline">=Stocks!Q15</span></li>
+				<li>S22: <span class="code-container-inline">=Stocks!Q14+Bonds!D57+Bonds!F57
+				  </span></li>
+				<li>S23: <span class="code-container-inline">=PAC!D3</span></li>
+				</ul>
+			</p>
+
+			<p style="text-align: justify;">
+				Per celle T21:T24 le informazioni vengono recuperate in questo modo:
+				<ul>
+				<li>T21: <span class="code-container-inline">=Stocks!T15</span></li>
+				<li>T22: <span class="code-container-inline">=Stocks!T14+Bonds!D33+Bonds!F33
+				  </span></li>
+				<li>T23: <span class="code-container-inline">=PAC!E3</span></li>
+				</ul>
+			</p>
+
+			<p style="text-align: justify;">
+				I totali, in riga 23, vengono calcolati ovviamente come somma delle 
+				righe subito sopra.<br><br>
+				A questo punto creiamo un'altra tabella subito sotto usando celle 
+				Q26:T35. La prima riga viene riempita con "Name", "G/L", "Name", 
+				"G/L". Andiamo infatti a separare colonne Q:R rispetto a colonne S:T. 
+				In celle Q27:Q34 (o succesive) andiamo a copiare i nomi delle stocks, 
+				ETF o Fondi azionari dalla tab "Stocks"; usiamo le rispettive celle 
+				accanto (in colonna R) per copiare la variazione ("G/L") dal momento 
+				dell'acquisto. Anche quest'ultima informazione viene dalla tab 
+				Stocks: seguendo la costruzione proposta in questo progetto, parliamo 
+				di colonna N in tab Stocks.<br>
+				Similmente, in colonne S e T andiamo a mettere i nomi e i "G/L" 
+				dei fondi o ETF obbligazionari 
+				(prendendo i dati dalla tab Stocks), assieme ai nomi e ai "G/L" delle 
+				obbligazioni singole contenute nella tab "Bonds". Per queste ultime, 
+				se si è seguita la costruzione proposta, il dato che ci serve è a 
+				riga 58 della tab Bonds.<br><br>
+				Il risultato finale sarà quello proposto in figura 2. Si precisa 
+				che tutti i dati inseriti in figura 1 e 2 sono puramente indicativi, 
+				generati come evoluzione di numeri randomici messi nelle tab "Stocks" 
+				e "Bonds". Non sono quindi da intendersi in alcun modo come un 
+				consiglio finanziario.
+			</p>
+
+	    <a class="gallery-item" 
+	      href="./assets/images/spreadsheet/adjustments-fig2.webp">
+	      <img src="./assets/images/spreadsheet/adjustments-fig2.webp"
+	        class="box px-0 py-0 ml-auto mr-auto" width="380" 
+	        title="Vertical column of investments (tables)" 
+	        alt="Vertical column of investments (tables)">
+	      <p class="has-text-centered is-size-6 caption">
+	        Vertical column of investments (tables)</p>
+	    </a>
+
+			<p style="text-align: justify;">
+				L'ultima mancanza è il grafico dell'evoluzione dell'investimento 
+				nel tempo. Similmente a quanto fatto per i grafici "Conto 1", 
+				"Conto 2", e "Cash", è possibile usare celle C50:N50 e C54:N54 
+				per ottenere un grafico come in figura 3. L'ultimo spazio mancante 
+				verrà colmato quando verrà completata la tab sull'analisi degli 
+				investimenti.
+			</p>
+
+	    <a class="gallery-item" 
+	      href="./assets/images/spreadsheet/adjustments-fig3.webp">
+	      <img src="./assets/images/spreadsheet/adjustments-fig3.webp"
+	        class="box px-0 py-0 ml-auto mr-auto" width="380" 
+	        title="overall vertical column" 
+	        alt="overall vertical column">
+	      <p class="has-text-centered is-size-6 caption">
+	        Overall vertical column</p>
+	    </a>
+
+    </div>
+
+    <div class="article-licensing box">
+      <div class="licensing-title">
+        <p>Personal Finance Google Sheet: Adjust 
+        Subdivision Tab with investments</p>
+        <p>
+          <a href="https://fghio.github.io/projectPost.html?project=spreadsheet&post=adjustments">
+            https://fghio.github.io/projectPost.html?project=spreadsheet&post=adjustments
+          </a>
+        </p>
+      </div>
+      <div class="licensing-meta level is-mobile">
+        <div class="level-left">
+          <div class="level-item is-narrow">
+            <div>
+              <h6>Author</h6>
+              <p>F. Ghioldi</p>
+            </div>
+          </div>
+          <div class="level-item is-narrow">
+            <div>
+              <h6>Posted on</h6>
+              <p>11-06-2024</p>
+            </div>
+          </div>
+          <div class="level-item is-narrow">
+            <div>
+              <h6>Updated on</h6>
+              <p>12-10-2024</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr style="height:1px;margin:1rem 0">
+      <div class="level is-mobile is-flex">
+        <div class="article-tags is-size-7 is-uppercase">
+          <i class="fas fa-tag has-text-grey"
+            style="transform: translateY(20%);"></i>&nbsp;&nbsp;
+        <div>
+        Google Sheet,
+        &nbsp;
+      </div>
+      <div>
+        Personal Finance
+        &nbsp;
+      </div>
+    </div>
+  </div>
+
+  <div class="sharethis-inline-share-buttons st-center  st-inline-share-buttons st-animated" id="st-1">
+
+    <div class="st-btn" data-network="twitter" style="display: inline-block;">
+      <img alt="twitter sharing button" src="https://platform-cdn.sharethis.com/img/twitter.svg">
+    </div>
+    
+    <div class="st-btn" data-network="linkedin" style="display: inline-block;">
+      <img alt="linkedin sharing button" src="https://platform-cdn.sharethis.com/img/linkedin.svg">
+    </div>
+
+    <div class="st-btn" data-network="email" style="display: inline-block;">
+      <img alt="email sharing button" src="https://platform-cdn.sharethis.com/img/email.svg">
+    </div>
+    
+    <div class="st-btn st-last" data-network="sharethis" style="display: inline-block;">
+      <img alt="sharethis sharing button" src="https://platform-cdn.sharethis.com/img/sharethis.svg">
+    </div>
+
+  </div>
+
+  <script 
+    src="https://platform-api.sharethis.com/js/sharethis.js#property=61b5930d440224001908310c&amp;product=inline-share-buttons" defer="">
+  </script>
+
+  </article>
+</div>
+
+
+<script src=assets/js/tableContent.js></script>
+
+
+<script src="./assets/js/slideshow.js"></script>
+
+<div class="card" id="comment-card" style="margin-top: 20px; opacity: 1; transform-origin: center top;">
+  <div class="card-content">
+    <h3 class="title is-5">Comments</h3>
+
+    <!-- DISQUS COMMENTS -->
+    <div id="disqus_thread"></div>
+
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://fghio.github.io/projectPost.html?project=spreadsheet&post=adjustments';
+        this.page.identifier = '/posts/projects/spreadsheetPosts/adjustments.html';
+      };
+
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = '//' + 'https-fghio-github-io' + '.disqus.com/embed.js'; // Update the shortname here
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+</div>
+
+
+
