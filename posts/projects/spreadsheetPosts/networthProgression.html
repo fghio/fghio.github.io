@@ -6,7 +6,7 @@
       "title": "Personal Finance Google Sheet: networth progression", 
       "views": 1000,
       "wordCount": 500,
-      "readTime": "0 min",
+      "readTime": "5 min",
       "tags": ["Google Sheet", "Personal Finance"]
     }'>
     <h1 class="title is-size-3" style="font-family: 'PT Sans Narrow', sans-serif">
@@ -37,7 +37,7 @@
         </span>
         <span class="level-item">
           <i class="far fa-clock"></i>&nbsp;
-          <div class="read-time">0 minutes</div>
+          <div class="read-time">5 minutes</div>
         </span>
       </div>
     </div>
@@ -62,15 +62,182 @@
 
       <h2 id="Introduction" style="scroll-margin: 1em;">
         <a href="#Introduction" class="headerlink" title="Introduction"></a>
-        Coming soon
+        Introduzione
       </h2>
 
       <p style="text-align: justify;">
-        La descrizione della tab arriverà a breve.
+				Con la creazione della tab "GUI" si completa la parte che 
+				ritengo fondamentale per avere uno spreadsheet completo 
+				e facilmente utilizzabile. Le informazioni che abbiamo aggiunto 
+				in "Lista movimenti" vengono usate all'interno del documento 
+				per dare informazioni correnti, mensili, e annuali del patrimonio. 
+				Ipotizzando che questo spreadsheet sia usato per più anni, 
+				è interessante avere una tab che mostri l'andamento nel tempo 
+				del patrimonio. Per rendere la costruzione generale, il 
+				patrimonio verrà tracciato in più currency: EUR, USD, CHF.
+				<br><br>
+			</p>	
+
+      <h2 id="TabEvolution" style="scroll-margin: 1em;">
+        <a href="#TabEvolution" class="headerlink" title="TabEvolution"></a>
+        Tabella evoluzione patrimonio
+      </h2>
+				
+      <p style="text-align: justify;">
+				Creiamo una nuova tab e chiamiamola "Networth Progression".
+				Usiamo la prima riga (unendo le celle B2:U2) per inserire 
+				un titolo uguale al nome della tab.
+				<br> Sotto, creiamo una tabella occupando le prime 6 colonne 
+				(B:G). In riga 3 inseriamo i titoli: "Date", "EUR", "USD", "USD/EUR", 
+				"CHF", "CHF/EUR".
+				<br> In colonna B, sotto "Date" andiamo a mettere una lista di 
+				date (formato MM/YY) tralasciando il giorno, partendo dal 
+				mese corrente al momento della creazione della tab. 
+				Personalmente, anzichè aggiungere manualmente ogni mese una entry, 
+				preferisco costruire già tutte le entries dell'anno corrente 
+				(da 01/YY a 12/YY). Per facilitare il trattamento del grafico 
+				che andremo a costruire, si ordino le date dalla più vecchia 
+				(in basso) alla più recente (in alto). Ex: "01/24" sarà in 
+				riga 15, se "12/24" si trova in riga 4. 
+				<br>
+				Supponendo che la nostra moneta di riferimento sia l'Euro, 
+				inseriamo in tutte le celle di colonna C, accanto ai mesi, 
+				la seguente formula:
       </p>
 
+      <div class="code-container">
+  			= GUI!$C$5
+			</div>
+
+      <p style="text-align: justify;">
+				È sufficiente inserire questa funzione in una cella, e usare 
+				il drag and drop verso l'alto o il basso per imporre la stessa 
+				funzione su tutte le altre in colonna. Chiamiamo queste celle 
+				"celle attive" per comodità.
+				Le celle attive conterranno quindi il valore del patrimonio complessivo 
+				in Euro, preso direttamente dalla tab GUI. Alla fine di ogni 
+				mese basterà congelare il valore lasciando che quello del 
+				mese successivo cambi secondo le fluttuazioni di cash flow 
+				e investimenti.<br>
+				<br>
+				La colonna accanto serve per tracciare il patrimonio in dollari. 
+				Per farlo, includiamo in colonna E il valore di conversione tra 
+				Euro e Dollaro. La funzione da inserire in colonna E per ogni 
+				cella attiva è la seguente:
+      </p>
+
+      <div class="code-container">
+        =GOOGLEFINANCE("CURRENCY:EURUSD")
+      </div>
+
+      <p style="text-align: justify;">
+				Anche qui è sufficiente usare drag and drop; anche in 
+				questo caso la cella andrà congelata una volta che il mese 
+				è concluso. In ogni cella attiva (ex: B4), il valore 
+				di patrimonio in dollari in D4 è uguale al valore in C4 
+				moltiplicato per il fattore di conversione. In cella D4 
+				(e successive - con drag and drop) usiamo la formula
+      </p>
+
+      <div class="code-container">
+  			=C4*E4
+      </div>
+      
+      <p style="text-align: justify;">
+				In colonna G avremo il fattore di conversione tra Euro e 
+				Franco Svizzero (CHF). Basta usare la stessa formula 
+				di colonna E, usando però "EURCHF" al posto di "EURUSD".<br>
+				Una formula simile a quella di colonna D permette di 
+				ottenere il patrimonio in Franchi in colonna F: 
+				il valore in cella di colonna C deve essere moltiplicato 
+				per il valore di colonna G alla riga corrispondente. 
+				Il risultato è il seguente.
+      </p>
+
+      <!-- TABELLA -->
+	    <a class="gallery-item" 
+	      href="./assets/images/spreadsheet/networth-fig1.webp">
+	      <img src="./assets/images/spreadsheet/networth-fig1.webp"
+	        class="box px-0 py-0 ml-auto mr-auto" width="360" 
+	        title="picture1 of slideshow" 
+	        alt="Table of networth evolution in the networth tab">
+	      <p class="has-text-centered is-size-6 caption">
+	        Table of net worth evolution in the tab.</p>
+	    </a>
+
+
+      <h2 id="GraficoEvoluzione" style="scroll-margin: 1em;">
+        <a href="#GraficoEvoluzione" class="headerlink" title="GraficoEvoluzione"></a>
+        Grafico dell'evoluzione
+      </h2>
+
+      <p style="text-align: justify;">
+				Usiamo colonne B, C, D, ed F per creare un grafico dell'evoluzione. 
+				Il grafico si auto-aggiusta quando inseriamo nuove celle spostando 
+				quelle esistenti verso il basso. Aggiustiamo il formato del grafico:
+				personalmente preferisco tenere più spessa la linea della curva 
+				di riferimento (Euro); uso colori diversi e simboli diversi per 
+				identificare meglio le 3 linee. Se tutte le entry per l'anno 
+				corrente (01/YY - 12/YY) vengono messe a inizio anno, la parte 
+				terminale della curva sarà inevitabilmente piatta, fin tanto che 
+				l'anno è in corso, ma varierà progressivamente mano a mano che 
+				l'anno procede e celle (01/YY, 02/YY, ...) vengono congelate. 
+				Come esempio si veda l'immagine sottostante: a ottobre 24, 
+				i valori per novembre e dicembre 24 saranno allo stesso 
+				livello di ottobre prima del congelamento.
+      </p>
+
+      <!-- FIGURA	-->
+	    <a class="gallery-item" 
+	      href="./assets/images/spreadsheet/networth-fig2.webp">
+	      <img src="./assets/images/spreadsheet/networth-fig2.webp"
+	        class="box px-0 py-0 ml-auto mr-auto" width="1920" 
+	        title="picture1 of slideshow" 
+	        alt="Figure of networth evolution in the networth tab">
+	      <p class="has-text-centered is-size-6 caption">
+	        Figure of net worth evolution in the tab.</p>
+	    </a>
+
+      <h2 id="Recap" style="scroll-margin: 1em;">
+        <a href="#Recap" class="headerlink" title="Recap"></a>
+        Recap della progressione annuale
+      </h2>
+
+      <p style="text-align: justify;">
+				Creiamo in colonne W:Z una tabella di progressione 
+				annuale. Scriviamo in riga 2 i titoli: "Year", "Progression", 
+				"Delta", "Flow chart".<br>
+				Inseriamo in colonna W l'anno in formato YYYY. Il 
+				delta, in colonna Y, si ottiene facendo la differenza tra 
+				i valori al 12/YY di due anni consecutivi.<br>
+				La progressione in colonna X (%) si ottiene dividendo la 
+				differenza tra i valori al 12/YY di due anni consecutivi, 
+				per il più vecchio (temporalmente) dei due.<br>
+				Il flow chart in colonna Z può essere costruito con
+				questo <a href="https://sankeymatic.com/build/">sito web</a> 
+				usando le informazioni provenienti dalle tab "Dashboard" e
+				"Subdivision" (per gli investimenti). Nel sito web, 
+				è semplicemente necessario cambiare gli input 
+				nel pannello in alto a sinistra.<br><br>
+				È possibile anche creare un grafico a barre usando 
+				le celle in colonna W e X, così da visualizzare il 
+				progresso anno dopo anno. Il risultato, dopo qualche 
+				anno, sarà il seguente.
+      </p>
+
+      <!-- TABELLA -->
+	    <a class="gallery-item" 
+	      href="./assets/images/spreadsheet/networth-fig3.webp">
+	      <img src="./assets/images/spreadsheet/networth-fig3.webp"
+	        class="box px-0 py-0 ml-auto mr-auto" width="360" 
+	        title="picture1 of slideshow" 
+	        alt="Table of networth evolution (per year) in the networth tab">
+	      <p class="has-text-centered is-size-6 caption">
+	        Table of net worth evolution (per year) in the tab.</p>
+	    </a>
 
     </div>
+    
 
     <div class="article-licensing box">
       <div class="licensing-title">
