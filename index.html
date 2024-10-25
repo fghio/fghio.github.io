@@ -4,26 +4,30 @@
 <head>
 
   <title>FGh.io - Home</title>
-	
+
   <link rel="shortcut icon" href="assets/images/logo.ico">
-	
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="assets/css/default.css">
   <script src="assets/js/jquery-3.7.1.min.js"></script>
-  
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=PT+Sans+Narrow:wght@400;700&amp;family=PT+Serif">
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous">
-  
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=PT+Sans+Narrow:wght@400;700&amp;family=PT+Serif">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css">
+
 </head>
 
-<body class="pace-done is-3-column light" 
-      data-new-gr-c-s-check-loaded="14.1134.0" data-gr-ext-installed>
+<body class="pace-done is-3-column light" data-new-gr-c-s-check-loaded="14.1134.0" data-gr-ext-installed>
 
   <div class="pace pace-inactive">
-    <div class="pace-progress" data-progress-text="100%" data-progress="100" style="transform: translate3d(100%, 0px, 0px);">
+    <div class="pace-progress" data-progress-text="100%" data-progress="100"
+      style="transform: translate3d(100%, 0px, 0px);">
       <div class="pace-progress-inner"></div>
     </div>
     <div class="pace-activity"></div>
@@ -55,15 +59,13 @@
       </div>
     </div>
 
-    <a id="back-to-top" 
-      title="Back to top" 
-      href="javascript:void(0);" 
-      style="right: 500px; bottom: 35px; width: 50px;" 
+    <a id="back-to-top" title="Back to top" href="javascript:void(0);" style="right: 500px; bottom: 35px; width: 50px;"
       class="card has-text-centered">
       <i class="fas fa-chevron-up"></i>
     </a>
 
   </section>
+
 
   <!-- FOOTER -->
   <div id="footerContainer"></div>
@@ -73,7 +75,36 @@
   <script src="./assets/js/script.js"></script>
   <script src="./assets/js/main.js"></script>
 
+  <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer=""></script>
+
   <script>
+    window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "Cookies collected just to remember which mode (light/dark) you prefer.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });
+
     $(function () {
       // Load content dynamically
       $("#navBarContainer").load("./common/navBar.html");
@@ -87,4 +118,3 @@
 </body>
 
 </html>
-
