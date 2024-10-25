@@ -1,18 +1,9 @@
 <div class="card" id="my-blog-post-card">
-  <article class="card-content article" 
-    data-metadata='{
-      "creationDate": "2024-04-25", 
-      "lastModificationDate": "2024-04-28", 
-      "title": "Personal Finance Google Sheet: PAC", 
-      "views": 1000,
-      "wordCount": 500,
-      "readTime": "19 min",
-      "tags": ["Google Sheet", "Personal Finance"]
-    }'>
+  <article class="card-content article">
     <h1 class="title is-size-3" style="font-family: 'PT Sans Narrow', sans-serif">
       Personal Finance Google Sheet: PAC tab
     </h1>
-    
+
     <div class="article-meta is-size-7 is-uppercase level is-mobile">
       <div class="level-left" style="margin-bottom: 0.50rem">
         <span class="level-item">
@@ -42,22 +33,22 @@
       </div>
     </div>
     <div class="content" style="margin-top: 1.0rem">
-  
+
 
       <div id="difficulty-container"></div>
 
       <script>
-      function generateStars(rating) {
-      const yellowStars = '★'.repeat(rating);
-      const grayStars = '☆'.repeat(5 - rating);
-      const starsHTML = `<span class="star-rating">${yellowStars}</span><span class="gray-star">${grayStars}</span>`;
-      document.getElementById('difficulty-container').innerHTML = `<p>Difficulty Level: ${starsHTML}</p>`;
-      }
+        function generateStars(rating) {
+          const yellowStars = '★'.repeat(rating);
+          const grayStars = '☆'.repeat(5 - rating);
+          const starsHTML = `<span class="star-rating">${yellowStars}</span><span class="gray-star">${grayStars}</span>`;
+          document.getElementById('difficulty-container').innerHTML = `<p>Difficulty Level: ${starsHTML}</p>`;
+        }
       </script>
 
       <script>
-      // Example usage
-      generateStars(2); // Change the rating as needed
+        // Example usage
+        generateStars(2); // Change the rating as needed
       </script>
 
       <h2 id="Introduction" style="scroll-margin: 1em;">
@@ -66,11 +57,11 @@
       </h2>
 
       <p style="text-align: justify;">
-        Prosegue la serie di post sulla creazione di tab per 
-        tracciare l'andamento dei prodotti finanziari. In questo 
-        post vengono trattati i piani di accumulo (PAC). A tal proposito 
-        ci si aspetta che il lettore (interessato) abbia conoscenza 
-        quantomeno basica dei concetti legati al piano di accumulo. 
+        Prosegue la serie di post sulla creazione di tab per
+        tracciare l'andamento dei prodotti finanziari. In questo
+        post vengono trattati i piani di accumulo (PAC). A tal proposito
+        ci si aspetta che il lettore (interessato) abbia conoscenza
+        quantomeno basica dei concetti legati al piano di accumulo.
       </p>
 
       <h2 id="Disclaimer" style="scroll-margin: 1em;">
@@ -80,21 +71,21 @@
 
       <p style="text-align: justify;">
         In nessun modo l'allocazione mostrata in questo post è da considerarsi
-        consiglio finanziario. Nessuna delle informazioni riportate all'interno 
-        di questo articolo è da considerarsi incentivo o consiglio a tecniche 
-        o metodi di investimento. I ticker usati sono reali, ma le quote e i numeri 
-        mostrati sono stati scelti randomicamente e sono inclusi a puro scopo 
-        di validazione del corretto inserimento delle formule. 
+        consiglio finanziario. Nessuna delle informazioni riportate all'interno
+        di questo articolo è da considerarsi incentivo o consiglio a tecniche
+        o metodi di investimento. I ticker usati sono reali, ma le quote e i numeri
+        mostrati sono stati scelti randomicamente e sono inclusi a puro scopo
+        di validazione del corretto inserimento delle formule.
         <br>
         <br>
         Ci tengo ad aggiungere una informazione importante.
       </p>
 
       <p class="noteBoxes type1"><i class="fas fa-exclamation-triangle"></i><span>
-        Alcuni promotori finanziari sostengono che non si possono fare PAC su ETF. 
-        Ebbene, si possono fare PAC su ETF, sia usando broker italiani che 
-        letteralmente permettono di fare questa cosa, sia ricordandosi banalmente 
-        di acquistare quote di un ETF a intervalli regolari presso la vostra banca.
+          Alcuni promotori finanziari sostengono che non si possono fare PAC su ETF.
+          Ebbene, si possono fare PAC su ETF, sia usando broker italiani che
+          letteralmente permettono di fare questa cosa, sia ricordandosi banalmente
+          di acquistare quote di un ETF a intervalli regolari presso la vostra banca.
       </p>
 
       <p style="text-align: justify;">
@@ -102,19 +93,19 @@
       </p>
 
       <p class="noteBoxes type1"><i class="fas fa-exclamation-triangle"></i><span>
-        L'obiettivo del PAC è accumulare quote di uno strumento 
-        per il suo mantenimento a lungo/hissimo termine. I PAC in ETF 
-        sono statisticamente molto più convenienti dei PAC su Fondi Attivi.
-        Statisticamente, i PAC su ETF hanno ritorni attesi molto maggiori 
-        dei PAC su Fondi Attivi. Spesso, le alte commissioni (ingresso, 
-        gestione, performance) e le sottoperformance dei Fondi Attivi 
-        sono la causa di questa differenza a favore degli ETF.
+          L'obiettivo del PAC è accumulare quote di uno strumento
+          per il suo mantenimento a lungo/hissimo termine. I PAC in ETF
+          sono statisticamente molto più convenienti dei PAC su Fondi Attivi.
+          Statisticamente, i PAC su ETF hanno ritorni attesi molto maggiori
+          dei PAC su Fondi Attivi. Spesso, le alte commissioni (ingresso,
+          gestione, performance) e le sottoperformance dei Fondi Attivi
+          sono la causa di questa differenza a favore degli ETF.
       </p>
 
       <p class="noteBoxes type1"><i class="fas fa-exclamation-triangle"></i><span>
-        I PAC prevedono l'acquisto ripetuto di uno strumento. È importante 
-        quindi scegliere lo strumento, l'importo, e la banca/broker in modo da 
-        minimizzare anche le spese di ingresso e acquisto.
+          I PAC prevedono l'acquisto ripetuto di uno strumento. È importante
+          quindi scegliere lo strumento, l'importo, e la banca/broker in modo da
+          minimizzare anche le spese di ingresso e acquisto.
       </p>
 
       <h2 id="PrimiStep" style="scroll-margin: 1em;">
@@ -123,146 +114,144 @@
       </h2>
 
       <p style="text-align: justify;">
-        Bene, superato il disclaimer, iniziamo. Creiamo una nuova tab e chiamiamola 
-        PAC. Lasciamo la prima riga e la prima colonna vuote come sempre. 
+        Bene, superato il disclaimer, iniziamo. Creiamo una nuova tab e chiamiamola
+        PAC. Lasciamo la prima riga e la prima colonna vuote come sempre.
         A riga 2, colonne B:E inseriamo i primi titoli della prima box di questa tab:
-        "PAC", "Invested", "With G/L", "Net taxes". Lasciamo la riga sotto vuota, 
+        "PAC", "Invested", "With G/L", "Net taxes". Lasciamo la riga sotto vuota,
         andremo a riempirla successivamente con i valori effettivi del nostro investimento.
         <br>
         <br>
-        In riga 5, creiamo la seconda box, qui denominata come "Results". Per mantenere 
-        tutto compatto, usiamo le stesse colonne (B:E). Per righe 6:8 uniamo colonne B:C 
-        e D:E. Quindi rispettivamente in righe 6:8 indichiamo: "Tot invested", "€ at end", 
-        "% G/L". Lasciamo vuote le righe in colonne D:E. Anche queste verranno riempite 
+        In riga 5, creiamo la seconda box, qui denominata come "Results". Per mantenere
+        tutto compatto, usiamo le stesse colonne (B:E). Per righe 6:8 uniamo colonne B:C
+        e D:E. Quindi rispettivamente in righe 6:8 indichiamo: "Tot invested", "€ at end",
+        "% G/L". Lasciamo vuote le righe in colonne D:E. Anche queste verranno riempite
         successivamente.
         <br>
         <br>
-        Subito sotto, raggruppiamo colonne B:E e in riga 9 inseriamo il titolo "After 
-        Taxes". Facendo lo stesso procedimento di righe 6:8 aggiungiamo in 10:12 i 
+        Subito sotto, raggruppiamo colonne B:E e in riga 9 inseriamo il titolo "After
+        Taxes". Facendo lo stesso procedimento di righe 6:8 aggiungiamo in 10:12 i
         seguenti titoli: "Cost per year", "Taxes", "Net". Lasciamo libere le colonne D:E.
         <br>
         <br>
         In una terza box, da riga 14, andiamo a mettere in colonne B:E i seguenti titoli:
         "Strumento", "Invested", "With G/L", "Net diff.".
-        Subito sotto, andiamo a inserire una serie di righe che riguardino le tipologie 
-        di strumenti su cui intendiamo fare PAC. Seguendo il disclaimer precedente 
-        qui inseriamo "Stock ETF" e ove necessario "Bond ETF". Celle C15:E16 restano 
+        Subito sotto, andiamo a inserire una serie di righe che riguardino le tipologie
+        di strumenti su cui intendiamo fare PAC. Seguendo il disclaimer precedente
+        qui inseriamo "Stock ETF" e ove necessario "Bond ETF". Celle C15:E16 restano
         vuote per ora, e verranno riempite successivamente.
         <br>
         <br>
-        Ultima box per questi primi passi, quella che comincia in riga 18. In colonne 
+        Ultima box per questi primi passi, quella che comincia in riga 18. In colonne
         B:E inseriamo: "Name", "Ticker", "Current value", "Shares".
-        Subito sotto, usiamo tutte le righe necessarie per inserire i prodotti 
-        di interesse. In questo caso sono stati scelti 5 prodotti. 4 presi 
-        a caso pescando tra i più comuni su <a target=blank_ href="https://www.justetf.com/it/">justetf.com</a>, e uno già visto nel post precedente. In particolare, una volta 
-        scelti gli strumenti si metterà il nome in colonna B, il ticker in colonna 
-        C. Colonna D conterrà la seguente formula, basata sulla cella in colonna C 
-        della riga corrispondente 
+        Subito sotto, usiamo tutte le righe necessarie per inserire i prodotti
+        di interesse. In questo caso sono stati scelti 5 prodotti. 4 presi
+        a caso pescando tra i più comuni su <a target=blank_ href="https://www.justetf.com/it/">justetf.com</a>, e uno
+        già visto nel post precedente. In particolare, una volta
+        scelti gli strumenti si metterà il nome in colonna B, il ticker in colonna
+        C. Colonna D conterrà la seguente formula, basata sulla cella in colonna C
+        della riga corrispondente
       </p>
 
-      <div class="code-container">   
+      <div class="code-container">
         =GOOGLEFINANCE(C19,"price")
-      </div>   
-      
+      </div>
+
       <p style="text-align: justify;">
         Colonna E è vuota per il momento. Il risultato è il seguente.
       </p>
 
       <!-- FIGURA 1 box sinistra senza dati ancora -->
-	    <a class="gallery-item" 
-	      href="./assets/images/spreadsheet/pac-fig1.webp">
-	      <img src="./assets/images/spreadsheet/pac-fig1.webp"
-	        class="box px-0 py-0 ml-auto mr-auto" width="380" 
-	        title="picture1 of slideshow" 
-	        alt="Left boxes to be completed once PAC has started.">
-	      <p class="has-text-centered is-size-6 caption">
-	        Left boxes to be completed once PAC has started.</p>
-	    </a>
-	    
+      <a class="gallery-item" href="./assets/images/spreadsheet/pac-fig1.webp">
+        <img src="./assets/images/spreadsheet/pac-fig1.webp" class="box px-0 py-0 ml-auto mr-auto" width="380"
+          title="picture1 of slideshow" alt="Left boxes to be completed once PAC has started.">
+        <p class="has-text-centered is-size-6 caption">
+          Left boxes to be completed once PAC has started.</p>
+      </a>
+
       <h2 id="BoxAcquisti" style="scroll-margin: 1em;">
         <a href="#BoxAcquisti" class="headerlink" title="BoxAcquisti"></a>
         Box degli acquisti
       </h2>
 
       <p style="text-align: justify;">
-        Lasciamo colonna F vuota, e iniziamo a creare una box 
-        che tenga traccia degli acquisti effettuati nel tempo. 
-        In riga 2 raggruppiamo celle in colonne G:N e inseriamo 
-        il titolo "List of Operations". In riga 3 inseriamo 
-        i seguenti titoli (uno per colonna): "Date", "Bond/Stock", 
-        "ETF", "N shares", "Buy/Sell price", "Tot invested", 
-        "Margin %", "Margin". 
+        Lasciamo colonna F vuota, e iniziamo a creare una box
+        che tenga traccia degli acquisti effettuati nel tempo.
+        In riga 2 raggruppiamo celle in colonne G:N e inseriamo
+        il titolo "List of Operations". In riga 3 inseriamo
+        i seguenti titoli (uno per colonna): "Date", "Bond/Stock",
+        "ETF", "N shares", "Buy/Sell price", "Tot invested",
+        "Margin %", "Margin".
         <br>
-        Creiamo una serie di elenchi a discesa per facilitare 
-        il riempimento delle righe sottostanti (4:). 
-        Per ogni cella di colonna H creiamo un elenco a discesa 
-        (Inserisci, elenco a discesa) con 2 entries: "Stock" e 
-        "Bond". In colonna I facciamo la stessa cosa, usando però 
-        un menù a discesa da un intervallo. L'intervallo sarà quello 
-        che identifica gli ETF di interesse, che abbiamo messo nella 
-        box creata in precedenza. Per comodità quindi usiamo per 
+        Creiamo una serie di elenchi a discesa per facilitare
+        il riempimento delle righe sottostanti (4:).
+        Per ogni cella di colonna H creiamo un elenco a discesa
+        (Inserisci, elenco a discesa) con 2 entries: "Stock" e
+        "Bond". In colonna I facciamo la stessa cosa, usando però
+        un menù a discesa da un intervallo. L'intervallo sarà quello
+        che identifica gli ETF di interesse, che abbiamo messo nella
+        box creata in precedenza. Per comodità quindi usiamo per
         l'intervallo le celle B19:B23.
         <br>
-        A questo punto, da riga 4 possiamo iniziare ad inserire 
-        delle entries. 
-        Supponiamo di acquistare ogni 2 mesi una certa quantità 
-        di quote di uno degli ETF messi nella box costruita in 
-        precedenza (e.g. BIT:MWRD). Inseriremo la data di acquisto 
-        in colonna G; sceglieremo "Stock" nella stessa riga, in colonna 
-        H; selezioneremo il nome corrispondente al ticker del 
-        prodotto scelto tra le opzioni dell'elenco a discesa di 
-        colonna I. 
+        A questo punto, da riga 4 possiamo iniziare ad inserire
+        delle entries.
+        Supponiamo di acquistare ogni 2 mesi una certa quantità
+        di quote di uno degli ETF messi nella box costruita in
+        precedenza (e.g. BIT:MWRD). Inseriremo la data di acquisto
+        in colonna G; sceglieremo "Stock" nella stessa riga, in colonna
+        H; selezioneremo il nome corrispondente al ticker del
+        prodotto scelto tra le opzioni dell'elenco a discesa di
+        colonna I.
       </p>
 
-        
-      <p class="noteBoxes type1"><i class="fas fa-exclamation-triangle"></i><span>       
-        Attenzione ora a questo passaggio. 
-        <br>
-        <br>
-        Se si opta per un PAC su Fondi bancari, la cifra investita 
-        e la cadenza saranno perfettamente regolari. Il numero di 
-        quote acquistate per transazione sarà dato da ammontare 
-        investito, diviso prezzo di acquisto al momento dell'investimento. 
-        Il prezzo di carico può essere influenzato dai costi di 
-        ingresso (ove ci siano). A ogni transazione il numero di quote 
-        acquistate non sarà necessariamente un multiplo di 1 (quote 
-        frazionate). 
-        <br>
-        <br>
-        Se si opta per ETF (senza opzione di quote frazionate), 
-        l'acquirente dovrà acquistare multipli della singola 
-        quota. Il numero di shares sarà sempre un intero; la 
-        cifra investita sarà differente ad ogni acquisto 
-        (il prezzo dell'ETF tipicamente cambia nel tempo). 
-        <br>
-        <br>
-        Ergo, per chi acquista ETF, la procedura sarà: 1) 
-        scelgo quanto investire; 2) controllo il prezzo di 
-        acquisto; 3) scelgo un numero di quote (multiplo di 1) 
-        tale per cui il prodotto con il prezzo di acquisto è 
-        un numero vicino alla cifra che voglio investire.
+
+      <p class="noteBoxes type1"><i class="fas fa-exclamation-triangle"></i><span>
+          Attenzione ora a questo passaggio.
+          <br>
+          <br>
+          Se si opta per un PAC su Fondi bancari, la cifra investita
+          e la cadenza saranno perfettamente regolari. Il numero di
+          quote acquistate per transazione sarà dato da ammontare
+          investito, diviso prezzo di acquisto al momento dell'investimento.
+          Il prezzo di carico può essere influenzato dai costi di
+          ingresso (ove ci siano). A ogni transazione il numero di quote
+          acquistate non sarà necessariamente un multiplo di 1 (quote
+          frazionate).
+          <br>
+          <br>
+          Se si opta per ETF (senza opzione di quote frazionate),
+          l'acquirente dovrà acquistare multipli della singola
+          quota. Il numero di shares sarà sempre un intero; la
+          cifra investita sarà differente ad ogni acquisto
+          (il prezzo dell'ETF tipicamente cambia nel tempo).
+          <br>
+          <br>
+          Ergo, per chi acquista ETF, la procedura sarà: 1)
+          scelgo quanto investire; 2) controllo il prezzo di
+          acquisto; 3) scelgo un numero di quote (multiplo di 1)
+          tale per cui il prodotto con il prezzo di acquisto è
+          un numero vicino alla cifra che voglio investire.
       </p>
-	    
+
       <p style="text-align: justify;">
-	      Avendo scelto un ETF, copio il prezzo corrente dello stesso 
-	      in colonna K, riga 4. Inserisco il colonna L la seguente 
-	      formula:
+        Avendo scelto un ETF, copio il prezzo corrente dello stesso
+        in colonna K, riga 4. Inserisco il colonna L la seguente
+        formula:
       </p>
-	   
-      <div class="code-container">   
+
+      <div class="code-container">
         =J4*K4
       </div>
-	    
+
       <p style="text-align: justify;">
-	      In cella J4 cambio il numero di quote fino a raggiungere 
-	      in cella L4 un valore vicino a quanto si desidera investire.
-	      Noto lo strumento acquistato (e.g. B21) si conoscerà il prezzo 
-	      corrente per quello strumento (e.g. D21). In cella M4 si 
-	      inserisce la variazione relativa tra il prezzo di acquisto e 
-	      il prezzo corrente:
+        In cella J4 cambio il numero di quote fino a raggiungere
+        in cella L4 un valore vicino a quanto si desidera investire.
+        Noto lo strumento acquistato (e.g. B21) si conoscerà il prezzo
+        corrente per quello strumento (e.g. D21). In cella M4 si
+        inserisce la variazione relativa tra il prezzo di acquisto e
+        il prezzo corrente:
       </p>
 
-      <div class="code-container">   
+      <div class="code-container">
         =(D21 - K4)/K4
       </div>
 
@@ -270,266 +259,253 @@
         Il margine, in cella N4 sarà dato da
       </p>
 
-      <div class="code-container">   
+      <div class="code-container">
         =(D21 - K4)*J4
       </div>
 
       <p style="text-align: justify;">
-        Le righe sottostanti si riempiono nello stesso modo, 
-        scegliendo lo strumento e riempiendo i campi come appena mostrato. 
+        Le righe sottostanti si riempiono nello stesso modo,
+        scegliendo lo strumento e riempiendo i campi come appena mostrato.
         Dopo un po' di entries, il risultato sarà il seguente.
       </p>
 
       <!-- FIGURA 2 box centrale senza dati ancora -->
-	    <a class="gallery-item" 
-	      href="./assets/images/spreadsheet/pac-fig2.webp">
-	      <img src="./assets/images/spreadsheet/pac-fig2.webp"
-	        class="box px-0 py-0 ml-auto mr-auto" width="780" 
-	        title="picture1 of slideshow" 
-	        alt="Box to contain the list of operations.">
-	      <p class="has-text-centered is-size-6 caption">
-	        Box to contain the list of operations.</p>
-	    </a>
+      <a class="gallery-item" href="./assets/images/spreadsheet/pac-fig2.webp">
+        <img src="./assets/images/spreadsheet/pac-fig2.webp" class="box px-0 py-0 ml-auto mr-auto" width="780"
+          title="picture1 of slideshow" alt="Box to contain the list of operations.">
+        <p class="has-text-centered is-size-6 caption">
+          Box to contain the list of operations.</p>
+      </a>
 
       <p class="noteBoxes type2">
-        Volendo è possibile aggiungere anche un'ulteriore informazione. 
-        È possibile mettere in colonna O una lista di percentuali di 
-        allocazione. Più precisamente, se acquistiamo sempre uno stesso 
-        strumento, è possibile avere chiaro quanta percentuale dello stesso 
-        si è acquistato con ogni singola transazione. Per farlo, in cella 
-        O4 inseriamo la formula "= L4/C3". C3 dovrebbe contenere la somma 
-        dell'investimento, ma per ora è vuota. Riempiamola, assieme alle 
+        Volendo è possibile aggiungere anche un'ulteriore informazione.
+        È possibile mettere in colonna O una lista di percentuali di
+        allocazione. Più precisamente, se acquistiamo sempre uno stesso
+        strumento, è possibile avere chiaro quanta percentuale dello stesso
+        si è acquistato con ogni singola transazione. Per farlo, in cella
+        O4 inseriamo la formula "= L4/C3". C3 dovrebbe contenere la somma
+        dell'investimento, ma per ora è vuota. Riempiamola, assieme alle
         altre celle lasciate vuote precedentemente.
       </p>
-	    
+
       <h2 id="Riempimento" style="scroll-margin: 1em;">
         <a href="#Riempimento" class="headerlink" title="Riempimento"></a>
         Riempimento delle prime box
       </h2>
-	    
+
       <p style="text-align: justify;">
-	      In cella C3 possiamo riempire con:
+        In cella C3 possiamo riempire con:
       </p>
-	    
-      <div class="code-container">   
+
+      <div class="code-container">
         =SOMMA(L:L)
       </div>
 
       <p style="text-align: justify;">
-        Tale valore sarà da copiare anche in cella D6. 
+        Tale valore sarà da copiare anche in cella D6.
         In cella D3 possiamo mettere
       </p>
-	    
-      <div class="code-container">   
+
+      <div class="code-container">
         =SOMMA(L:L,N:N)
       </div>
 
       <p style="text-align: justify;">
-        Tale valore sarà da copiare anche in cella D7. 
+        Tale valore sarà da copiare anche in cella D7.
         In cella E3 possiamo mettere
       </p>
-	    
-      <div class="code-container">   
+
+      <div class="code-container">
         =SE(D3>C3;C3+(D3-C3)*0.74;D3)
       </div>
 
       <p style="text-align: justify;">
         In cella D8 inseriamo invece
       </p>
-	    
-      <div class="code-container">   
+
+      <div class="code-container">
         =D7/D6-1
       </div>
 
       <p style="text-align: justify;">
-        Il calcolo in cella D10 è abbastanza complesso. 
-        Si semplifica se si fa un PAC su un solo strumento; 
-        altrimenti bisogna fare una media pesata del valore 
-        dei diversi investimenti per il costo di ciascun 
+        Il calcolo in cella D10 è abbastanza complesso.
+        Si semplifica se si fa un PAC su un solo strumento;
+        altrimenti bisogna fare una media pesata del valore
+        dei diversi investimenti per il costo di ciascun
         investimento (i TER non si sommano, si fa la media pesata!).
-        Tale operazione è lasciata ad utenti esperti, dato che 
+        Tale operazione è lasciata ad utenti esperti, dato che
         questo valore non influenza i calcoli successivi.
         <br>
         In cella D11 inseriamo
       </p>
 
-      <div class="code-container">   
+      <div class="code-container">
         =-(D7-D6)*0.26
       </div>
 
       <p style="text-align: justify;">
         In cella D12 inseriamo:
       </p>
-	    
-      <div class="code-container">   
+
+      <div class="code-container">
         =SE(D7>D6);D7+D11;D7
       </div>
 
       <p style="text-align: justify;">
-        Riempiamo anche le righe 15 e 16 usando un semplice comando 
+        Riempiamo anche le righe 15 e 16 usando un semplice comando
         di somma condizionale (e.g. cella C15)
       </p>
 
-      <div class="code-container">   
+      <div class="code-container">
         =SOMMA.SE(H:H,B15,L:L)
       </div>
 
       <p style="text-align: justify;">
-        Per cella C16 sostituiamo nella formula B15 con B16. 
-        In cella D15 usiamo un po' di forza bruta. Il valore 
-        è dato dal prezzo corrente del/degli ETF (categoria 
-        stocks) per il numero di quote possedute. Gli ETF azionari 
+        Per cella C16 sostituiamo nella formula B15 con B16.
+        In cella D15 usiamo un po' di forza bruta. Il valore
+        è dato dal prezzo corrente del/degli ETF (categoria
+        stocks) per il numero di quote possedute. Gli ETF azionari
         sono quelli in righe 19:22 quindi avremo
       </p>
 
-      <div class="code-container">   
+      <div class="code-container">
         = D19*E19 + D20*E20 + D21*E21 + D22*E22
       </div>
 
       <p style="text-align: justify;">
-        La stessa cosa si faccia per D16, per la quale la 
-        categoria è bonds. Quindi date righe 19:23, l'unica 
-        entry sarà D23*E23. Infine, la differenza netta per 
+        La stessa cosa si faccia per D16, per la quale la
+        categoria è bonds. Quindi date righe 19:23, l'unica
+        entry sarà D23*E23. Infine, la differenza netta per
         la riga 15 (similare a quella per la riga 16)
       </p>
 
-      <div class="code-container">   
+      <div class="code-container">
         = (D15 - C15)*0.76
       </div>
 
       <p style="text-align: justify;">
-        Concludendo, per riempire le celle in colonna 
-        E, da 19 a 23 basta usare la seguente formula 
+        Concludendo, per riempire le celle in colonna
+        E, da 19 a 23 basta usare la seguente formula
         (da adattare per righe 20:23)
       </p>
 
-      <div class="code-container">   
+      <div class="code-container">
         =SOMMA.SE(I:I; B19; J:J)
       </div>
 
       <p style="text-align: justify;">
-        Ora tutta la parte a sinistra e centrale è pronta. 
+        Ora tutta la parte a sinistra e centrale è pronta.
         Il risultato è il seguente.
       </p>
 
       <!-- FIGURA 3 box sinistra e centrale con dati -->
-	    <a class="gallery-item" 
-	      href="./assets/images/spreadsheet/pac-fig3.webp">
-	      <img src="./assets/images/spreadsheet/pac-fig3.webp"
-	        class="box px-0 py-0 ml-auto mr-auto" width="380" 
-	        title="picture1 of slideshow" 
-	        alt="Left and center parts are now complete.">
-	      <p class="has-text-centered is-size-6 caption">
-	        Left and center parts are now complete.</p>
-	    </a>
+      <a class="gallery-item" href="./assets/images/spreadsheet/pac-fig3.webp">
+        <img src="./assets/images/spreadsheet/pac-fig3.webp" class="box px-0 py-0 ml-auto mr-auto" width="380"
+          title="picture1 of slideshow" alt="Left and center parts are now complete.">
+        <p class="has-text-centered is-size-6 caption">
+          Left and center parts are now complete.</p>
+      </a>
 
       <h2 id="ProgressioneRipartizione" style="scroll-margin: 1em;">
-        <a href="#ProgressioneRipartizione" class="headerlink" 
-        title="ProgressioneRipartizione"></a>
+        <a href="#ProgressioneRipartizione" class="headerlink" title="ProgressioneRipartizione"></a>
         Progressione e ripartizione
       </h2>
 
       <p style="text-align: justify;">
-        Creiamo una tabella che mostri l'andamento del capitale 
+        Creiamo una tabella che mostri l'andamento del capitale
         investito nel tempo. Raggruppiamo riga 2 nelle colonne P:S.
-        Inseriamo il titolo "Progression". Subito sotto, in riga 3, 
-        inseriamo "Date", "Invested", "Current", "Net taxes". 
-        Ovviamente, ogni qual volta dovesse essere fatto un acquisto, 
+        Inseriamo il titolo "Progression". Subito sotto, in riga 3,
+        inseriamo "Date", "Invested", "Current", "Net taxes".
+        Ovviamente, ogni qual volta dovesse essere fatto un acquisto,
         occorre ricordarsi di inserire una nuova entry nella tabella.
-        Indicativamente, l'investimento può avvenire a intervalli 
-        maggiori del singolo mese (come nell'esempio mostrato). In questi 
-        casi preferisco comunque segnare l'evoluzione mensilmente. 
-        In colonna P inseriamo la data; in colonna Q inseriamo il valore 
-        uguale a cella C3; in colonna R e S inseriamo il valore uguale 
-        a D3 ed E3. Aggiungendo una serie di entries, il risultato sarà 
+        Indicativamente, l'investimento può avvenire a intervalli
+        maggiori del singolo mese (come nell'esempio mostrato). In questi
+        casi preferisco comunque segnare l'evoluzione mensilmente.
+        In colonna P inseriamo la data; in colonna Q inseriamo il valore
+        uguale a cella C3; in colonna R e S inseriamo il valore uguale
+        a D3 ed E3. Aggiungendo una serie di entries, il risultato sarà
         il seguente.
-      </p>      
+      </p>
 
       <!-- FIGURA 4 box destra progression -->
-	    <a class="gallery-item" 
-	      href="./assets/images/spreadsheet/pac-fig4.webp">
-	      <img src="./assets/images/spreadsheet/pac-fig4.webp"
-	        class="box px-0 py-0 ml-auto mr-auto" width="380" 
-	        title="picture1 of slideshow" 
-	        alt="Right box (progression).">
-	      <p class="has-text-centered is-size-6 caption">
-	        Right box (progression).</p>
-	    </a>
+      <a class="gallery-item" href="./assets/images/spreadsheet/pac-fig4.webp">
+        <img src="./assets/images/spreadsheet/pac-fig4.webp" class="box px-0 py-0 ml-auto mr-auto" width="380"
+          title="picture1 of slideshow" alt="Right box (progression).">
+        <p class="has-text-centered is-size-6 caption">
+          Right box (progression).</p>
+      </a>
 
       <p style="text-align: justify;">
-        Questi valori in colonna permettono di creare 
-        un plot (grafico a linea) dell'avanzamento del capitale investito, 
-        e della progressione a fronte di gain e losses. 
+        Questi valori in colonna permettono di creare
+        un plot (grafico a linea) dell'avanzamento del capitale investito,
+        e della progressione a fronte di gain e losses.
         <br>
         <br>
-        Bene. Arrivati a questo punto bisogna soddisfare anche gli 
-        utenti che decidono di prendere la somma da investire regolamente 
-        nel PAC, per splittarla in diversi strumenti. Per loro si costruisce 
-        la box "Partitioning". Uniamo celle U:X in riga 2. Inseriamo il titolo 
-        "Partitioning". Nella riga sottostante inseriamo "Inv. x month" (colonna 
-        U), e uniamo celle V3:X3 per inserire la cifra che intendiamo investire 
-        mensilmente (o all'intervallo di investimento scelto). 
-        Al di sotto (riga 4) inseriamo "Name", "Chunk in pie", "Auto count", "N 
-        shares". Usiamo quindi righe 5:8 per inserire le categorie che fanno 
-        riferimento ai prodotti di celle B19:B23 (e.g. SP500, Eurozone, World, ...). 
-        I nomi vanno in colonna U; le percentuali in colonna V si scelgano in 
-        base alla propria preferenza. L'autocount in ogni riga di colonna W funziona 
-        moltiplicando l'investimento per la percentuale di colonna V. Ad esempio, 
+        Bene. Arrivati a questo punto bisogna soddisfare anche gli
+        utenti che decidono di prendere la somma da investire regolamente
+        nel PAC, per splittarla in diversi strumenti. Per loro si costruisce
+        la box "Partitioning". Uniamo celle U:X in riga 2. Inseriamo il titolo
+        "Partitioning". Nella riga sottostante inseriamo "Inv. x month" (colonna
+        U), e uniamo celle V3:X3 per inserire la cifra che intendiamo investire
+        mensilmente (o all'intervallo di investimento scelto).
+        Al di sotto (riga 4) inseriamo "Name", "Chunk in pie", "Auto count", "N
+        shares". Usiamo quindi righe 5:8 per inserire le categorie che fanno
+        riferimento ai prodotti di celle B19:B23 (e.g. SP500, Eurozone, World, ...).
+        I nomi vanno in colonna U; le percentuali in colonna V si scelgano in
+        base alla propria preferenza. L'autocount in ogni riga di colonna W funziona
+        moltiplicando l'investimento per la percentuale di colonna V. Ad esempio,
         in cella W5 si avrà
-      </p>      
-      
-      <div class="code-container">   
+      </p>
+
+      <div class="code-container">
         =V3*V5
       </div>
-      
+
       <p style="text-align: justify;">
-        Infine, il numero di shares in colonna X è dato dalla quantità di 
-        soldi da investire per il singolo strumento (colonna W), e il 
-        rispettivo prezzo attuale dello strumento (in colonna B, righe 19:23). 
+        Infine, il numero di shares in colonna X è dato dalla quantità di
+        soldi da investire per il singolo strumento (colonna W), e il
+        rispettivo prezzo attuale dello strumento (in colonna B, righe 19:23).
         Ad esempio, per il primo strumento, in cella X5 si avrà
-      </p>      
-      
-      <div class="code-container">   
+      </p>
+
+      <div class="code-container">
         =W5/D19
       </div>
-      
+
       <p style="text-align: justify;">
-        Via via la stessa procedura va effettuata sulle righe sottostanti. 
-        In fondo, nella riga seguente rispetto all'ultimo strumento, si 
-        può fare una riga di raggruppamento totale / check. Infatti, 
-        la somma delle percentuali in colonna V dovrà fare 100%; la somma 
-        degli autocount dovrà restituire il valore dell'investimento di 
-        riga 3. Il numero di shares verrà frazionato. Questo può servire 
-        come indicatore preciso per chi ha commissioni di acquisto azzerate 
-        ed effettua acquisti di strumenti frazionati; servirà come 
-        indicazione per tutti gli altri. Per chi effettua acquisti su un 
-        solo strumento, il risultato si riduce ad un conto banale. 
+        Via via la stessa procedura va effettuata sulle righe sottostanti.
+        In fondo, nella riga seguente rispetto all'ultimo strumento, si
+        può fare una riga di raggruppamento totale / check. Infatti,
+        la somma delle percentuali in colonna V dovrà fare 100%; la somma
+        degli autocount dovrà restituire il valore dell'investimento di
+        riga 3. Il numero di shares verrà frazionato. Questo può servire
+        come indicatore preciso per chi ha commissioni di acquisto azzerate
+        ed effettua acquisti di strumenti frazionati; servirà come
+        indicazione per tutti gli altri. Per chi effettua acquisti su un
+        solo strumento, il risultato si riduce ad un conto banale.
         Il risultato è il seguente.
-      </p>      
+      </p>
 
       <!-- FIGURA 5 box destra partitioning -->
-	    <a class="gallery-item" 
-	      href="./assets/images/spreadsheet/pac-fig5.webp">
-	      <img src="./assets/images/spreadsheet/pac-fig5.webp"
-	        class="box px-0 py-0 ml-auto mr-auto" width="380" 
-	        title="picture1 of slideshow" 
-	        alt="Partitioning box to help the user.">
-	      <p class="has-text-centered is-size-6 caption">
-	        Partitioning box to help the user.</p>
-	    </a>
-      
+      <a class="gallery-item" href="./assets/images/spreadsheet/pac-fig5.webp">
+        <img src="./assets/images/spreadsheet/pac-fig5.webp" class="box px-0 py-0 ml-auto mr-auto" width="380"
+          title="picture1 of slideshow" alt="Partitioning box to help the user.">
+        <p class="has-text-centered is-size-6 caption">
+          Partitioning box to help the user.</p>
+      </a>
+
       <h2 id="SmartPAC" style="scroll-margin: 1em;">
         <a href="#SmartPAC" class="headerlink" title="SmartPAC"></a>
         Smart PAC
       </h2>
 
       <p style="text-align: justify;">
-        Siamo arrivati alla parte difficile di questo post. Difficile 
-        per descrizione, per formule, e perchè esistono molti modi per 
-        implementare un cosiddetto "smart" PAC. Qui verranno riportati 
-        due modi / metodi che possono servire da base per metodi 
-        ancora più complessi. 
-      </p>      
+        Siamo arrivati alla parte difficile di questo post. Difficile
+        per descrizione, per formule, e perchè esistono molti modi per
+        implementare un cosiddetto "smart" PAC. Qui verranno riportati
+        due modi / metodi che possono servire da base per metodi
+        ancora più complessi.
+      </p>
 
       <h4 id="SmartPac1" style="scroll-margin: 1em;">
         <a href="#SmartPac1" class="headerlink" title="SmartPac1"></a>
@@ -537,85 +513,82 @@
       </h4>
 
       <p style="text-align: justify;">
-        Partiamo dal più semplice dei due. Andiamo a misurare il 
-        prezzo medio di carico sulla base dei prezzi di acquisto 
-        dello strumento considerato; andiamo a rapportarlo con il 
-        prezzo attuale dello strumento. Per fare ciò, creiamo 
-        una piccola box per la current situation sotto alla 
-        partioning. Raggruppiamo celle U11:X11. Titolo delle 
-        celle "Smart PAC". Facciamo la stessa cosa in riga 12; 
-        titolo "Current situation". Usiamo celle U:V (raggruppate) 
-        in righe 13, 14 e 15 per indicare rispettivamente: "Prezzo 
+        Partiamo dal più semplice dei due. Andiamo a misurare il
+        prezzo medio di carico sulla base dei prezzi di acquisto
+        dello strumento considerato; andiamo a rapportarlo con il
+        prezzo attuale dello strumento. Per fare ciò, creiamo
+        una piccola box per la current situation sotto alla
+        partioning. Raggruppiamo celle U11:X11. Titolo delle
+        celle "Smart PAC". Facciamo la stessa cosa in riga 12;
+        titolo "Current situation". Usiamo celle U:V (raggruppate)
+        in righe 13, 14 e 15 per indicare rispettivamente: "Prezzo
         medio di carico"; "Prezzo attuale"; "Variazione rispetto a PMC".
-        Supponiamo di voler fare uno Smart PAC sullo strumento riportato 
-        in cella B19. In cella W13:X13 (raggruppate) avremo la 
+        Supponiamo di voler fare uno Smart PAC sullo strumento riportato
+        in cella B19. In cella W13:X13 (raggruppate) avremo la
         seguente formula per il PMC:
-      </p>      
+      </p>
 
-      <div class="code-container">   
+      <div class="code-container">
         =SOMMA.SE(I:I;B19;L:L)/SOMMA.SE(I:I;B19;J:J)
       </div>
 
       <p style="text-align: justify;">
         Il prezzo attuale è una copia di cella D19 (in questo caso specifico);
-        la variazione rispetto al PMC da inserire in celle W15:X15 
+        la variazione rispetto al PMC da inserire in celle W15:X15
         (raggruppate) sarà la seguente:
-      </p>      
+      </p>
 
-      <div class="code-container">   
+      <div class="code-container">
         =1-W13/W14
       </div>
 
       <p style="text-align: justify;">
-        A questo punto creiamo una tabella che indichi quanto investire 
-        in base alla condizione in cui ci troviamo. Per variare la 
-        quota da investire si possono usare dei moltiplicatori. 
-        Ad esempio, si può pensare di investire una cifra maggiore quando 
-        si è in condizioni di sconto. In riga 16 possiamo raggruppare le 
-        colonne e inserire il titolo "Quanto investire wrt PMC"; sotto 
-        possiamo creare 4 scenari. Supponiamo di tenere la quota da investire 
-        invariata fino a che il prezzo non scenda di più del 10% dal PMC; 
-        le fasce successive possono essere: -15%, -20%, o >-20%. Inseriamo 
-        in colonna U queste opzioni come mostrato in figura che segue. In 
-        colonna V inseriamo i moltiplicatori. In questo esempio usiamo fattori 
-        da 1 a 1.75, a step di 0.25. Il primo valore in colonna W:X 
-        (raggruppate) può essere posto uguale al valore inserito nella 
-        tabella di partitioning. In ogni caso, considerando il moltiplicatore 
-        pari ad 1, bisogna inserire l'ammontare che si intende investire 
-        ad ogni acquisto. I valori successivi sono ottenuti moltiplicando 
-        il valore in cella W17 per il moltiplicatore corrispondente. 
-      </p>      
+        A questo punto creiamo una tabella che indichi quanto investire
+        in base alla condizione in cui ci troviamo. Per variare la
+        quota da investire si possono usare dei moltiplicatori.
+        Ad esempio, si può pensare di investire una cifra maggiore quando
+        si è in condizioni di sconto. In riga 16 possiamo raggruppare le
+        colonne e inserire il titolo "Quanto investire wrt PMC"; sotto
+        possiamo creare 4 scenari. Supponiamo di tenere la quota da investire
+        invariata fino a che il prezzo non scenda di più del 10% dal PMC;
+        le fasce successive possono essere: -15%, -20%, o >-20%. Inseriamo
+        in colonna U queste opzioni come mostrato in figura che segue. In
+        colonna V inseriamo i moltiplicatori. In questo esempio usiamo fattori
+        da 1 a 1.75, a step di 0.25. Il primo valore in colonna W:X
+        (raggruppate) può essere posto uguale al valore inserito nella
+        tabella di partitioning. In ogni caso, considerando il moltiplicatore
+        pari ad 1, bisogna inserire l'ammontare che si intende investire
+        ad ogni acquisto. I valori successivi sono ottenuti moltiplicando
+        il valore in cella W17 per il moltiplicatore corrispondente.
+      </p>
 
       <!-- FIGURA 6 box destra SmartPAC1 -->
-	    <a class="gallery-item" 
-	      href="./assets/images/spreadsheet/pac-fig6.webp">
-	      <img src="./assets/images/spreadsheet/pac-fig6.webp"
-	        class="box px-0 py-0 ml-auto mr-auto" width="380" 
-	        title="picture1 of slideshow" 
-	        alt="Smart PAC wrt PMC">
-	      <p class="has-text-centered is-size-6 caption">
-	        Smart PAC with respect to Average Buy Price (PMC).</p>
-	    </a>
+      <a class="gallery-item" href="./assets/images/spreadsheet/pac-fig6.webp">
+        <img src="./assets/images/spreadsheet/pac-fig6.webp" class="box px-0 py-0 ml-auto mr-auto" width="380"
+          title="picture1 of slideshow" alt="Smart PAC wrt PMC">
+        <p class="has-text-centered is-size-6 caption">
+          Smart PAC with respect to Average Buy Price (PMC).</p>
+      </a>
 
       <p style="text-align: justify;">
-        La cifra da investire è colorata in giallo nell'immagine 
-        presentata. È possibile creare una formattazione condizionale in modo 
-        che automaticamente venga evidenziata la cella corretta in 
-        funzione della situazione in cui ci troviamo. Per farlo, 
+        La cifra da investire è colorata in giallo nell'immagine
+        presentata. È possibile creare una formattazione condizionale in modo
+        che automaticamente venga evidenziata la cella corretta in
+        funzione della situazione in cui ci troviamo. Per farlo,
         si faccia: Formato, formattazione condizionale, formula personalizzata.
         La formula è:
-      </p>      
+      </p>
 
-      <div class="code-container">   
+      <div class="code-container">
         =$W$15>=-10%
       </div>
-      
+
       <p style="text-align: justify;">
         per la cella in riga 17. Per la cella in riga 18 la formula è
       </p>
 
-      <div class="code-container">   
-        =E($W$15<-10%;$W$15>=-15%)    
+      <div class="code-container">
+        =E($W$15<-10%;$W$15>=-15%)
       </div>
 
       <p style="text-align: justify;">
@@ -629,73 +602,70 @@
 
       <p style="text-align: justify;">
         La seconda strategia prevede invece uno studio di variazione
-        rispetto al prezzo "rolling", ovvero al prezzo posseduto 
+        rispetto al prezzo "rolling", ovvero al prezzo posseduto
         dallo strumento in momenti passati rispetto al valore corrente.
-        Uniamo celle U21 e V21, inseriamo il titoletto "WRT last 3m price". 
-        In cella X21 inseriamo il titoletto "rolling G/L %". In cella 
+        Uniamo celle U21 e V21, inseriamo il titoletto "WRT last 3m price".
+        In cella X21 inseriamo il titoletto "rolling G/L %". In cella
         X21 dobbiamo inserire la variazione percentuale.
-        La funzione che segue non è delle più semplici, ma vediamo di 
-        scomporla in diverse parti. 
+        La funzione che segue non è delle più semplici, ma vediamo di
+        scomporla in diverse parti.
         <br>
         <br>
-        Sappiamo che il prezzo corrente per lo strumento di interesse è 
-        contenuto in cella D19. Allo stesso tempo possiamo recuperare 
-        il prezzo posseduto dallo strumento in momenti passati usando 
-        una combinazione delle funzioni GOOGLEFINANCE e INDICE. La data 
-        può essere fornita usando la funzione GIORNO.LAVORATIVO, evitando 
+        Sappiamo che il prezzo corrente per lo strumento di interesse è
+        contenuto in cella D19. Allo stesso tempo possiamo recuperare
+        il prezzo posseduto dallo strumento in momenti passati usando
+        una combinazione delle funzioni GOOGLEFINANCE e INDICE. La data
+        può essere fornita usando la funzione GIORNO.LAVORATIVO, evitando
         così giorni in cui il valore dello strumento non è disponibile.
         <br>
         <br>
-        A questo punto, individuiamo due o più momenti (date) del passato: 
-        e.g. tre mesi fa, due mesi fa, e un mese fa, rispetto ad oggi. 
+        A questo punto, individuiamo due o più momenti (date) del passato:
+        e.g. tre mesi fa, due mesi fa, e un mese fa, rispetto ad oggi.
         La data di tre mesi fa (GL3M) si recupera con:
       </p>
 
-      <div class="code-container">   
+      <div class="code-container">
         GIORNO.LAVORATIVO(DATA(ANNO(OGGI());MESE(OGGI())-3;GIORNO(OGGI()));-1;0)
       </div>
 
       <p style="text-align: justify;">
-        Similmente si può prendere il giorno lavorativo di due mesi o un mese fa 
-        (GL2M, GL1M rispettivamente). Il prezzo dello strumento 3 mesi fa 
+        Similmente si può prendere il giorno lavorativo di due mesi o un mese fa
+        (GL2M, GL1M rispettivamente). Il prezzo dello strumento 3 mesi fa
         (P3M) si può recuperare con:
       </p>
 
-      <div class="code-container">   
+      <div class="code-container">
         INDICE(GOOGLEFINANCE(C19; "close"; #GL3M ; 1; 1); 2; 2)
       </div>
 
       <p style="text-align: justify;">
-        Similmente, si recuperano i prezzi di 2 mesi e 1 mese fa (P2M e P1M). Quindi 
-        possiamo costruire la nostra funzione di variazione. Schematicamente 
+        Similmente, si recuperano i prezzi di 2 mesi e 1 mese fa (P2M e P1M). Quindi
+        possiamo costruire la nostra funzione di variazione. Schematicamente
         la costruzione è:
       </p>
 
-      <div class="code-container">   
+      <div class="code-container">
         = 0.5*(D19-#P1M)/#P1M + 0.3*(D19-#P2M)/#P2M + 0.2*(D19-#P3M)/#P3M
       </div>
 
       <p style="text-align: justify;">
         Dove 0.5, 0.3 e 0.2 sono dei pesi forniti ai 3 fattori di variazione;
-        possono essere scelti dall'utente a piacere, dando più o meno peso 
-        a movimenti recenti. La formula in modo esteso non viene qui riportata 
-        per evitare lungaggini inutili. Le righe sottostanti vengono costruite 
+        possono essere scelti dall'utente a piacere, dando più o meno peso
+        a movimenti recenti. La formula in modo esteso non viene qui riportata
+        per evitare lungaggini inutili. Le righe sottostanti vengono costruite
         nello stesso modo di quanto visto per la precedente strategia di Smart PAC.
         Il risultato sarà il seguente.
       </p>
 
       <!-- FIGURA 7 box destra smartPAC2 -->
-	    <a class="gallery-item" 
-	      href="./assets/images/spreadsheet/pac-fig7.webp">
-	      <img src="./assets/images/spreadsheet/pac-fig7.webp"
-	        class="box px-0 py-0 ml-auto mr-auto" width="380" 
-	        title="picture1 of slideshow" 
-	        alt="Smart PAC wrt rolling price">
-	      <p class="has-text-centered is-size-6 caption">
-	        Smart PAC with respect to rolling price.</p>
-	    </a>
+      <a class="gallery-item" href="./assets/images/spreadsheet/pac-fig7.webp">
+        <img src="./assets/images/spreadsheet/pac-fig7.webp" class="box px-0 py-0 ml-auto mr-auto" width="380"
+          title="picture1 of slideshow" alt="Smart PAC wrt rolling price">
+        <p class="has-text-centered is-size-6 caption">
+          Smart PAC with respect to rolling price.</p>
+      </a>
 
-    </div> 
+    </div>
 
     <div class="article-licensing box">
       <div class="licensing-title">
@@ -730,44 +700,44 @@
       </div>
     </div>
     <hr style="height:1px;margin:1rem 0">
-      <div class="level is-mobile is-flex">
-        <div class="article-tags is-size-7 is-uppercase">
-          <i class="fas fa-tag has-text-grey"
-            style="transform: translateY(20%);"></i>&nbsp;&nbsp;
+    <div class="level is-mobile is-flex">
+      <div class="article-tags is-size-7 is-uppercase">
+        <i class="fas fa-tag has-text-grey" style="transform: translateY(20%);"></i>&nbsp;&nbsp;
         <div>
-        Google Sheet,
-        &nbsp;
+          Google Sheet,
+          &nbsp;
+        </div>
+        <div>
+          Personal Finance
+          &nbsp;
+        </div>
       </div>
-      <div>
-        Personal Finance
-        &nbsp;
+    </div>
+
+    <div class="sharethis-inline-share-buttons st-center  st-inline-share-buttons st-animated" id="st-1">
+
+      <div class="st-btn" data-network="twitter" style="display: inline-block;">
+        <img alt="twitter sharing button" src="https://platform-cdn.sharethis.com/img/twitter.svg">
       </div>
-    </div>
-  </div>
 
-  <div class="sharethis-inline-share-buttons st-center  st-inline-share-buttons st-animated" id="st-1">
+      <div class="st-btn" data-network="linkedin" style="display: inline-block;">
+        <img alt="linkedin sharing button" src="https://platform-cdn.sharethis.com/img/linkedin.svg">
+      </div>
 
-    <div class="st-btn" data-network="twitter" style="display: inline-block;">
-      <img alt="twitter sharing button" src="https://platform-cdn.sharethis.com/img/twitter.svg">
-    </div>
-    
-    <div class="st-btn" data-network="linkedin" style="display: inline-block;">
-      <img alt="linkedin sharing button" src="https://platform-cdn.sharethis.com/img/linkedin.svg">
-    </div>
+      <div class="st-btn" data-network="email" style="display: inline-block;">
+        <img alt="email sharing button" src="https://platform-cdn.sharethis.com/img/email.svg">
+      </div>
 
-    <div class="st-btn" data-network="email" style="display: inline-block;">
-      <img alt="email sharing button" src="https://platform-cdn.sharethis.com/img/email.svg">
-    </div>
-    
-    <div class="st-btn st-last" data-network="sharethis" style="display: inline-block;">
-      <img alt="sharethis sharing button" src="https://platform-cdn.sharethis.com/img/sharethis.svg">
+      <div class="st-btn st-last" data-network="sharethis" style="display: inline-block;">
+        <img alt="sharethis sharing button" src="https://platform-cdn.sharethis.com/img/sharethis.svg">
+      </div>
+
     </div>
 
-  </div>
-
-  <script 
-    src="https://platform-api.sharethis.com/js/sharethis.js#property=61b5930d440224001908310c&amp;product=inline-share-buttons" defer="">
-  </script>
+    <script
+      src="https://platform-api.sharethis.com/js/sharethis.js#property=61b5930d440224001908310c&amp;product=inline-share-buttons"
+      defer="">
+      </script>
 
   </article>
 </div>
@@ -791,16 +761,14 @@
         this.page.identifier = '/posts/projects/spreadsheetPosts/pac.html';
       };
 
-      (function() {
+      (function () {
         var d = document, s = d.createElement('script');
         s.src = '//' + 'https-fghio-github-io' + '.disqus.com/embed.js'; // Update the shortname here
         s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);
       })();
     </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+        powered by Disqus.</a></noscript>
   </div>
 </div>
-
-
-

@@ -1,18 +1,9 @@
 <div class="card" id="my-blog-post-card">
-  <article class="card-content article" 
-    data-metadata='{
-      "creationDate": "2024-03-10", 
-      "lastModificationDate": "2024-04-25", 
-      "title": "Personal Finance Google Sheet: stocks tab", 
-      "views": 1000, 
-      "wordCount": 500,
-      "readTime": "25 min",
-      "tags": ["Google Sheet", "Personal Finance"]
-    }'>
+  <article class="card-content article">
     <h1 class="title is-size-3" style="font-family: 'PT Sans Narrow', sans-serif">
       Personal Finance Google Sheet: stocks tab
     </h1>
-    
+
     <div class="article-meta is-size-7 is-uppercase level is-mobile">
       <div class="level-left" style="margin-bottom: 0.50rem">
         <span class="level-item">
@@ -42,35 +33,35 @@
       </div>
     </div>
     <div class="content" style="margin-top: 1.0rem">
-  
 
-    <div id="difficulty-container"></div>
 
-  <script>
-    function generateStars(rating) {
-      const yellowStars = '★'.repeat(rating);
-      const grayStars = '☆'.repeat(5 - rating);
-      const starsHTML = `<span class="star-rating">${yellowStars}</span><span class="gray-star">${grayStars}</span>`;
-      document.getElementById('difficulty-container').innerHTML = `<p>Difficulty Level: ${starsHTML}</p>`;
-    }
-  </script>
+      <div id="difficulty-container"></div>
 
-  <script>
-    // Example usage
-    generateStars(4); // Change the rating as needed
-  </script>
-    
+      <script>
+        function generateStars(rating) {
+          const yellowStars = '★'.repeat(rating);
+          const grayStars = '☆'.repeat(5 - rating);
+          const starsHTML = `<span class="star-rating">${yellowStars}</span><span class="gray-star">${grayStars}</span>`;
+          document.getElementById('difficulty-container').innerHTML = `<p>Difficulty Level: ${starsHTML}</p>`;
+        }
+      </script>
+
+      <script>
+        // Example usage
+        generateStars(4); // Change the rating as needed
+      </script>
+
       <h2 id="Introduction" style="scroll-margin: 1em;">
         <a href="#Introduction" class="headerlink" title="Introduction"></a>
         Introduzione
       </h2>
 
       <p style="text-align: justify;">
-        Prosegue la serie di post sulla creazione di tab che forniscano 
-        indicazioni più dettagliate sull'andamento dei prodotti finanziari. 
-        L'obiettivo di questo post è facilitare la creazione di una tab 
-        "stocks" in cui tracciare l'andamento di: fondi, etf azionari, ed 
-        etf obbligazionari. Per piani di accumulo (PAC) si rimanda ad un 
+        Prosegue la serie di post sulla creazione di tab che forniscano
+        indicazioni più dettagliate sull'andamento dei prodotti finanziari.
+        L'obiettivo di questo post è facilitare la creazione di una tab
+        "stocks" in cui tracciare l'andamento di: fondi, etf azionari, ed
+        etf obbligazionari. Per piani di accumulo (PAC) si rimanda ad un
         post successivo.
       </p>
 
@@ -81,9 +72,9 @@
 
       <p style="text-align: justify;">
         In nessun modo l'allocazione mostrata in questo post è da considerarsi
-        consiglio finanziario. I ticker usati sono reali, ma le quote e i numeri 
-        mostrati sono stati scelti randomicamente e sono inclusi a puro scopo 
-        di validazione del corretto inserimento delle formule. 
+        consiglio finanziario. I ticker usati sono reali, ma le quote e i numeri
+        mostrati sono stati scelti randomicamente e sono inclusi a puro scopo
+        di validazione del corretto inserimento delle formule.
       </p>
 
       <h2 id="ETFObb" style="scroll-margin: 1em;">
@@ -92,117 +83,117 @@
       </h2>
 
       <p style="text-align: justify;">
-        Creiamo una nuova tab e rinominiamola "stocks". Lasciamo la prima 
-        riga e colonna vuote. Suddividiamo in box differenti ETF obbligazionari 
-        e azionari. Per fondi (attivi o passivi) non facilmente reperibili mediante 
+        Creiamo una nuova tab e rinominiamola "stocks". Lasciamo la prima
+        riga e colonna vuote. Suddividiamo in box differenti ETF obbligazionari
+        e azionari. Per fondi (attivi o passivi) non facilmente reperibili mediante
         funzione GOOGLEFINANCE ci sarà un approfondimento più avanti in questo post.
-       <br>
-       Iniziamo con ETF obbligazionari. Da cella B2 a cella R2 inseriamo i seguenti 
-       titoli: 
+        <br>
+        Iniziamo con ETF obbligazionari. Da cella B2 a cella R2 inseriamo i seguenti
+        titoli:
       </p>
 
       <ul>
-        <li><span style="font-weight: 800">Bond fund name:</span> 
-          per indicare chiaramente a che ETF obbligazionario ci riferiremo;</li>      
-        <li><span style="font-weight: 800">ISIN:</span> 
-          così da poter facilitare la ricerca su Google dell'ETF stesso;</li>      
-        <li><span style="font-weight: 800">Regione:</span> 
-          stato di emissione del bond, per future analisi geografiche;</li>      
-        <li><span style="font-weight: 800">Field:</span> 
+        <li><span style="font-weight: 800">Bond fund name:</span>
+          per indicare chiaramente a che ETF obbligazionario ci riferiremo;</li>
+        <li><span style="font-weight: 800">ISIN:</span>
+          così da poter facilitare la ricerca su Google dell'ETF stesso;</li>
+        <li><span style="font-weight: 800">Regione:</span>
+          stato di emissione del bond, per future analisi geografiche;</li>
+        <li><span style="font-weight: 800">Field:</span>
           piccola descrizione che faciliti l'identificazione geografica o settoriale;</li>
-        <li><span style="font-weight: 800">Index/Ticker:</span> 
+        <li><span style="font-weight: 800">Index/Ticker:</span>
           il corretto ticker del prodotto;</li>
-        <li><span style="font-weight: 800">% of total:</span> 
+        <li><span style="font-weight: 800">% of total:</span>
           si capisce da sè;</li>
-        <li><span style="font-weight: 800">Shares:</span>  
+        <li><span style="font-weight: 800">Shares:</span>
           numero di quote;</li>
-        <li><span style="font-weight: 800">Init. controv.:</span> 
+        <li><span style="font-weight: 800">Init. controv.:</span>
           quantità di denaro allocata;</li>
-        <li><span style="font-weight: 800">Price at buy:</span>  
+        <li><span style="font-weight: 800">Price at buy:</span>
           prezzo di carico;</li>
-        <li><span style="font-weight: 800">Price now x stock:</span> 
+        <li><span style="font-weight: 800">Price now x stock:</span>
           prezzo attuale;</li>
-        <li><span style="font-weight: 800">Daily change:</span> 
+        <li><span style="font-weight: 800">Daily change:</span>
           questa entry per la variazione giornaliera deve occupare 2 colonne (L, M);</li>
-        <li><span style="font-weight: 800">Overall G/L:</span> 
+        <li><span style="font-weight: 800">Overall G/L:</span>
           guadagno/perdita totale;</li>
-        <li><span style="font-weight: 800">Before tax:</span> 
+        <li><span style="font-weight: 800">Before tax:</span>
           valore effettivo pre-tassazione;</li>
-        <li><span style="font-weight: 800">Int Tax Factor:</span>  
+        <li><span style="font-weight: 800">Int Tax Factor:</span>
           tassazione da applicare (valore percentuale);</li>
-        <li><span style="font-weight: 800">Taxes:</span> 
+        <li><span style="font-weight: 800">Taxes:</span>
           se in attivo, valore delle tasse da pagare a chiusura dell'operazione;</li>
-        <li><span style="font-weight: 800">Total after tax:</span>  
-          valore netto post-tassazione.</li>          
+        <li><span style="font-weight: 800">Total after tax:</span>
+          valore netto post-tassazione.</li>
       </ul>
 
       <p style="text-align: justify;">
-        Procediamo quindi con un esempio. Supponiamo di prendere BIT:CNYB (ISIN: 
-        IE00BYPC1H27), a patto che ancora esista al momento della lettura di questo post. 
-        Indicheremo in cella B3 il nome: "iShs China CNY Bd ETF USD D"; 
-        in cella C3 l'ISIN di cui sopra; metteremo come regione "ASIA", e come 
-        field una indicazione del tipo "Bond Cina". Il ticker (da usare in funzione 
-        GOOGLEFINANCE) è BIT:CNYB; BIT è legato a "borsa italiana". Il numero di 
-        shares (colonna H) è 80 (numero casuale). Il price at buy è $5.06 (è possibile 
-        convertirlo in euro). Questo produce un controvalore (cella I3) pari a 
+        Procediamo quindi con un esempio. Supponiamo di prendere BIT:CNYB (ISIN:
+        IE00BYPC1H27), a patto che ancora esista al momento della lettura di questo post.
+        Indicheremo in cella B3 il nome: "iShs China CNY Bd ETF USD D";
+        in cella C3 l'ISIN di cui sopra; metteremo come regione "ASIA", e come
+        field una indicazione del tipo "Bond Cina". Il ticker (da usare in funzione
+        GOOGLEFINANCE) è BIT:CNYB; BIT è legato a "borsa italiana". Il numero di
+        shares (colonna H) è 80 (numero casuale). Il price at buy è $5.06 (è possibile
+        convertirlo in euro). Questo produce un controvalore (cella I3) pari a
       </p>
-  
-      <div class="code-container">				
-				=J3*H3
+
+      <div class="code-container">
+        =J3*H3
       </div>
 
       <p style="text-align: justify;">
-        Il prezzo corrente (in cella K33) è determinabile come   
+        Il prezzo corrente (in cella K33) è determinabile come
       </p>
-      
-      <div class="code-container">				
+
+      <div class="code-container">
         =GOOGLEFINANCE(F3;"price")
       </div>
-      
+
       <p style="text-align: justify;">
-        Nel caso si necessiti una conversione dollaro-euro si può usare 
-        una moltiplicazione con GOOGLEFINANCE("CURRENCY:USDEUR"). 
-        La variazione giornaliera si potrebbe calcolare in diversi modi, 
+        Nel caso si necessiti una conversione dollaro-euro si può usare
+        una moltiplicazione con GOOGLEFINANCE("CURRENCY:USDEUR").
+        La variazione giornaliera si potrebbe calcolare in diversi modi,
         ma quello che preferisco, in cella M3, è:
       </p>
 
-      <div class="code-container">				
+      <div class="code-container">
         =GOOGLEFINANCE(F3;"change")/GOOGLEFINANCE(F3;"priceopen")
       </div>
 
       <p style="text-align: justify;">
-        A fronte dell'ammontare allocato per questo investimento, 
-        questa percentuale corrisponde in cella L3 ad una variazione 
+        A fronte dell'ammontare allocato per questo investimento,
+        questa percentuale corrisponde in cella L3 ad una variazione
         giornaliera complessiva pari a:
       </p>
 
-      <div class="code-container">				
+      <div class="code-container">
         =GOOGLEFINANCE(F3;"change")*H3
       </div>
 
       <p style="text-align: justify;">
-        In cella N3, il guadagno o perdita totale è presto calcolato: 
+        In cella N3, il guadagno o perdita totale è presto calcolato:
       </p>
 
-      <div class="code-container">				
-        =(K3-J3)*H3 
+      <div class="code-container">
+        =(K3-J3)*H3
       </div>
 
       <p style="text-align: justify;">
         Così come il valore pre-tassazione, in cella O3:
       </p>
 
-      <div class="code-container">       
+      <div class="code-container">
         =I3+N3
       </div>
 
       <p style="text-align: justify;">
-        A questo punto si può inserire la quantità di tasse da pagare 
-        sullo strumento in cella P3. Personalmente, preferisco 
-        tenere traccia del valore netto ai fini del calcolo del patrimonio. 
-        Indicativamente, la tassazione italiana prevede una tassazione 
-        al 26%. Da qui, il conto delle tasse da pagare in cella Q3, 
-        solo se l'investimento è in positivo al momento della chiusura. 
+        A questo punto si può inserire la quantità di tasse da pagare
+        sullo strumento in cella P3. Personalmente, preferisco
+        tenere traccia del valore netto ai fini del calcolo del patrimonio.
+        Indicativamente, la tassazione italiana prevede una tassazione
+        al 26%. Da qui, il conto delle tasse da pagare in cella Q3,
+        solo se l'investimento è in positivo al momento della chiusura.
         Ne consegue, per cella Q3, la seguente formula:
       </p>
 
@@ -219,29 +210,26 @@
       </div>
 
       <p style="text-align: justify;">
-        A completamento della riga manca la cella G3. Se questa 
-        è l'unica entry (riga) corrispondente all'unico ETF 
-        obbligazionario che possediamo, il valore in cella G3 è 
-        ovviamente 100%. Altrimenti, il valore è pari al 
-        controvalore attuale (si può scegliere before tax o 
-        after tax) diviso la somma dei controvalori attuali 
-        per tutti gli strumenti del gruppo. Ciò sarà più chiaro 
-        per il prossimo gruppo: gli ETF azionari. Prima 
-        però, diamo uno sguardo al risultato delle operazioni 
-        fatte fin qui (a seguito un piccolo lavoro di abbellimento 
+        A completamento della riga manca la cella G3. Se questa
+        è l'unica entry (riga) corrispondente all'unico ETF
+        obbligazionario che possediamo, il valore in cella G3 è
+        ovviamente 100%. Altrimenti, il valore è pari al
+        controvalore attuale (si può scegliere before tax o
+        after tax) diviso la somma dei controvalori attuali
+        per tutti gli strumenti del gruppo. Ciò sarà più chiaro
+        per il prossimo gruppo: gli ETF azionari. Prima
+        però, diamo uno sguardo al risultato delle operazioni
+        fatte fin qui (a seguito un piccolo lavoro di abbellimento
         grafico).
       </p>
 
       <!-- FIGURA 1 ETF obbligazionari -->
-	    <a class="gallery-item" 
-	      href="./assets/images/spreadsheet/stocks-fig1.webp">
-	      <img src="./assets/images/spreadsheet/stocks-fig1.webp"
-	        class="box px-0 py-0 ml-auto mr-auto" width="1080" 
-	        title="picture1 of slideshow" 
-	        alt="A screenshot of the box including Bond ETFs.">
-	      <p class="has-text-centered is-size-6 caption">
-	        A screenshot of the box including Bond ETFs.</p>
-	    </a>
+      <a class="gallery-item" href="./assets/images/spreadsheet/stocks-fig1.webp">
+        <img src="./assets/images/spreadsheet/stocks-fig1.webp" class="box px-0 py-0 ml-auto mr-auto" width="1080"
+          title="picture1 of slideshow" alt="A screenshot of the box including Bond ETFs.">
+        <p class="has-text-centered is-size-6 caption">
+          A screenshot of the box including Bond ETFs.</p>
+      </a>
 
       <h2 id="ETFAz" style="scroll-margin: 1em;">
         <a href="#ETFAz" class="headerlink" title="ETFAz"></a>
@@ -249,139 +237,138 @@
       </h2>
 
       <p style="text-align: justify;">
-        Ripetiamo la procedura per gli ETF azionari. Lasciamo 
-        libera una riga dopo l'ultima entry degli ETF obbligazionari. 
-        In questo caso, in riga 5, ripetiamo i titoli. Prestiamo 
-        attenzione ad essere consistenti con le terminologie: 
-        stock dovrà sostituire bond. 
-        In questo caso si mostrano 6 ETF presi dal sito 
-        <a target=blank_ href="https://www.justetf.com/it/">justetf.com</a>. 
-        Coprono in parte gli Stati Uniti, in parte l'Europa, in 
-        parte l'Asia, e uno è persino settoriale. L'ultimo 
-        ha un ticker che non si basa su "BIT" come visto precedentemente, 
-        ma su AMS (borsa di Amsterdam). 
-        <br> 
-        Scelto lo strumento di interesse sul sito di 
-        <a target=blank_ href="https://www.justetf.com/it/">justetf.com</a>, tutte 
-        le informazioni tecniche sono praticamente note. Quelle 
-        specifiche (personali) come prezzo di carico, numero di shares, 
-        ecc. devono essere recuperate sul sito della banca 
+        Ripetiamo la procedura per gli ETF azionari. Lasciamo
+        libera una riga dopo l'ultima entry degli ETF obbligazionari.
+        In questo caso, in riga 5, ripetiamo i titoli. Prestiamo
+        attenzione ad essere consistenti con le terminologie:
+        stock dovrà sostituire bond.
+        In questo caso si mostrano 6 ETF presi dal sito
+        <a target=blank_ href="https://www.justetf.com/it/">justetf.com</a>.
+        Coprono in parte gli Stati Uniti, in parte l'Europa, in
+        parte l'Asia, e uno è persino settoriale. L'ultimo
+        ha un ticker che non si basa su "BIT" come visto precedentemente,
+        ma su AMS (borsa di Amsterdam).
+        <br>
+        Scelto lo strumento di interesse sul sito di
+        <a target=blank_ href="https://www.justetf.com/it/">justetf.com</a>, tutte
+        le informazioni tecniche sono praticamente note. Quelle
+        specifiche (personali) come prezzo di carico, numero di shares,
+        ecc. devono essere recuperate sul sito della banca
         (o del broker) al termine dell'operazione di acquisto.
         <br>
-        A seguito dell'inserimento di dati e formule (secondo quanto 
-        visto nella sezione precedente), si ha il risultato che 
-        viene ora mostrato. Si presti attenzione al fatto che 
-        i valori di "% of total" sono calcolati sulle cifre 
-        pre-tassazione.      
+        A seguito dell'inserimento di dati e formule (secondo quanto
+        visto nella sezione precedente), si ha il risultato che
+        viene ora mostrato. Si presti attenzione al fatto che
+        i valori di "% of total" sono calcolati sulle cifre
+        pre-tassazione.
       </p>
 
       <!-- FIGURA 2 ETF azionari -->
-	    <a class="gallery-item" 
-	      href="./assets/images/spreadsheet/stocks-fig2.webp">
-	      <img src="./assets/images/spreadsheet/stocks-fig2.webp"
-	        class="box px-0 py-0 ml-auto mr-auto" width="1080" 
-	        title="picture1 of slideshow" 
-	        alt="A screenshot of the box including Stock ETFs.">
-	      <p class="has-text-centered is-size-6 caption">
-	        A screenshot of the box including Stock ETFs.</p>
-	    </a>
-	   
+      <a class="gallery-item" href="./assets/images/spreadsheet/stocks-fig2.webp">
+        <img src="./assets/images/spreadsheet/stocks-fig2.webp" class="box px-0 py-0 ml-auto mr-auto" width="1080"
+          title="picture1 of slideshow" alt="A screenshot of the box including Stock ETFs.">
+        <p class="has-text-centered is-size-6 caption">
+          A screenshot of the box including Stock ETFs.</p>
+      </a>
+
       <h2 id="Fondi" style="scroll-margin: 1em;">
         <a href="#Fondi" class="headerlink" title="Fondi"></a>
         Fondi: valore corrente
       </h2>
-	    
+
       <p style="text-align: justify;">
-        Se non avete acquistato fondi bancari attivi o passivi, 
+        Se non avete acquistato fondi bancari attivi o passivi,
         skippate questa sezione.
-        <br> 
-        <br> 
-        Per gli altri: si comincia dicendo che talvolta questi 
-        strumenti sono difficilmente inquadrabili come puramente 
-        obbligazionari o azionari. 
+        <br>
+        <br>
+        Per gli altri: si comincia dicendo che talvolta questi
+        strumenti sono difficilmente inquadrabili come puramente
+        obbligazionari o azionari.
         Tendenzialmente è difficile inquadrarli settorialmente.
-        Inoltre, se si tratta di "fondi di fondi", scoprire la precisa 
+        Inoltre, se si tratta di "fondi di fondi", scoprire la precisa
         suddivisione del sottostante può risultare complesso.
-        Poichè il sottostante (o parti di esso) può cambiare 
-        con una certa frequenza, è difficile anche tenere traccia 
-        degli effettivi costi di gestione (sicuramente ben più alti 
-        di ETF obbligazionari o azionari standard). Infine, 
-        essendo difficilmente reperibili sul mercato secondario, 
-        conviene procedere facendo per questi strumenti una box 
-        separata. 
-        <br> 
-        <br> 
-        Si lasci una riga vuota al termine della box precedente 
-        e si crei una nuova riga di titoli come già visto in 
-        precedenza. In cella B13, in questo caso, si metta 
-        "Fund Name". Si inquadri la regione e il field di 
-        riferimento del fondo (se fosse troppo difficile, si 
-        può lasciare vuota la casella). 
-        <br> 
-        Per quanto riguarda il riempimento delle altre colonne, 
-        ogni fondo è una questione a sè stante. Nome, ISIN, 
-        Regione, Field sono tutti più o meno facilmente reperibili. 
+        Poichè il sottostante (o parti di esso) può cambiare
+        con una certa frequenza, è difficile anche tenere traccia
+        degli effettivi costi di gestione (sicuramente ben più alti
+        di ETF obbligazionari o azionari standard). Infine,
+        essendo difficilmente reperibili sul mercato secondario,
+        conviene procedere facendo per questi strumenti una box
+        separata.
+        <br>
+        <br>
+        Si lasci una riga vuota al termine della box precedente
+        e si crei una nuova riga di titoli come già visto in
+        precedenza. In cella B13, in questo caso, si metta
+        "Fund Name". Si inquadri la regione e il field di
+        riferimento del fondo (se fosse troppo difficile, si
+        può lasciare vuota la casella).
+        <br>
+        Per quanto riguarda il riempimento delle altre colonne,
+        ogni fondo è una questione a sè stante. Nome, ISIN,
+        Regione, Field sono tutti più o meno facilmente reperibili.
         Il ticker, al contrario, è spesso difficile da individuare.
         È meglio procedere con una strategia basata sull'ISIN
-        se si vuole avere un update quanto più automatico possibile. 
-        Il prezzo di carico (colonna J) è reperibile sui 
-        documenti bancari. 
+        se si vuole avere un update quanto più automatico possibile.
+        Il prezzo di carico (colonna J) è reperibile sui
+        documenti bancari.
       </p>
-      
+
       <p class="noteBoxes type1"><i class="fas fa-exclamation-triangle"></i><span>
-        Chiedete l'azzeramento dei costi di ingresso per 
-        fondi attivi. Se presente, tale costo può essere molto elevato. 
+          Chiedete l'azzeramento dei costi di ingresso per
+          fondi attivi. Se presente, tale costo può essere molto elevato.
       </p>
-     
+
       <p style="text-align: justify;">
-        Conoscendo il controvalore 
-        investito e il prezzo di carico, si può recuperare il numero 
-        di quote possedute. Controllate (o chiedete di avere) 
-        il numero di quote possedute per quell'investimento. 
-        Tale numero è inficiato dai costi di sottoscrizione (ingresso) 
-        Quindi un doppio-check è consigliato. Il prezzo attuale si può 
-        quasi sempre recuperare tramite il sito di 
+        Conoscendo il controvalore
+        investito e il prezzo di carico, si può recuperare il numero
+        di quote possedute. Controllate (o chiedete di avere)
+        il numero di quote possedute per quell'investimento.
+        Tale numero è inficiato dai costi di sottoscrizione (ingresso)
+        Quindi un doppio-check è consigliato. Il prezzo attuale si può
+        quasi sempre recuperare tramite il sito di
         <a target=blank_ href="https://www.borsaitaliana.it/homepage/homepage.htm">borsaitaliana.it</a>.
-        Questo vale per fondi sufficientemente grandi; per fondi 
-        piccoli di banche locali tale informazione potrebbe 
-        non essere disponibile su <a target=blank_ href="https://www.borsaitaliana.it/homepage/homepage.htm">borsaitaliana.it</a>. Se si hanno a disposizione 
-        altri siti, la procedura comunque dovrebbe essere la medesima 
+        Questo vale per fondi sufficientemente grandi; per fondi
+        piccoli di banche locali tale informazione potrebbe
+        non essere disponibile su <a target=blank_
+          href="https://www.borsaitaliana.it/homepage/homepage.htm">borsaitaliana.it</a>. Se si hanno a disposizione
+        altri siti, la procedura comunque dovrebbe essere la medesima
         di quanto si sta per descrivere.
         <br>
-        Si procede usando una combinazione di funzioni per estrarre da un 
-        sito internet valori tabulati. Tale procedura è già stata mostrata 
-        durante la creazione della tab Bond (si veda post precedente). 
-        Ad esempio, per il fondo avente ISIN LU2178929456, 
-        <a target=blank_ href="https://www.borsaitaliana.it/homepage/homepage.htm">borsaitaliana.it</a> 
-        fornisce un valore aggiornato a questo <a target=blank_ href="https://www.borsaitaliana.it/borsa/fondi/dettaglio/2FADB602820.html">link</a> che chiameremo LINK-A.
+        Si procede usando una combinazione di funzioni per estrarre da un
+        sito internet valori tabulati. Tale procedura è già stata mostrata
+        durante la creazione della tab Bond (si veda post precedente).
+        Ad esempio, per il fondo avente ISIN LU2178929456,
+        <a target=blank_ href="https://www.borsaitaliana.it/homepage/homepage.htm">borsaitaliana.it</a>
+        fornisce un valore aggiornato a questo <a target=blank_
+          href="https://www.borsaitaliana.it/borsa/fondi/dettaglio/2FADB602820.html">link</a> che chiameremo LINK-A.
         È quindi possibile usare la seguente funzione:
       </p>
-   
-      <div class="code-container">   
+
+      <div class="code-container">
         =INDICE(IMPORTHTML("LINK-A";"table";1);3;1)
-      </div>   
-   
+      </div>
+
       <p style="text-align: justify;">
-        Al posto di LINK-A mettiamo l'indirizzo html per esteso; la funzione indice prenderà 
-        dalla tabella il valore disponibile nell'ultima contrattazione. Questo 
-        rappresenterà il valore corrente da inserire in colonna K. Dalla stessa tabella 
-        è possibile prendere anche il valore di "variazione" 
-        (non percentuale ahimè, ma è già qualcosa). 
+        Al posto di LINK-A mettiamo l'indirizzo html per esteso; la funzione indice prenderà
+        dalla tabella il valore disponibile nell'ultima contrattazione. Questo
+        rappresenterà il valore corrente da inserire in colonna K. Dalla stessa tabella
+        è possibile prendere anche il valore di "variazione"
+        (non percentuale ahimè, ma è già qualcosa).
       </p>
-   
-      <div class="code-container">   
+
+      <div class="code-container">
         =INDICE(IMPORTHTML("LINK-A";"table";1);3;5)
-      </div>   
-   
+      </div>
+
       <p style="text-align: justify;">
-        Questo, si può usare per calcolare 
+        Questo, si può usare per calcolare
         in colonna L la variazione giornaliera effettiva basata sul numero di quote possedute.
-        Il resto delle colonne si può riempire come già visto per ETF obbligazionari e 
-        azionari. Prima di procedere oltre, si ribadisce che l'uso e la costruzione di queste 
-        ultime due funzioni possono variare molto in base a: sito da cui le informazioni 
-        vengono reperite; fondo considerato. In caso di malfunzionamento, è 
-        possibile consultare questo 
-        <a target=blank_ href="https://youtu.be/IzzZTVCblM8?si=etMTrG5Vk5Yoq-8D&t=32">link</a>. 
+        Il resto delle colonne si può riempire come già visto per ETF obbligazionari e
+        azionari. Prima di procedere oltre, si ribadisce che l'uso e la costruzione di queste
+        ultime due funzioni possono variare molto in base a: sito da cui le informazioni
+        vengono reperite; fondo considerato. In caso di malfunzionamento, è
+        possibile consultare questo
+        <a target=blank_ href="https://youtu.be/IzzZTVCblM8?si=etMTrG5Vk5Yoq-8D&t=32">link</a>.
       </p>
 
       <h2 id="Azioni" style="scroll-margin: 1em;">
@@ -390,98 +377,95 @@
       </h2>
 
       <p style="text-align: justify;">
-        Queste operazioni possono essere ripetute per tenere traccia dell'evoluzione 
-        anche di azioni singole. È notevolmente più semplice usare GOOGLEFINANCE per 
-        recuperare informazioni (prezzo corrente, variazione) per azioni singole, e 
-        la complessa procedura impiegata per i fondi è molto spesso non necessaria 
-        in questo caso. L'aggiunta di una eventuale box per azioni singole è lasciata 
+        Queste operazioni possono essere ripetute per tenere traccia dell'evoluzione
+        anche di azioni singole. È notevolmente più semplice usare GOOGLEFINANCE per
+        recuperare informazioni (prezzo corrente, variazione) per azioni singole, e
+        la complessa procedura impiegata per i fondi è molto spesso non necessaria
+        in questo caso. L'aggiunta di una eventuale box per azioni singole è lasciata
         al lettore interessato.
       </p>
 
-   
+
       <h2 id="BoxOverall" style="scroll-margin: 1em;">
         <a href="#BoxOverall" class="headerlink" title="BoxOverall"></a>
         Box "Overall": altre info utili
       </h2>
 
       <p style="text-align: justify;">
-        Creiamo altre box a lato di quelle appena prodotte. Usiamo la colonna 
-        T, lasciando quindi una colonna di spazio (vuota). Mettiamo il primo 
-        titolo in riga 2: "% from begin". L'intenzione è quella di usare 
-        le righe sottostanti per indicare la percentuale di cambiamento (guadagno 
-        o perdita) dall'inizio dell'investimento. In cella T3 (corrispondente 
+        Creiamo altre box a lato di quelle appena prodotte. Usiamo la colonna
+        T, lasciando quindi una colonna di spazio (vuota). Mettiamo il primo
+        titolo in riga 2: "% from begin". L'intenzione è quella di usare
+        le righe sottostanti per indicare la percentuale di cambiamento (guadagno
+        o perdita) dall'inizio dell'investimento. In cella T3 (corrispondente
         al primo ETF obbligazionario inserito), usiamo la formula
       </p>
-	    
-      <div class="code-container">   
+
+      <div class="code-container">
         =N3/I3
-      </div>   
-	    
-      <p style="text-align: justify;">
-	      E formattiamo come percentuale. Lasciamo quindi un'altra colonna vuota, 
-	      e in cella V2 scriviamo "actual net gain/loss". In cella V3 inseriamo 
-	      la formula
-      </p>
-	    
-      <div class="code-container">   
-        =N3-Q3
-      </div>   
+      </div>
 
       <p style="text-align: justify;">
-	      La formula permette di sottrarre le tasse (da pagare in fase di vendita) 
-	      se l'investimento è in positivo; alternativamente mostrerà il valore 
-	      della minusvalenza maturata. Ripetiamo questa operazione anche per i restanti 
-	      ETF obbligazionari; e ricreiamo nuove box anche per ETF azionari e fondi. 
-	      Al termine di questa operazione avremo le informazioni puntuali e cumulate 
-	      per ciascun investimento "one-shot". Per piano/i di accumulo si vedrà come 
-	      procedere nel prossimo post. Il risultato sarà il seguente.
+        E formattiamo come percentuale. Lasciamo quindi un'altra colonna vuota,
+        e in cella V2 scriviamo "actual net gain/loss". In cella V3 inseriamo
+        la formula
       </p>
-	      
-      <!-- FIGURA 3 Box laterali -->
-	    <a class="gallery-item" 
-	      href="./assets/images/spreadsheet/stocks-fig3.webp">
-	      <img src="./assets/images/spreadsheet/stocks-fig3.webp"
-	        class="box px-0 py-0 ml-auto mr-auto" width="250" 
-	        title="picture1 of slideshow" 
-	        alt="A screenshot of the boxes for cumulative data wrt start.">
-	      <p class="has-text-centered is-size-6 caption">
-	        A screenshot of the boxes for cumulative data wrt start.</p>
-	    </a>
-	      
+
+      <div class="code-container">
+        =N3-Q3
+      </div>
+
       <p style="text-align: justify;">
-	      Queste informazioni sono sicuramente utili, ma potrebbero essere un po' 
-	      dispersive se, per qualsiasi motivo, il numero di entries fosse elevato. 
-	      Per cui, creiamo una box orizzontale (colonne B to R) che raggruppi le 
-	      informazioni per categoria (ETF obbligazionario, azionario, e fondi).
-	      <br>
-	      Lasciamo una riga vuota sotto l'ultima entry d'investimento. Creiamo 
-	      una nuova riga di titoli: Overall (in colonna B); Type (colonna F); 
-	      "% of total" (colonna G); shares (colonna H); "Init. Controv." 
-	      (colonna I); "Diff. wrt start %" (colonna K); "Daily change" (colonne 
-	      L, M); "Overall G/L" e "Before tax" in colonne N e O rispettivamente.
-	      Infine, "Taxes" e "After tax" in colonne Q e R.
-	      <br>
-	      Riempiamo le righe sottostanti. La prima sarà dedicata a 
-	      "ETF obbligazionari" (colonna B); la seconda a "ETF azionari";
-	      e poi di seguito "Fondi" e "Azioni singole" ove presenti. 
-	      Queste corrisponderanno ai seguenti "Type": BND, STK, FND, AZN.
-	      Si procede quindi con il riempimento della prima delle quattro 
-	      righe menzionate. Per le altre si procede nello stesso modo, 
-	      e tale operazione non è mostrata qui per non appesantire la lettura.
-	      <br>
-	      In colonna H, inseriamo la somma delle quote possedute 
-	      per la categoria considerata. In colonna I, la sommma 
-	      dei controvalori. Facendo questa operazione per ogni tipo, 
-	      si riempirà tutta la colonna I. A questo punto, la divisione 
-	      di ciascun valore di colonna I (e.g. I14 in figura) per la 
-	      somma di tutte le entries (e.g. I14:I15 in figura) dà 
-	      l'informazione "% of total" in colonna G. Per ciascun tipo, 
-	      il daily change (colonna L) è la somma dei daily change 
-	      di ogni entry di quel tipo. Stessa cosa per l'overall Gain/Loss 
-	      (colonna N). Idem per i valori before tax in colonna O, 
-	      per le tasse in colonna Q e total after tax in colonna R. 
-	      Noti questo dati, si può riempire colonna K usando 
-	      la seguente formula (e.g. cella K14):
+        La formula permette di sottrarre le tasse (da pagare in fase di vendita)
+        se l'investimento è in positivo; alternativamente mostrerà il valore
+        della minusvalenza maturata. Ripetiamo questa operazione anche per i restanti
+        ETF obbligazionari; e ricreiamo nuove box anche per ETF azionari e fondi.
+        Al termine di questa operazione avremo le informazioni puntuali e cumulate
+        per ciascun investimento "one-shot". Per piano/i di accumulo si vedrà come
+        procedere nel prossimo post. Il risultato sarà il seguente.
+      </p>
+
+      <!-- FIGURA 3 Box laterali -->
+      <a class="gallery-item" href="./assets/images/spreadsheet/stocks-fig3.webp">
+        <img src="./assets/images/spreadsheet/stocks-fig3.webp" class="box px-0 py-0 ml-auto mr-auto" width="250"
+          title="picture1 of slideshow" alt="A screenshot of the boxes for cumulative data wrt start.">
+        <p class="has-text-centered is-size-6 caption">
+          A screenshot of the boxes for cumulative data wrt start.</p>
+      </a>
+
+      <p style="text-align: justify;">
+        Queste informazioni sono sicuramente utili, ma potrebbero essere un po'
+        dispersive se, per qualsiasi motivo, il numero di entries fosse elevato.
+        Per cui, creiamo una box orizzontale (colonne B to R) che raggruppi le
+        informazioni per categoria (ETF obbligazionario, azionario, e fondi).
+        <br>
+        Lasciamo una riga vuota sotto l'ultima entry d'investimento. Creiamo
+        una nuova riga di titoli: Overall (in colonna B); Type (colonna F);
+        "% of total" (colonna G); shares (colonna H); "Init. Controv."
+        (colonna I); "Diff. wrt start %" (colonna K); "Daily change" (colonne
+        L, M); "Overall G/L" e "Before tax" in colonne N e O rispettivamente.
+        Infine, "Taxes" e "After tax" in colonne Q e R.
+        <br>
+        Riempiamo le righe sottostanti. La prima sarà dedicata a
+        "ETF obbligazionari" (colonna B); la seconda a "ETF azionari";
+        e poi di seguito "Fondi" e "Azioni singole" ove presenti.
+        Queste corrisponderanno ai seguenti "Type": BND, STK, FND, AZN.
+        Si procede quindi con il riempimento della prima delle quattro
+        righe menzionate. Per le altre si procede nello stesso modo,
+        e tale operazione non è mostrata qui per non appesantire la lettura.
+        <br>
+        In colonna H, inseriamo la somma delle quote possedute
+        per la categoria considerata. In colonna I, la sommma
+        dei controvalori. Facendo questa operazione per ogni tipo,
+        si riempirà tutta la colonna I. A questo punto, la divisione
+        di ciascun valore di colonna I (e.g. I14 in figura) per la
+        somma di tutte le entries (e.g. I14:I15 in figura) dà
+        l'informazione "% of total" in colonna G. Per ciascun tipo,
+        il daily change (colonna L) è la somma dei daily change
+        di ogni entry di quel tipo. Stessa cosa per l'overall Gain/Loss
+        (colonna N). Idem per i valori before tax in colonna O,
+        per le tasse in colonna Q e total after tax in colonna R.
+        Noti questo dati, si può riempire colonna K usando
+        la seguente formula (e.g. cella K14):
       </p>
 
       <div class="code-container">
@@ -489,21 +473,21 @@
       </div>
 
       <p style="text-align: justify;">
-        Una formula simile permette di ottenere il daily change in 
+        Una formula simile permette di ottenere il daily change in
         percentuale in colonna M (e.g. M14):
       </p>
-	    
+
       <div class="code-container">
-  	    =L14/(I14-L14)
+        =L14/(I14-L14)
       </div>
 
       <p style="text-align: justify;">
-        Terminiamo questa box andando a mettere un'ultima riga di 
-        somme complessive. In colonna B inseriamo "Total"; 
-        controlliamo in colonna G che somma delle percentuali faccia 
-        100%; sommiamo le share se è di interesse; sommiamo i 
-        controvalori in colonna I. Colonne L, N, O, Q e R hanno valori 
-        dati dalle somme delle righe sovrastanti. Il valore in 
+        Terminiamo questa box andando a mettere un'ultima riga di
+        somme complessive. In colonna B inseriamo "Total";
+        controlliamo in colonna G che somma delle percentuali faccia
+        100%; sommiamo le share se è di interesse; sommiamo i
+        controvalori in colonna I. Colonne L, N, O, Q e R hanno valori
+        dati dalle somme delle righe sovrastanti. Il valore in
         colonna K (cella K16) è dato da:
       </p>
 
@@ -512,7 +496,7 @@
       </div>
 
       <p style="text-align: justify;">
-        Similmente, colonna M viene determinata mediante 
+        Similmente, colonna M viene determinata mediante
         funzione
       </p>
 
@@ -521,10 +505,10 @@
       </div>
 
       <p style="text-align: justify;">
-        Finiamo con un'ultima informazione: il net gain. 
-        L'utente può scegliere dove andare ad inserirla; 
-        personalmente preferisco lasciare una colonna vuota 
-        e occupare la cella sulla stessa riga del valore 
+        Finiamo con un'ultima informazione: il net gain.
+        L'utente può scegliere dove andare ad inserirla;
+        personalmente preferisco lasciare una colonna vuota
+        e occupare la cella sulla stessa riga del valore
         finale after tax. Il net gain è dato da
       </p>
 
@@ -533,103 +517,94 @@
       </div>
 
       <p style="text-align: justify;">
-        Dopo un po' di pulizia e abbellimento, il risultato 
-        è il seguente. 
+        Dopo un po' di pulizia e abbellimento, il risultato
+        è il seguente.
       </p>
 
       <!-- FIGURA 4 Box di recap -->
-	    <a class="gallery-item" 
-	      href="./assets/images/spreadsheet/stocks-fig4.webp">
-	      <img src="./assets/images/spreadsheet/stocks-fig4.webp"
-	        class="box px-0 py-0 ml-auto mr-auto" width="1080" 
-	        title="picture1 of slideshow" 
-	        alt="A screenshot of the recap box for cumulative data.">
-	      <p class="has-text-centered is-size-6 caption">
-	        A screenshot of the recap box for cumulative data.</p>
-	    </a>
+      <a class="gallery-item" href="./assets/images/spreadsheet/stocks-fig4.webp">
+        <img src="./assets/images/spreadsheet/stocks-fig4.webp" class="box px-0 py-0 ml-auto mr-auto" width="1080"
+          title="picture1 of slideshow" alt="A screenshot of the recap box for cumulative data.">
+        <p class="has-text-centered is-size-6 caption">
+          A screenshot of the recap box for cumulative data.</p>
+      </a>
 
       <h2 id="Annuale" style="scroll-margin: 1em;">
         <a href="#Annuale" class="headerlink" title="Annuale"></a>
-        Evoluzione annuale: pre-/post tax 
+        Evoluzione annuale: pre-/post tax
       </h2>
 
       <p style="text-align: justify;">
-        Per chi desidera, può essere utile tracciare l'evoluzione 
-        o l'andamento degli investimenti durante l'anno, mese per mese. 
-        Questo richiede una nuova box. Occupiamo le colonne B:Q per questo. 
-        Sotto la box di recap appena costruita lasciamo una riga vuota; 
-        inseriamo quindi le seguenti entries: "Name"; "Start"; tutti 
+        Per chi desidera, può essere utile tracciare l'evoluzione
+        o l'andamento degli investimenti durante l'anno, mese per mese.
+        Questo richiede una nuova box. Occupiamo le colonne B:Q per questo.
+        Sotto la box di recap appena costruita lasciamo una riga vuota;
+        inseriamo quindi le seguenti entries: "Name"; "Start"; tutti
         i nomi dei mesi dell'anno; "G/L"; "Total".
-        In colonna B, sotto "Name", inseriamo i nomi o i ticker degli 
-        investimenti che stiamo tracciando (usare lo stesso ordine 
-        delle box sovrastanti può essere utile). In colonna C, 
-        sotto "Start", inseriamo il valore dell'investimento a inizio 
-        anno. In colonna Q, sotto "Total", mettiamo il valore attuale 
-        di ogni investimento al lordo delle tasse. Riempiamo quindi 
-        le colonne D:O facendo per ciascuna riga la copia del valore 
-        corrispondente in colonna Q. I valori nella colonna del mese 
-        dovranno essere freezati al termine del mese stesso, così 
-        da permettere di tracciare l'andamento di ogni investimento 
+        In colonna B, sotto "Name", inseriamo i nomi o i ticker degli
+        investimenti che stiamo tracciando (usare lo stesso ordine
+        delle box sovrastanti può essere utile). In colonna C,
+        sotto "Start", inseriamo il valore dell'investimento a inizio
+        anno. In colonna Q, sotto "Total", mettiamo il valore attuale
+        di ogni investimento al lordo delle tasse. Riempiamo quindi
+        le colonne D:O facendo per ciascuna riga la copia del valore
+        corrispondente in colonna Q. I valori nella colonna del mese
+        dovranno essere freezati al termine del mese stesso, così
+        da permettere di tracciare l'andamento di ogni investimento
         mese per mese.
         <br>
-        Ne consegue che nell'ultima riga (la prima sotto l'ultima entry) 
-        possiamo anche tracciare il totale mese per mese. La somma delle 
-        righe sotto "Start" darà il valore di partenza a inizio anno; 
-        la somma delle righe da colonna D a colonna O darà l'evoluzione 
-        mese per mese. 
+        Ne consegue che nell'ultima riga (la prima sotto l'ultima entry)
+        possiamo anche tracciare il totale mese per mese. La somma delle
+        righe sotto "Start" darà il valore di partenza a inizio anno;
+        la somma delle righe da colonna D a colonna O darà l'evoluzione
+        mese per mese.
         <br>
-        Si può usare una formattazione condizionale 
-        (per colore) per avere chiaro quali investimenti stanno salendo 
-        o scendendo nel mese corrente rispetto ai mesi precedenti. 
-        Si può usare un'ulteriore riga sottostante per tracciare 
-        l'evoluzione (crescita o descrescita) del patrimonio investito 
-        mese per mese: la differenza tra il totale del mese corrente 
-        e quello del mese precedente, divisa per il totale del mese 
-        precedente dà una misura della variazione (percentuale, se x100). 
+        Si può usare una formattazione condizionale
+        (per colore) per avere chiaro quali investimenti stanno salendo
+        o scendendo nel mese corrente rispetto ai mesi precedenti.
+        Si può usare un'ulteriore riga sottostante per tracciare
+        l'evoluzione (crescita o descrescita) del patrimonio investito
+        mese per mese: la differenza tra il totale del mese corrente
+        e quello del mese precedente, divisa per il totale del mese
+        precedente dà una misura della variazione (percentuale, se x100).
         Il risultato è il seguente.
       </p>
 
       <!-- FIGURA 5 Box di recap -->
-	    <a class="gallery-item" 
-	      href="./assets/images/spreadsheet/stocks-fig5.webp">
-	      <img src="./assets/images/spreadsheet/stocks-fig5.webp"
-	        class="box px-0 py-0 ml-auto mr-auto" width="1080" 
-	        title="picture1 of slideshow" 
-	        alt="A screenshot of the recap box for evolution across the year (gross).">
-	      <p class="has-text-centered is-size-6 caption">
-	        A screenshot of the recap box for evolution across the year (gross).</p>
-	    </a>
+      <a class="gallery-item" href="./assets/images/spreadsheet/stocks-fig5.webp">
+        <img src="./assets/images/spreadsheet/stocks-fig5.webp" class="box px-0 py-0 ml-auto mr-auto" width="1080"
+          title="picture1 of slideshow" alt="A screenshot of the recap box for evolution across the year (gross).">
+        <p class="has-text-centered is-size-6 caption">
+          A screenshot of the recap box for evolution across the year (gross).</p>
+      </a>
 
       <p style="text-align: justify;">
-        Personalmente preferisco considerare l'evoluzione al netto 
-        delle tasse. Facciamo quindi un'ultima box con poche righe. 
-        Il numero di righe corrisponde al numero di gruppi tracciati 
+        Personalmente preferisco considerare l'evoluzione al netto
+        delle tasse. Facciamo quindi un'ultima box con poche righe.
+        Il numero di righe corrisponde al numero di gruppi tracciati
         (i.e. ETF obbligazionari, ETF azionari, Fondi, Azioni singole).
-        In colonna B facciamo un raggruppamento di celle vericale 
-        e inseriamo il testo "After tax"; il raggruppamento comprenderà 
-        un numero di celle pari al numero di righe da riempire, pari 
-        al numero di categorie considerate. In colonna C, per ogni riga 
-        inseriamo il nome della categoria (i.e. "BondETF", "StockETF", 
-        "Fund", "Stocks"). In colonna P mettiamo il totale di categoria 
-        al netto delle tasse. La somma dei valori netti degli 
-        investimenti in una categoria restituisce il totale di 
-        categoria al netto delle tasse. A inizio anno si riempiono le 
-        celle in colonne D:O (ogni colonna rappresenta un mese dell'anno). 
-        Per ogni riga, il valore nelle celle verrà posto uguale al 
-        corrispondente totale presente in coilonna P. Al termine di ogni mese 
+        In colonna B facciamo un raggruppamento di celle vericale
+        e inseriamo il testo "After tax"; il raggruppamento comprenderà
+        un numero di celle pari al numero di righe da riempire, pari
+        al numero di categorie considerate. In colonna C, per ogni riga
+        inseriamo il nome della categoria (i.e. "BondETF", "StockETF",
+        "Fund", "Stocks"). In colonna P mettiamo il totale di categoria
+        al netto delle tasse. La somma dei valori netti degli
+        investimenti in una categoria restituisce il totale di
+        categoria al netto delle tasse. A inizio anno si riempiono le
+        celle in colonne D:O (ogni colonna rappresenta un mese dell'anno).
+        Per ogni riga, il valore nelle celle verrà posto uguale al
+        corrispondente totale presente in coilonna P. Al termine di ogni mese
         si freezerà la colonna corrispondente. Il risultato è il seguente.
       </p>
 
       <!-- FIGURA 6 Box di recap -->
-	    <a class="gallery-item" 
-	      href="./assets/images/spreadsheet/stocks-fig6.webp">
-	      <img src="./assets/images/spreadsheet/stocks-fig6.webp"
-	        class="box px-0 py-0 ml-auto mr-auto" width="1080" 
-	        title="picture1 of slideshow" 
-	        alt="A screenshot of the recap box for evolution across the year (net).">
-	      <p class="has-text-centered is-size-6 caption">
-	        A screenshot of the recap box for evolution across the year (net).</p>
-	    </a>
+      <a class="gallery-item" href="./assets/images/spreadsheet/stocks-fig6.webp">
+        <img src="./assets/images/spreadsheet/stocks-fig6.webp" class="box px-0 py-0 ml-auto mr-auto" width="1080"
+          title="picture1 of slideshow" alt="A screenshot of the recap box for evolution across the year (net).">
+        <p class="has-text-centered is-size-6 caption">
+          A screenshot of the recap box for evolution across the year (net).</p>
+      </a>
 
     </div>
 
@@ -667,50 +642,50 @@
       </div>
     </div>
     <hr style="height:1px;margin:1rem 0">
-      <div class="level is-mobile is-flex">
-        <div class="article-tags is-size-7 is-uppercase">
-          <i class="fas fa-tag has-text-grey"
-            style="transform: translateY(20%);"></i>&nbsp;&nbsp;
+    <div class="level is-mobile is-flex">
+      <div class="article-tags is-size-7 is-uppercase">
+        <i class="fas fa-tag has-text-grey" style="transform: translateY(20%);"></i>&nbsp;&nbsp;
         <div>
-        Google Sheet,
-        &nbsp;
+          Google Sheet,
+          &nbsp;
+        </div>
+        <div>
+          Personal Finance
+          &nbsp;
+        </div>
       </div>
-      <div>
-        Personal Finance
-        &nbsp;
+    </div>
+
+    <div class="sharethis-inline-share-buttons st-center st-inline-share-buttons st-animated" id="st-1">
+
+      <div class="st-btn" data-network="twitter" style="display: inline-block;">
+        <img alt="twitter sharing button" src="https://platform-cdn.sharethis.com/img/twitter.svg">
       </div>
-    </div>
-  </div>
 
-  <div class="sharethis-inline-share-buttons st-center st-inline-share-buttons st-animated" id="st-1">
+      <div class="st-btn" data-network="linkedin" style="display: inline-block;">
+        <img alt="linkedin sharing button" src="https://platform-cdn.sharethis.com/img/linkedin.svg">
+      </div>
 
-    <div class="st-btn" data-network="twitter" style="display: inline-block;">
-      <img alt="twitter sharing button" src="https://platform-cdn.sharethis.com/img/twitter.svg">
-    </div>
-    
-    <div class="st-btn" data-network="linkedin" style="display: inline-block;">
-      <img alt="linkedin sharing button" src="https://platform-cdn.sharethis.com/img/linkedin.svg">
-    </div>
+      <div class="st-btn" data-network="email" style="display: inline-block;">
+        <img alt="email sharing button" src="https://platform-cdn.sharethis.com/img/email.svg">
+      </div>
 
-    <div class="st-btn" data-network="email" style="display: inline-block;">
-      <img alt="email sharing button" src="https://platform-cdn.sharethis.com/img/email.svg">
-    </div>
-    
-    <div class="st-btn st-last" data-network="sharethis" style="display: inline-block;">
-      <img alt="sharethis sharing button" src="https://platform-cdn.sharethis.com/img/sharethis.svg">
+      <div class="st-btn st-last" data-network="sharethis" style="display: inline-block;">
+        <img alt="sharethis sharing button" src="https://platform-cdn.sharethis.com/img/sharethis.svg">
+      </div>
+
     </div>
 
-  </div>
+    <script
+      src="https://platform-api.sharethis.com/js/sharethis.js#property=61b5930d440224001908310c&amp;product=inline-share-buttons"
+      defer="">
+      </script>
+    <style>
+      .st-total {
+        display: none !important;
+      }
+    </style>
 
-  <script 
-    src="https://platform-api.sharethis.com/js/sharethis.js#property=61b5930d440224001908310c&amp;product=inline-share-buttons" defer="">
-  </script>
-  <style>
-  .st-total {
-    display: none !important;
-  }
-  </style>
-  
 
   </article>
 </div>
@@ -732,16 +707,14 @@
         this.page.identifier = '/posts/projects/spreadsheetPosts/stocks.html';
       };
 
-      (function() {
+      (function () {
         var d = document, s = d.createElement('script');
         s.src = '//' + 'https-fghio-github-io' + '.disqus.com/embed.js'; // Update the shortname here
         s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);
       })();
     </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+        powered by Disqus.</a></noscript>
   </div>
 </div>
-
-
-

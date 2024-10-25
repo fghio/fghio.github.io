@@ -1,18 +1,10 @@
 <div class="card" id="my-blog-post-card">
-  <article class="card-content article" 
-    data-metadata='{
-      "creationDate": "2023-12-20", 
-      "lastModificationDate": "2023-12-23", 
-      "title": "Personal Finance Google Sheet: bonds tab", 
-      "views": 1000, 
-      "wordCount": 500,
-      "readTime": "30 min",
-      "tags": ["Google Sheet", "Personal Finance"]
-    }'>
+  <article class="card-content article">
+
     <h1 class="title is-size-3" style="font-family: 'PT Sans Narrow', sans-serif">
       Personal Finance Google Sheet: bonds tab
     </h1>
-    
+
     <div class="article-meta is-size-7 is-uppercase level is-mobile">
       <div class="level-left" style="margin-bottom: 0.50rem">
         <span class="level-item">
@@ -42,35 +34,35 @@
       </div>
     </div>
     <div class="content" style="margin-top: 1.0rem">
-  
 
-    <div id="difficulty-container"></div>
 
-  <script>
-    function generateStars(rating) {
-      const yellowStars = '★'.repeat(rating);
-      const grayStars = '☆'.repeat(5 - rating);
-      const starsHTML = `<span class="star-rating">${yellowStars}</span><span class="gray-star">${grayStars}</span>`;
-      document.getElementById('difficulty-container').innerHTML = `<p>Difficulty Level: ${starsHTML}</p>`;
-    }
-  </script>
+      <div id="difficulty-container"></div>
 
-  <script>
-    // Example usage
-    generateStars(5); // Change the rating as needed
-  </script>
-    
+      <script>
+        function generateStars(rating) {
+          const yellowStars = '★'.repeat(rating);
+          const grayStars = '☆'.repeat(5 - rating);
+          const starsHTML = `<span class="star-rating">${yellowStars}</span><span class="gray-star">${grayStars}</span>`;
+          document.getElementById('difficulty-container').innerHTML = `<p>Difficulty Level: ${starsHTML}</p>`;
+        }
+      </script>
+
+      <script>
+        // Example usage
+        generateStars(5); // Change the rating as needed
+      </script>
+
       <h2 id="Introduction" style="scroll-margin: 1em;">
         <a href="#Introduction" class="headerlink" title="Introduction"></a>
         Introduzione
       </h2>
 
       <p style="text-align: justify;">
-        Qui inizia la serie di post sulla creazione di tab che forniscano 
-        indicazioni più dettagliate sull'andamento dei prodotti finanziari. 
-        Come spiegato in "Overview", l'intenzione è quella di trattare 
-        separatamente: obbligazioni (bond); fondi / etf azionari e 
-        obbligazionari; piani di accumulo (PAC). In questo post ci 
+        Qui inizia la serie di post sulla creazione di tab che forniscano
+        indicazioni più dettagliate sull'andamento dei prodotti finanziari.
+        Come spiegato in "Overview", l'intenzione è quella di trattare
+        separatamente: obbligazioni (bond); fondi / etf azionari e
+        obbligazionari; piani di accumulo (PAC). In questo post ci
         soffermeremo solo sul primo elemento: le obbligazioni.
       </p>
 
@@ -80,29 +72,30 @@
       </h2>
 
       <p style="text-align: justify;">
-        Per lo sviluppo di questa tab si parte dal presupposto che l'utente 
-        abbia almeno chiaro che cosa sia una obbligazione, governativa o corporate. 
-        Importante anche la conoscenza dei parametri più rilevanti associati 
-        ad una obbligazione: date e prezzi di collocamento, acquisto, 
-        rimborso; rendimento; intervallo di stacco cedolare; qualche minima 
-        informazione sulla (articolata) tassazione dei profitti legati a 
-        questi strumenti. Prima di cominciare, si ringraziano 
+        Per lo sviluppo di questa tab si parte dal presupposto che l'utente
+        abbia almeno chiaro che cosa sia una obbligazione, governativa o corporate.
+        Importante anche la conoscenza dei parametri più rilevanti associati
+        ad una obbligazione: date e prezzi di collocamento, acquisto,
+        rimborso; rendimento; intervallo di stacco cedolare; qualche minima
+        informazione sulla (articolata) tassazione dei profitti legati a
+        questi strumenti. Prima di cominciare, si ringraziano
         <a href="https://www.linkedin.com/in/michele-maestrini-505437135/">
-        Michele Maestrini</a> per l'aiuto 
-        nell'implementazione di alcune formule e per la verifica dei valori 
-        di output su obbligazioni reali, e il sito web <a href="https://www.simpletoolsforinvestors.eu/index.shtml">simpleToolsForInvestors.eu</a> 
-        per aver messo a disposizione dati precisi per il testing delle 
+          Michele Maestrini</a> per l'aiuto
+        nell'implementazione di alcune formule e per la verifica dei valori
+        di output su obbligazioni reali, e il sito web <a
+          href="https://www.simpletoolsforinvestors.eu/index.shtml">simpleToolsForInvestors.eu</a>
+        per aver messo a disposizione dati precisi per il testing delle
         funzionalità della tab che andremo a produrre in questo post.
       </p>
 
       <p style="text-align: justify;">
-        Si precisa che in questo post verranno considerati solamente bond 
-        con rendimento a tasso fisso (anche 0%) per avere informazioni 
-        precise e predittive dell'andamento dello stacco cedolare. 
-        Le equazioni, la procedura, lo sviluppo sono stati testati anche 
-        per obbligazioni "zero coupon". Al contrario, è difficile pensare di 
-        poter predire l'andamento di una obbligazione il cui 
-        tasso è variabile (ad esempio associato all'inflazione). 
+        Si precisa che in questo post verranno considerati solamente bond
+        con rendimento a tasso fisso (anche 0%) per avere informazioni
+        precise e predittive dell'andamento dello stacco cedolare.
+        Le equazioni, la procedura, lo sviluppo sono stati testati anche
+        per obbligazioni "zero coupon". Al contrario, è difficile pensare di
+        poter predire l'andamento di una obbligazione il cui
+        tasso è variabile (ad esempio associato all'inflazione).
         Per questo, tali obbligazioni non verranno trattate in questo post.
       </p>
 
@@ -112,126 +105,121 @@
       </h2>
 
       <p style="text-align: justify;">
-        A valle della creazione di una nuova tab, pulita, se ne cambi il 
-        titolo in "Bonds". Lasciamo vuoti come sempre la prima riga e 
-        la prima colonna semplicemente per questioni di stile. 
-        In colonna B, partendo da riga 2, andiamo 
-        a mettere una lista di entries che facciano da titolo (o da 
+        A valle della creazione di una nuova tab, pulita, se ne cambi il
+        titolo in "Bonds". Lasciamo vuoti come sempre la prima riga e
+        la prima colonna semplicemente per questioni di stile.
+        In colonna B, partendo da riga 2, andiamo
+        a mettere una lista di entries che facciano da titolo (o da
         definizione) agli importanti parametri di input che ci serviranno.
         Essi sono:
       </p>
 
       <ul>
-        <li><span style="font-weight: 800">Nome:</span> 
-          per indicare chiaramente a che bond ci riferiremo;</li>      
-        <li><span style="font-weight: 800">ISIN:</span> 
-          così da poter facilitare la ricerca su Google del bond stesso;</li>      
-        <li><span style="font-weight: 800">Regione:</span> 
-          stato di emissione del bond, per future analisi geografiche;</li>      
-        <li><span style="font-weight: 800">Tipo:</span> 
+        <li><span style="font-weight: 800">Nome:</span>
+          per indicare chiaramente a che bond ci riferiremo;</li>
+        <li><span style="font-weight: 800">ISIN:</span>
+          così da poter facilitare la ricerca su Google del bond stesso;</li>
+        <li><span style="font-weight: 800">Regione:</span>
+          stato di emissione del bond, per future analisi geografiche;</li>
+        <li><span style="font-weight: 800">Tipo:</span>
           "di stato" o "corporate", per definire automaticamente la tassazione;</li>
-        <li><span style="font-weight: 800">Data di emissione:</span> 
+        <li><span style="font-weight: 800">Data di emissione:</span>
           si capisce da sè;</li>
-        <li><span style="font-weight: 800">Data di rimborso:</span> 
+        <li><span style="font-weight: 800">Data di rimborso:</span>
           quando scade il bond;</li>
-        <li><span style="font-weight: 800">Data di acquisto:</span>  
+        <li><span style="font-weight: 800">Data di acquisto:</span>
           si capisce da sè;</li>
-        <li><span style="font-weight: 800">Stacco cedolare:</span> 
+        <li><span style="font-weight: 800">Stacco cedolare:</span>
           "annuale", "semestrale", "trimestrale", "zero coupon";</li>
-        <li><span style="font-weight: 800">Costo / singolo:</span>  
+        <li><span style="font-weight: 800">Costo / singolo:</span>
           trucchetto per indicare il taglio minimo dell'obbligazione;</li>
-        <li><span style="font-weight: 800">Quote:</span> 
+        <li><span style="font-weight: 800">Quote:</span>
           numero di quote acquistate;</li>
-        <li><span style="font-weight: 800">Preso al lancio:</span> 
+        <li><span style="font-weight: 800">Preso al lancio:</span>
           "SÌ", "NO"; necessario per calcoli di possibili premi fedeltà;</li>
-        <li><span style="font-weight: 800">Prezzo di emissione:</span> 
+        <li><span style="font-weight: 800">Prezzo di emissione:</span>
           si capisce da sè;</li>
-        <li><span style="font-weight: 800">Prezzo di rimborso:</span> 
+        <li><span style="font-weight: 800">Prezzo di rimborso:</span>
           si capisce da sè;</li>
-        <li><span style="font-weight: 800">Prezzo di acquisto:</span>  
+        <li><span style="font-weight: 800">Prezzo di acquisto:</span>
           si capisce da sè;</li>
-        <li><span style="font-weight: 800">Tasso:</span> 
-          per bond a tasso fisso questo parametro è noto; per zero coupon è 0; 
+        <li><span style="font-weight: 800">Tasso:</span>
+          per bond a tasso fisso questo parametro è noto; per zero coupon è 0;
           per gli altri, in bocca al lupo;</li>
-        <li><span style="font-weight: 800">Premio %:</span>  
-          se presente, è il premio fedeltà; se l'obbligazione non è presa al 
-          lancio o se non ha premio fedeltà, qui si metterà valore 0%.</li>          
+        <li><span style="font-weight: 800">Premio %:</span>
+          se presente, è il premio fedeltà; se l'obbligazione non è presa al
+          lancio o se non ha premio fedeltà, qui si metterà valore 0%.</li>
       </ul>
 
       <p style="text-align: justify;">
-        Queste scritte occuperanno colonna B da riga 2 a riga 17 (comprese). Si 
-        presti attenzione al fatto che in questa tab (differentemente dalle prossime) 
-        si è scelto di inserire i valori in colonna per permettere una più semplice 
-        identificazione degli input e output evitando all'utente un continuo 
-        scroll sinistra-destra. In seguito andremo a riempire molte altre righe 
-        del foglio aggiungendo una serie di parametri e output. Gran parte verranno 
-        però nascoste per facilitare la lettura all'utente. In ogni caso, arrivati 
-        a questo punto, dopo un abbellimento grafico, il risultato sarà il 
+        Queste scritte occuperanno colonna B da riga 2 a riga 17 (comprese). Si
+        presti attenzione al fatto che in questa tab (differentemente dalle prossime)
+        si è scelto di inserire i valori in colonna per permettere una più semplice
+        identificazione degli input e output evitando all'utente un continuo
+        scroll sinistra-destra. In seguito andremo a riempire molte altre righe
+        del foglio aggiungendo una serie di parametri e output. Gran parte verranno
+        però nascoste per facilitare la lettura all'utente. In ogni caso, arrivati
+        a questo punto, dopo un abbellimento grafico, il risultato sarà il
         seguente:
       </p>
 
       <!-- FIGURA 1 solo box blu -->
-	    <a class="gallery-item" 
-	      href="./assets/images/spreadsheet/bonds-fig1.webp">
-	      <img src="./assets/images/spreadsheet/bonds-fig1.webp"
-	        class="box px-0 py-0 ml-auto mr-auto" width="180" 
-	        title="picture1 of slideshow" 
-	        alt="A screenshot of the input box (only input declaration).">
-	      <p class="has-text-centered is-size-6 caption">
-	        A screenshot of the input box (only input declaration).</p>
-	    </a>
+      <a class="gallery-item" href="./assets/images/spreadsheet/bonds-fig1.webp">
+        <img src="./assets/images/spreadsheet/bonds-fig1.webp" class="box px-0 py-0 ml-auto mr-auto" width="180"
+          title="picture1 of slideshow" alt="A screenshot of the input box (only input declaration).">
+        <p class="has-text-centered is-size-6 caption">
+          A screenshot of the input box (only input declaration).</p>
+      </a>
 
-      
+
       <p style="text-align: justify;">
-        Lasciamo colonna C vuota. In colonna D riempiamo le celle con le informazioni 
-        dell'obbligazione di interesse. 
+        Lasciamo colonna C vuota. In colonna D riempiamo le celle con le informazioni
+        dell'obbligazione di interesse.
         <br>
-        Viene qui prodotto un esempio a titolo illustrativo. 
-        L'obbligazione è stata scelta randomicamente dal sito <a href="https://www.simpletoolsforinvestors.eu/index.shtml">simpleToolsForInvestors.eu</a>: 
-        si tratta del "BTP TF 4.5% OT 53", BTP a tasso fisso, con cedola 4.5% 
+        Viene qui prodotto un esempio a titolo illustrativo.
+        L'obbligazione è stata scelta randomicamente dal sito <a
+          href="https://www.simpletoolsforinvestors.eu/index.shtml">simpleToolsForInvestors.eu</a>:
+        si tratta del "BTP TF 4.5% OT 53", BTP a tasso fisso, con cedola 4.5%
         (stacco semestrale) con scadenza ottobre 2053.
         <br>
-        Inseriamo la dicitura in cella D2. L'ISIN è facilmente reperibile online. 
-        La regione è "Italia", trattandosi di un BTP. In cella D5 creiamo una 
-        "convalida dei dati", impostando come opzioni "governativo" (di stato) 
-        e "corporate" (associato ad una azienda). La procedura è simile a quanto 
-        visto per la tab "ListaMovimenti" (colonna Metodo o Categoria). Selezioniamo 
+        Inseriamo la dicitura in cella D2. L'ISIN è facilmente reperibile online.
+        La regione è "Italia", trattandosi di un BTP. In cella D5 creiamo una
+        "convalida dei dati", impostando come opzioni "governativo" (di stato)
+        e "corporate" (associato ad una azienda). La procedura è simile a quanto
+        visto per la tab "ListaMovimenti" (colonna Metodo o Categoria). Selezioniamo
         quindi "governativo" in cella D5.
         <br>
-        La data di emissione è 23/02/2023; quella di rimborso 01/10/2053. La data 
+        La data di emissione è 23/02/2023; quella di rimborso 01/10/2053. La data
         di acquisto è 28/01/2024.
         <br>
-        In cella D9 facciamo un'altra convalida di dati. Applichiamo come opzioni 
-        "trimestrale", "semestrale", "annuale", "zero coupon". L'obbligazione è 
+        In cella D9 facciamo un'altra convalida di dati. Applichiamo come opzioni
+        "trimestrale", "semestrale", "annuale", "zero coupon". L'obbligazione è
         a stacco cedolare semestrale, quindi scegliamo l'opzione corretta.
         <br>
-        Inseriamo un po' di numeri ora. Il taglio minimo è 1000. Inseriamo 
-        questo numero in cella D10. Ipotizziamo di acquistare 10 quote (all'emissione 
-        ciò corrisponderebbe a 10000 €); inseriamo 10 in cella D11. 
-        Saltiamo per un attimo cella D12, e inseriamo in celle D13:D15 
-        nell'ordine: a) il prezzo di 
-        emissione (99.599); b) il prezzo di rimborso (100); c) il prezzo di acquisto 
-        (100.50). Il tasso, in cella D16 è 4.5%; 
+        Inseriamo un po' di numeri ora. Il taglio minimo è 1000. Inseriamo
+        questo numero in cella D10. Ipotizziamo di acquistare 10 quote (all'emissione
+        ciò corrisponderebbe a 10000 €); inseriamo 10 in cella D11.
+        Saltiamo per un attimo cella D12, e inseriamo in celle D13:D15
+        nell'ordine: a) il prezzo di
+        emissione (99.599); b) il prezzo di rimborso (100); c) il prezzo di acquisto
+        (100.50). Il tasso, in cella D16 è 4.5%;
         il premio è 0% in cella D17.
         <br>
-        In cella D12 resta da inserire una informazione necessaria per il calcolo 
+        In cella D12 resta da inserire una informazione necessaria per il calcolo
         del premio. Facciamo una convalida dei dati considerando due alternative:
-        "SÌ" e "NO". Poichè la data di acquisto non corrisponde alla data di emissione, 
+        "SÌ" e "NO". Poichè la data di acquisto non corrisponde alla data di emissione,
         scegliamo "NO" in cella D12.
         <br>
         Il risultato sarà il seguente:
-      </p>      
+      </p>
 
       <!-- FIGURA 2 solo input B:D -->
-	    <a class="gallery-item" 
-	      href="./assets/images/spreadsheet/bonds-fig2.webp">
-	      <img src="./assets/images/spreadsheet/bonds-fig2.webp"
-	        class="box px-0 py-0 ml-auto mr-auto" width="360" 
-	        title="picture1 of slideshow" 
-	        alt="A screenshot of the input box (input declaration and inputs).">
-	      <p class="has-text-centered is-size-6 caption">
-	        A screenshot of the input box (input declaration and inputs).</p>
-	    </a>
+      <a class="gallery-item" href="./assets/images/spreadsheet/bonds-fig2.webp">
+        <img src="./assets/images/spreadsheet/bonds-fig2.webp" class="box px-0 py-0 ml-auto mr-auto" width="360"
+          title="picture1 of slideshow" alt="A screenshot of the input box (input declaration and inputs).">
+        <p class="has-text-centered is-size-6 caption">
+          A screenshot of the input box (input declaration and inputs).</p>
+      </a>
 
       <h2 id="PimiCalcoli" style="scroll-margin: 1em;">
         <a href="#PimiCalcoli" class="headerlink" title="PimiCalcoli"></a>
@@ -239,165 +227,167 @@
       </h2>
 
       <p style="text-align: justify;">
-        Proseguiamo ora con l'inserimento dei primi calcoli che forniranno valori 
-        di supporto importanti per gli output finali. Per questi dati usiamo 
-        le celle che vanno da B19 a B31 e da D19 a D31. In cella B19 
-        cominciamo con la <span style="font-weight: 800">"Tassazione %"</span>. 
+        Proseguiamo ora con l'inserimento dei primi calcoli che forniranno valori
+        di supporto importanti per gli output finali. Per questi dati usiamo
+        le celle che vanno da B19 a B31 e da D19 a D31. In cella B19
+        cominciamo con la <span style="font-weight: 800">"Tassazione %"</span>.
         Obbligazioni governative sono
-        tassate al 12.5%; quelle corporate al 26%. 
+        tassate al 12.5%; quelle corporate al 26%.
         In cella D19 usiamo quindi la formula:
       </p>
 
-      <div class="code-container">				
-				=SE(D5="governativo"; 12,5%; 26%)
+      <div class="code-container">
+        =SE(D5="governativo"; 12,5%; 26%)
       </div>
 
       <p style="text-align: justify;">
-        Per il caso corrente il risultato dovrà essere 12.5%. Passiamo 
-        quindi a cella B20, in cui inseriamo il testo 
+        Per il caso corrente il risultato dovrà essere 12.5%. Passiamo
+        quindi a cella B20, in cui inseriamo il testo
         <span style="font-weight: 800">"Ritenuta fiscale"</span>.
-        In questo caso ci si aspetta un valore maggiore di zero solo se 
-        il prezzo di rimborso è maggiore del prezzo di carico (acquisto). 
-        La ritenuta è basata sulla tassazione contenuta in cella precedente. 
+        In questo caso ci si aspetta un valore maggiore di zero solo se
+        il prezzo di rimborso è maggiore del prezzo di carico (acquisto).
+        La ritenuta è basata sulla tassazione contenuta in cella precedente.
         Quindi, in cella D20 si avrà:
       </p>
-        
-      <div class="code-container">				
+
+      <div class="code-container">
         =SE(D14-D15>0;D19*(D14-D15);0)
       </div>
 
       <p style="text-align: justify;">
-        Per il caso corrente il risultato è 0. Questo risultato influenza 
-        anche cella D21. In B21 infatti inseriamo il testo 
-        <span style="font-weight: 800">"prezzo di rimborso netto"</span>. 
-        Considerando <span>\(P_e\)</span> il prezzo di emissione, 
-        <span>\(P_a\)</span> il prezzo di acquisto e <span>\(P_r\)</span> 
-        il prezzo di rimborso, l'operazione in D21 dipende dal tipo di 
+        Per il caso corrente il risultato è 0. Questo risultato influenza
+        anche cella D21. In B21 infatti inseriamo il testo
+        <span style="font-weight: 800">"prezzo di rimborso netto"</span>.
+        Considerando <span>\(P_e\)</span> il prezzo di emissione,
+        <span>\(P_a\)</span> il prezzo di acquisto e <span>\(P_r\)</span>
+        il prezzo di rimborso, l'operazione in D21 dipende dal tipo di
         obbligazione:
       </p>
 
       <ul>
         <li>Se zero coupon: il valore da inserire è <span>\(P_r\)</span></li>
         <li>Se tasso fisso e <span>\(P_r - P_a = 0\)</span>, allora il valore sarà
-          <span>\(P_r\)</span></li>
-        <li>In ogni altro caso bisgogna inserire 
-        <span>\(P_r - (P_r - P_a) \times \text{{tassazione%}}\)</span></li>
+          <span>\(P_r\)</span>
+        </li>
+        <li>In ogni altro caso bisgogna inserire
+          <span>\(P_r - (P_r - P_a) \times \text{{tassazione%}}\)</span>
+        </li>
       </ul>
 
       <p style="text-align: justify;">
         La formula in cella D21 quindi è
       </p>
 
-      <div class="code-container">				
+      <div class="code-container">
         =SE(D9="zero coupon";D14;SE(D14-D15>0;D14-(D14-D15)*D19;D14))
       </div>
 
       <p style="text-align: justify;">
-        Molto facilmente, il <span style="font-weight: 800">"numero di 
-        cedole"</span> all'anno (B22) dipende 
-        dal tipo di stacco cedolare. Regoliamo il numero in cella D22 
+        Molto facilmente, il <span style="font-weight: 800">"numero di
+          cedole"</span> all'anno (B22) dipende
+        dal tipo di stacco cedolare. Regoliamo il numero in cella D22
         secondo la formula
       </p>
-      
-      <div class="code-container">				
+
+      <div class="code-container">
         =SE(D9="zero coupon";0;SE(D9="annuale";1;SE(D9="semestrale";2;SE(D9="trimestrale";3;"caso strano"))))
       </div>
 
       <p style="text-align: justify;">
-        Usiamo le righe 23 e 24 per identificare due altre importanti 
-        informazioni: l'ultimo (lo scorso) e il prossimo momento di 
-        stacco cedolare. 
-        Questi due dati sono estremamente importanti per il calcolo del 
-        rateo che aggiungeremo a breve. In cella B23 inseriamo 
-        <span style="font-weight: 800">"Ultimo stacco cedolare"</span> 
-        (precedente); in B24 inseriamo 
-        <span style="font-weight: 800">"Prossimo stacco cedolare"</span>. 
+        Usiamo le righe 23 e 24 per identificare due altre importanti
+        informazioni: l'ultimo (lo scorso) e il prossimo momento di
+        stacco cedolare.
+        Questi due dati sono estremamente importanti per il calcolo del
+        rateo che aggiungeremo a breve. In cella B23 inseriamo
+        <span style="font-weight: 800">"Ultimo stacco cedolare"</span>
+        (precedente); in B24 inseriamo
+        <span style="font-weight: 800">"Prossimo stacco cedolare"</span>.
         Le formule in celle D23 e D24 sono rispettivamente:
       </p>
 
-      <div class="code-container">				
+      <div class="code-container">
         =SE(D9="zero coupon";D6; DATA.CED.PREC(D8;D7;D22;1))
       </div>
 
-      <div class="code-container">				
+      <div class="code-container">
         =SE(D9="zero coupon";D7; DATA.CED.SUCC(D8;D7;D22;1))
       </div>
 
       <p style="text-align: justify;">
-        Intrinsecamente le due formule già considerano il fatto che 
-        non vi è stacco cedolare nelle obbligazioni zero coupon. 
+        Intrinsecamente le due formule già considerano il fatto che
+        non vi è stacco cedolare nelle obbligazioni zero coupon.
         Per tali obbligazioni la data di emissione corrisponde alla data
-        dell'ultima cedola staccata (quindi precedente); allo stesso modo, 
+        dell'ultima cedola staccata (quindi precedente); allo stesso modo,
         la data di prossima cedola corrisponderà alla data di rimborso.
         <br>
-        La prossima informazione rilevante riguarda il rateo percentuale 
-        da pagare al proprietario precedente (lordo in cella 
-        B25 e netto in cella B26). Di nuovo, il valore dipende dalla 
-        tipologia di obbligazione. A quanto pare per le "zero coupon" 
-        il rateo è implicitamente contenuto nel valore dell'obbligazione. 
-        Quindi, pur influenzando il prezzo sul mercato secondario, il 
-        valore in cella D25 e D26 per le "zero coupon" deve essere 0. 
-        Per tutte le altre obbligazioni (a tasso fisso), la seguente formula 
-        si usa in cella D25 per calcolare il 
-        <span style="font-weight: 800">rateo lordo percentuale</span> 
+        La prossima informazione rilevante riguarda il rateo percentuale
+        da pagare al proprietario precedente (lordo in cella
+        B25 e netto in cella B26). Di nuovo, il valore dipende dalla
+        tipologia di obbligazione. A quanto pare per le "zero coupon"
+        il rateo è implicitamente contenuto nel valore dell'obbligazione.
+        Quindi, pur influenzando il prezzo sul mercato secondario, il
+        valore in cella D25 e D26 per le "zero coupon" deve essere 0.
+        Per tutte le altre obbligazioni (a tasso fisso), la seguente formula
+        si usa in cella D25 per calcolare il
+        <span style="font-weight: 800">rateo lordo percentuale</span>
         \( R_L \):
-        $$ R_L = \frac{(D_a - D_{u.c.})}{(D_{p.c.} - D_{u.c.})} 
-          \frac{1}{N_c} \text{{tasso%}} $$
-          
-        in cui <span>\( D_a \)</span> è data di acquisto; 
-        <span>\( D_{u.c.} \)</span> e <span>\( D_{p.c.} \)</span> sono 
-        le date di ultima e prossima cedola; <span>\( N_c \)</span> 
-        è il numero di cedole. Il <span style="font-weight: 800">rateo 
-        netto percentuale</span> \( R_N \) in cella 
+        $$ R_L = \frac{(D_a - D_{u.c.})}{(D_{p.c.} - D_{u.c.})}
+        \frac{1}{N_c} \text{{tasso%}} $$
+
+        in cui <span>\( D_a \)</span> è data di acquisto;
+        <span>\( D_{u.c.} \)</span> e <span>\( D_{p.c.} \)</span> sono
+        le date di ultima e prossima cedola; <span>\( N_c \)</span>
+        è il numero di cedole. Il <span style="font-weight: 800">rateo
+          netto percentuale</span> \( R_N \) in cella
         D26 diventa: $$ R_N = R_L \cdot (1-\text{{tassazione%}})$$
         <br>
         Numericamente, in cella D25 e D26 inseriamo rispettivamente:
       </p>
 
-      <div class="code-container">				
+      <div class="code-container">
         =SE(D9="zero coupon";0;SE(D12="YES";0;(D8-D23)/(D24-D23)/D22*D16))
       </div>
 
-      <div class="code-container">				
+      <div class="code-container">
         =D25*(1-D19)
       </div>
 
       <p style="text-align: justify;">
-        Attenzione: questi sono valori percentuali dai quali 
-        estrarremo valori in euro sulla base del capitale 
-        investito. A tal proposito, inseriamo in cella B27 il testo 
-        <span style="font-weight: 800">"Capitale investito"</span>. 
-        Il valore sarà dato dal prezzo di acquisto per le quote 
-        acquistate per il valore di "Costo / singolo" diviso 100. 
+        Attenzione: questi sono valori percentuali dai quali
+        estrarremo valori in euro sulla base del capitale
+        investito. A tal proposito, inseriamo in cella B27 il testo
+        <span style="font-weight: 800">"Capitale investito"</span>.
+        Il valore sarà dato dal prezzo di acquisto per le quote
+        acquistate per il valore di "Costo / singolo" diviso 100.
         Numericamente, in cella D27:
       </p>
 
-      <div class="code-container">				      
+      <div class="code-container">
         =(D10*D11*D15)/100
       </div>
-      
+
       <p style="text-align: justify;">
         Facilissimo è anche il calcolo del <span style="font-weight: 800">
-        tasso nominale netto</span>, basato sul tasso lordo (messo tra gli 
-        input) e la tassazione (dipendente dalla tipologia di bond). 
-        Questo è il parametro da inserire in cella B28, e, numericamente, 
+          tasso nominale netto</span>, basato sul tasso lordo (messo tra gli
+        input) e la tassazione (dipendente dalla tipologia di bond).
+        Questo è il parametro da inserire in cella B28, e, numericamente,
         in D28 secondo la formula seguente:
       </p>
 
-      <div class="code-container">				      
+      <div class="code-container">
         =D16-(D16*D19)
       </div>
 
       <p style="text-align: justify;">
-        Completiamo le ultime 3 righe dello spazio dichiarato a inizio 
+        Completiamo le ultime 3 righe dello spazio dichiarato a inizio
         sezione inserendo i <span style="font-weight: 800">
-        ratei maturati (lordo e netto)</span>. Questa volta sono in 
-        valuta dell'obbligazione e basati sul capitale 
-        investito. Il primo (rateo lordo, in valuta) è a riga 29. 
+          ratei maturati (lordo e netto)</span>. Questa volta sono in
+        valuta dell'obbligazione e basati sul capitale
+        investito. Il primo (rateo lordo, in valuta) è a riga 29.
         In D29 si ha:
       </p>
 
-      <div class="code-container">				      
+      <div class="code-container">
         =D10*D11*D25
       </div>
 
@@ -406,207 +396,202 @@
         </span> (cella B30) calcolate in cella D30 secondo la formula
       </p>
 
-      <div class="code-container">				      
+      <div class="code-container">
         =(D25-D26)*D10*D11
       </div>
 
       <p style="text-align: justify;">
-        si ha il <span style="font-weight: 800">rateo netto maturato</span> 
+        si ha il <span style="font-weight: 800">rateo netto maturato</span>
         (riga 31). Il calcolo, nella cella D31, è il seguente:
       </p>
 
-      <div class="code-container">				      
+      <div class="code-container">
         =D29*(1-D19)
       </div>
-      
+
       <p style="text-align: justify;">
-        Il risultato di questa lunga lista di operazioni è riportato nella 
-        figura sottostante. Tutti questi dati sono comunque di supporto 
-        e verranno nascosti al termine dello sviluppo. Si presti attenzione 
-        ai risultati. Questi devono tornare correttamente una volta 
-        impostati gli input come da tutorial. È ininfluente che la data di 
-        acquisto sia diversa dalla data in cui la Tab viene costruita. È 
-        invece importante usare questo tutorial e altri dati (disponibili 
-        sul sito <a href="https://www.simpletoolsforinvestors.eu/index.shtml">simpleToolsForInvestors.eu</a>) per controllare l'accuratezza delle 
+        Il risultato di questa lunga lista di operazioni è riportato nella
+        figura sottostante. Tutti questi dati sono comunque di supporto
+        e verranno nascosti al termine dello sviluppo. Si presti attenzione
+        ai risultati. Questi devono tornare correttamente una volta
+        impostati gli input come da tutorial. È ininfluente che la data di
+        acquisto sia diversa dalla data in cui la Tab viene costruita. È
+        invece importante usare questo tutorial e altri dati (disponibili
+        sul sito <a href="https://www.simpletoolsforinvestors.eu/index.shtml">simpleToolsForInvestors.eu</a>) per
+        controllare l'accuratezza delle
         operazioni e dei risultati.
       </p>
-      
+
       <!-- FIGURA 3 solo input B:D per output di supporto -->
-	    <a class="gallery-item" 
-	      href="./assets/images/spreadsheet/bonds-fig3.webp">
-	      <img src="./assets/images/spreadsheet/bonds-fig3.webp"
-	        class="box px-0 py-0 ml-auto mr-auto" width="360" 
-	        title="picture1 of slideshow" 
-	        alt="A screenshot of the first data for support.">
-	      <p class="has-text-centered is-size-6 caption">
-	        A screenshot of the first data for support.</p>
-	    </a>  
-  
+      <a class="gallery-item" href="./assets/images/spreadsheet/bonds-fig3.webp">
+        <img src="./assets/images/spreadsheet/bonds-fig3.webp" class="box px-0 py-0 ml-auto mr-auto" width="360"
+          title="picture1 of slideshow" alt="A screenshot of the first data for support.">
+        <p class="has-text-centered is-size-6 caption">
+          A screenshot of the first data for support.</p>
+      </a>
+
       <h2 id="PrimiOutput" style="scroll-margin: 1em;">
         <a href="#PrimiOutput" class="headerlink" title="PrimiOutput"></a>
         Primi output
       </h2>
-  
+
       <p style="text-align: justify;">
-        Finalmente iniziamo a costruire gli output di interesse. 
-        Le celle occupate da queste informazioni (alcune delle quali verranno 
-        nascoste) vanno da riga 33 a riga 49. Viene qui presentata 
-        una lista di output (testo da inserire in colonna B). Le 
-        corrispondenti caselle in colonna D sono riempite con 
-        le operazioni necessarie ad ottenere output numerici. Il 
-        riempimento va fatto in ordine (da 33 a 49). Tuttavia, si attendenda 
-        di arrivare al termine della sezione prima di fare un controllo 
-        sulla correttezza dei risultati. Alcuni parametri dipendono da 
-        output in celle successive. 
+        Finalmente iniziamo a costruire gli output di interesse.
+        Le celle occupate da queste informazioni (alcune delle quali verranno
+        nascoste) vanno da riga 33 a riga 49. Viene qui presentata
+        una lista di output (testo da inserire in colonna B). Le
+        corrispondenti caselle in colonna D sono riempite con
+        le operazioni necessarie ad ottenere output numerici. Il
+        riempimento va fatto in ordine (da 33 a 49). Tuttavia, si attendenda
+        di arrivare al termine della sezione prima di fare un controllo
+        sulla correttezza dei risultati. Alcuni parametri dipendono da
+        output in celle successive.
       </p>
 
       <ul>
         <li><span style="font-weight: 800">Totale investimento:</span>
-          in cella B33, è l'ammontare in Euro da pagare al momento 
+          in cella B33, è l'ammontare in Euro da pagare al momento
           dell'acquisto. La funzione di calcolo in D33 è:
           <div class="code-container">
             =D27+D31-D40
           </div>
-          </li>
+        </li>
         <li><span style="font-weight: 800">Rimborso lordo:</span>
-          in cella B35, è la somma che viene rimborsata al termine 
+          in cella B35, è la somma che viene rimborsata al termine
           dell'investimento. La formula in D35 è:
           <div class="code-container">
             =D10*D11*D14/100
           </div>
-          </li>
+        </li>
         <li><span style="font-weight: 800">Ritenute:</span>
-          in cella B36. Usiamo questa cella per storare le informazioni 
+          in cella B36. Usiamo questa cella per storare le informazioni
           della capital gain tax. La sua formula in D36 è:
           <div class="code-container">
             =MAX(0;((D14/100*D10*D11-D41/D19)-(D15/100*D11*D10-D40/D19))*D19)
-          </div>          
-          </li>
+          </div>
+        </li>
         <li><span style="font-weight: 800">(Dr-De)/365:</span>
-          in cella B37. Questo e il prossimo dato sono importantissimi per il 
-          calcolo del prezzo teorico delle zero coupon. Data la complessità 
-          della formula che useremo, questo dato incorpora "Data di rimborso" 
-          meno "Data di emissione", diviso 365 (giorni). La formula, molto 
+          in cella B37. Questo e il prossimo dato sono importantissimi per il
+          calcolo del prezzo teorico delle zero coupon. Data la complessità
+          della formula che useremo, questo dato incorpora "Data di rimborso"
+          meno "Data di emissione", diviso 365 (giorni). La formula, molto
           semplice, in cella D37 è:
           <div class="code-container">
             =(D7-D6)/365
           </div>
-          </li>
+        </li>
         <li><span style="font-weight: 800">(Da-De)/365:</span>
-          in cella B38. Simile al dato precedente, è composto da "Data di acquisto" 
+          in cella B38. Simile al dato precedente, è composto da "Data di acquisto"
           meno "Data di emissione", diviso 365. La formula quindi diviene:
           <div class="code-container">
             =(D8-D6)/365
-          </div>          
-          </li>        
+          </div>
+        </li>
         <li><span style="font-weight: 800">Prezzo teorico zero coupon:</span>
-          per le zero coupon, questo dato è fondamentale per il calcolo 
-          del credito di disaggio. Il testo è in cella B39; la sua formula 
+          per le zero coupon, questo dato è fondamentale per il calcolo
+          del credito di disaggio. Il testo è in cella B39; la sua formula
           in D39 è:
-          <div class="code-container">          
+          <div class="code-container">
             =D13*((10^(LOG10(D14/D13)/D37))^D38)
           </div>
-          </li>        
-        <li><span style="font-weight: 800">Credito di disaggio:</span> 
-          Borsa Italiana dichiara che il disaggio è la "Differenza (positiva) 
+        </li>
+        <li><span style="font-weight: 800">Credito di disaggio:</span>
+          Borsa Italiana dichiara che il disaggio è la "Differenza (positiva)
           tra il valore di rimborso di un titolo e il suo prezzo di emissione".
-          Di questo disag(g)io ne esiste una parte di credito 
-          (considerata in cella B40) e una parte di addebito 
-          (nella cella sottostante). Certo, sarebbe anche tutto bello e 
-          facile se le formule non fossero complicate 
-          al punto da richiedere la presenza di un prezzo teorico. 
-          Viene qui riportata la formula da inserire nella cella D40; 
+          Di questo disag(g)io ne esiste una parte di credito
+          (considerata in cella B40) e una parte di addebito
+          (nella cella sottostante). Certo, sarebbe anche tutto bello e
+          facile se le formule non fossero complicate
+          al punto da richiedere la presenza di un prezzo teorico.
+          Viene qui riportata la formula da inserire nella cella D40;
           la spiegazione della formula segue in appendice.
           <div class="code-container">
-             =SE(D9="zero coupon";(D39-D13)*D19*D10*D11/100;(D14-D13)/100*(D8-D6)/(D7-D6)*D19*D10*D11)   
+            =SE(D9="zero coupon";(D39-D13)*D19*D10*D11/100;(D14-D13)/100*(D8-D6)/(D7-D6)*D19*D10*D11)
           </div>
-          </li>
+        </li>
         <li><span style="font-weight: 800">Addebito disaggio emissione:</span>
-          in cella B41, con funzione in D41. Di nuovo, la spiegazione è in 
+          in cella B41, con funzione in D41. Di nuovo, la spiegazione è in
           appendice.
           <div class="code-container">
             =MAX((D14-D13)*D19*D10*D11/100;0)
           </div>
-          </li>
+        </li>
         <li><span style="font-weight: 800">Valore a scadenza (ex cedola):</span>
-          in cella B42, questo valore indica quanto riceviamo a scadenza 
-          non includendo la cedola finale. Si tratta quindi del rimborso ex 
-          cedola, considerando ritenute e addebito di disaggio. La formula in 
+          in cella B42, questo valore indica quanto riceviamo a scadenza
+          non includendo la cedola finale. Si tratta quindi del rimborso ex
+          cedola, considerando ritenute e addebito di disaggio. La formula in
           D42 è la seguente:
           <div class="code-container">
             =D35-D36-D41
-          </div>          
-          </li>
+          </div>
+        </li>
         <li><span style="font-weight: 800">Guadagno cedolare:</span>
-          in cella B44, questo parametro indica quanto è il guadagno 
-          prodotto dalle sole cedole staccate dall'obblicazione (a patto 
-          che non sia una zero coupon). La funzione da usare in cella D44 
+          in cella B44, questo parametro indica quanto è il guadagno
+          prodotto dalle sole cedole staccate dall'obblicazione (a patto
+          che non sia una zero coupon). La funzione da usare in cella D44
           è riportata di seguito.
           <div class="code-container">
             =SE(D9="zero coupon";0;SOMMA('Bond-Flussi'!D:D)+D33-D42)
           </div>
-          Si faccia attenzione: la formula richiama un ulteriore foglio 
-          di calcolo (che andremo a creare a breve). Il foglio in questione 
-          dovrà funzionare da supporto e conterrà l'evoluzione 
-          nel tempo del bond con indicazione di giorno e ammontare di 
-          ogni stacco cedolare. Ovviamente prima della creazione del nuovo 
+          Si faccia attenzione: la formula richiama un ulteriore foglio
+          di calcolo (che andremo a creare a breve). Il foglio in questione
+          dovrà funzionare da supporto e conterrà l'evoluzione
+          nel tempo del bond con indicazione di giorno e ammontare di
+          ogni stacco cedolare. Ovviamente prima della creazione del nuovo
           foglio di supporto questa formula darà un errore.
-          </li>
+        </li>
         <li><span style="font-weight: 800">Guadagno totale netto:</span>
-          in cella B45, questo parametro indica quanto si è guadagnato 
-          (guadagnerà) con il bond in questione. La formula in D45 è 
-          banalmente una differenza tra valore a scadenza (prossimo 
+          in cella B45, questo parametro indica quanto si è guadagnato
+          (guadagnerà) con il bond in questione. La formula in D45 è
+          banalmente una differenza tra valore a scadenza (prossimo
           output) e il precedente dato, già citato, "Totale investimento".
-          <div class="code-container">          
+          <div class="code-container">
             =D46-D33
           </div>
-          </li>        
+        </li>
         <li><span style="font-weight: 800">Valore a scadenza:</span>
-          in cella B46. La riga serve a contenere il valore del bond 
-          a scadenza. In pratica, in cella D46, la formula somma quanto 
+          in cella B46. La riga serve a contenere il valore del bond
+          a scadenza. In pratica, in cella D46, la formula somma quanto
           si riceve a rimborso (netto) e il guadagno cedolare.
           <div class="code-container">
             =D42+D44
           </div>
-          </li>        
+        </li>
         <li><span style="font-weight: 800">Durata dall'acquisto:</span>
-          in riga 47 inseriamo il dato sulla distanza temporale 
+          in riga 47 inseriamo il dato sulla distanza temporale
           (in anni) che sepata data di acquisto e data di fine bond:
-          <div class="code-container">          
+          <div class="code-container">
             =(D7-D8)/365
           </div>
-          </li>
+        </li>
         <li><span style="font-weight: 800">Durata da oggi:</span>
-          in riga 48 mettiamo lo stesso dato, rispetto però alla 
-          data di oggi. Questa riga indica quindi quanto ci 
+          in riga 48 mettiamo lo stesso dato, rispetto però alla
+          data di oggi. Questa riga indica quindi quanto ci
           manca alla scadenza:
-          <div class="code-container">      
+          <div class="code-container">
             =SE(D7-OGGI()>0;(D7-OGGI())/365)
           </div>
-          </li>
+        </li>
         <li><span style="font-weight: 800">Rendimento con TIR.X:</span>
-          in riga 49. Andiamo a calcolare il rendimento della 
+          in riga 49. Andiamo a calcolare il rendimento della
           obbligazione usando una formula nativa di Google Sheet: TIR.X.
-          La funzione richiede l'uso di due colonne di dati; queste vengono 
-          di nuovo dalla tab di supporto, che a questo punto è il caso di 
-          creare. Prima però inseriamo in cella D49 la seguente 
+          La funzione richiede l'uso di due colonne di dati; queste vengono
+          di nuovo dalla tab di supporto, che a questo punto è il caso di
+          creare. Prima però inseriamo in cella D49 la seguente
           formula:
           <div class="code-container">
             =TIR.X('Bond-Flussi'!D5:D1000;'Bond-Flussi'!B5:B1000)
           </div>
-          </li>
+        </li>
       </ul>
 
       <!-- FIGURA 4 - 33 to 49 blue and orange -->
-	    <a class="gallery-item" 
-	      href="./assets/images/spreadsheet/bonds-fig4.webp">
-	      <img src="./assets/images/spreadsheet/bonds-fig4.webp"
-	        class="box px-0 py-0 ml-auto mr-auto" width="360" 
-	        title="picture1 of slideshow" 
-	        alt="A screenshot of the first output data.">
-	      <p class="has-text-centered is-size-6 caption">
-	        A screenshot of the first output data.</p>
-	    </a>
+      <a class="gallery-item" href="./assets/images/spreadsheet/bonds-fig4.webp">
+        <img src="./assets/images/spreadsheet/bonds-fig4.webp" class="box px-0 py-0 ml-auto mr-auto" width="360"
+          title="picture1 of slideshow" alt="A screenshot of the first output data.">
+        <p class="has-text-centered is-size-6 caption">
+          A screenshot of the first output data.</p>
+      </a>
 
       <h2 id="TabDiSupporto" style="scroll-margin: 1em;">
         <a href="#TabDiSupporto" class="headerlink" title="TabDiSupporto"></a>
@@ -614,156 +599,150 @@
       </h2>
 
       <p style="text-align: justify;">
-        Come si è visto nella sezione precedente, un paio di output necessitano 
-        di conoscere i flussi di cassa causati dall'acquisto del bond, dal rimborso 
-        e dallo stacco cedolare. A questo proposito, per evitare di intasare 
-        la tab Bonds, creiamone una di supporto che poi andremo a nascondere. 
+        Come si è visto nella sezione precedente, un paio di output necessitano
+        di conoscere i flussi di cassa causati dall'acquisto del bond, dal rimborso
+        e dallo stacco cedolare. A questo proposito, per evitare di intasare
+        la tab Bonds, creiamone una di supporto che poi andremo a nascondere.
         <br>
-        Attenzione: la tab Bonds e la tab di supporto DEVONO avere il nome 
-        dichiarato in questo post. Per evitare errori, se si decide di cambiare 
-        nome alle tab sarà necessario cambiare anche le dichiarazioni nelle 
-        funzioni che pescano valori dalle tab stesse. 
-        <br> 
+        Attenzione: la tab Bonds e la tab di supporto DEVONO avere il nome
+        dichiarato in questo post. Per evitare errori, se si decide di cambiare
+        nome alle tab sarà necessario cambiare anche le dichiarazioni nelle
+        funzioni che pescano valori dalle tab stesse.
+        <br>
         Creiamo una nuova tab vuota e rinominiamola "Bond-Flussi".
         <br>
-        Nella nuova tab, in cella A2 inseriamo "Bond flow". A lato, unendo 
-        celle B2:D2, inseriamo la scritta "Bond 1" o usiamo lo stesso nome del 
-        primo bond considerato. Lasciamo riga 3 libera. In celle B4, C4, e D4 
-        inseriamo rispettivamente: "Flussi", "Cedola netta", "Flusso capitale". 
+        Nella nuova tab, in cella A2 inseriamo "Bond flow". A lato, unendo
+        celle B2:D2, inseriamo la scritta "Bond 1" o usiamo lo stesso nome del
+        primo bond considerato. Lasciamo riga 3 libera. In celle B4, C4, e D4
+        inseriamo rispettivamente: "Flussi", "Cedola netta", "Flusso capitale".
         <br>
         In cella B5 inseriamo:
-          <div class="code-container">
-            =Bonds!D8
-          </div>
-        avremo in questa cella la data di acquisto. Nella cella subito sotto (B6) 
-        inseriamo:
-          <div class="code-container">
-            =SE(Bonds!D22=0;Bonds!D7;Bonds!D24)
-          </div>
-        Questa cella riporterà: a) la data di riscatto se si tratta di una 
-        obbligazione zero coupon; b) la data di stacco della prossima cedola negli 
-        altri casi. Nella cella subito sotto (B7) inseriamo:
-          <div class="code-container">        
-            =SE(VAL.VUOTO(B6);;SE(B6=Bonds!$D$7;;DATA.MESE(B6;12/Bonds!$D$22)))
-          </div>
-        Se la casella sopra sarà vuota, questa cella sarà vuota a sua volta 
-        (siamo già arrivati a scadenza). Altrimenti: a) se la cella precedente 
-        riporta la data di scadenza, questa cella sarà vuota (siamo appena 
-        arrivati a scadenza); b) se la cella subito sopra non è la data di 
-        scadenza, esiste un'altra data di stacco cedola che è calcolata secondo 
-        la formula appena presentata. 
-        <br>
-        Con un drag-and-drop di cella B7 fino a B1000 copriamo tutte le 
-        possibilità (inclusi bond Matusalemme a scadenza ultradecennale). 
-        Colonna B è sistemata.
-        <br>
-        Passiamo a colonna C. Cella C5 resta vuota. In cella C6 inseriamo la 
-        seguente funzione:
-          <div class="code-container">
-            =SE(Bonds!$D$22=0;0;SE(B6="";0;Bonds!$D$28/Bonds!$D$22))
-          </div>
-        La funzione produce una di 3 opzioni: a) inserisce 0 per le 0 coupon; 
-        b) mantiene la casella vuota se la cella corrispondente in colonna B è 
-        vuota (siamo arrivati oltre la scadenza del bond); c) negli altri 
-        casi inserisce il rendimento netto dell'obbligazione diviso per il 
-        numero di cedole staccate in un anno. 
-        Con un drag-and-drop riempiamo celle C7:C1000 a partire da C6. 
-        Colonna C è sistemata. 
-        <br>
-        Passiamo a colonna D. In cella D6 inseriamo la seguente formula:
-          <div class="code-container">
-            =-Bonds!D27-Bonds!D31+Bonds!D40
-          </div>
-        Abbiamo infatti un flusso negativo causato da "Capitale investito"
-        e "Rateo netto maturato" da pagare al precedente possessore. Il 
-        flusso positivo viene dal credito di disaggio. In cella D6 abbiamo 
-        invece una formula abbastanza complessa:
-          <div class="code-container">
-            =SE(B6=Bonds!$D$7;C6*100+Bonds!$D$42/Bonds!$D$10/Bonds!$D$11*100;SE(B6&lt;Bonds!$D$7;C6*100;))*Bonds!$D$10*Bonds!$D$11/100
-          </div>
-        La formula esamina subito se la cella B6 contiene la data di rimborso; 
-        se l'occasione si verifica, calcoliamo il rimborso totale come 
-        "rimborso a scadenza ex cedola" più guadagno derivato dalla 
-        cedola. Se si tratta di zero coupon, non c'è la parte di guadagno per 
-        stacco cedolare. 
-        Se la cella in B6 non contiene la data di rimborso, viene considerato 
-        solamente il gudagno (netto) per stacco cedolare. Se siamo oltre la scadenza, 
-        il valore riportato in colonna è 0. Questo ci permette di fare un drag-and-drop 
-        della funzione in cella D6 per tutte le celle sottostanti fino a D1000. 
-        Anche la colonna D è sistemata. Il risultato finale (per le prime righe, per 
-        il caso in esame) si presenta come nella figura seguente.
+      <div class="code-container">
+        =Bonds!D8
+      </div>
+      avremo in questa cella la data di acquisto. Nella cella subito sotto (B6)
+      inseriamo:
+      <div class="code-container">
+        =SE(Bonds!D22=0;Bonds!D7;Bonds!D24)
+      </div>
+      Questa cella riporterà: a) la data di riscatto se si tratta di una
+      obbligazione zero coupon; b) la data di stacco della prossima cedola negli
+      altri casi. Nella cella subito sotto (B7) inseriamo:
+      <div class="code-container">
+        =SE(VAL.VUOTO(B6);;SE(B6=Bonds!$D$7;;DATA.MESE(B6;12/Bonds!$D$22)))
+      </div>
+      Se la casella sopra sarà vuota, questa cella sarà vuota a sua volta
+      (siamo già arrivati a scadenza). Altrimenti: a) se la cella precedente
+      riporta la data di scadenza, questa cella sarà vuota (siamo appena
+      arrivati a scadenza); b) se la cella subito sopra non è la data di
+      scadenza, esiste un'altra data di stacco cedola che è calcolata secondo
+      la formula appena presentata.
+      <br>
+      Con un drag-and-drop di cella B7 fino a B1000 copriamo tutte le
+      possibilità (inclusi bond Matusalemme a scadenza ultradecennale).
+      Colonna B è sistemata.
+      <br>
+      Passiamo a colonna C. Cella C5 resta vuota. In cella C6 inseriamo la
+      seguente funzione:
+      <div class="code-container">
+        =SE(Bonds!$D$22=0;0;SE(B6="";0;Bonds!$D$28/Bonds!$D$22))
+      </div>
+      La funzione produce una di 3 opzioni: a) inserisce 0 per le 0 coupon;
+      b) mantiene la casella vuota se la cella corrispondente in colonna B è
+      vuota (siamo arrivati oltre la scadenza del bond); c) negli altri
+      casi inserisce il rendimento netto dell'obbligazione diviso per il
+      numero di cedole staccate in un anno.
+      Con un drag-and-drop riempiamo celle C7:C1000 a partire da C6.
+      Colonna C è sistemata.
+      <br>
+      Passiamo a colonna D. In cella D6 inseriamo la seguente formula:
+      <div class="code-container">
+        =-Bonds!D27-Bonds!D31+Bonds!D40
+      </div>
+      Abbiamo infatti un flusso negativo causato da "Capitale investito"
+      e "Rateo netto maturato" da pagare al precedente possessore. Il
+      flusso positivo viene dal credito di disaggio. In cella D6 abbiamo
+      invece una formula abbastanza complessa:
+      <div class="code-container">
+        =SE(B6=Bonds!$D$7;C6*100+Bonds!$D$42/Bonds!$D$10/Bonds!$D$11*100;SE(B6&lt;Bonds!$D$7;C6*100;))*Bonds!$D$10*Bonds!$D$11/100
+      </div>
+      La formula esamina subito se la cella B6 contiene la data di rimborso;
+      se l'occasione si verifica, calcoliamo il rimborso totale come
+      "rimborso a scadenza ex cedola" più guadagno derivato dalla
+      cedola. Se si tratta di zero coupon, non c'è la parte di guadagno per
+      stacco cedolare.
+      Se la cella in B6 non contiene la data di rimborso, viene considerato
+      solamente il gudagno (netto) per stacco cedolare. Se siamo oltre la scadenza,
+      il valore riportato in colonna è 0. Questo ci permette di fare un drag-and-drop
+      della funzione in cella D6 per tutte le celle sottostanti fino a D1000.
+      Anche la colonna D è sistemata. Il risultato finale (per le prime righe, per
+      il caso in esame) si presenta come nella figura seguente.
       </p>
 
       <!-- FIGURA 5 - extra tab -->
-	    <a class="gallery-item" 
-	      href="./assets/images/spreadsheet/bonds-fig5.webp">
-	      <img src="./assets/images/spreadsheet/bonds-fig5.webp"
-	        class="box px-0 py-0 ml-auto mr-auto" width="460" 
-	        title="picture1 of slideshow" 
-	        alt="A screenshot of the support tab Bond-Flows.">
-	      <p class="has-text-centered is-size-6 caption">
-	        A screenshot of the support tab Bond-Flows.</p>
-	    </a>
-      
+      <a class="gallery-item" href="./assets/images/spreadsheet/bonds-fig5.webp">
+        <img src="./assets/images/spreadsheet/bonds-fig5.webp" class="box px-0 py-0 ml-auto mr-auto" width="460"
+          title="picture1 of slideshow" alt="A screenshot of the support tab Bond-Flows.">
+        <p class="has-text-centered is-size-6 caption">
+          A screenshot of the support tab Bond-Flows.</p>
+      </a>
+
       <h2 id="UltimiOutput" style="scroll-margin: 1em;">
         <a href="#UltimiOutput" class="headerlink" title="UltimiOutput"></a>
         Ultimi output e pulizia
       </h2>
 
       <p style="text-align: justify;">
-        Per completezza torniamo alla prima tab (Bonds). Controlliamo che 
-        ora i risultati siano corretti, e andiamo ad inserire 
-        ulteriori output di interesse. Ritengo infatti utile avere una 
-        vista costante su: data della prossima cedola; valore della prossima 
-        cedola. Inseriamo questi due testi in celle B51 e B52; in celle 
+        Per completezza torniamo alla prima tab (Bonds). Controlliamo che
+        ora i risultati siano corretti, e andiamo ad inserire
+        ulteriori output di interesse. Ritengo infatti utile avere una
+        vista costante su: data della prossima cedola; valore della prossima
+        cedola. Inseriamo questi due testi in celle B51 e B52; in celle
         C51 e C52 usiamo rispettivamente queste due funzioni:
-          <div class="code-container">
-            =SE(Bonds!D22=0;Bonds!D7;Bonds!D24)
-          </div>
-          
-          <div class="code-container">
-            =CERCA.VERT(D51;'Bond-Flussi'!B:D;3)
-          </div>
-        Per finire, se vogliamo, possiamo estrarre il prezzo attuale dell'obbligazione.
-        Purtroppo questa informazione è difficilmente reperibile usando GOOGLEFINANCE.
-        Per questo si è scelto di usare un trucchetto. Possiamo recuperare il valore
-        dell'obbligazione dal sito 
-        <a href="https://www.borsaitaliana.it/homepage/homepage.htm">borsaitaliana.it</a>
-        usando la funzione IMPORTHTML combinata con la funzione INDICE. 
-        In molti casi il numero estratto contiene una costruzione 
-        del tipo "* {price} *"  dove "{price}" infica il prezzo corrente. 
-        Per estrarre il solo valore è possibile usare la funzione STRINGA.ESTRAI.
-        Nel caso corrente abbiamo (in cella D54):
-          <div class="code-container">
-            =INDICE(IMPORTHTML("https://www.borsaitaliana.it/borsa/obbligazioni/mot/btp/scheda/IT0005534141.html";"table";4);1;2)
-          </div>
-        E in cella D56, nella riga di "Prezzo attuale" (cella B56) si avrà:
-          <div class="code-container">
-            =STRINGA.ESTRAI(D54;2;LUNGHEZZA(D54)-2)
-          </div> 
-        Si può poi inserire il valore attuale (riga 57) con la formula seguente:
-          <div class="code-container">
-            =D56*D10*D11/100
-          </div>         
-        Il risultato sarà il seguente:
+      <div class="code-container">
+        =SE(Bonds!D22=0;Bonds!D7;Bonds!D24)
+      </div>
+
+      <div class="code-container">
+        =CERCA.VERT(D51;'Bond-Flussi'!B:D;3)
+      </div>
+      Per finire, se vogliamo, possiamo estrarre il prezzo attuale dell'obbligazione.
+      Purtroppo questa informazione è difficilmente reperibile usando GOOGLEFINANCE.
+      Per questo si è scelto di usare un trucchetto. Possiamo recuperare il valore
+      dell'obbligazione dal sito
+      <a href="https://www.borsaitaliana.it/homepage/homepage.htm">borsaitaliana.it</a>
+      usando la funzione IMPORTHTML combinata con la funzione INDICE.
+      In molti casi il numero estratto contiene una costruzione
+      del tipo "* {price} *" dove "{price}" infica il prezzo corrente.
+      Per estrarre il solo valore è possibile usare la funzione STRINGA.ESTRAI.
+      Nel caso corrente abbiamo (in cella D54):
+      <div class="code-container">
+        =INDICE(IMPORTHTML("https://www.borsaitaliana.it/borsa/obbligazioni/mot/btp/scheda/IT0005534141.html";"table";4);1;2)
+      </div>
+      E in cella D56, nella riga di "Prezzo attuale" (cella B56) si avrà:
+      <div class="code-container">
+        =STRINGA.ESTRAI(D54;2;LUNGHEZZA(D54)-2)
+      </div>
+      Si può poi inserire il valore attuale (riga 57) con la formula seguente:
+      <div class="code-container">
+        =D56*D10*D11/100
+      </div>
+      Il risultato sarà il seguente:
       </p>
-      
+
       <!-- FIGURA 6 - ultimi output -->
-	    <a class="gallery-item" 
-	      href="./assets/images/spreadsheet/bonds-fig6.webp">
-	      <img src="./assets/images/spreadsheet/bonds-fig6.webp"
-	        class="box px-0 py-0 ml-auto mr-auto" width="360" 
-	        title="picture1 of slideshow" 
-	        alt="A screenshot of the last outputs.">
-	      <p class="has-text-centered is-size-6 caption">
-	        A screenshot of the last outputs.</p>
-	    </a>    
-      
+      <a class="gallery-item" href="./assets/images/spreadsheet/bonds-fig6.webp">
+        <img src="./assets/images/spreadsheet/bonds-fig6.webp" class="box px-0 py-0 ml-auto mr-auto" width="360"
+          title="picture1 of slideshow" alt="A screenshot of the last outputs.">
+        <p class="has-text-centered is-size-6 caption">
+          A screenshot of the last outputs.</p>
+      </a>
+
       <p style="text-align: justify;">
-        Per questione di pulizia e riduzione degli output visualizzati (teniamo 
-        solo quanto ci serve davvero), selezioniamo righe 18:31, e usando il tasto 
-        destro selezioniamo "Visualizza altre azioni sulla riga", e quindi "Raggruppa 
-        righe 18:31". Ripetiamo la stessa operazione per righe 34:43 e 53:55. 
+        Per questione di pulizia e riduzione degli output visualizzati (teniamo
+        solo quanto ci serve davvero), selezioniamo righe 18:31, e usando il tasto
+        destro selezioniamo "Visualizza altre azioni sulla riga", e quindi "Raggruppa
+        righe 18:31". Ripetiamo la stessa operazione per righe 34:43 e 53:55.
       </p>
 
 
@@ -773,24 +752,24 @@
       </h2>
 
       <p style="text-align: justify;">
-        Se si vogliono aggiungere altri bond è sufficiente: 
+        Se si vogliono aggiungere altri bond è sufficiente:
       </p>
-      
+
       <ul>
         <li>copiare colonna D in colonna F (per la tab Bonds);</li>
-        <li>controllare in colonna F (tab Bonds) che le funzioni prendano a riferimento 
-        celle della sola colonna F;</li>
+        <li>controllare in colonna F (tab Bonds) che le funzioni prendano a riferimento
+          celle della sola colonna F;</li>
         <li>per le celle in cui compaiono dati dalla tab di supporto (Bond-Flussi)
-        occorre fare riferimento a modifiche nella tab di supporto;</li>
-        <li>nella tab di supporto bisogna copiare e incollare le colonne B:D 
-        in F:H e fare aggiustamenti perchè i dati si riferiscano al nuovo bond 
-        in colonna F di tab Bonds.</li>
+          occorre fare riferimento a modifiche nella tab di supporto;</li>
+        <li>nella tab di supporto bisogna copiare e incollare le colonne B:D
+          in F:H e fare aggiustamenti perchè i dati si riferiscano al nuovo bond
+          in colonna F di tab Bonds.</li>
       </ul>
 
       <p style="text-align: justify;">
-        Si ripeta l'operazione ad libitum nelle colonne successive. 
-        Con questi accorgimenti si può quindi tenere traccia dell'andamento di 
-        più bond nella stessa tab. Al termine, si può nascondere la tab Bond-Flussi. 
+        Si ripeta l'operazione ad libitum nelle colonne successive.
+        Con questi accorgimenti si può quindi tenere traccia dell'andamento di
+        più bond nella stessa tab. Al termine, si può nascondere la tab Bond-Flussi.
       </p>
 
 
@@ -800,19 +779,19 @@
       </h2>
 
       <p style="text-align: justify;">
-        Due parti sono mancanti in questa descrizione (sono attualmente 
+        Due parti sono mancanti in questa descrizione (sono attualmente
         in corso di validazione). In particolare:
-        <ul>
-          <li>le funzioni dovrebbero tenere in conto possibili premi 
-            fedeltà (il supporto è già presente, occorre solo aggiungere 
-            l'effetto premio sui risultati finali);</li>
-          <li>si mostrerà in futuro un calcolo accurato del guadagno 
-            in caso di vendita dell'obbligazione in anticipo rispetto 
-            al giorno di rimborso (comprendente il rateo pagato dal 
-            prossimo compratore del bond).</li>
-        </ul>
-        Il post verrà aggiornato quando almeno uno di questi punti 
-        sarà completato. Gli aggiornamenti verranno evidenziati.
+      <ul>
+        <li>le funzioni dovrebbero tenere in conto possibili premi
+          fedeltà (il supporto è già presente, occorre solo aggiungere
+          l'effetto premio sui risultati finali);</li>
+        <li>si mostrerà in futuro un calcolo accurato del guadagno
+          in caso di vendita dell'obbligazione in anticipo rispetto
+          al giorno di rimborso (comprendente il rateo pagato dal
+          prossimo compratore del bond).</li>
+      </ul>
+      Il post verrà aggiornato quando almeno uno di questi punti
+      sarà completato. Gli aggiornamenti verranno evidenziati.
       </p>
 
       <h2 id="Conclusioni" style="scroll-margin: 1em;">
@@ -821,40 +800,40 @@
       </h2>
 
       <p style="text-align: justify;">
-        L'implementazione di questa (anzi queste) tab è complicata. 
-        Per questo ho deciso di assegnare un valore pari a 5/5 a inizio 
-        post. Inizialmente la tab era stata pensata per essere molto 
-        più semplice; tuttavia in questa versione permette di avere 
-        maggior controllo e informazioni sull'andamento delle obbligazioni 
-        possedute. Questa tab non tiene conto di ETF / Fondi obbligazionari 
-        che verranno invece considerati nel prossimo post. 
+        L'implementazione di questa (anzi queste) tab è complicata.
+        Per questo ho deciso di assegnare un valore pari a 5/5 a inizio
+        post. Inizialmente la tab era stata pensata per essere molto
+        più semplice; tuttavia in questa versione permette di avere
+        maggior controllo e informazioni sull'andamento delle obbligazioni
+        possedute. Questa tab non tiene conto di ETF / Fondi obbligazionari
+        che verranno invece considerati nel prossimo post.
         <br>
-        Nel complesso sistema di gestione del patrimonio personale, lo 
-        stacco cedolare è stato pensato come "Altre entrate" da aggiungere 
-        alla tabella in "ListaMovimenti". Andiamo in ordine: a fronte 
-        dell'acquisto di un bond 
-        occorre inserire in tabella "ListaMovimenti" una entry (negativa, 
-        uscita) il cui valore è pari al costo di investimento, con metodo 
-        pari al conto da cui si è effettuata l'operazione e con categoria 
-        "MovimentiInterbancari". Ogni cedola è una entry positiva 
-        di categoria "Altre entrate" e di metodo pari a quello di acquisto 
-        del bond. Al rimborso si può scegliere di inserire un'unica entry 
-        positiva (complessiva) di metodo "Movimenti interbancari", o 
+        Nel complesso sistema di gestione del patrimonio personale, lo
+        stacco cedolare è stato pensato come "Altre entrate" da aggiungere
+        alla tabella in "ListaMovimenti". Andiamo in ordine: a fronte
+        dell'acquisto di un bond
+        occorre inserire in tabella "ListaMovimenti" una entry (negativa,
+        uscita) il cui valore è pari al costo di investimento, con metodo
+        pari al conto da cui si è effettuata l'operazione e con categoria
+        "MovimentiInterbancari". Ogni cedola è una entry positiva
+        di categoria "Altre entrate" e di metodo pari a quello di acquisto
+        del bond. Al rimborso si può scegliere di inserire un'unica entry
+        positiva (complessiva) di metodo "Movimenti interbancari", o
         suddividere cedola ("Altre entrate") e rimborso ("Mov. interb.").
       </p>
-      
+
       <h2 id="Appendix" style="scroll-margin: 1em;">
         <a href="#Appendix" class="headerlink" title="Appendix"></a>
         Appendix A: disaggio
       </h2>
-      
+
       <p style="text-align: justify;">
-        Questa parte è in corso di stesura. È solamente informativa e non 
-        impedisce l'implementazione della tab. Questo post verrà 
-        aggiornato una volta che questa parte (o uno dei futuri update) 
+        Questa parte è in corso di stesura. È solamente informativa e non
+        impedisce l'implementazione della tab. Questo post verrà
+        aggiornato una volta che questa parte (o uno dei futuri update)
         sarà completata.
       </p>
-      
+
     </div>
 
 
@@ -894,50 +873,50 @@
       </div>
     </div>
     <hr style="height:1px;margin:1rem 0">
-      <div class="level is-mobile is-flex">
-        <div class="article-tags is-size-7 is-uppercase">
-          <i class="fas fa-tag has-text-grey"
-            style="transform: translateY(20%);"></i>&nbsp;&nbsp;
+    <div class="level is-mobile is-flex">
+      <div class="article-tags is-size-7 is-uppercase">
+        <i class="fas fa-tag has-text-grey" style="transform: translateY(20%);"></i>&nbsp;&nbsp;
         <div>
-        Google Sheet,
-        &nbsp;
+          Google Sheet,
+          &nbsp;
+        </div>
+        <div>
+          Personal Finance
+          &nbsp;
+        </div>
       </div>
-      <div>
-        Personal Finance
-        &nbsp;
+    </div>
+
+    <div class="sharethis-inline-share-buttons st-center st-inline-share-buttons st-animated" id="st-1">
+
+      <div class="st-btn" data-network="twitter" style="display: inline-block;">
+        <img alt="twitter sharing button" src="https://platform-cdn.sharethis.com/img/twitter.svg">
       </div>
-    </div>
-  </div>
 
-  <div class="sharethis-inline-share-buttons st-center st-inline-share-buttons st-animated" id="st-1">
+      <div class="st-btn" data-network="linkedin" style="display: inline-block;">
+        <img alt="linkedin sharing button" src="https://platform-cdn.sharethis.com/img/linkedin.svg">
+      </div>
 
-    <div class="st-btn" data-network="twitter" style="display: inline-block;">
-      <img alt="twitter sharing button" src="https://platform-cdn.sharethis.com/img/twitter.svg">
-    </div>
-    
-    <div class="st-btn" data-network="linkedin" style="display: inline-block;">
-      <img alt="linkedin sharing button" src="https://platform-cdn.sharethis.com/img/linkedin.svg">
-    </div>
+      <div class="st-btn" data-network="email" style="display: inline-block;">
+        <img alt="email sharing button" src="https://platform-cdn.sharethis.com/img/email.svg">
+      </div>
 
-    <div class="st-btn" data-network="email" style="display: inline-block;">
-      <img alt="email sharing button" src="https://platform-cdn.sharethis.com/img/email.svg">
-    </div>
-    
-    <div class="st-btn st-last" data-network="sharethis" style="display: inline-block;">
-      <img alt="sharethis sharing button" src="https://platform-cdn.sharethis.com/img/sharethis.svg">
+      <div class="st-btn st-last" data-network="sharethis" style="display: inline-block;">
+        <img alt="sharethis sharing button" src="https://platform-cdn.sharethis.com/img/sharethis.svg">
+      </div>
+
     </div>
 
-  </div>
+    <script
+      src="https://platform-api.sharethis.com/js/sharethis.js#property=61b5930d440224001908310c&amp;product=inline-share-buttons"
+      defer="">
+      </script>
+    <style>
+      .st-total {
+        display: none !important;
+      }
+    </style>
 
-  <script 
-    src="https://platform-api.sharethis.com/js/sharethis.js#property=61b5930d440224001908310c&amp;product=inline-share-buttons" defer="">
-  </script>
-  <style>
-  .st-total {
-    display: none !important;
-  }
-  </style>
-  
 
   </article>
 </div>
@@ -959,16 +938,14 @@
         this.page.identifier = '/posts/projects/spreadsheetPosts/bonds.html';
       };
 
-      (function() {
+      (function () {
         var d = document, s = d.createElement('script');
         s.src = '//' + 'https-fghio-github-io' + '.disqus.com/embed.js'; // Update the shortname here
         s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);
       })();
     </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+        powered by Disqus.</a></noscript>
   </div>
 </div>
-
-
-
