@@ -11,10 +11,15 @@ $(document).ready(function () {
     const repoName = 'fghio.github.io';
     const path = 'posts/blog';
 
+    const token = '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'
+
     const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${path}`;
 
     $.ajax({
       url: apiUrl,
+      headers: {
+	  Authorization: `token ${token}`
+      },
       success: function (data) {
         blogCards = data
           .filter(file => file.name.endsWith('.html'))
