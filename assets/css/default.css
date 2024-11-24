@@ -15139,11 +15139,11 @@ img-project {
 /* COMIC BOOK SLIDESHOW */
 .comics-container {
     position: relative;
-    height: 300px;
-    width: 600px;
-    top: 40px;
-    left: calc(50% - 300px);
+    width: 76%;
+    top: 35px;
+    left: 11%;
     display: flex;
+    padding-bottom: 60px;
 }
 
 .comicbook {
