@@ -134,6 +134,7 @@ $(document).ready(function () {
       const tags = extractTags(postContent);
 
       const postRealTitle = extractRealTitle(postContent);
+      const description = extractDescription(postContent);
 
       if (Array.isArray(tags)) {
         const tagLinks = tags.map(tag => 
@@ -178,7 +179,7 @@ $(document).ready(function () {
               </div>
             </div>
             <div class="content" style="margin-top: 1.0rem">
-              One of the Most Widely Used Estimation Methods
+                ${description}
             </div>
             <hr style="height:1px;margin:1rem 0">
             <div class="level is-mobile is-flex">

@@ -45,6 +45,14 @@ function extractRealTitle(postContent) {
   return realTitle;
 }
 
+function extractDescription(postContent) {
+  const articleElement = $(postContent).find('article');
+  const metadata = JSON.parse(articleElement.attr('data-metadata'));
+  const description = metadata.description;
+  return description;
+}
+
+
 // Function to load individual blog post content
 function loadIndividualBlogPost(postTitle) {
   return $.ajax({
