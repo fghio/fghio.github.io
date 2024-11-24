@@ -15132,3 +15132,56 @@ img-project {
     padding: 1.5rem 1rem;
   }
 }
+
+
+
+
+/* COMIC BOOK SLIDESHOW */
+.comics-container {
+  position: absolute;
+  height: 300px;
+  width: 600px;
+  top: 60px;
+  left: calc(50% - 300px);
+  display: flex;
+}
+
+.comicbook {
+  display: flex;
+  height: 200px;
+  width: 80%;
+  background-color: #ffffff;
+  border-radius: 1px;
+  box-shadow: -0.01rem 0 1rem #000000;
+  transition: 0.3s ease-out;
+  position: relative;
+  left: 0px;
+}
+
+.comicbook:not(:first-child) {
+  margin-left: -50px;
+}
+
+.comicbook:hover {
+  transform: translateY(-25px);
+  transition: 0.3s ease-out;
+}
+
+.comicbook:hover ~ .comicbook {
+  position: relative;
+  left: 50px;
+  transition: 0.3s ease-out;
+}
+
+.stroke {
+  stroke: white;
+  stroke-dasharray: 360;
+  stroke-dashoffset: 360;
+  transition: 0.6s ease-out;
+}
+
+.comicbook:hover .stroke {
+  stroke-dashoffset: 100;
+  transition: 0.6s ease-out;
+}
+
