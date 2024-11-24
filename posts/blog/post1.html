@@ -87,12 +87,68 @@
         <a href="https://github.com/fghio/collectify">Collectify</a>.
       </p>
 
-      <a href="https://github.com/fghio/collectify"><img src="https://gh-card.dev/repos/fghio/collectify.svg?fullname="></a>
+      <a style="display: flex; justify-content: center; padding-bottom: 10pt;" 
+        href="https://github.com/fghio/collectify"><img src="https://gh-card.dev/repos/fghio/collectify.svg?fullname=">
+      </a>
 
       <p style="text-align: justify;">
         The name might not be the most creative (I know a TM also exists with 
         this name, shhh!), but in cases like this, it's the function that 
         matters most.
+      </p>
+
+      <h2 id="HowDoesItWork" style="scroll-margin: 1em;">
+        <a href="#HowDoesItWork" class="headerlink" title="HowDoesItWork"></a>
+        How does it work?
+      </h2>
+
+      <p style="text-align: justify;">
+        Probably easier done than said! Let's start with the practical steps. 
+        First, make sure you have a working version of Python 3. Then, clone the
+        <a href="https://github.com/fghio/collectify">repository</a>, 
+        or create a copy of it. Once that's done, open a terminal and type the 
+        following:
+      </p>
+      
+      <div class="code-container">
+        python3 collectify-app.py
+      </div>
+
+      <p style="text-align: justify;">
+        The main screen is as shown in the following figure. The application's 
+        structure is very simple: the main screen displays a list of saved 
+        collections plus a button to add a new collection. Each collection 
+        can be identified by a representative image as well as a title chosen 
+        by the user.
+      </p>
+
+      <!--- FIGURA 1 --->
+      
+      <p style="text-align: justify;">
+        Each list is clickable and leads to a second screen, which 
+        we will examine in detail later. For now, let's simply click the "+" 
+        button to open the tab that allows us to create a new list. 
+        In the new window called "Create a new list", there are fields to 
+        fill out. The first is the name you want to give to the collection. 
+        It's recommended to use a short name that clearly identifies the 
+        collection and, most importantly, one that is not already in use. 
+        The second field specifies the number of items in the collection. 
+        For example, the Rat-Man comics (original collection) consist of 
+        122+1 (special issue) books, so one should enter 123. 
+        You can also select a representative image for the collection. 
+        It's recommended to use a rectangular image with good resolution. 
+        If you don't have a representative image, no problem! The application 
+        will assign a default image, identical to the one found in the test 
+        list included when you download the repository. When an image is 
+        chosen, it will appear in the collection creation screen. By pressing 
+        the "Create list" button, the new collection will appear on the 
+        main screen alongside the others already present.
+      </p>
+
+      <p class="noteBoxes type1"><i class="fas fa-exclamation-triangle"></i><span>
+        Note: Currently, there is no check for duplicate collection names, 
+        so using an existing name might overwrite an existing collection! 
+        This will be fixed soon.
       </p>
 
     </div>
