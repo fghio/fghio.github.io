@@ -34,4 +34,5 @@
   // Initialize the slideshows
   showSlides('slideshow1', 0);
   showSlides('slideshow2', 0);
-
+  showSlides('slideshow3', 0);
+  showSlides('slideshow4', 0);
