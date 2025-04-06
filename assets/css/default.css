@@ -15184,3 +15184,33 @@ img-project {
   transition: 0.6s ease-out;
 }
 
+
+
+.thesis-description .more-text {
+  display: none;
+}
+
+.thesis-description.expanded .more-text {
+  display: inline;
+}
+
+.thesis-description .read-more {
+  color: #3273dc; /* Bulma link color */
+  font-weight: bold;
+  margin-left: 0.3rem;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.thesis-description .read-more:hover {
+  text-decoration: underline;
+}
+
+
+.more-text {
+    display: none;
+}
+
+.more-text.show {
+    display: inline;
+}

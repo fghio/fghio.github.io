@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <title>FGh.io - Thesis</title>
+
+  <link rel="shortcut icon" href="assets/images/logo.ico">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="assets/css/default.css">
+  <script src="assets/js/jquery-3.7.1.min.js"></script>
+  
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=PT+Sans+Narrow:wght@400;700&amp;family=PT+Serif">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous">
+  
+</head>
+
+
+<body class="pace-done is-3-column light" 
+      data-new-gr-c-s-check-loaded="14.1134.0" data-gr-ext-installed>
+
+  <div class="pace pace-inactive">
+    <div class="pace-progress" data-progress-text="100%" data-progress="100" style="transform: translate3d(100%, 0px, 0px);">
+      <div class="pace-progress-inner"></div>
+    </div>
+    <div class="pace-activity"></div>
+  </div>
+
+  <!-- NAVIGATION BAR -->
+  <div id="navBarContainer"></div>
+
+  <section class="section" style="opacity: 1;">
+
+    <div class="container">
+      <div class="columns">
+
+        <!-- CURRICULUM PANE -->
+        <div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen">
+          <div class="card" style="opacity: 1;">
+						<article class="card-content article" role="article">
+							<div class="thesis-header" 
+								style="display: flex; 
+								align-items: center; 
+								justify-content: space-between; 
+								gap: 1rem; 
+								flex-wrap: wrap;">
+								<h1 class="title is-size-3" style="font-family: 'PT Sans Narrow', 
+									sans-serif; margin: 0;">
+									Thesis
+								</h1>
+
+								<span class="thesis-count" style="font-size: 1.2rem; font-family: 'PT Sans Narrow', sans-serif;">
+										Thesis still available: 5/5
+								</span>
+
+								<a class="button is-link is-light"
+									<a href="mailto:federico.ghioldi@polimi.it?subject=[FGH.IO]%20-%20Requesting%20meeting%20for%20Thesis">
+
+									<i class="fas fa-envelope" style="margin-right: 10px;"></i> Apply
+								</a>
+
+							</div>
+
+							<hr style="height:2px;margin:1rem 0" />
+
+							<div class="content" style="margin-top: 1.0rem">
+								<div class="thesis-description">
+									<p class="short">
+				            <strong>If you are visiting this page for the first 
+				            time, read carefully what follows.</strong>
+				            <br>
+										The following proposals are all related to 
+										the field of numerical simulation. 
+										Candidates will be required ...
+										<span class="more-text">
+											to simulate industrial 
+											or academic problems using the popular 
+											open-source software 
+											<a href="https://openfoam.org/">OpenFOAM</a>
+											as primary numerical tool. 
+											Therefore, a solid understanding of OpenFOAM 
+											is an essential prerequisite.
+											<br>
+											Basic knowledge
+											of C++ programming is also recommended, 
+											especially for theses that require the 
+											development of custom models within the software. 
+											Additionally, familiarity with Python 
+											is beneficial for the development and 
+											interpretation of post-processing code used 
+											to analyze the simulation results. Further 
+											details are provided in the description 
+											of each thesis proposal.
+											<br>
+											More precisely, for each proposal you find: 
+											a brief description, an indication of the thesis 
+											Advisor (usually me), the expected outputs, 
+											and the recommended background.
+											<br>
+											Most topics involve chemically reactive flows. 
+											In those cases, a good understanding of 
+											combustion phenomena is critical, 
+											whether dealing with diffusion or 
+											partially/fully premixed flames.
+											<br>
+											Mind well: at the top-right of this page, you 
+											find a button that allows you to email me 
+											and request more information
+											(don't forget to mention the Thesis Title in the 
+											email!). 
+											Upon emailing me, a brief in-person meeting 
+											will be scheduled. I will provide further details on the 
+											topic, and we will discuss tigether how the 
+											topic aligns with your skills and interests.
+										</span>
+										<a href="#" class="read-more">Read more</a>
+									</p>
+								</div>
+
+
+							</div>
+						</article>
+          </div>
+
+          <div class="card" style="opacity: 1;">
+						<div class="card-content article" role="article">
+							<div class="column is-12">
+
+								<div class="search-container" style="margin-bottom: 2rem;">
+										<input type="text" id="searchBar" class="input 
+										is-rounded" placeholder="Search for a thesis..." />
+								</div>
+
+								<div id="thesisCardsContainer"></div>
+
+							</div>
+	          </div>
+          </div>
+
+        </div>
+
+        <!-- LEFT PANE -->
+        <div class="column column-left is-4-tablet is-4-desktop is-3-widescreen order-1">
+          <div id="leftPaneContainer"></div>
+        </div>
+
+        <!-- RIGHT PANE -->
+        <div class="column column-right is-4-tablet is-4-desktop is-3-widescreen order-3">
+          <div id="rightPaneContainer"></div>
+        </div>
+
+      </div>
+    </div>
+
+    <a id="back-to-top" 
+      title="Back to top" 
+      href="javascript:void(0);" 
+      style="right: 500px; bottom: 35px; width: 50px;" 
+      class="card has-text-centered">
+      <i class="fas fa-chevron-up"></i>
+    </a>
+
+  </section>
+
+  <!-- FOOTER -->
+  <div id="footerContainer"></div>
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <script src="./assets/js/back-to-top.js"></script>
+  <script src="./assets/js/columns.js"></script>
+  <script src="./assets/js/script.js"></script>
+  <script src="./assets/js/main.js"></script>
+
+  <script>
+$(function () {
+  // Load content dynamically
+  $("#navBarContainer").load("./common/navBar.html");
+  $("#leftPaneContainer").load("./common/leftPane.html");
+  $("#rightPaneContainer").load("./common/rightPane.html");
+  $("#footerContainer").load("./common/footer.html");
+  $("#publications").load("pubs.html");
+  
+  // Load the thesis cards and then apply the filtering functionality
+  $("#thesisCardsContainer").load("thesis-card.html", function() {
+    // Update the search container to include the checkbox inline
+    $('.search-container').css({
+      'display': 'flex',
+      'align-items': 'center',
+      'gap': '1rem'
+    });
+    
+    // Add the checkbox next to the search bar
+    $('.search-container').append(
+      '<label class="checkbox" style="white-space: nowrap; margin-left: 12px;">' +
+      '<input type="checkbox" id="showOpenOnly"> Only available theses' +
+      '</label>'
+    );
+    
+    // Update thesis count initially
+    updateThesisCount();
+    
+    // Event delegation for 'Read more' links
+    $(document).on('click', '.read-more', function (e) {
+        e.preventDefault();
+        var moreText = $(this).closest('.thesis-description').find('.more-text');
+        moreText.toggleClass('show'); // Toggle the display of the extra text
+        if (moreText.hasClass('show')) {
+            $(this).text('Read less');
+        } else {
+            $(this).text('Read more');
+        }
+    });
+    
+    // Function to filter thesis cards based on search query and checkbox state
+    function filterThesis() {
+        var query = $('#searchBar').val().toLowerCase(); // Get the search query, case-insensitive
+        var showOpenOnly = $('#showOpenOnly').is(':checked'); // Check if "open only" filter is active
+        
+        console.log("Search Query:", query); // Debugging: check if search query is captured
+        console.log("Show Open Only:", showOpenOnly); // Debugging: check checkbox state
+        
+        // Loop through all thesis cards
+        $('#thesisCardsContainer .card').each(function () {
+            var cardTitle = $(this).find('h2.title').text().toLowerCase();
+            var cardDescription = $(this).find('.thesis-description').text().toLowerCase();
+            var cardTags = $(this).data('tags') ? $(this).data('tags').toLowerCase() : ''; // Check against the tags in 'data-tags' attribute
+            var cardStatus = $(this).data('status'); // Get the status of the thesis card
+            
+            // First check status if open-only filter is active
+            var statusMatch = !showOpenOnly || cardStatus === 'open';
+            
+            // Then check search query
+            var queryMatch = query === '' || 
+                             cardTitle.includes(query) || 
+                             cardDescription.includes(query) || 
+                             cardTags.includes(query);
+            
+            // Show the card only if both conditions are met
+            if (statusMatch && queryMatch) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+        
+        // After filtering, update thesis count
+        updateThesisCount();
+    }
+    
+    // Search functionality - now using the combined filter function
+    $('#searchBar').on('input', filterThesis);
+    
+    // Checkbox change event - also using the combined filter function
+    $('#showOpenOnly').on('change', filterThesis);
+    
+    // Function to update the available thesis counter
+    function updateThesisCount() {
+        var visibleCount = 0;
+        var openCount = 0;
+        var totalCount = 0;
+        
+        // Loop through all cards in the thesis container
+        $('#thesisCardsContainer .card').each(function () {
+            var status = $(this).data('status'); // Get the status of the thesis card
+            
+            // Count based on the status
+            if (status === 'open') {
+                openCount++;
+            }
+            if (status === 'open' || status === 'in-progress') {
+                totalCount++;
+            }
+            
+            // Count visible theses after filtering
+            if ($(this).is(':visible')) {
+                visibleCount++;
+            }
+        });
+        
+        // Update the thesis count in the header
+        $(".thesis-count").text(( openCount == 0 ? 
+        	"No thesis currently available. Come back later." :
+          (openCount > 1 ? "Theses" : "Thesis") + 
+          " still available: " + openCount + "/" + totalCount + 
+          (visibleCount < totalCount ? " (showing " + visibleCount + ")" : "")) );
+    }
+  });
+});  
+  </script>
+
+	<script>
+		document.addEventListener('DOMContentLoaded', () => {
+		  const toggles = document.querySelectorAll('.read-more');
+
+		  toggles.forEach(link => {
+		    link.addEventListener('click', (e) => {
+		      e.preventDefault();
+		      const container = link.closest('.thesis-description');
+		      container.classList.toggle('expanded');
+		      link.textContent = container.classList.contains('expanded') ? 'Read less' : 'Read more';
+		    });
+		  });
+		});
+	</script>
+
+</body>
+
+</html>
