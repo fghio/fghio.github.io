@@ -1,40 +1,40 @@
 <div class="card" id="my-blog-post-card">
-	<article class="card-content article">
+  <article class="card-content article">
 
-		<h1 class="title is-size-3" style="font-family: 'PT Sans Narrow', sans-serif">
-			Personal Finance Google Sheet: investment analysis
-		</h1>
+    <h1 class="title is-size-3" style="font-family: 'PT Sans Narrow', sans-serif">
+      Personal Finance Google Sheet: investment analysis
+    </h1>
 
-		<div class="article-meta is-size-7 is-uppercase level is-mobile">
-			<div class="level-left" style="margin-bottom: 0.50rem">
-				<span class="level-item">
-					<i class="far fa-calendar-alt">&nbsp;</i>
-					<time>
-						<div class="post-date">13/12/2024</div>
-					</time>
-				</span>
-				<span class="level-item is-hidden-mobile">
-					<i class="far fa-calendar-check">&nbsp;</i>
-					<time>
-						<div class="last-updated">10/02/2025</div>
-					</time>
-				</span>
-				<span class="level-item">
-					<i class="far fa-folder-open has-text-grey"></i>&nbsp;
-					<a class="link-muted" href="./projectArchive.html?id=PF">back to posts list</a>
-				</span>
-				<span class="level-item">
-					<i class="far fa-folder-open has-text-grey"></i>&nbsp;
-					<a class="link-muted" href="./projects.html">list of projects</a>
-				</span>
-				<span class="level-item">
-					<i class="far fa-clock"></i>&nbsp;
-					<div class="read-time">30 minutes</div>
-				</span>
-			</div>
-		</div>
+    <div class="article-meta is-size-7 is-uppercase level is-mobile">
+      <div class="level-left" style="margin-bottom: 0.50rem">
+        <span class="level-item">
+          <i class="far fa-calendar-alt">&nbsp;</i>
+          <time>
+            <div class="post-date">13/12/2024</div>
+          </time>
+        </span>
+        <span class="level-item is-hidden-mobile">
+          <i class="far fa-calendar-check">&nbsp;</i>
+          <time>
+            <div class="last-updated">10/02/2025</div>
+          </time>
+        </span>
+        <span class="level-item">
+          <i class="far fa-folder-open has-text-grey"></i>&nbsp;
+          <a class="link-muted" href="./projectArchive.html?id=PF">back to posts list</a>
+        </span>
+        <span class="level-item">
+          <i class="far fa-folder-open has-text-grey"></i>&nbsp;
+          <a class="link-muted" href="./projects.html">list of projects</a>
+        </span>
+        <span class="level-item">
+          <i class="far fa-clock"></i>&nbsp;
+          <div class="read-time">30 minutes</div>
+        </span>
+      </div>
+    </div>
 
-		<div class="content" style="margin-top: 1.0rem">
+    <div class="content" style="margin-top: 1.0rem">
 
       <div id="difficulty-container"></div>
 
@@ -52,121 +52,121 @@
         generateStars(5); // Change the rating as needed
       </script>
 
-			<h2 id="Introduzione" style="scroll-margin: 1em;">
+      <h2 id="Introduzione" style="scroll-margin: 1em;">
 
-				<a href="#Introduzione" class="headerlink" title="Introduzione"></a>
-				Introduzione
-			</h2>
+        <a href="#Introduzione" class="headerlink" title="Introduzione"></a>
+        Introduzione
+      </h2>
 
-			<p style="text-align: justify;">
-			  All'interno di questo progetto abbiamo creato almeno 3 tab legate 
-			  agli investimenti. In particolare, Stocks (ETF, Fondi, Azioni singole...), 
-			  Bonds, PAC, ecc sono stati inseriti in tab separate per tenere tutto 
-			  ordinato. Al contempo, però, gli investitori possono trovare 
-			  utile uno studio della ripartizione geografica e settoriale dei 
-			  propri investimenti. Non solo, potrebbero volere uno strumento 
-			  in grado di mostrare a colpo d'occhio come cambierebbero queste 
-			  stesse ripartizioni in caso di aggiustamenti della propria 
-			  allocazione. Per rispondere a questa necessità, nasce la tab 
-			  Investment Analysis.
-			</p>  
+      <p style="text-align: justify;">
+        All'interno di questo progetto abbiamo creato almeno 3 tab legate 
+        agli investimenti. In particolare, Stocks (ETF, Fondi, Azioni singole...), 
+        Bonds, PAC, ecc sono stati inseriti in tab separate per tenere tutto 
+        ordinato. Al contempo, però, gli investitori possono trovare 
+        utile uno studio della ripartizione geografica e settoriale dei 
+        propri investimenti. Non solo, potrebbero volere uno strumento 
+        in grado di mostrare a colpo d'occhio come cambierebbero queste 
+        stesse ripartizioni in caso di aggiustamenti della propria 
+        allocazione. Per rispondere a questa necessità, nasce la tab 
+        Investment Analysis.
+      </p>  
 
-			<h2 id="PrimaTabella" style="scroll-margin: 1em;">
+      <h2 id="PrimaTabella" style="scroll-margin: 1em;">
 
-				<a href="#PrimaTabella" class="headerlink" title="PrimaTabella"></a>
-				Prima tabella
-			</h2>
+        <a href="#PrimaTabella" class="headerlink" title="PrimaTabella"></a>
+        Prima tabella
+      </h2>
 
-			<p style="text-align: justify;">			  
-			  Creiamo una nuova tab vuota, e chiamiamola con il nome "InvestmentAnalysis". 
-			  Come fatto per le altre tab (per motivi grafici) lasciamo 
-			  la prima riga e colonna vuote, e andiamo a creare una grande 
-			  tabella da cella B2 fino ad almeno la colonna AB.
-			  Riempiamola con ordine.
-			  <br>
-			  <br>
-			  Andiamo anzitutto ad unire le celle B2:D2 e inseriamo il testo 
-			  "Investment analysis". Subito sotto, usiamo le colonne per 
-			  scrivere "Nome"; "ISIN"; "Cost". Il terzo elemento si riferisce 
-			  al costo dello strumento. Sotto alla colonna "Nome", andiamo 
-			  ad inserire il ticker o un nome identificativo di ciascuno strumento 
-			  posseduto (come fatto nelle tab precedenti). Per le azioni singole, 
-			  ETF, o Fondi Azionari possiamo usare il ticker. Per i bond possiamo 
-			  invece creare un raggruppamento del tipo: "Bond USA", "Bond EU", oppure 
-			  "Bond Corporate" o "Bond Governative". In questo esempio si 
-			  userà semplicemente "Bond". Nella colonna ISIN, andiamo a inserire 
-			  il codice ISIN corrispondente. Per i "Bond", visto che si è scelto 
-			  di fare un raggruppamento, si usa in questo esempio la scritta "multi ISIN", 
-			  per semplicità. 
-			  Per riempire la colonna "Cost" è possibile recuperare l'informazione 
-			  dalle TAB costruite in precedenza. Per "Bond" il "Cost" è zero. 
-			  ETF di bond o Fondi obbligazionari solitamente hanno costo maggiore di 
-			  zero.
-			  <br>
-			  <br>
-			  Usiamo le colonne E ed F per scrivere in riga 3 "Current money" 
-			  e "Additional €". Per la colonna E, recuperiamo il valore allocato 
-			  per ciascun asset inserito (dalla tab giusta, ovviamente); 
-			  in colonna E, riempiamo le celle delle diverse righe con il valore 
-			  attuale di ciascun investimento. Se l'informazione punta alla cella 
-			  corretta (della tab corretta) il valore si aggiornerà automaticamente 
-			  con l'evolversi del prezzo dell'asset. Nella colonna F lasciamo per 
-			  ora 0€ in ogni cella. Il suo funzionamento sarà chiaro successivamente.
-			  <br>
-			  <br>
-			  Usiamo quindi colonne G:J per definire la composizione dell'asset.
-			  Uniamo G2:J2 e scriviamo "Composition". Sotto, in riga 3, inseriamo 
-			  "Azioni", "Obbligazioni", "Liquidità", "Altro". Per ogni asset 
-			  posseduto, rechiamoci sulla pagina web di riferimento dello strumento 
-			  e recuperiamo l'informazione sulla percentuale di allocazione nelle 
-			  diverse classi. 
-			  <br>
-			  <br>
-			  Usiamo colonne K:P per fare la stessa operazione, ma in forma geografica. 
-			  Dopo aver scritto "Geography" nell'unione delle celle "K2:P2", usiamo 
-			  riga 3 per indicare: "USA", "UK", "Other", "EU", "Asia-dev", "Asia-emerg".
-			  Recuperiamo l'informazione geografica dalla webpage di ciascuno strumento. 
-			  Molti strumenti presentano una ripartizione geografica molto più dettagliata, 
-			  ma è sufficiente sommare le percentuali dei diversi paesi per ricondursi 
-			  alla suddivisione qui presentata. Faremo una suddivisione più precisa 
-			  in un altro punto di questa tab se necessario. 
-			  <br>
-			  <br>
-			  Infine, usiamo colonne Q:Z per determinare la suddivisione settoriale. 
-			  Uniamo celle Q2:Z2 per inserire il testo "Sector"; e successivamente 
-			  scriviamo in riga 3: "Info-tech", "Industriali"; "Comunicazione"; "Sanità", 
-			  "Finanziari", "Beni 1a nec", "Energia", "Voluttuari", "Materiali", "Altro". 
-			  Dagli stessi documenti menzionati sopra è possibile recuperare anche queste 
-			  percentuali. In "Altro" si inserirà il numero (in percentuale) che, al netto 
-			  degli altri settori, permette di raggiungere il 100%. Per le righe associate 
-			  a ETF obbligazionari, Bond, Fondi Obbligazionari, non è necessario inserire 
-			  una indicazione del settore, quindi le celle possono essere annerite per 
-			  segnalare questa osservazione.
-			  <br>
-			  <br>
-			  Aggiungendo i dati appena menzionati, riempiendo le caselle come detto, 
-			  la tabella assomiglierà a quanto presente nell'immagine che segue.
-			</p>
+      <p style="text-align: justify;">        
+        Creiamo una nuova tab vuota, e chiamiamola con il nome "InvestmentAnalysis". 
+        Come fatto per le altre tab (per motivi grafici) lasciamo 
+        la prima riga e colonna vuote, e andiamo a creare una grande 
+        tabella da cella B2 fino ad almeno la colonna AB.
+        Riempiamola con ordine.
+        <br>
+        <br>
+        Andiamo anzitutto ad unire le celle B2:D2 e inseriamo il testo 
+        "Investment analysis". Subito sotto, usiamo le colonne per 
+        scrivere "Nome"; "ISIN"; "Cost". Il terzo elemento si riferisce 
+        al costo dello strumento. Sotto alla colonna "Nome", andiamo 
+        ad inserire il ticker o un nome identificativo di ciascuno strumento 
+        posseduto (come fatto nelle tab precedenti). Per le azioni singole, 
+        ETF, o Fondi Azionari possiamo usare il ticker. Per i bond possiamo 
+        invece creare un raggruppamento del tipo: "Bond USA", "Bond EU", oppure 
+        "Bond Corporate" o "Bond Governative". In questo esempio si 
+        userà semplicemente "Bond". Nella colonna ISIN, andiamo a inserire 
+        il codice ISIN corrispondente. Per i "Bond", visto che si è scelto 
+        di fare un raggruppamento, si usa in questo esempio la scritta "multi ISIN", 
+        per semplicità. 
+        Per riempire la colonna "Cost" è possibile recuperare l'informazione 
+        dalle TAB costruite in precedenza. Per "Bond" il "Cost" è zero. 
+        ETF di bond o Fondi obbligazionari solitamente hanno costo maggiore di 
+        zero.
+        <br>
+        <br>
+        Usiamo le colonne E ed F per scrivere in riga 3 "Current money" 
+        e "Additional €". Per la colonna E, recuperiamo il valore allocato 
+        per ciascun asset inserito (dalla tab giusta, ovviamente); 
+        in colonna E, riempiamo le celle delle diverse righe con il valore 
+        attuale di ciascun investimento. Se l'informazione punta alla cella 
+        corretta (della tab corretta) il valore si aggiornerà automaticamente 
+        con l'evolversi del prezzo dell'asset. Nella colonna F lasciamo per 
+        ora 0€ in ogni cella. Il suo funzionamento sarà chiaro successivamente.
+        <br>
+        <br>
+        Usiamo quindi colonne G:J per definire la composizione dell'asset.
+        Uniamo G2:J2 e scriviamo "Composition". Sotto, in riga 3, inseriamo 
+        "Azioni", "Obbligazioni", "Liquidità", "Altro". Per ogni asset 
+        posseduto, rechiamoci sulla pagina web di riferimento dello strumento 
+        e recuperiamo l'informazione sulla percentuale di allocazione nelle 
+        diverse classi. 
+        <br>
+        <br>
+        Usiamo colonne K:P per fare la stessa operazione, ma in forma geografica. 
+        Dopo aver scritto "Geography" nell'unione delle celle "K2:P2", usiamo 
+        riga 3 per indicare: "USA", "UK", "Other", "EU", "Asia-dev", "Asia-emerg".
+        Recuperiamo l'informazione geografica dalla webpage di ciascuno strumento. 
+        Molti strumenti presentano una ripartizione geografica molto più dettagliata, 
+        ma è sufficiente sommare le percentuali dei diversi paesi per ricondursi 
+        alla suddivisione qui presentata. Faremo una suddivisione più precisa 
+        in un altro punto di questa tab se necessario. 
+        <br>
+        <br>
+        Infine, usiamo colonne Q:Z per determinare la suddivisione settoriale. 
+        Uniamo celle Q2:Z2 per inserire il testo "Sector"; e successivamente 
+        scriviamo in riga 3: "Info-tech", "Industriali"; "Comunicazione"; "Sanità", 
+        "Finanziari", "Beni 1a nec", "Energia", "Voluttuari", "Materiali", "Altro". 
+        Dagli stessi documenti menzionati sopra è possibile recuperare anche queste 
+        percentuali. In "Altro" si inserirà il numero (in percentuale) che, al netto 
+        degli altri settori, permette di raggiungere il 100%. Per le righe associate 
+        a ETF obbligazionari, Bond, Fondi Obbligazionari, non è necessario inserire 
+        una indicazione del settore, quindi le celle possono essere annerite per 
+        segnalare questa osservazione.
+        <br>
+        <br>
+        Aggiungendo i dati appena menzionati, riempiendo le caselle come detto, 
+        la tabella assomiglierà a quanto presente nell'immagine che segue.
+      </p>
 
-			<!--- IMMAGINE 1 fino a separation --->
+      <!--- IMMAGINE 1 fino a separation --->
       <div id="slideshow1" class="slideshow-container" data-slide-index="1">
 
         <div class="mySlides">
-					<a class="gallery-item" href="./assets/images/spreadsheet/invAnalysis1-a.webp">
-						<img src="./assets/images/spreadsheet/invAnalysis1-a.webp" class="box px-0 py-0 ml-auto mr-auto" width="1920" 
-						title="picture1 of slideshow" alt="First table (separated).">
-						<p class="has-text-centered is-size-6 caption">
-							First table (separated).</p>
-					</a>
+          <a class="gallery-item" href="./assets/images/spreadsheet/invAnalysis1-a.webp">
+            <img src="./assets/images/spreadsheet/invAnalysis1-a.webp" class="box px-0 py-0 ml-auto mr-auto" width="1920" 
+            title="picture1 of slideshow" alt="First table (separated).">
+            <p class="has-text-centered is-size-6 caption">
+              First table (separated).</p>
+          </a>
         </div>
 
         <div class="mySlides">
-					<a class="gallery-item" href="./assets/images/spreadsheet/invAnalysis1-b.webp">
-						<img src="./assets/images/spreadsheet/invAnalysis1-b.webp" class="box px-0 py-0 ml-auto mr-auto" width="1920" 
-						title="picture1 of slideshow" alt="First table (separated).">
-						<p class="has-text-centered is-size-6 caption">
-							First table (separated).</p>
-					</a>
+          <a class="gallery-item" href="./assets/images/spreadsheet/invAnalysis1-b.webp">
+            <img src="./assets/images/spreadsheet/invAnalysis1-b.webp" class="box px-0 py-0 ml-auto mr-auto" width="1920" 
+            title="picture1 of slideshow" alt="First table (separated).">
+            <p class="has-text-centered is-size-6 caption">
+              First table (separated).</p>
+          </a>
         </div>
 
         <!-- Add more mySlides divs for additional images -->
@@ -175,145 +175,145 @@
         <a class="next" onclick="showSlides('slideshow1',  1)">&#10095;</a>
       </div>
 
-			<p style="text-align: justify; margin-top: 10pt">
-				Personalmente preferisco tenere separati PIC e PAC. All'interno di 
-				PIC faccio rientrare impropriamente anche i Bond. Questo significa 
-				che, tra PIC e PAC, è possibile inserire una riga di recap, qui 
-				denominata come "Separated".
-				<br>
-				Per poter identificare delle medie pesate, comunque, è necessario 
-				andare ad inserire le percentuali di allocazione per ciarcun asset 
-				posseduto (similmente a come fatto nella tab Stocks). Ne consegue 
-				che in colonna AA si può inserire (da riga 2, a cascata dall'alto 
-				verso il basso): "Weight", "Separated", e il peso riferito a 
-				ciascuno strumento, per la sola parte di PIC.  
-				Nell'esempio qui riportato, la percentuale di Bond tiene conto non 
-				solo di ETF obbligazionari (segnati in tab Stocks), ma anche di 
-				obbligazioni singole correttamente riportate nella tab Bond. 
-				Il calcolo delle percentuali deve tenere conto del fatto che 
-				vorremo vedere come cambia l'allocazione se inseriamo un ammontare 
-				nella colonna F ("Additional €"). Dunque, a titolo di esempio, 
-				per il caso in esame, la formula in cella AA4 è:
-			</p>
-			
-      <div class="code-container">	
-				=(E4+F4)/(E12+F12)
-			</div>
-				
-			<p style="text-align: justify;">				
-			  La riga 12 corrisponde alla "Separated" nel caso in esame.
-				La somma di queste percentuali, nella riga "Separated", deve 
-				tornare 100% come nell'esempio.
-				<br>
-				<br>
-				In riga "Separated" si possono quindi indicare la somma complessiva 
-				investita in PIC (colonna E) e la somma di "Additional €" per i 
-				diversi strumenti (colonna F). Invece, in colonne D, e da G a Z, 
-				è necessario introdurre delle medie pesate. Per farlo, è necessario 
-				combinare i valori da mediare con la percentuale (peso) dell'asset. 
-				Segue un esempio per la colonna di costo "Cost". In cella D12 si 
-				scrive la seguente funzione:				
-			</p>
+      <p style="text-align: justify; margin-top: 10pt">
+        Personalmente preferisco tenere separati PIC e PAC. All'interno di 
+        PIC faccio rientrare impropriamente anche i Bond. Questo significa 
+        che, tra PIC e PAC, è possibile inserire una riga di recap, qui 
+        denominata come "Separated".
+        <br>
+        Per poter identificare delle medie pesate, comunque, è necessario 
+        andare ad inserire le percentuali di allocazione per ciarcun asset 
+        posseduto (similmente a come fatto nella tab Stocks). Ne consegue 
+        che in colonna AA si può inserire (da riga 2, a cascata dall'alto 
+        verso il basso): "Weight", "Separated", e il peso riferito a 
+        ciascuno strumento, per la sola parte di PIC.  
+        Nell'esempio qui riportato, la percentuale di Bond tiene conto non 
+        solo di ETF obbligazionari (segnati in tab Stocks), ma anche di 
+        obbligazioni singole correttamente riportate nella tab Bond. 
+        Il calcolo delle percentuali deve tenere conto del fatto che 
+        vorremo vedere come cambia l'allocazione se inseriamo un ammontare 
+        nella colonna F ("Additional €"). Dunque, a titolo di esempio, 
+        per il caso in esame, la formula in cella AA4 è:
+      </p>
+      
+      <div class="code-container">  
+        =(E4+F4)/(E12+F12)
+      </div>
+        
+      <p style="text-align: justify;">        
+        La riga 12 corrisponde alla "Separated" nel caso in esame.
+        La somma di queste percentuali, nella riga "Separated", deve 
+        tornare 100% come nell'esempio.
+        <br>
+        <br>
+        In riga "Separated" si possono quindi indicare la somma complessiva 
+        investita in PIC (colonna E) e la somma di "Additional €" per i 
+        diversi strumenti (colonna F). Invece, in colonne D, e da G a Z, 
+        è necessario introdurre delle medie pesate. Per farlo, è necessario 
+        combinare i valori da mediare con la percentuale (peso) dell'asset. 
+        Segue un esempio per la colonna di costo "Cost". In cella D12 si 
+        scrive la seguente funzione:        
+      </p>
 
       <div class="code-container">
-				=D4*$AA4+D5*$AA5+D6*$AA6+D7*$AA7+D8*$AA8+D10*$AA10+AA9*D9
-			</div>
+        =D4*$AA4+D5*$AA5+D6*$AA6+D7*$AA7+D8*$AA8+D10*$AA10+AA9*D9
+      </div>
 
-			<p style="text-align: justify;">
-				Del resto, la percentuale che indica il costo medio non è la 
-				somma delle percentuali di ogni asset acquistato. Altrimenti, 
-				con 100 asset dal costo di 1% ciascuno, avremmo il 100% dei costi. 
-				La formula sopra riportata calcola la somma dei costi pesati per 
-				la % di allocazione di ciascuno strumento. Nell'esempio in 
-				esame, poichè la maggior quantità di denaro è allocata su strumenti 
-				a bassissimo costo, il costo medio è sotto lo 0.1%. Procedendo 
-				con la stessa operazione su altre colonne si ottengono nell'ordine
-				le seguenti medie pesate: composizione degli investimenti (azioni, 
-				obbligazioni, ecc); composizione geografica (macro-aree); composizione 
-				settoriale. 
-				<br>
-				Bisogna prestare attenzione al risultato settoriale. Poichè le righe 
-				di bond non hanno composizione settoriale, il risultato della media 
-				pesata settoriale è intrinsecamente scorretto. Infatti, la somma delle 
-				percentuali in riga "Separated" per la composizione settoriale non 
-				produce 100%, bensì la percentuale pesata dei soli investimenti nella 
-				parte azionaria. Fortunatamente, all'atto pratico, questo è un 
-				non-problema. Andremo a visualizzare la composizione 
-				settoriale mediante grafico a torta. Il grafico riscalerà in 
-				automatico le percentuali, modificando ciascun valore, 
-				preservando i rapporti tra i diversi settori, garantendo però una 
-				visualizzazione di torta "intera" (ovvero a totale 100%).
-				<br>
-				<br>
-				Così facendo si è completata la parte PIC dell'investment analysis.
-				A questo punto aggiungiamo la parte PAC. Nelle righe seguenti inseriamo 
-				il ticker, l'ISIN, l'ammontare investito e le percentuali di allocazione 
-				per gli investimenti PAC. Il procedimento è identico a quello per 
-				gli investimenti in PIC. 
-				<br>
-				<br>
-				Di seguito, come fatto per la riga "Separated", introduciamo la riga 
-				"Aggregated". In colonna E, si metterà la somma dell'ammontare di tutti 
-				gli investimenti. In colonna F, la somma dell'ammontare di tutti gli 
-				"Additional €". Per le colonne in cui occorre avere medie pesate, 
-				spostiamoci in colonna AB e creiamo, similmente a "Weight, Separated" 
-				"Weight, Aggregated". I valori all'interno delle righe (a lato di quelli 
-				per la colonna "Weight, Separated") si calcolano usando la formula 
-				vista in precedenza, ma al denominatore ci sarà la somma "Aggregated" 
-				azichè quella "Separated". Ad esempio, nella cella AB4:
-			</p>
-
-      <div class="code-container">
-				=(E4+F4)/(E$15+F$15)
-			</div>
-
-			<p style="text-align: justify;">
-			  Nella formula appena presentata, riga 15 corrisponde alla riga 
-			  "Aggregated".
-				Ovviamente la percentuale in colonna AB nella riga "Separated" 
-				non verrà 100%. Verrà esattamente uguale al valore percentuale 
-				investito in PIC (totale - PAC). La somma sarà invece pari al 
-				100% nella riga 15 (dove si mostra l'"Aggregated"). A questo 
-				punto è possibile riempire le caselle (composizione geografica 
-				e settoriale) che richiedevano i pesi aggregati. 
-				Per semplicità, si lascia a titolo di esempio la formula per 
-				cella G15:
-			</p>
+      <p style="text-align: justify;">
+        Del resto, la percentuale che indica il costo medio non è la 
+        somma delle percentuali di ogni asset acquistato. Altrimenti, 
+        con 100 asset dal costo di 1% ciascuno, avremmo il 100% dei costi. 
+        La formula sopra riportata calcola la somma dei costi pesati per 
+        la % di allocazione di ciascuno strumento. Nell'esempio in 
+        esame, poichè la maggior quantità di denaro è allocata su strumenti 
+        a bassissimo costo, il costo medio è sotto lo 0.1%. Procedendo 
+        con la stessa operazione su altre colonne si ottengono nell'ordine
+        le seguenti medie pesate: composizione degli investimenti (azioni, 
+        obbligazioni, ecc); composizione geografica (macro-aree); composizione 
+        settoriale. 
+        <br>
+        Bisogna prestare attenzione al risultato settoriale. Poichè le righe 
+        di bond non hanno composizione settoriale, il risultato della media 
+        pesata settoriale è intrinsecamente scorretto. Infatti, la somma delle 
+        percentuali in riga "Separated" per la composizione settoriale non 
+        produce 100%, bensì la percentuale pesata dei soli investimenti nella 
+        parte azionaria. Fortunatamente, all'atto pratico, questo è un 
+        non-problema. Andremo a visualizzare la composizione 
+        settoriale mediante grafico a torta. Il grafico riscalerà in 
+        automatico le percentuali, modificando ciascun valore, 
+        preservando i rapporti tra i diversi settori, garantendo però una 
+        visualizzazione di torta "intera" (ovvero a totale 100%).
+        <br>
+        <br>
+        Così facendo si è completata la parte PIC dell'investment analysis.
+        A questo punto aggiungiamo la parte PAC. Nelle righe seguenti inseriamo 
+        il ticker, l'ISIN, l'ammontare investito e le percentuali di allocazione 
+        per gli investimenti PAC. Il procedimento è identico a quello per 
+        gli investimenti in PIC. 
+        <br>
+        <br>
+        Di seguito, come fatto per la riga "Separated", introduciamo la riga 
+        "Aggregated". In colonna E, si metterà la somma dell'ammontare di tutti 
+        gli investimenti. In colonna F, la somma dell'ammontare di tutti gli 
+        "Additional €". Per le colonne in cui occorre avere medie pesate, 
+        spostiamoci in colonna AB e creiamo, similmente a "Weight, Separated" 
+        "Weight, Aggregated". I valori all'interno delle righe (a lato di quelli 
+        per la colonna "Weight, Separated") si calcolano usando la formula 
+        vista in precedenza, ma al denominatore ci sarà la somma "Aggregated" 
+        azichè quella "Separated". Ad esempio, nella cella AB4:
+      </p>
 
       <div class="code-container">
-				=G12*$AB$12+G13*$AB$13+G14*AB14
-			</div>
+        =(E4+F4)/(E$15+F$15)
+      </div>
 
-			<p style="text-align: justify;">
-				La formula prende l'informazione della cella in riga 12 
-				(e il corrispondente peso nella stessa riga) semplificando la 
-				frammentazione vista precedentemente. La formula aggiunge 
-				semplicemente i contributi pesati anche della parte PAC. La 
-				prima parte della tabella è così completata, e apparirà come 
-				da figura sottostante.
-			</p>
+      <p style="text-align: justify;">
+        Nella formula appena presentata, riga 15 corrisponde alla riga 
+        "Aggregated".
+        Ovviamente la percentuale in colonna AB nella riga "Separated" 
+        non verrà 100%. Verrà esattamente uguale al valore percentuale 
+        investito in PIC (totale - PAC). La somma sarà invece pari al 
+        100% nella riga 15 (dove si mostra l'"Aggregated"). A questo 
+        punto è possibile riempire le caselle (composizione geografica 
+        e settoriale) che richiedevano i pesi aggregati. 
+        Per semplicità, si lascia a titolo di esempio la formula per 
+        cella G15:
+      </p>
 
-			<!--- IMMAGINE 2 fino a aggregation --->
+      <div class="code-container">
+        =G12*$AB$12+G13*$AB$13+G14*AB14
+      </div>
+
+      <p style="text-align: justify;">
+        La formula prende l'informazione della cella in riga 12 
+        (e il corrispondente peso nella stessa riga) semplificando la 
+        frammentazione vista precedentemente. La formula aggiunge 
+        semplicemente i contributi pesati anche della parte PAC. La 
+        prima parte della tabella è così completata, e apparirà come 
+        da figura sottostante.
+      </p>
+
+      <!--- IMMAGINE 2 fino a aggregation --->
       <div id="slideshow2" class="slideshow-container" data-slide-index="1">
 
         <div class="mySlides">
-					<a class="gallery-item" href="./assets/images/spreadsheet/invAnalysis2-a.webp">
-						<img src="./assets/images/spreadsheet/invAnalysis2-a.webp"
-							class="box px-0 py-0 ml-auto mr-auto" width="1080" title="picture1 of slideshow" 
-							alt="First table (aggregated).">
-						<p class="has-text-centered is-size-6 caption">
-							First table (aggregated).</p>
-					</a>
+          <a class="gallery-item" href="./assets/images/spreadsheet/invAnalysis2-a.webp">
+            <img src="./assets/images/spreadsheet/invAnalysis2-a.webp"
+              class="box px-0 py-0 ml-auto mr-auto" width="1080" title="picture1 of slideshow" 
+              alt="First table (aggregated).">
+            <p class="has-text-centered is-size-6 caption">
+              First table (aggregated).</p>
+          </a>
         </div>
 
         <div class="mySlides">
-					<a class="gallery-item" href="./assets/images/spreadsheet/invAnalysis2-b.webp">
-						<img src="./assets/images/spreadsheet/invAnalysis2-b.webp"
-							class="box px-0 py-0 ml-auto mr-auto" width="1080" title="picture1 of slideshow" 
-							alt="First table (aggregated).">
-						<p class="has-text-centered is-size-6 caption">
-							First table (aggregated).</p>
-					</a>
+          <a class="gallery-item" href="./assets/images/spreadsheet/invAnalysis2-b.webp">
+            <img src="./assets/images/spreadsheet/invAnalysis2-b.webp"
+              class="box px-0 py-0 ml-auto mr-auto" width="1080" title="picture1 of slideshow" 
+              alt="First table (aggregated).">
+            <p class="has-text-centered is-size-6 caption">
+              First table (aggregated).</p>
+          </a>
         </div>
 
         <!-- Add more mySlides divs for additional images -->
@@ -322,271 +322,271 @@
         <a class="next" onclick="showSlides('slideshow2',  1)">&#10095;</a>
       </div>
 
-			<p style="text-align: justify; margin-top: 10pt">
-				A questo punto facciamo una ridottissima suddivisione per 
-				categorie di patrimonio. 
-				In questo esempio, per semplicità, le categorie sono: 
-				"Bond", "PIC", "PAC", "Liquidity". Categorie che impropriamente 
-				riprendono i Pilastri proposti dal Prof. Paolo Coletti.
-				L'ammontare per ciascuna categoria (Bond, PIC e PAC), deriva 
-				dalla somma delle celle in colonne E ed F per gli strumenti 
-				che appartengono a suddetta categoria. Per "Liquidity", 
-				usiamo la seguente formula:
-			</p>
+      <p style="text-align: justify; margin-top: 10pt">
+        A questo punto facciamo una ridottissima suddivisione per 
+        categorie di patrimonio. 
+        In questo esempio, per semplicità, le categorie sono: 
+        "Bond", "PIC", "PAC", "Liquidity". Categorie che impropriamente 
+        riprendono i Pilastri proposti dal Prof. Paolo Coletti.
+        L'ammontare per ciascuna categoria (Bond, PIC e PAC), deriva 
+        dalla somma delle celle in colonne E ed F per gli strumenti 
+        che appartengono a suddetta categoria. Per "Liquidity", 
+        usiamo la seguente formula:
+      </p>
 
       <div class="code-container">
-				=GUI!H28+GUI!H26-F15+E20
-			</div>
+        =GUI!H28+GUI!H26-F15+E20
+      </div>
 
-			<p style="text-align: justify;">
-			  Attenzione a questo passaggio: la formula prende 
-			  l'informazione della liquidità disponibile dalla tab GUI 
-			  (conto + cash); poi, ne sottrae il valore presente in 
-			  colonna "Additional €" (in questo caso, cella F15).
-			  <br>
-			  Il motivo è molto semplice!
-			  <br> 
-			  Quando andremo ad aggiungere dei soldi ad uno degli strumenti, 
-			  lo faremo intaccando la liquidità disponibile. Questo è vero se 
-			  i soldi da aggiungere non vengono da una riduzione di allocazione 
-			  fatta su un altro investimento.<br>
-			  Altrimenti, se vogliamo spostare soldi da uno strumento all'altro, 
-			  la procedura è la seguente: 
-			  <ul>
-			  <li>nella riga corrispondente al prodotto disinvestito (colonna 
-			  "Additional €") metteremo un valore negativo;</li> 
-			  <li>nella riga corrispondente al prodotto su cui vogliamo 
-			  aggiungere soldi metteremo un valore positivo (colonna "Additional €");</li>
-			  <li>i due valori si bilancerebbero;</li> 
-			  <li>così facendo, la liquidità resterebbe invariata.</li>.
-			  </ul>
-			  Nella formula c'è anche un riferimento a cella E20 però. 
-			  Infatti, a lato di questa piccola tabella andiamo ad inserire 
-			  una cella di input. Ipotizziamo di avere una cifra che ci 
-			  aspettiamo di ricevere; mettendo quella cifra all'interno 
-			  di quella cella, il valore di liquidità salirà; e potremo 
-			  usare quella nuova liquidità per modificare l'allocazione (colonna 
-			  "Additional €"), con un effetto automatico su tutte le celle di 
-			  Weight e di Allocation.
-			  <br>
-				Infatti, la percentuale di allocazione è calcolata come: ammontare 
-				della categoria diviso somma dell'ammontare di ogni categoria. 
-				Ad esempio, in cella D17:
-			</p>
-
-      <div class="code-container">
-				=C17/SOMMA(C$17:C$20)
-			</div>
-
-			<p style="text-align: justify;">
-				Insomma, per come è stata progettata la tabella, tutte le celle funzionano 
-				in concerto per aggiustare l'allocazione geografica e settoriale 
-				al variare delle cifre investite o dell'evoluzione del prezzo degli 
-				strumenti. Quindi, se inseriamo dei grafici a torta (o a ciambella), 
-				i diversi spicchi cambieranno in base a: come cambiano i prezzi degli 
-				strumenti; come cambiamo l'allocazione; come ribilanciamo; ecc.
-				<br>
-				In effetti, da queste prime tabelle si possono già creare una serie 
-				di grafici importanti e interessanti. Tuttavia, la parte di creazione 
-				di grafici è lasciata alla fine. Prima creiamo e completiamo 
-				un'ulteriore box di analisi. Usiamo le righe sottostanti (nell'esempio 
-				25:29) per avere una rapida indicazione dei movimenti che si rendono 
-				necessari per spostarci dall'allocazione corrente ad una desiderata.
-				<br>
-				Per farlo, costruiamo prima di tutto un chiaro valore riepilogativo 
-				per "Stocks" e "Bond", così da gestire più facilmente e 
-				macroscopicamente l'allocazione. Accanto, mettiamo anche 
-				l'indicazione di quant'è il patrimonio totale gross. Insomma, arriviamo 
-				a questo punto mostrato in foto.
-			</p>
-
-			<!-- IMMAGINE FINO A TABELLA DI RIBILANCIO -->
-			<a class="gallery-item" href="./assets/images/spreadsheet/invAnalysis3.webp">
-				<img src="./assets/images/spreadsheet/invAnalysis3.webp"
-					class="box px-0 py-0 ml-auto mr-auto" width="360" title="picture1 of slideshow" 
-					alt="Asset classes.">
-				<p class="has-text-centered is-size-6 caption">
-					Asset classes.</p>
-			</a>
-
-			<h2 id="AllocazioneDesiderata" style="scroll-margin: 1em;">
-
-				<a href="#AllocazioneDesiderata" class="headerlink"
-					title="AllocazioneDesiderata"></a>
-				Allocazione desiderata
-			</h2>
-
-			<p style="text-align: justify;">
-				Chiamiamo la nuova tabella "Rebalancing checks". Nel caso in esame 
-				la tabella occupa 5 righe e occupa spazio da colonna B a E. 
-				Nella prima riga, da colonna C ad E inseriamo: "Desired Alloc.", 
-				"Desired €", e "DIFF". Subito sotto, inseriamo le macro-categorie, 
-				oppure gli strumenti più nel dettaglio. In questo esempio si 
-				considera per semplicità: "Liquidity", "Stocks", "Bond", "Fun money". 
-				Qui è possibile riempire colonna C e D con una allocazione desiderata. 
-				Per esempio, si può scegliere il valore in € da tenere come liquidità
-				(cella D26); al contempo, si possono inserire le percentuali desiderate 
-				di stock, bond, e fun money. In questo esempio, il metodo usato è il 
-				seguente: 
-				<ol>
-				<li> inserisco un valore in cella D26 (liquidità desiderata); </li>
-				<li> inserisco una percentuale in cella C28 (allocazione bond desiderata) </li>
-				<li> inserisco una percentuale in cella C29 (allocazione fun money desiderata) </li>
-				<li> la percentuale di liquidità (cella C26) è calcolata come <span class="code-container-inline">=D26/(C23+C22+C20)</span></li>
-				<li> la percentuale di stocks (cella C27) è calcolata come <span class="code-container-inline">=1-C26-C28-C29</span></li>
-				<li> il valore in Euro nella colonna D per stocks, bond e fun money è calcolato come <span class="code-container-inline">=($C$23+$C$22+$C$20)*C27</span> (esempio cella D27) </li>
-				</ol>
-				
-				A questo punto occorre riempire la colonna DIFF. Spieghiamo il 
-				procedimento per la parte di "Liquidity", sarà il medesimo per le 
-				altre parti.
-				<br>
-				Facciamo il prodotto tra il total gross e la percentuale risultante 
-				per la parte di liquidity; a questo, sottraiamo il valore posseduto 
-				correntemente in liquidità. La formula, nello sheet corrente diventa:
-			</p>
+      <p style="text-align: justify;">
+        Attenzione a questo passaggio: la formula prende 
+        l'informazione della liquidità disponibile dalla tab GUI 
+        (conto + cash); poi, ne sottrae il valore presente in 
+        colonna "Additional €" (in questo caso, cella F15).
+        <br>
+        Il motivo è molto semplice!
+        <br> 
+        Quando andremo ad aggiungere dei soldi ad uno degli strumenti, 
+        lo faremo intaccando la liquidità disponibile. Questo è vero se 
+        i soldi da aggiungere non vengono da una riduzione di allocazione 
+        fatta su un altro investimento.<br>
+        Altrimenti, se vogliamo spostare soldi da uno strumento all'altro, 
+        la procedura è la seguente: 
+        <ul>
+        <li>nella riga corrispondente al prodotto disinvestito (colonna 
+        "Additional €") metteremo un valore negativo;</li> 
+        <li>nella riga corrispondente al prodotto su cui vogliamo 
+        aggiungere soldi metteremo un valore positivo (colonna "Additional €");</li>
+        <li>i due valori si bilancerebbero;</li> 
+        <li>così facendo, la liquidità resterebbe invariata.</li>.
+        </ul>
+        Nella formula c'è anche un riferimento a cella E20 però. 
+        Infatti, a lato di questa piccola tabella andiamo ad inserire 
+        una cella di input. Ipotizziamo di avere una cifra che ci 
+        aspettiamo di ricevere; mettendo quella cifra all'interno 
+        di quella cella, il valore di liquidità salirà; e potremo 
+        usare quella nuova liquidità per modificare l'allocazione (colonna 
+        "Additional €"), con un effetto automatico su tutte le celle di 
+        Weight e di Allocation.
+        <br>
+        Infatti, la percentuale di allocazione è calcolata come: ammontare 
+        della categoria diviso somma dell'ammontare di ogni categoria. 
+        Ad esempio, in cella D17:
+      </p>
 
       <div class="code-container">
-				=E23*C26-C20
-			</div>
-		
-			<p style="text-align: justify;">
-				Come detto, la procedura è identica per le altre macro-parti. Bisognerà
-				solo prestare attenzione a moltiplicare per la percentuale giusta, e sottrarre 
-				il valore posseduto per la macro-parte corretta.
-				<br>
-				Ovviamente l'allocazione è correttamente bilanciata se tutti i DIFF risultano 0. 
-				<br>
-				Questa situazione difficilmente si verifica con continuità.
-				<br>
-				I DIFF maggiori di 0 rappresentano eccesso di allocazione. Se si vuole 
-				andare verso l'allocazione desiderata occorrerà disinvestire dalla macro-area 
-				con DIFF positiva, per investire in quella con DIFF negativa. Ovviamente il 
-				gioco è a somma 0, al netto delle commissioni di movimento di capitale. 
-				<br>
-				Una volta costruita la tabella, il risultato sarà come mostrato in figura sottostante.
-			</p>
+        =C17/SOMMA(C$17:C$20)
+      </div>
 
-			<!-- IMMAGINE TABELLA ALLOCAZIONE -->
-			<a class="gallery-item" href="./assets/images/spreadsheet/invAnalysis4.webp">
-				<img src="./assets/images/spreadsheet/invAnalysis4.webp"
-					class="box px-0 py-0 ml-auto mr-auto" width="360" title="picture1 of slideshow" 
-					alt="Desired allocation for asset classes (rebalancing table).">
-				<p class="has-text-centered is-size-6 caption">
-					Desired allocation for asset classes (rebalancing table).</p>
-			</a>
+      <p style="text-align: justify;">
+        Insomma, per come è stata progettata la tabella, tutte le celle funzionano 
+        in concerto per aggiustare l'allocazione geografica e settoriale 
+        al variare delle cifre investite o dell'evoluzione del prezzo degli 
+        strumenti. Quindi, se inseriamo dei grafici a torta (o a ciambella), 
+        i diversi spicchi cambieranno in base a: come cambiano i prezzi degli 
+        strumenti; come cambiamo l'allocazione; come ribilanciamo; ecc.
+        <br>
+        In effetti, da queste prime tabelle si possono già creare una serie 
+        di grafici importanti e interessanti. Tuttavia, la parte di creazione 
+        di grafici è lasciata alla fine. Prima creiamo e completiamo 
+        un'ulteriore box di analisi. Usiamo le righe sottostanti (nell'esempio 
+        25:29) per avere una rapida indicazione dei movimenti che si rendono 
+        necessari per spostarci dall'allocazione corrente ad una desiderata.
+        <br>
+        Per farlo, costruiamo prima di tutto un chiaro valore riepilogativo 
+        per "Stocks" e "Bond", così da gestire più facilmente e 
+        macroscopicamente l'allocazione. Accanto, mettiamo anche 
+        l'indicazione di quant'è il patrimonio totale gross. Insomma, arriviamo 
+        a questo punto mostrato in foto.
+      </p>
 
-			<h2 id="EvoluzioneMercati" style="scroll-margin: 1em;">
+      <!-- IMMAGINE FINO A TABELLA DI RIBILANCIO -->
+      <a class="gallery-item" href="./assets/images/spreadsheet/invAnalysis3.webp">
+        <img src="./assets/images/spreadsheet/invAnalysis3.webp"
+          class="box px-0 py-0 ml-auto mr-auto" width="360" title="picture1 of slideshow" 
+          alt="Asset classes.">
+        <p class="has-text-centered is-size-6 caption">
+          Asset classes.</p>
+      </a>
 
-				<a href="#EvoluzioneMercati" class="headerlink"
-					title="EvoluzioneMercati"></a>
-				Evoluzione dei mercati nel tempo
-			</h2>
+      <h2 id="AllocazioneDesiderata" style="scroll-margin: 1em;">
 
-			<p style="text-align: justify;">
-				A questo punto può essere interessante andare a guardare l'evoluzione dei prezzi 
-				degli strumenti che tracciano l'andamento dei mercati nel tempo. Facciamolo 
-				in modo compatto e automatico usando una tabella che racchiuda strumenti per 
-				i mercati principali e il loro andamento a diversi periodi di tempo prestabiliti.
-				<br>
-				Al solito, creiamo una tabella. La tabella occupa celle da colonna B a colonna K.
-				Riempiamo la prima riga con "Nome", "ISIN", "Categoria" (unione di colonne D 
-				ed E), "1 sett", "1 mese", "3 mesi", "6 mesi", "YTD" (year-to-date), "1 anno". 
-				<br>
-				Nella colonna D:E (unita), sotto la scritta "Categoria", andiamo a inserire 
-				il nome rappresentativo del mercato di interesse. In questo esempio si sceglie:
-				"Az. Globale Svil + EM", "Az. Globale Svil", "SP500", "Eurostoxx 600", "EM Asia", 
-				"EM", "India", "Small Cap", "Nasdaq 100", "High dividend", "FTSE MIB". 
-				<br>
-			  Il mercato si può facilmente tracciare usando ETF a replica passiva dello 
-			  stesso. ISIN rappresentativi dei diversi mercati sono in figura, quindi 
-			  non vengono riportati qui per brevità. Gli ISIN, seppur reali al momento della 
-			  stesura del post, sono indicativi e non rappresentano un consiglio finanziario.
-			  <br>
-			  Nella colonna del "Nome" si sceglie di usare semplicemente il nome dell'ETF 
-			  scelto. Colonne F:K vanno riempite con valori percentuali. Per farlo, facciamoci 
-			  aiutare da prezzi di supporto. Per questo motivo creiamo in colonne L e M 
-			  una lista di date e indicazioni temporali.
-			  <br>
-			  In colonna L, prima riga di tabella, scriviamo la formula
-			</p>
+        <a href="#AllocazioneDesiderata" class="headerlink"
+          title="AllocazioneDesiderata"></a>
+        Allocazione desiderata
+      </h2>
 
-      <div class="code-container">
-				=OGGI()-1
-			</div>
-
-			<p style="text-align: justify;">
-				Quel -1 è legato al fatto che vogliamo prendere i prezzi di chiusura, 
-				e possiamo farlo solo con l'ultima informazione disponibile, ovvero 
-				la chiusura del giorno precedente (ieri). 
-				<br>
-				Accanto a quanto appena costruito, inseriamo la scritta "OGGI". 
-				Sotto a "OGGI" inseriamo nell'ordine: 
-				"Ultimo lav", "-7 giorni", "-1 mese", "-3 mesi", "-6 mesi", "YTD", 
-				"-1 anno". E accanto a queste entries, mettiamo le formule che ci 
-				permettono automaticamente di prendere i giorni corretti corrispondenti. 
-				Per sicurezza, giorni lavorativi. Tanto per fare un esempio, la formula 
-				per il giorno "-1 mese" è la seguente:
-			</p>
+      <p style="text-align: justify;">
+        Chiamiamo la nuova tabella "Rebalancing checks". Nel caso in esame 
+        la tabella occupa 5 righe e occupa spazio da colonna B a E. 
+        Nella prima riga, da colonna C ad E inseriamo: "Desired Alloc.", 
+        "Desired €", e "DIFF". Subito sotto, inseriamo le macro-categorie, 
+        oppure gli strumenti più nel dettaglio. In questo esempio si 
+        considera per semplicità: "Liquidity", "Stocks", "Bond", "Fun money". 
+        Qui è possibile riempire colonna C e D con una allocazione desiderata. 
+        Per esempio, si può scegliere il valore in € da tenere come liquidità
+        (cella D26); al contempo, si possono inserire le percentuali desiderate 
+        di stock, bond, e fun money. In questo esempio, il metodo usato è il 
+        seguente: 
+        <ol>
+        <li> inserisco un valore in cella D26 (liquidità desiderata); </li>
+        <li> inserisco una percentuale in cella C28 (allocazione bond desiderata) </li>
+        <li> inserisco una percentuale in cella C29 (allocazione fun money desiderata) </li>
+        <li> la percentuale di liquidità (cella C26) è calcolata come <span class="code-container-inline">=D26/(C23+C22+C20)</span></li>
+        <li> la percentuale di stocks (cella C27) è calcolata come <span class="code-container-inline">=1-C26-C28-C29</span></li>
+        <li> il valore in Euro nella colonna D per stocks, bond e fun money è calcolato come <span class="code-container-inline">=($C$23+$C$22+$C$20)*C27</span> (esempio cella D27) </li>
+        </ol>
+        
+        A questo punto occorre riempire la colonna DIFF. Spieghiamo il 
+        procedimento per la parte di "Liquidity", sarà il medesimo per le 
+        altre parti.
+        <br>
+        Facciamo il prodotto tra il total gross e la percentuale risultante 
+        per la parte di liquidity; a questo, sottraiamo il valore posseduto 
+        correntemente in liquidità. La formula, nello sheet corrente diventa:
+      </p>
 
       <div class="code-container">
-				=GIORNO.LAVORATIVO(DATA(ANNO(L31);MESE(L31)-1;GIORNO(L31));-1;1)
-			</div>
+        =E23*C26-C20
+      </div>
+    
+      <p style="text-align: justify;">
+        Come detto, la procedura è identica per le altre macro-parti. Bisognerà
+        solo prestare attenzione a moltiplicare per la percentuale giusta, e sottrarre 
+        il valore posseduto per la macro-parte corretta.
+        <br>
+        Ovviamente l'allocazione è correttamente bilanciata se tutti i DIFF risultano 0. 
+        <br>
+        Questa situazione difficilmente si verifica con continuità.
+        <br>
+        I DIFF maggiori di 0 rappresentano eccesso di allocazione. Se si vuole 
+        andare verso l'allocazione desiderata occorrerà disinvestire dalla macro-area 
+        con DIFF positiva, per investire in quella con DIFF negativa. Ovviamente il 
+        gioco è a somma 0, al netto delle commissioni di movimento di capitale. 
+        <br>
+        Una volta costruita la tabella, il risultato sarà come mostrato in figura sottostante.
+      </p>
 
-			<p style="text-align: justify;">
-				A questo punto possiamo usare le colonne successive per raccogliere 
-				i prezzi degli strumenti nei momenti indicati in colonna M. Facciamo 
-				un esempio con SPXS (ETF per azionario americano). 
-				<br>
-				In colonna N, prima riga, scriviamo il ticker (per la borsa 
-				italiana): BIT:SPXS. Sotto, per il prezzo dell'ultimo giorno 
-				lavorativo, così come per tutti gli altri prezzi, usiamo la formula
-			</p>
+      <!-- IMMAGINE TABELLA ALLOCAZIONE -->
+      <a class="gallery-item" href="./assets/images/spreadsheet/invAnalysis4.webp">
+        <img src="./assets/images/spreadsheet/invAnalysis4.webp"
+          class="box px-0 py-0 ml-auto mr-auto" width="360" title="picture1 of slideshow" 
+          alt="Desired allocation for asset classes (rebalancing table).">
+        <p class="has-text-centered is-size-6 caption">
+          Desired allocation for asset classes (rebalancing table).</p>
+      </a>
+
+      <h2 id="EvoluzioneMercati" style="scroll-margin: 1em;">
+
+        <a href="#EvoluzioneMercati" class="headerlink"
+          title="EvoluzioneMercati"></a>
+        Evoluzione dei mercati nel tempo
+      </h2>
+
+      <p style="text-align: justify;">
+        A questo punto può essere interessante andare a guardare l'evoluzione dei prezzi 
+        degli strumenti che tracciano l'andamento dei mercati nel tempo. Facciamolo 
+        in modo compatto e automatico usando una tabella che racchiuda strumenti per 
+        i mercati principali e il loro andamento a diversi periodi di tempo prestabiliti.
+        <br>
+        Al solito, creiamo una tabella. La tabella occupa celle da colonna B a colonna K.
+        Riempiamo la prima riga con "Nome", "ISIN", "Categoria" (unione di colonne D 
+        ed E), "1 sett", "1 mese", "3 mesi", "6 mesi", "YTD" (year-to-date), "1 anno". 
+        <br>
+        Nella colonna D:E (unita), sotto la scritta "Categoria", andiamo a inserire 
+        il nome rappresentativo del mercato di interesse. In questo esempio si sceglie:
+        "Az. Globale Svil + EM", "Az. Globale Svil", "SP500", "Eurostoxx 600", "EM Asia", 
+        "EM", "India", "Small Cap", "Nasdaq 100", "High dividend", "FTSE MIB". 
+        <br>
+        Il mercato si può facilmente tracciare usando ETF a replica passiva dello 
+        stesso. ISIN rappresentativi dei diversi mercati sono in figura, quindi 
+        non vengono riportati qui per brevità. Gli ISIN, seppur reali al momento della 
+        stesura del post, sono indicativi e non rappresentano un consiglio finanziario.
+        <br>
+        Nella colonna del "Nome" si sceglie di usare semplicemente il nome dell'ETF 
+        scelto. Colonne F:K vanno riempite con valori percentuali. Per farlo, facciamoci 
+        aiutare da prezzi di supporto. Per questo motivo creiamo in colonne L e M 
+        una lista di date e indicazioni temporali.
+        <br>
+        In colonna L, prima riga di tabella, scriviamo la formula
+      </p>
 
       <div class="code-container">
-				=INDICE(GOOGLEFINANCE(N$31;"close";$L32);2;2)
-			</div>
+        =OGGI()-1
+      </div>
 
-			<p style="text-align: justify;">
-				La formula sfrutta google finance; richiede di inserire il ticker 
-				(cella N31 in questo caso specifico); è necessario anche 
-				specificare il giorno	rispetto al quale estrarre il prezzo di 
-				chiusura (informazione contenuta in colonna L). 
-				<br>
-				Usando colonne N:X è possibile costruire una tabella di prezzi 
-				per tutti gli strumenti. Avendo i prezzi (aggiornati 
-				automaticamente), possiamo riempire le celle in colonne F:K.
-				<br> 
-				A titolo di esempio, si spiega come costruire la variazione 
-				percentuale a 3 mesi dell'SP500. Nella cella corrispondente 
-				la formula dovrà calcolare la differenza tra il valore di 
-				chiusura di ieri e quello di 3 mesi fa; questa differenza va 
-				divisa per il valore a chiusura di 3 mesi fa. Nello stesso 
-				modo si costruiscono le altre percentuali e si completa la tabella
-				che verrà come da figura sottostante.
-			</p>
+      <p style="text-align: justify;">
+        Quel -1 è legato al fatto che vogliamo prendere i prezzi di chiusura, 
+        e possiamo farlo solo con l'ultima informazione disponibile, ovvero 
+        la chiusura del giorno precedente (ieri). 
+        <br>
+        Accanto a quanto appena costruito, inseriamo la scritta "OGGI". 
+        Sotto a "OGGI" inseriamo nell'ordine: 
+        "Ultimo lav", "-7 giorni", "-1 mese", "-3 mesi", "-6 mesi", "YTD", 
+        "-1 anno". E accanto a queste entries, mettiamo le formule che ci 
+        permettono automaticamente di prendere i giorni corretti corrispondenti. 
+        Per sicurezza, giorni lavorativi. Tanto per fare un esempio, la formula 
+        per il giorno "-1 mese" è la seguente:
+      </p>
 
-			<!-- FIGURA tabella variazioni nel tempo -->
+      <div class="code-container">
+        =GIORNO.LAVORATIVO(DATA(ANNO(L31);MESE(L31)-1;GIORNO(L31));-1;1)
+      </div>
+
+      <p style="text-align: justify;">
+        A questo punto possiamo usare le colonne successive per raccogliere 
+        i prezzi degli strumenti nei momenti indicati in colonna M. Facciamo 
+        un esempio con SPXS (ETF per azionario americano). 
+        <br>
+        In colonna N, prima riga, scriviamo il ticker (per la borsa 
+        italiana): BIT:SPXS. Sotto, per il prezzo dell'ultimo giorno 
+        lavorativo, così come per tutti gli altri prezzi, usiamo la formula
+      </p>
+
+      <div class="code-container">
+        =INDICE(GOOGLEFINANCE(N$31;"close";$L32);2;2)
+      </div>
+
+      <p style="text-align: justify;">
+        La formula sfrutta google finance; richiede di inserire il ticker 
+        (cella N31 in questo caso specifico); è necessario anche 
+        specificare il giorno  rispetto al quale estrarre il prezzo di 
+        chiusura (informazione contenuta in colonna L). 
+        <br>
+        Usando colonne N:X è possibile costruire una tabella di prezzi 
+        per tutti gli strumenti. Avendo i prezzi (aggiornati 
+        automaticamente), possiamo riempire le celle in colonne F:K.
+        <br> 
+        A titolo di esempio, si spiega come costruire la variazione 
+        percentuale a 3 mesi dell'SP500. Nella cella corrispondente 
+        la formula dovrà calcolare la differenza tra il valore di 
+        chiusura di ieri e quello di 3 mesi fa; questa differenza va 
+        divisa per il valore a chiusura di 3 mesi fa. Nello stesso 
+        modo si costruiscono le altre percentuali e si completa la tabella
+        che verrà come da figura sottostante.
+      </p>
+
+      <!-- FIGURA tabella variazioni nel tempo -->
       <div id="slideshow3" class="slideshow-container" data-slide-index="1">
 
         <div class="mySlides">
-					<a class="gallery-item" href="./assets/images/spreadsheet/invAnalysis5-a.webp">
-						<img src="./assets/images/spreadsheet/invAnalysis5-a.webp"
-							class="box px-0 py-0 ml-auto mr-auto" width="1080" title="picture1 of slideshow" 
-							alt="Evolution of prices.">
-						<p class="has-text-centered is-size-6 caption">
-							Evolution of prices.</p>
-					</a>
+          <a class="gallery-item" href="./assets/images/spreadsheet/invAnalysis5-a.webp">
+            <img src="./assets/images/spreadsheet/invAnalysis5-a.webp"
+              class="box px-0 py-0 ml-auto mr-auto" width="1080" title="picture1 of slideshow" 
+              alt="Evolution of prices.">
+            <p class="has-text-centered is-size-6 caption">
+              Evolution of prices.</p>
+          </a>
         </div>
 
         <div class="mySlides">
-					<a class="gallery-item" href="./assets/images/spreadsheet/invAnalysis5-b.webp">
-						<img src="./assets/images/spreadsheet/invAnalysis5-b.webp"
-							class="box px-0 py-0 ml-auto mr-auto" width="1080" title="picture1 of slideshow" 
-							alt="Evolution of prices.">
-						<p class="has-text-centered is-size-6 caption">
-							Evolution of prices.</p>
-					</a>
+          <a class="gallery-item" href="./assets/images/spreadsheet/invAnalysis5-b.webp">
+            <img src="./assets/images/spreadsheet/invAnalysis5-b.webp"
+              class="box px-0 py-0 ml-auto mr-auto" width="1080" title="picture1 of slideshow" 
+              alt="Evolution of prices.">
+            <p class="has-text-centered is-size-6 caption">
+              Evolution of prices.</p>
+          </a>
         </div>
 
         <!-- Add more mySlides divs for additional images -->
@@ -596,149 +596,149 @@
       </div>
 
 
-			<h2 id="Figure" style="scroll-margin: 1em;">
+      <h2 id="Figure" style="scroll-margin: 1em;">
 
-				<a href="#Figure" class="headerlink"
-					title="Figure"></a>
-				Figure
-			</h2>
+        <a href="#Figure" class="headerlink"
+          title="Figure"></a>
+        Figure
+      </h2>
 
-			<p style="text-align: justify;">
-				Concludiamo con le figure. 
-				Da tutte la tabelle fatte possiamo estrarre una serie di informazioni 
-				visive molto interessanti. Ad esempio, dalla prima tabella possiamo 
-				costruire i seguenti grafici a ciambella:
-				<ul>
-				<li>ripartizione del patrimonio tra liquidità, PIC, PAC, Bond, ecc.;</li>
-				<li>ripartizione settoriale per la sola parte di investimenti PIC;</li>
-				<li>ripartizione settoriale per la sola parte di investimenti PAC;</li>
-				<li>ripartizione settoriale per gli investimenti come aggregato;</li>
-				<li>ripartizione geografica per la sola parte di investimenti PIC;</li>
-				<li>ripartizione geografica per la sola parte di investimenti PAC;</li>
-				<li>ripartizione geografica per gli investimenti come aggregato;</li>
-				<li>composizione degli investimenti azionari (singolo ETF o visione aggregata);</li>
-				<li>composizione geografica degli investimenti azionari (visti come aggregato).</li>
-				</ul>
-				
-				I grafici verranno più o meno come in figura. La maggior parte possono 
-				essere costruiti da valori che già abbiamo grazie allo sviluppo delle 
-				parti precedenti.
-				Per gli ultimi due grafici conviene dare una spiegazione un pochino più 
-				dettagliata.
-				<br>
-				Partiamo dalla figura che mostra la composizione degli investimenti azionari. 
-				In questo caso specifico facciamo l'esempio di un solo ETF. Vogliamo mostrare 
-				la composizione delle aziende dell'ETF che traccia l'andamento dell'SP500 (ex. 
-				SPXS). Andiamo a cercare la composizione sul sito dell'emittente e riportiamola 
-				in questa tab in una zona che non dia particolarmente fastidio. Avremo una 
-				lista di aziende, ciascuna con la propria percentuale. Possiamo fare un 
-				grafico a torta o ciambella di questa lista. Sarà utile una volta ogni tot 
-				mesi fare un aggiornamento della lista.
-				<br>
-				Veniamo ad un esempio un po' più complesso: la composizione geografica 
-				di dettaglio degli investimenti, visti come aggregato.
-				Partiamo dal presupposto di avere più investimenti, diversificati 
-				geograficamente. Andiamo a costruire una tabella. In questo esempio 
-				usiamo colonne AD:AL per gli investimenti azionari (PIC e/o PAC che siano) 
-				indicati a titolo di esempio in questo progetto. Nella prima riga 
-				scriviamo: "Places" e 
-				colonna per colonna i ticker (su borsa italiana) degli strumenti, così 
-				da indivisuare subito a colpo d'occhio di cosa parliamo. 
-				<br>
-				Nella riga sottostante inseriamo sotto al ticker la percentuale di 
-				allocazione di quello strumento (prendiamo quella overall). 
-				Due righe sotto a "Places" iniziamo ad inserire una lista di stati 
-				del mondo. Facciamoci aiutare dalla suddivisione geografica dettagliata 
-				contenuta nei PDF degli strumenti che possediamo. Alcuni stati saranno 
-				presenti in alcuni strumenti ma non in altri. Dove non contenuti inseriamo 
-				0%. 
-				<br>
-				Costruiamo quindi una colonna overall (colonna AM). Moltiplicando 
-				la % di allocazione per ciascuno stato con la % di allocazione nel nostro 
-				portafoglio di quello strumento, otteniamo una media pesata di allocazione 
-				geografica del nostro portafoglio.
-				<br>
-				Selezioniamo la colonna degli stati (AD) e la colonna della 
-				ripartizione geografica pesata (AM). Usando un grafico "geografico mondiale" 
-				possiamo avere una indicazione di copertura geografica del nostro patrimonio 
-				investito su strumenti azionari. A titolo di esempio, segue l'immagine 
-				costruita con la ripartizione di questo sheet (che non costituisce consiglio 
-				finanziario).
-			</p>
+      <p style="text-align: justify;">
+        Concludiamo con le figure. 
+        Da tutte la tabelle fatte possiamo estrarre una serie di informazioni 
+        visive molto interessanti. Ad esempio, dalla prima tabella possiamo 
+        costruire i seguenti grafici a ciambella:
+        <ul>
+        <li>ripartizione del patrimonio tra liquidità, PIC, PAC, Bond, ecc.;</li>
+        <li>ripartizione settoriale per la sola parte di investimenti PIC;</li>
+        <li>ripartizione settoriale per la sola parte di investimenti PAC;</li>
+        <li>ripartizione settoriale per gli investimenti come aggregato;</li>
+        <li>ripartizione geografica per la sola parte di investimenti PIC;</li>
+        <li>ripartizione geografica per la sola parte di investimenti PAC;</li>
+        <li>ripartizione geografica per gli investimenti come aggregato;</li>
+        <li>composizione degli investimenti azionari (singolo ETF o visione aggregata);</li>
+        <li>composizione geografica degli investimenti azionari (visti come aggregato).</li>
+        </ul>
+        
+        I grafici verranno più o meno come in figura. La maggior parte possono 
+        essere costruiti da valori che già abbiamo grazie allo sviluppo delle 
+        parti precedenti.
+        Per gli ultimi due grafici conviene dare una spiegazione un pochino più 
+        dettagliata.
+        <br>
+        Partiamo dalla figura che mostra la composizione degli investimenti azionari. 
+        In questo caso specifico facciamo l'esempio di un solo ETF. Vogliamo mostrare 
+        la composizione delle aziende dell'ETF che traccia l'andamento dell'SP500 (ex. 
+        SPXS). Andiamo a cercare la composizione sul sito dell'emittente e riportiamola 
+        in questa tab in una zona che non dia particolarmente fastidio. Avremo una 
+        lista di aziende, ciascuna con la propria percentuale. Possiamo fare un 
+        grafico a torta o ciambella di questa lista. Sarà utile una volta ogni tot 
+        mesi fare un aggiornamento della lista.
+        <br>
+        Veniamo ad un esempio un po' più complesso: la composizione geografica 
+        di dettaglio degli investimenti, visti come aggregato.
+        Partiamo dal presupposto di avere più investimenti, diversificati 
+        geograficamente. Andiamo a costruire una tabella. In questo esempio 
+        usiamo colonne AD:AL per gli investimenti azionari (PIC e/o PAC che siano) 
+        indicati a titolo di esempio in questo progetto. Nella prima riga 
+        scriviamo: "Places" e 
+        colonna per colonna i ticker (su borsa italiana) degli strumenti, così 
+        da indivisuare subito a colpo d'occhio di cosa parliamo. 
+        <br>
+        Nella riga sottostante inseriamo sotto al ticker la percentuale di 
+        allocazione di quello strumento (prendiamo quella overall). 
+        Due righe sotto a "Places" iniziamo ad inserire una lista di stati 
+        del mondo. Facciamoci aiutare dalla suddivisione geografica dettagliata 
+        contenuta nei PDF degli strumenti che possediamo. Alcuni stati saranno 
+        presenti in alcuni strumenti ma non in altri. Dove non contenuti inseriamo 
+        0%. 
+        <br>
+        Costruiamo quindi una colonna overall (colonna AM). Moltiplicando 
+        la % di allocazione per ciascuno stato con la % di allocazione nel nostro 
+        portafoglio di quello strumento, otteniamo una media pesata di allocazione 
+        geografica del nostro portafoglio.
+        <br>
+        Selezioniamo la colonna degli stati (AD) e la colonna della 
+        ripartizione geografica pesata (AM). Usando un grafico "geografico mondiale" 
+        possiamo avere una indicazione di copertura geografica del nostro patrimonio 
+        investito su strumenti azionari. A titolo di esempio, segue l'immagine 
+        costruita con la ripartizione di questo sheet (che non costituisce consiglio 
+        finanziario).
+      </p>
 
-			<!-- FIGURA ripartizione geografica -->
+      <!-- FIGURA ripartizione geografica -->
       <div id="slideshow4" class="slideshow-container" data-slide-index="1">
 
         <div class="mySlides">
-					<a class="gallery-item" href="./assets/images/spreadsheet/invAnalysis6-a.webp">
-						<img src="./assets/images/spreadsheet/invAnalysis6-a.webp"
-							class="box px-0 py-0 ml-auto mr-auto" width="720" title="picture1 of slideshow" 
-							alt="Figures to ease tracking and analysis.">
-						<p class="has-text-centered is-size-6 caption">
-							Figures to ease tracking and analysis.</p>
-					</a>
+          <a class="gallery-item" href="./assets/images/spreadsheet/invAnalysis6-a.webp">
+            <img src="./assets/images/spreadsheet/invAnalysis6-a.webp"
+              class="box px-0 py-0 ml-auto mr-auto" width="720" title="picture1 of slideshow" 
+              alt="Figures to ease tracking and analysis.">
+            <p class="has-text-centered is-size-6 caption">
+              Figures to ease tracking and analysis.</p>
+          </a>
         </div>
 
         <div class="mySlides">
-					<a class="gallery-item" href="./assets/images/spreadsheet/invAnalysis6-b.webp">
-						<img src="./assets/images/spreadsheet/invAnalysis6-b.webp"
-							class="box px-0 py-0 ml-auto mr-auto" width="720" title="picture1 of slideshow" 
-							alt="Figures to ease tracking and analysis.">
-						<p class="has-text-centered is-size-6 caption">
-							Figures to ease tracking and analysis.</p>
-					</a>
+          <a class="gallery-item" href="./assets/images/spreadsheet/invAnalysis6-b.webp">
+            <img src="./assets/images/spreadsheet/invAnalysis6-b.webp"
+              class="box px-0 py-0 ml-auto mr-auto" width="720" title="picture1 of slideshow" 
+              alt="Figures to ease tracking and analysis.">
+            <p class="has-text-centered is-size-6 caption">
+              Figures to ease tracking and analysis.</p>
+          </a>
         </div>
 
         <div class="mySlides">
-					<a class="gallery-item" href="./assets/images/spreadsheet/invAnalysis6-c.webp">
-						<img src="./assets/images/spreadsheet/invAnalysis6-c.webp"
-							class="box px-0 py-0 ml-auto mr-auto" width="720" title="picture1 of slideshow" 
-							alt="Figures to ease tracking and analysis.">
-						<p class="has-text-centered is-size-6 caption">
-							Figures to ease tracking and analysis.</p>
-					</a>
+          <a class="gallery-item" href="./assets/images/spreadsheet/invAnalysis6-c.webp">
+            <img src="./assets/images/spreadsheet/invAnalysis6-c.webp"
+              class="box px-0 py-0 ml-auto mr-auto" width="720" title="picture1 of slideshow" 
+              alt="Figures to ease tracking and analysis.">
+            <p class="has-text-centered is-size-6 caption">
+              Figures to ease tracking and analysis.</p>
+          </a>
         </div>
 
         <!-- Add more mySlides divs for additional images -->
 
         <a class="prev" onclick="showSlides('slideshow4', -1)">&#10094;</a>
         <a class="next" onclick="showSlides('slideshow4',  1)">&#10095;</a>
-      </div>			
-			
-			
-			<h2 id="Figure" style="scroll-margin: 1em;">
+      </div>      
+      
+      
+      <h2 id="Figure" style="scroll-margin: 1em;">
 
-				<a href="#Figure" class="headerlink"
-					title="Figure"></a>
-					Conclusioni finali
-			</h2>
+        <a href="#Figure" class="headerlink"
+          title="Figure"></a>
+          Conclusioni finali
+      </h2>
 
-			<p style="text-align: justify;">
-				Questo completa la costruzione della tab di analisi degli investimenti. 
-				La tab fornisce degli strumenti base per capire come cambierebbe l'esposizione
-				nelle diverse categorie se modificassimo la ripartizione o la composizione 
-				dei nostri investimenti. Permette inoltre di indicare le azioni da intraprendere 
-				per ri-bilanciare i nostri investimenti, con l'obiettivo di raggiungere una
-				personale ripartizione ideale. Dando risposta alle esigenze principali, 
-				può dirsi conclusa anche questa tab. L'ultima legata agli investimenti.
-			</p>
-
-
-		</div>
-		
+      <p style="text-align: justify;">
+        Questo completa la costruzione della tab di analisi degli investimenti. 
+        La tab fornisce degli strumenti base per capire come cambierebbe l'esposizione
+        nelle diverse categorie se modificassimo la ripartizione o la composizione 
+        dei nostri investimenti. Permette inoltre di indicare le azioni da intraprendere 
+        per ri-bilanciare i nostri investimenti, con l'obiettivo di raggiungere una
+        personale ripartizione ideale. Dando risposta alle esigenze principali, 
+        può dirsi conclusa anche questa tab. L'ultima legata agli investimenti.
+      </p>
 
 
+    </div>
+    
 
-		<div class="article-licensing box">
-			<div class="licensing-title">
-				<p>Personal Finance Google Sheet: investment analysis</p>
-				<p>
-					<a href="https://fghio.github.io/projectPost.html?project=spreadsheet&post=investmentAnalysis">
-						https://fghio.github.io/projectPost.html?project=spreadsheet&post=investmentAnalysis
-					</a>
-				</p>
-			</div>
-			<div class="licensing-meta level is-mobile">
+
+
+    <div class="article-licensing box">
+      <div class="licensing-title">
+        <p>Personal Finance Google Sheet: investment analysis</p>
+        <p>
+          <a href="https://fghio.github.io/projectPost.html?project=spreadsheet&post=investmentAnalysis">
+            https://fghio.github.io/projectPost.html?project=spreadsheet&post=investmentAnalysis
+          </a>
+        </p>
+      </div>
+      <div class="licensing-meta level is-mobile">
 
         <div class="level-left">
           <div class="level-item is-narrow">
@@ -761,54 +761,54 @@
           </div>
         </div>
 
-			</div>
-		</div>
+      </div>
+    </div>
 
-		<hr style="height:1px;margin:1rem 0">
-		<div class="level is-mobile is-flex">
-			<div class="article-tags is-size-7 is-uppercase">
-				<i class="fas fa-tag has-text-grey" style="transform: translateY(20%);"></i>&nbsp;&nbsp;
+    <hr style="height:1px;margin:1rem 0">
+    <div class="level is-mobile is-flex">
+      <div class="article-tags is-size-7 is-uppercase">
+        <i class="fas fa-tag has-text-grey" style="transform: translateY(20%);"></i>&nbsp;&nbsp;
 
-				<div>
-					Google Sheet,
-					&nbsp;
-				</div>
+        <div>
+          Google Sheet,
+          &nbsp;
+        </div>
 
-				<div>
-					Personal Finance
-					&nbsp;
-				</div>
-			</div>
+        <div>
+          Personal Finance
+          &nbsp;
+        </div>
+      </div>
 </div>
 
 <div class="sharethis-inline-share-buttons st-center st-inline-share-buttons st-animated" id="st-1">
 
-	<div class="st-btn" data-network="twitter" style="display: inline-block;">
-		<img alt="twitter sharing button" src="https://platform-cdn.sharethis.com/img/twitter.svg">
-	</div>
+  <div class="st-btn" data-network="twitter" style="display: inline-block;">
+    <img alt="twitter sharing button" src="https://platform-cdn.sharethis.com/img/twitter.svg">
+  </div>
 
-	<div class="st-btn" data-network="linkedin" style="display: inline-block;">
-		<img alt="linkedin sharing button" src="https://platform-cdn.sharethis.com/img/linkedin.svg">
-	</div>
+  <div class="st-btn" data-network="linkedin" style="display: inline-block;">
+    <img alt="linkedin sharing button" src="https://platform-cdn.sharethis.com/img/linkedin.svg">
+  </div>
 
-	<div class="st-btn" data-network="email" style="display: inline-block;">
-		<img alt="email sharing button" src="https://platform-cdn.sharethis.com/img/email.svg">
-	</div>
+  <div class="st-btn" data-network="email" style="display: inline-block;">
+    <img alt="email sharing button" src="https://platform-cdn.sharethis.com/img/email.svg">
+  </div>
 
-	<div class="st-btn st-last" data-network="sharethis" style="display: inline-block;">
-		<img alt="sharethis sharing button" src="https://platform-cdn.sharethis.com/img/sharethis.svg">
-	</div>
+  <div class="st-btn st-last" data-network="sharethis" style="display: inline-block;">
+    <img alt="sharethis sharing button" src="https://platform-cdn.sharethis.com/img/sharethis.svg">
+  </div>
 
 </div>
 
 <script
-	src="https://platform-api.sharethis.com/js/sharethis.js#property=61b5930d440224001908310c&amp;product=inline-share-buttons"
-	defer="">
-	</script>
+  src="https://platform-api.sharethis.com/js/sharethis.js#property=61b5930d440224001908310c&amp;product=inline-share-buttons"
+  defer="">
+  </script>
 <style>
-	.st-total {
-		display: none !important;
-	}
+  .st-total {
+    display: none !important;
+  }
 </style>
 
 
@@ -820,26 +820,26 @@
 <script src="./assets/js/slideshow.js"></script>
 
 <div class="card" id="comment-card" style="margin-top: 20px; opacity: 1; transform-origin: center top;">
-	<div class="card-content">
-		<h3 class="title is-5">Comments</h3>
+  <div class="card-content">
+    <h3 class="title is-5">Comments</h3>
 
-		<!-- DISQUS COMMENTS -->
-		<div id="disqus_thread"></div>
+    <!-- DISQUS COMMENTS -->
+    <div id="disqus_thread"></div>
 
-		<script>
-			var disqus_config = function () {
-				this.page.url = 'https://fghio.github.io/projectPost.html?project=spreadsheet&post=investmentAnalysis';
-				this.page.identifier = '/posts/projects/spreadsheetPosts/investmentAnalysis.html';
-			};
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://fghio.github.io/projectPost.html?project=spreadsheet&post=investmentAnalysis';
+        this.page.identifier = '/posts/projects/spreadsheetPosts/investmentAnalysis.html';
+      };
 
-			(function () {
-				var d = document, s = d.createElement('script');
-				s.src = '//' + 'https-fghio-github-io' + '.disqus.com/embed.js'; // Update the shortname here
-				s.setAttribute('data-timestamp', +new Date());
-				(d.head || d.body).appendChild(s);
-			})();
-		</script>
-		<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript"
-				rel="nofollow">comments powered by Disqus.</a></noscript>
-	</div>
+      (function () {
+        var d = document, s = d.createElement('script');
+        s.src = '//' + 'https-fghio-github-io' + '.disqus.com/embed.js'; // Update the shortname here
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript"
+        rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
 </div>
