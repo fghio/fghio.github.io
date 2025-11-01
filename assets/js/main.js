@@ -141,3 +141,55 @@
     }
 }(jQuery, window.moment, window.ClipboardJS, window.IcarusThemeSettings));
 
+
+
+
+
+  
+/* ---------------------------------------------------------------------------
+ * Banner rotation for leftPane.html
+ * ------------------------------------------------------------------------- */
+// --- Banner rotation for leftPane.html ---
+(function waitForBanner() {
+  const imgEl = document.getElementById("banner-image");
+  const linkEl = document.getElementById("banner-link");
+
+  if (!imgEl || !linkEl) {
+    // Retry every 200 ms until the left pane is loaded
+    setTimeout(waitForBanner, 200);
+    return;
+  }
+
+  const banners = [
+    {
+      img: "assets/images/viwoods.webp",
+      link: "https://viwoods.com/?ref=FEDERICOGHIOLDI",
+      title: "Recommended e-ink tablet",
+      alt: "Recommended e-ink tablet"
+    },
+    {
+      img: "assets/images/CinqueXMillePoliMi.webp",
+      link: "https://www.polimi.it/",
+      title: "Dona il tuo 5xMille al PoliMi",
+      alt: "Dona il tuo 5xMille al PoliMi"
+    }
+  ];
+
+  let current = 0;
+  const fadeDuration = 800;
+  const switchInterval = 4000;
+
+  setInterval(() => {
+    current = (current + 1) % banners.length;
+    const b = banners[current];
+    imgEl.style.opacity = 0;
+    setTimeout(() => {
+      imgEl.src = b.img;
+      imgEl.title = b.title;
+      imgEl.alt = b.alt;
+      linkEl.href = b.link;
+      imgEl.style.opacity = 1;
+    }, fadeDuration);
+  }, switchInterval);
+})();
+

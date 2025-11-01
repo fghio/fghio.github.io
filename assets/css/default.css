@@ -15292,3 +15292,10 @@ img-project {
 .night .highlight .vm { color: #19177C } /* Name.Variable.Magic */
 .night .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
 
+
+
+
+#banner-image {
+  transition: opacity 0.75s ease-in-out;
+}
+
