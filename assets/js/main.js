@@ -176,8 +176,8 @@
   ];
 
   let current = 0;
-  const fadeDuration = 800;
-  const switchInterval = 4000;
+  const fadeDuration = 850;
+  const switchInterval = 6000;
 
   setInterval(() => {
     current = (current + 1) % banners.length;
