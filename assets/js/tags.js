@@ -5,15 +5,13 @@ $(document).ready(function () {
   const tagsMap = new Map(); // Use a Map to store tags and their counts
 
   function loadBlogCards() {
-    const repoOwner = 'fghio';
-    const repoName = 'fghio.github.io';
-    const path = 'posts/blog';
-
-    const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${path}`;
+    // list of blog posts: add every new post to posts/blog/index.json
+    const apiUrl = 'posts/blog/index.json';
 
     return new Promise((resolve, reject) => {
       $.ajax({
         url: apiUrl,
+        dataType: 'json',
         success: function (data) {
           blogCards = data
             .filter(file => file.name.endsWith('.html'))

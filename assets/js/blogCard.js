@@ -7,14 +7,12 @@ $(document).ready(function () {
   let blogCards = []; // Array to store all blog cards sorted by lastUpdated
 
   function loadBlogCards() {
-    const repoOwner = 'fghio';
-    const repoName = 'fghio.github.io';
-    const path = 'posts/blog';
-
-    const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${path}`;
+    // list of blog posts: add every new post to posts/blog/index.json
+    const apiUrl = 'posts/blog/index.json';
 
     $.ajax({
       url: apiUrl,
+        dataType: 'json',
       success: function (data) {
         blogCards = data
           .filter(file => file.name.endsWith('.html'))
