@@ -250,7 +250,7 @@ html.mx body .button {
   border-radius: var(--radius-sm);
   font-family: var(--font-body);
   font-weight: 500;
-  transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+  transition: background 0.15s ease, color 0.15s ease;
 }
 
 html.mx body .button.is-primary {
@@ -261,7 +261,6 @@ html.mx body .button.is-primary {
 html.mx body .button.is-primary:hover:not([disabled]) {
   background: var(--accent-hover);
   color: #fff;
-  transform: translateY(-1px);
 }
 html.mx.dark body .button.is-primary { color: var(--on-accent); }
 html.mx body .button.is-primary[disabled] {
