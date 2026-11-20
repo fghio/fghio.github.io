@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="mx">
 
 <head>
 
@@ -10,7 +10,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="assets/css/default.css">
+  <link rel="stylesheet" href="assets/css/modern.css">
   <script src="assets/js/jquery-3.7.1.min.js"></script>
+  <script src="assets/js/partials.js"></script>
   
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=PT+Sans+Narrow:wght@400;700&amp;family=PT+Serif">
@@ -74,7 +76,7 @@
 
 		            <div class="cv-entry">
 		              <div class="left-column">
-		                  <h4><p style="font-weight: 400; font-size: 14">11/2019-01/2023</p></h4>
+		                  <h4><p style="font-weight: 400; font-size: 14">11/2019 - 01/2023</p></h4>
 		              </div>
 		              <div class="right-column">
 		                <h4 id="Doctorate">
@@ -126,6 +128,26 @@
 		              <p style="color: #3273dc">Academic Experience</p>
 		              </a>
 		            </h2>
+
+		            <div class="cv-entry">
+		              <div class="left-column">
+		                  <h4><p style="font-weight: 400; font-size: 14">from 2027</p></h4>
+		              </div>
+		              <div class="right-column">
+		                <h4 id="PhDCourse">
+		                  <a href="#PhDCourse" class="headerlink" title="PhDCourse"></a>
+		                  <p style="font-weight: 400;">
+		                    Lecturer at Politecnico di Milano (Italy)
+		                    <span class="cv-badge">Incoming</span>
+		                    <br>
+		                    <span style="font-size: 12px;">For the Ph.D. course
+		                      Bridging Experiments, Advanced Diagnostics and High-Fidelity
+		                      Simulations in Aerospace Propulsion and Energetic Systems
+		                      (co-taught with Prof. S. Carlotti)</span>
+		                  </p>
+		                </h4>
+		              </div>
+		            </div>
 
 		            <div class="cv-entry">
 		              <div class="left-column">
@@ -183,7 +205,7 @@
 
 		            <div class="cv-entry">
 		              <div class="left-column">
-		                  <h4><p style="font-weight: 400; font-size: 14">09/2024 - present</p></h4>
+		                  <h4><p style="font-weight: 400; font-size: 14">09/2024 - 08/2026</p></h4>
 		              </div>
 		              <div class="right-column">
 		                <h4 id="Doctorate">
@@ -203,9 +225,27 @@
 		            <!-- VISITING PERIOD -->
 		            <h2 id="VisitingPeriod">
 		              <a href="#VisitingPeriod" class="headerlink" title="VisitingPeriod">
-		              <p style="color: #3273dc">Visiting Period</p>
+		              <p style="color: #3273dc">Visiting Periods</p>
 		              </a>
 		            </h2>
+
+		            <div class="cv-entry">
+		              <div class="left-column">
+		                  <h4><p style="font-weight: 400; font-size: 14">02/2027 - 04/2027</p></h4>
+		              </div>
+		              <div class="right-column">
+		                <h4 id="MIT">
+		                  <a href="#MIT" class="headerlink" title="MIT"></a>
+		                  <p style="font-weight: 400;">
+		                    Visiting Researcher at MIT (USA)
+		                    <span class="cv-badge">Incoming</span>
+		                    <br>
+		                    <span style="font-size: 12px;">Massachusetts Institute of Technology,
+		                    under the supervision of Prof. Ghoniem</span>
+		                  </p>
+		                </h4>
+		              </div>
+		            </div>
 
 		            <div class="cv-entry">
 		              <div class="left-column">
@@ -215,9 +255,9 @@
 		                <h4 id="ETH">
 		                  <a href="#ETH" class="headerlink" title="ETH"></a>
 		                  <p style="font-weight: 400;">
-		                    Visiting Researcher at Combustion, Acoustics & Flow Physics (CAPS) Lab 
-                                    <br>
-		                    ETH Zurich (Switzerland)
+		                    Visiting Researcher at ETH Zurich (Switzerland)
+		                    <br>
+		                    <span style="font-size: 12px;">Combustion, Acoustics &amp; Flow Physics (CAPS) Lab</span>
 		                  </p>
 		                </h4>
 		              </div>
@@ -260,6 +300,14 @@
   <!-- FOOTER -->
   <div id="footerContainer"></div>
 
+  <!-- Parti comuni: inserite subito (dalla cache se disponibile) -->
+  <script>
+    loadPartial("#navBarContainer", "./common/navBar.html");
+    loadPartial("#leftPaneContainer", "./common/leftPane.html");
+    loadPartial("#rightPaneContainer", "./common/rightPane.html");
+    loadPartial("#footerContainer", "./common/footer.html");
+  </script>
+
   <script src="./assets/js/back-to-top.js"></script>
   <script src="./assets/js/columns.js"></script>
   <script src="./assets/js/script.js"></script>
@@ -268,10 +316,6 @@
   <script>
     $(function () {
       // Load content dynamically
-      $("#navBarContainer").load("./common/navBar.html");
-      $("#leftPaneContainer").load("./common/leftPane.html");
-      $("#rightPaneContainer").load("./common/rightPane.html");
-      $("#footerContainer").load("./common/footer.html");
       $("#publications").load("pubs.html");
     });
   </script>

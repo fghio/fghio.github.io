@@ -93,8 +93,24 @@ $(document).ready(function () {
     window.location.href = `./tagArticles.html?tag=${tagId}`;
   }
 
-  // Call the functions
-  loadBlogCards().then(() => loadTags());
+  // I tag vengono calcolati scaricando tutti gli articoli: il risultato viene
+  // tenuto in cache per la sessione, così cambiando pagina compaiono subito.
+  const CACHE_KEY = 'blogTags:v1';
+  let cachedTags = null;
+  try { cachedTags = JSON.parse(sessionStorage.getItem(CACHE_KEY)); } catch (e) {}
+
+  if (Array.isArray(cachedTags)) {
+    cachedTags.forEach(([tag, count]) => tagsMap.set(tag, count));
+    generateTagsWidget();
+  } else {
+    loadBlogCards()
+      .then(() => loadTags())
+      .then(() => {
+        if (tagsMap.size === 0) return; // non salvare un risultato vuoto (es. rete assente)
+        try { sessionStorage.setItem(CACHE_KEY, JSON.stringify([...tagsMap])); } catch (e) {}
+      })
+      .catch(() => {});
+  }
 
 });
 

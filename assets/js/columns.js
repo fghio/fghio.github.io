@@ -1,6 +1,7 @@
 window.onload = function () {
   const leftStorage = document.getElementById('leftStorageForRightPane');
   const rightColumn = document.querySelector('.column-right');
+  if (!leftStorage || !rightColumn) return; // es. blogPost.html non ha la colonna destra
 
   function handleResize() {
     if (window.innerWidth <= 1280) {

@@ -13,9 +13,11 @@
         if (value.toString() === 'true') {
             document.body.classList.remove('light');
             document.body.classList.add('night');
+            document.documentElement.classList.add('dark');
         } else {
             document.body.classList.remove('night');
             document.body.classList.add('light');
+            document.documentElement.classList.remove('dark');
         }
         // Assuming Disqus was used as the comment plugin.
         // try {

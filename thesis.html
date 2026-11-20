@@ -1,16 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="mx">
 
 <head>
 
-  <title>FGh.io - Thesis</title>
+  <title>FGh.io - Theses</title>
 
   <link rel="shortcut icon" href="assets/images/logo.ico">
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="assets/css/default.css">
+  <link rel="stylesheet" href="assets/css/modern.css">
   <script src="assets/js/jquery-3.7.1.min.js"></script>
+  <script src="assets/js/partials.js"></script>
   
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=PT+Sans+Narrow:wght@400;700&amp;family=PT+Serif">
@@ -38,31 +40,20 @@
     <div class="container">
       <div class="columns">
 
-        <!-- CURRICULUM PANE -->
+        <!-- THESES PANE -->
         <div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen">
           <div class="card" style="opacity: 1;">
 						<article class="card-content article" role="article">
-							<div class="thesis-header" 
-								style="display: flex; 
-								align-items: center; 
-								justify-content: space-between; 
-								gap: 1rem; 
-								flex-wrap: wrap;">
-								<h1 class="title is-size-3" style="font-family: 'PT Sans Narrow', 
-									sans-serif; margin: 0;">
-									Thesis
-								</h1>
+							<div class="thesis-header">
+								<div class="thesis-heading">
+									<h1 class="title is-size-3">Theses</h1>
+									<span class="thesis-count">Theses still available: 5/5</span>
+								</div>
 
-								<span class="thesis-count" style="font-size: 1.2rem; font-family: 'PT Sans Narrow', sans-serif;">
-										Thesis still available: 5/5
-								</span>
-
-								<a class="button is-link is-light"
-									<a href="mailto:federico.ghioldi@polimi.it?subject=[FGH.IO]%20-%20Requesting%20meeting%20for%20Thesis">
-
-									<i class="fas fa-envelope" style="margin-right: 10px;"></i> Apply
+								<a class="button is-primary thesis-apply"
+									href="mailto:federico.ghioldi@polimi.it?subject=[FGH.IO]%20-%20Requesting%20meeting%20for%20Thesis">
+									<i class="fas fa-envelope"></i>&nbsp;&nbsp;Apply
 								</a>
-
 							</div>
 
 							<hr style="height:2px;margin:1rem 0" />
@@ -169,6 +160,14 @@
   <!-- FOOTER -->
   <div id="footerContainer"></div>
 
+  <!-- Parti comuni: inserite subito (dalla cache se disponibile) -->
+  <script>
+    loadPartial("#navBarContainer", "./common/navBar.html");
+    loadPartial("#leftPaneContainer", "./common/leftPane.html");
+    loadPartial("#rightPaneContainer", "./common/rightPane.html");
+    loadPartial("#footerContainer", "./common/footer.html");
+  </script>
+
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
   <script src="./assets/js/back-to-top.js"></script>
@@ -179,10 +178,6 @@
   <script>
 $(function () {
   // Load content dynamically
-  $("#navBarContainer").load("./common/navBar.html");
-  $("#leftPaneContainer").load("./common/leftPane.html");
-  $("#rightPaneContainer").load("./common/rightPane.html");
-  $("#footerContainer").load("./common/footer.html");
   $("#publications").load("pubs.html");
   
   // Load the thesis cards and then apply the filtering functionality
@@ -293,20 +288,7 @@ $(function () {
 });  
   </script>
 
-	<script>
-		document.addEventListener('DOMContentLoaded', () => {
-		  const toggles = document.querySelectorAll('.read-more');
 
-		  toggles.forEach(link => {
-		    link.addEventListener('click', (e) => {
-		      e.preventDefault();
-		      const container = link.closest('.thesis-description');
-		      container.classList.toggle('expanded');
-		      link.textContent = container.classList.contains('expanded') ? 'Read less' : 'Read more';
-		    });
-		  });
-		});
-	</script>
 
 </body>
 

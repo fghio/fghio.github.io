@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="mx">
 
 <head>
 
@@ -10,7 +10,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="assets/css/default.css">
+  <link rel="stylesheet" href="assets/css/modern.css">
   <script src="assets/js/jquery-3.7.1.min.js"></script>
+  <script src="assets/js/partials.js"></script>
   
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=PT+Sans+Narrow:wght@400;700&amp;family=PT+Serif">
@@ -80,6 +82,14 @@
   <!-- FOOTER -->
   <div id="footerContainer"></div>
 
+  <!-- Parti comuni: inserite subito (dalla cache se disponibile) -->
+  <script>
+    loadPartial("#navBarContainer", "./common/navBar.html");
+    loadPartial("#leftPaneContainer", "./common/leftPane.html");
+    loadPartial("#rightPaneContainer", "./common/rightPane.html");
+    loadPartial("#footerContainer", "./common/footer.html");
+  </script>
+
   <script src="./assets/js/back-to-top.js"></script>
   <script src="./assets/js/jquery-3.2.1.min.js"></script>
   <script src="./assets/js/script.js"></script>
@@ -90,10 +100,6 @@
   <script>
     $(function () {
       // Load content dynamically
-      $("#navBarContainer").load("./common/navBar.html");
-      $("#leftPaneContainer").load("./common/leftPane.html");
-      $("#rightPaneContainer").load("./common/rightPane.html");
-      $("#footerContainer").load("./common/footer.html");
     });
   </script>
 
