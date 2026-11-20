@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="assets/css/modern.css">
   <script src="assets/js/jquery-3.7.1.min.js"></script>
   <script src="assets/js/partials.js"></script>
+  <script src="assets/js/search.js" defer></script>
   
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=PT+Sans+Narrow:wght@400;700&amp;family=PT+Serif">
@@ -213,7 +214,7 @@ $(function () {
     
     // Function to filter thesis cards based on search query and checkbox state
     function filterThesis() {
-        var query = $('#searchBar').val().toLowerCase(); // Get the search query, case-insensitive
+        var query = $('#searchBar').val().replace(/\s+/g, ' ').trim().toLowerCase(); // Get the search query, case-insensitive
         var showOpenOnly = $('#showOpenOnly').is(':checked'); // Check if "open only" filter is active
         
         console.log("Search Query:", query); // Debugging: check if search query is captured
@@ -221,8 +222,8 @@ $(function () {
         
         // Loop through all thesis cards
         $('#thesisCardsContainer .card').each(function () {
-            var cardTitle = $(this).find('h2.title').text().toLowerCase();
-            var cardDescription = $(this).find('.thesis-description').text().toLowerCase();
+            var cardTitle = $(this).find('h2.title').text().replace(/\s+/g, ' ').toLowerCase();
+            var cardDescription = $(this).find('.thesis-description').text().replace(/\s+/g, ' ').toLowerCase();
             var cardTags = $(this).data('tags') ? $(this).data('tags').toLowerCase() : ''; // Check against the tags in 'data-tags' attribute
             var cardStatus = $(this).data('status'); // Get the status of the thesis card
             
@@ -252,6 +253,13 @@ $(function () {
     
     // Checkbox change event - also using the combined filter function
     $('#showOpenOnly').on('change', filterThesis);
+
+    // ?q=... (es. dai risultati della ricerca): filtra subito su quella tesi
+    var initialQuery = new URLSearchParams(window.location.search).get('q');
+    if (initialQuery) {
+        $('#searchBar').val(initialQuery);
+        filterThesis();
+    }
     
     // Function to update the available thesis counter
     function updateThesisCount() {
