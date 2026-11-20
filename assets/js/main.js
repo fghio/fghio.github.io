@@ -193,3 +193,57 @@
   }, switchInterval);
 })();
 
+
+
+/* ---------------------------------------------------------------------------
+ * Popup "Hire me" (bottone nella colonna sinistra, inserita via JS: per questo
+ * il click è gestito a livello di documento)
+ * ------------------------------------------------------------------------- */
+(function () {
+  var EMAIL = "federico.ghioldi@polimi.it";
+  var modal = null, lastFocus = null;
+
+  function build() {
+    modal = document.createElement("div");
+    modal.className = "mx-modal";
+    modal.setAttribute("role", "dialog");
+    modal.setAttribute("aria-modal", "true");
+    modal.setAttribute("aria-labelledby", "hire-title");
+    modal.innerHTML =
+      '<div class="mx-modal__panel">' +
+      '  <div class="mx-modal__icon"><i class="fas fa-handshake" aria-hidden="true"></i></div>' +
+      '  <h2 class="mx-modal__title" id="hire-title">Let\'s collaborate</h2>' +
+      '  <p class="mx-modal__text">As long as I have a contract with Politecnico, ' +
+      '  we can only collaborate. Send me an email!</p>' +
+      '  <div class="mx-modal__actions">' +
+      '    <a class="button is-primary mx-modal__email" href="mailto:' + EMAIL +
+      '?subject=%5BFGH.IO%5D%20-%20Collaboration">' +
+      '      <i class="fas fa-envelope"></i>&nbsp;&nbsp;Send me an email</a>' +
+      '    <button type="button" class="button mx-modal__close">Close</button>' +
+      '  </div>' +
+      '</div>';
+    document.body.appendChild(modal);
+    modal.addEventListener("mousedown", function (e) { if (e.target === modal) close(); });
+    modal.querySelector(".mx-modal__close").addEventListener("click", close);
+  }
+
+  function open() {
+    if (!modal) build();
+    lastFocus = document.activeElement;
+    modal.classList.add("is-open");
+    modal.querySelector(".mx-modal__email").focus();
+  }
+
+  function close() {
+    if (!modal || !modal.classList.contains("is-open")) return;
+    modal.classList.remove("is-open");
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  document.addEventListener("click", function (e) {
+    if (e.target.closest(".hire-me")) { e.preventDefault(); open(); }
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") close();
+  });
+})();
