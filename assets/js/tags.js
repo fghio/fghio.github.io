@@ -90,7 +90,7 @@ $(document).ready(function () {
   
   function displayBlogCardsByTag(tagId) {
     // Redirect to the new page with the tag as a URL parameter
-    window.location.href = `./tagArticles.html?tag=${tagId}`;
+    window.location.href = `./tagArticles?tag=${tagId}`;
   }
 
   // I tag vengono calcolati scaricando tutti gli articoli: il risultato viene

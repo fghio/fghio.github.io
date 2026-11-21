@@ -13,7 +13,7 @@
 (function () {
   "use strict";
 
-  var INDEX_KEY = "searchIndex:v1";
+  var INDEX_KEY = "searchIndex:v2";
   var FUSE_URL = "https://cdnjs.cloudflare.com/ajax/libs/fuse.js/7.0.0/fuse.min.js";
   var MAX_RESULTS = 12;
 
@@ -57,7 +57,7 @@
         while (n && n.tagName !== "H2") { body.push(text(n)); n = n.nextElementSibling; }
         docs.push({
           type: "Home", title: text(h2), text: clean(body.join(" ")),
-          url: "index.html" + (h2.id ? "#" + encodeURIComponent(h2.id) : "")
+          url: "./" + (h2.id ? "#" + encodeURIComponent(h2.id) : "")
         });
       });
       return docs;
@@ -81,7 +81,7 @@
         docs.push({
           type: "CV", title: title, section: section.title,
           text: clean((left ? text(left) + " · " : "") + text(right)),
-          url: "curriculum.html" + (anchor ? "#" + encodeURIComponent(anchor) : "")
+          url: "curriculum" + (anchor ? "#" + encodeURIComponent(anchor) : "")
         });
       });
       return docs;
@@ -96,7 +96,7 @@
         var m = t.match(/"([^"]+)"/);
         return {
           type: "Publication", title: m ? m[1] : t.slice(0, 90), text: t,
-          url: "curriculum.html#Publications"
+          url: "curriculum#Publications"
         };
       });
     });
@@ -113,7 +113,7 @@
           section: status === "open" ? "Open" : status === "in-progress" ? "In progress" : status,
           tags: clean((c.getAttribute("data-tags") || "") + " " + text(c.querySelector(".tags"))),
           text: text(c.querySelector(".thesis-description")),
-          url: "thesis.html?q=" + encodeURIComponent(title)
+          url: "thesis?q=" + encodeURIComponent(title)
         };
       });
     });
@@ -124,7 +124,7 @@
       var doc = parse(html);
       return [{
         type: "Contact", title: "Contact & how to reach my office",
-        text: text(doc.querySelector(".column-main")), url: "contact.html"
+        text: text(doc.querySelector(".column-main")), url: "contact"
       }];
     });
   }
@@ -144,7 +144,7 @@
             type: "Blog", title: clean(title), section: meta.creationDate || "",
             tags: (meta.tags || []).join(" "),
             text: clean((meta.description || "") + " " + text(doc.querySelector(".content") || doc.body)),
-            url: "blogPost.html?post=" + encodeURIComponent(slug)
+            url: "blogPost?post=" + encodeURIComponent(slug)
           };
         }).catch(function () { return null; });
       }));
@@ -158,10 +158,10 @@
         var projTitle = text(doc.querySelector("h1"));
         var docs = [{
           type: "Project", title: projTitle, text: text(doc.body),
-          url: "projectArchive.html?id=" + p.id
+          url: "projectArchive?id=" + p.id
         }];
         var seen = {};
-        var links = Array.prototype.filter.call(doc.querySelectorAll('a[href^="projectPost.html?"]'), function (a) {
+        var links = Array.prototype.filter.call(doc.querySelectorAll('a[href^="projectPost.html?"], a[href^="projectPost?"]'), function (a) {
           var h = a.getAttribute("href");
           if (seen[h]) return false;
           seen[h] = true;
@@ -176,7 +176,8 @@
             return {
               type: "Project", section: projTitle,
               title: text(d.querySelector("h1")) || text(a),
-              text: text(d.querySelector(".content") || d.body), url: href
+              text: text(d.querySelector(".content") || d.body),
+              url: href.replace("projectPost.html?", "projectPost?")
             };
           }).catch(function () { return null; }); // capitolo non ancora pubblicato
         })).then(function (sub) { return docs.concat(sub); });

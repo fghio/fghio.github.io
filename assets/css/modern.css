@@ -1013,3 +1013,19 @@ html.mx.dark body .box { background-color: transparent; }
 /* Mappa di Google (Contatti): nascosta su fondo scuro finché non ha caricato */
 html.mx body .map-embed { background: var(--bg); transition: opacity 0.25s ease; }
 html.mx.dark body .map-embed:not(.is-loaded) { opacity: 0; }
+
+/* ---------- Pagine How to ------------------------------------------------- */
+html.mx body .howto-back {
+  display: inline-block;
+  margin-bottom: 0.6rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+html.mx body .howto-back:hover { color: var(--accent-text); }
+html.mx body .content .cv-entry .right-column a {
+  font-weight: 600;
+  color: var(--text);
+  text-decoration: none !important;
+}
+html.mx body .content .cv-entry .right-column a:hover { color: var(--accent-text); }

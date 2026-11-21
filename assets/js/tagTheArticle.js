@@ -25,7 +25,7 @@ $(document).ready(function () {
 
       if (Array.isArray(tags)) {
         const tagLinks = tags.map(tag => 
-          `<a class="link-muted" rel="tag" href="tagArticles.html?tag=${tag}">${tag}</a>`);
+          `<a class="link-muted" rel="tag" href="tagArticles?tag=${tag}">${tag}</a>`);
         tagsHTML = tagLinks.join(';&nbsp;');
       }
 
@@ -34,7 +34,7 @@ $(document).ready(function () {
           data-post-title="${postTitle}" style="opacity: 1;">
           <article class="card-content article" role="article">
             <h1 class="title is-size-3" style="font-family: 'PT Sans Narrow', sans-serif">
-              <a class="has-link-black-ter" href="blogPost.html?post=${postTitle}">
+              <a class="has-link-black-ter" href="blogPost?post=${postTitle}">
                 ${postRealTitle}
               </a>
             </h1>
@@ -75,7 +75,7 @@ $(document).ready(function () {
                 </div>
               </div>
               <a class="article-more button is-small is-size-7" 
-                href="blogPost.html?post=${postTitle}">
+                href="blogPost?post=${postTitle}">
                 <i class="fas fa-book-reader has-text-grey"></i>&nbsp;&nbsp;Read more
               </a>
             </div>

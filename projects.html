@@ -4,6 +4,8 @@
 <head>
   <!-- Tema scuro applicato prima di tutto: niente flash bianco -->
   <script>try{if(localStorage.getItem("night")==="true")document.documentElement.classList.add("dark")}catch(e){}</script>
+  <!-- Indirizzi senza .html (es. /curriculum): toglie l'estensione da vecchi link e preferiti -->
+  <script>(function(){try{var p=location.pathname;if(/\.html$/.test(p))history.replaceState(null,"",p.replace(/(^|\/)index\.html$/,"$1").replace(/\.html$/,"")+location.search+location.hash)}catch(e){}})()</script>
   <!-- Chrome aspetta a disegnare la pagina fino a quando le parti comuni sono inserite -->
   <link rel="expect" href="#mx-partials" blocking="render">
 
@@ -69,7 +71,7 @@
                       <h4>
                         <a class="title" style="font-family: 
                         'PT Sans Narrow', sans-serif; font-size: 16pt; font-weight: bold;" 
-                          href="./projectArchive.html?id=PF">Personal Finance Spreadsheet</a>
+                          href="./projectArchive?id=PF">Personal Finance Spreadsheet</a>
                       </h4>
                       <p>The projects proposes the generation of a Google Sheet to keep track 
                       of personal finances. The sheet is built to include cash flow analysis, 
@@ -90,7 +92,7 @@
                       <h4>
                         <a class="title" style="font-family: 
                         'PT Sans Narrow', sans-serif; font-size: 16pt; font-weight: bold;" 
-                          href="./projectArchive.html?id=WEB">How to make this website</a>
+                          href="./projectArchive?id=WEB">How to make this website</a>
                       </h4>
                       <p>The project aims at guiding the user to build a website structured 
                       on the same features shown and used in this website. Other than 
@@ -120,7 +122,7 @@
                       <h4>
                         <a class="title" style="font-family: 
                         'PT Sans Narrow', sans-serif; font-size: 16pt; font-weight: bold;" 
-                          href="./projectArchive.html?id=OF">CFD Course</a>
+                          href="./projectArchive?id=OF">CFD Course</a>
                       </h4>
                       <p>This project aims at helping the students of the course 
                         CTTP (PoliMi). It won't replicate the content of the 
@@ -146,7 +148,7 @@
                       <h4>
                         <a class="title" style="font-family: 
                         'PT Sans Narrow', sans-serif; font-size: 16pt; font-weight: bold;" 
-                          href="./projectArchive.html?id=PJ">ProJet: 0D cycles of 
+                          href="./projectArchive?id=PJ">ProJet: 0D cycles of 
                           aerospace propulsion engines</a>
                       </h4>
                       <p>This project aims at helping the students of the course 

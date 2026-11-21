@@ -15,7 +15,7 @@
  * avviene prima che la pagina venga disegnata.
  * ======================================================================== */
 (function ($) {
-  var PREFIX = "partial:v1:";
+  var PREFIX = "partial:v2:";
   var COMMON = [
     "./common/navBar.html",
     "./common/leftPane.html",

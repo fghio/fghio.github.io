@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" class="mx">
+
+<head>
+  <!-- Tema scuro applicato prima di tutto: niente flash bianco -->
+  <script>try{if(localStorage.getItem("night")==="true")document.documentElement.classList.add("dark")}catch(e){}</script>
+  <!-- Chrome aspetta a disegnare la pagina fino a quando le parti comuni sono inserite -->
+  <link rel="expect" href="/howTo/#mx-partials" blocking="render">
+
+  <!-- Pagina NON collegata dal resto del sito: raggiungibile solo con il link
+       diretto. I percorsi relativi partono dalla radice del sito. -->
+  <base href="/">
+  <meta name="robots" content="noindex, nofollow">
+
+  <title>FGh.io - How to</title>
+  <link rel="shortcut icon" href="assets/images/logo.ico">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="assets/css/default.css">
+  <link rel="stylesheet" href="assets/css/modern.css">
+  <script src="assets/js/jquery-3.7.1.min.js"></script>
+  <script src="assets/js/partials.js"></script>
+  <script src="assets/js/search.js" defer></script>
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous">
+</head>
+
+<body class="pace-done is-3-column light">
+
+  <!-- NAVIGATION BAR -->
+  <div id="navBarContainer"></div>
+
+  <section class="section">
+    <div class="container">
+      <div class="columns">
+
+        <!-- CENTRAL PANE -->
+        <div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen">
+          <div class="card">
+            <article class="card-content article" role="article">
+              <h1 class="title is-size-3">How to</h1>
+              <hr />
+              <div class="content">
+                <p>Practical guides for students and collaborators.
+                Pick the one you need.</p>
+
+                <h2 id="Guides"><p style="color: #3273dc">Guides</p></h2>
+
+                <div class="cv-entry">
+                  <div class="left-column">
+                    <h4><p>Thesis</p></h4>
+                  </div>
+                  <div class="right-column">
+                    <h4>
+                      <p>
+                        <a href="howTo/writeThesis/">How to write your thesis</a>
+                        <span class="cv-badge">Work in progress</span>
+                        <br>
+                        <span style="font-size: 12px;">A practical guide for students writing their M.Sc. thesis with me: structure, writing style, figures and the review process.</span>
+                      </p>
+                    </h4>
+                  </div>
+                </div>
+
+                <div class="cv-entry">
+                  <div class="left-column">
+                    <h4><p>Thesis</p></h4>
+                  </div>
+                  <div class="right-column">
+                    <h4>
+                      <p>
+                        <a href="howTo/prepareThesisGit/">How to prepare your thesis repository with Git</a>
+                        <span class="cv-badge">Work in progress</span>
+                        <br>
+                        <span style="font-size: 12px;">How to set up and organize the Git repository for your thesis: code, simulation cases, post-processing and the LaTeX document.</span>
+                      </p>
+                    </h4>
+                  </div>
+                </div>
+
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- LEFT PANE -->
+        <div class="column column-left is-4-tablet is-4-desktop is-3-widescreen order-1">
+          <div id="leftPaneContainer"></div>
+        </div>
+
+        <!-- RIGHT PANE -->
+        <div class="column column-right is-4-tablet is-4-desktop is-3-widescreen order-3">
+          <div id="rightPaneContainer"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div id="footerContainer"></div>
+
+  <!-- Parti comuni: inserite subito (dalla cache se disponibile) -->
+  <script id="mx-partials">
+    loadPartial("#navBarContainer", "./common/navBar.html");
+    loadPartial("#leftPaneContainer", "./common/leftPane.html");
+    loadPartial("#rightPaneContainer", "./common/rightPane.html");
+    loadPartial("#footerContainer", "./common/footer.html");
+  </script>
+
+  <script src="assets/js/script.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/columns.js"></script>
+
+</body>
+
+</html>
