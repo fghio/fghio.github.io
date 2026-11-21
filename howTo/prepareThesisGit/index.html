@@ -67,14 +67,23 @@
                 <p>Clone the repository on your computer and create the following four folders
                 inside it:</p>
 <pre><code>202X-ghioldi-CSPRDE/
+├── .gitignore
 ├── biblio/
 │   ├── README.md
 │   ├── smith2021-hydrogen-flames.pdf
 │   └── ...
 ├── OpenFOAM-thesis/
-│   └── src/
-│       └── reactionModels/
-│           └── myNewCombustionModel/
+│   ├── src/
+│   │   └── reactionModels/
+│   │       └── myNewCombustionModel/
+│   └── tutorials/
+│       └── combustion/
+│           └── myTestCase/
+│               ├── 0/
+│               ├── constant/
+│               ├── system/
+│               ├── Allrun
+│               └── Allclean
 ├── data/
 │   ├── fig1.py
 │   ├── fig1_data.csv
@@ -105,12 +114,24 @@
 
                 <h3 id="openfoam">OpenFOAM-thesis</h3>
                 <p>This folder must <strong>NOT</strong> contain OpenFOAM. It must contain
-                <strong>only</strong> the new models or developments you produce during your
-                thesis, if any.</p>
-                <p>The models you develop <strong>must</strong> follow the folder structure of
-                OpenFOAM. For example, if you create a new combustion model,
-                <code>OpenFOAM-thesis</code> will contain <strong>only</strong> the path
-                <code>src/reactionModels/&lt;newModel&gt;</code>.</p>
+                <strong>only</strong>:</p>
+                <ul>
+                  <li>the new models or developments you produce during your thesis, if any;</li>
+                  <li>the <code>tutorials</code> folder with the cases to run.</li>
+                </ul>
+                <p>Everything <strong>must</strong> follow the folder structure of OpenFOAM.
+                For example, if you create a new combustion model, <code>OpenFOAM-thesis</code>
+                will contain <strong>only</strong> the path
+                <code>src/reactionModels/&lt;newModel&gt;</code>; the cases go in
+                <code>tutorials/&lt;category&gt;/&lt;caseName&gt;</code>.</p>
+                <p>For each case, upload <strong>only the setup</strong>: the <code>0</code>,
+                <code>constant</code> and <code>system</code> folders and the
+                <code>Allrun</code> and <code>Allclean</code> scripts. Do <strong>NOT</strong>
+                upload results: no time directories other than <code>0</code>, no
+                <code>postProcessing</code>, no <code>processor*</code> folders, no log files.
+                Running <code>./Allclean</code> before committing helps; the
+                <a href="howTo/prepareThesisGit/#gitignore"><code>.gitignore</code></a> below
+                does the rest.</p>
 
                 <h3 id="data">data</h3>
                 <p>All the data needed to create the figures of your thesis, together with the
@@ -137,6 +158,52 @@ git add .                                  # stage your changes
 git commit -m "Short description of the change"
 git push                                   # send them to GitHub
 git pull                                   # get the latest version</code></pre>
+
+                <h2 id="gitignore"><p style="color: #3273dc">5. The .gitignore file</p></h2>
+                <p>Create a file named <code>.gitignore</code> in the root of the repository: Git
+                will ignore the files and folders it lists, so results, logs and temporary files
+                never end up on GitHub by mistake. You can start from this one:</p>
+<pre><code># ---- OpenFOAM: keep only the case setup (0, constant, system, Allrun, Allclean)
+# time directories (all except 0/)
+OpenFOAM-thesis/tutorials/**/[1-9]/
+OpenFOAM-thesis/tutorials/**/[1-9][0-9]*/
+OpenFOAM-thesis/tutorials/**/[0-9].[0-9]*/
+OpenFOAM-thesis/tutorials/**/[0-9]e-[0-9]*/
+processor*/
+postProcessing/
+dynamicCode/
+VTK/
+log.*
+*.log
+*.foam
+*.OpenFOAM
+
+# ---- compiled code (wmake)
+lnInclude/
+Make/linux*/
+
+# ---- LaTeX temporary files
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
+*.lot
+*.out
+*.synctex.gz
+*.toc
+
+# ---- Python and system files
+__pycache__/
+.ipynb_checkpoints/
+.DS_Store</code></pre>
+                <p>Check what you are about to commit with <code>git status</code>: if a result
+                file still shows up, add it to <code>.gitignore</code>.</p>
+
+                <h2 id="updates"><p style="color: #3273dc">6. Keep the repository up to date</p></h2>
+                <p>Push your updates <strong>at least once a week</strong>, and
+                <strong>always before our meetings</strong>.</p>
 
                 <p>More information on how to write the thesis is available in
                 <a href="howTo/writeThesis/">How to write your thesis</a>.</p>
