@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="assets/css/modern.css">
   <script src="assets/js/jquery-3.7.1.min.js"></script>
   <script src="assets/js/partials.js"></script>
+  <script src="assets/js/pflock.js"></script>
   <script src="assets/js/search.js" defer></script>
   
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css">
@@ -66,7 +67,8 @@
 		                  var contentDiv = document.getElementById('content');
 		                  if (contentDiv) {
 		                    if (cardId === 'PF') {
-    		                  contentDiv.innerHTML = "<div data-include='./posts/projects/spreadsheet'></div>";
+    		                  // progetto protetto da password (contenuto cifrato)
+    		                  PFLock.mount(contentDiv, "./posts/projects/spreadsheet.enc");
 		                    } else if (cardId === 'WEB') {
     		                  contentDiv.innerHTML = "<div data-include='./posts/projects/website'></div>";
 		                    } else if (cardId === 'OF') {

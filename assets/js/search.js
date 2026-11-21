@@ -13,12 +13,13 @@
 (function () {
   "use strict";
 
-  var INDEX_KEY = "searchIndex:v4";
+  var INDEX_KEY = "searchIndex:v5";
   var FUSE_URL = "https://cdnjs.cloudflare.com/ajax/libs/fuse.js/7.0.0/fuse.min.js";
   var MAX_RESULTS = 12;
 
+  // PF (Personal Finance Spreadsheet) è escluso di proposito: è protetto da
+  // password e il suo contenuto non deve finire nell'indice di ricerca.
   var PROJECTS = [
-    { id: "PF", file: "spreadsheet" },
     { id: "WEB", file: "website" },
     { id: "OF", file: "CFDcourse" },
     { id: "PJ", file: "projet" }

@@ -21,6 +21,7 @@
   
   <script src="assets/js/jquery-3.7.1.min.js"></script>
   <script src="assets/js/partials.js"></script>
+  <script src="assets/js/pflock.js"></script>
   <script src="assets/js/search.js" defer></script>
   
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css">
@@ -123,7 +124,11 @@
             const projectTitle = urlParams.get('project');
             const postTitle = urlParams.get('post');
             console.log('postTitle:', postTitle);
-            if (postTitle) {
+            if (postTitle && projectTitle === 'spreadsheet') {
+              // progetto protetto da password (contenuto cifrato)
+              PFLock.mount($('.column-main')[0],
+                `./posts/projects/spreadsheetPosts/${encodeURIComponent(postTitle)}.enc`);
+            } else if (postTitle) {
               // Fetch the content of the blog post based on postTitle
               $.ajax({
                 url: `./posts/projects/${projectTitle}Posts/${postTitle}.html`,
