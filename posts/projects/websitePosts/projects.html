@@ -29,7 +29,7 @@
         </span>
         <span class="level-item">
           <i class="far fa-clock"></i>&nbsp;
-          <div class="read-time">5 minutes</div>
+          <div class="read-time">9 minutes</div>
         </span>
       </div>
     </div>
@@ -42,20 +42,24 @@
       </h2>
       <p style="text-align: justify;">
         Projects are longer works told in several posts, like this series. They are organised in
-three levels: the list of projects, the list of posts of a project, and the single post.
+three levels: the list of projects, the timeline of the posts of one project, and the single
+post, with a table of contents built automatically from its headings. In this post we build the
+three levels.
       </p>
       <h2 id="Levels" style="scroll-margin: 1em;">
         <a href="#Levels" class="headerlink" title="Three levels, three pages"></a>
         Three levels, three pages
       </h2>
-      <ul>
-        <li><code>projects.html</code>: one card per project, with image, category and summary;</li>
-        <li><code>projectArchive?id=WEB</code>: the timeline of the posts of a project;</li>
-        <li><code>projectPost?project=website&amp;post=overview</code>: a single post.</li>
-      </ul>
+      <table class="table is-fullwidth is-narrow">
+<thead><tr><th>Address</th><th>Page</th><th>Content</th></tr></thead>
+<tbody>
+<tr><td><code>/projects</code></td><td><code>projects.html</code></td><td>one card per project</td></tr>
+<tr><td><code>/projectArchive?id=WEB</code></td><td><code>projectArchive.html</code></td><td>the timeline of a project</td></tr>
+<tr><td><code>/projectPost?project=website&amp;post=overview</code></td><td><code>projectPost.html</code></td><td>one post</td></tr>
+</tbody></table>
       <p style="text-align: justify;">
-        The first page is written by hand. The other two are templates that load their content
-from <code>posts/projects/</code>:
+        The first page is written by hand. The other two are templates that load their content from
+<code>posts/projects/</code>, where each project has a timeline file and a folder of posts:
       </p>
 <pre><code>posts/projects/
 ├── website.html          timeline of this project
@@ -63,50 +67,117 @@ from <code>posts/projects/</code>:
     ├── overview.html
     ├── hosting.html
     └── ...</code></pre>
-      <h2 id="Archive" style="scroll-margin: 1em;">
-        <a href="#Archive" class="headerlink" title="The list of posts"></a>
-        The list of posts
-      </h2>
+      <h3 style="margin-top: 1.6rem;">The list of projects</h3>
       <p style="text-align: justify;">
-        <code>projectArchive.html</code> maps the short id of each project to the file with its
-timeline. Adding a project means adding one line here:
+        Each project is a card with an image, a category, a title linking to its timeline, and a
+short summary:
       </p>
-<pre><code>if (cardId === &#x27;WEB&#x27;) {
-  contentDiv.innerHTML = &quot;&lt;div data-include=&#x27;./posts/projects/website&#x27;&gt;&lt;/div&gt;&quot;;
-} else if (cardId === &#x27;OF&#x27;) {
-  contentDiv.innerHTML = &quot;&lt;div data-include=&#x27;./posts/projects/CFDcourse&#x27;&gt;&lt;/div&gt;&quot;;
+<pre><code>&lt;div class=&quot;card-project&quot;&gt;
+  &lt;div class=&quot;card-project__header&quot;&gt;
+    &lt;img class=&quot;card-project__image&quot; src=&quot;./assets/images/website.jpg&quot; width=&quot;600&quot;&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;card-project__body&quot;&gt;
+    &lt;span class=&quot;tag-project tag-project-blue&quot;&gt;CODING&lt;/span&gt;
+    &lt;h4&gt;&lt;a class=&quot;title&quot; href=&quot;./projectArchive?id=WEB&quot;&gt;How to make this website&lt;/a&gt;&lt;/h4&gt;
+    &lt;p&gt;The project aims at guiding the user to build a website ...&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      <h2 id="Timeline" style="scroll-margin: 1em;">
+        <a href="#Timeline" class="headerlink" title="The timeline"></a>
+        The timeline
+      </h2>
+      <h3 style="margin-top: 1.6rem;">From the id to the file</h3>
+      <p style="text-align: justify;">
+        <code>projectArchive.html</code> reads the short id from the address and loads the timeline
+of that project. The mapping between ids and files is a short list in the page:
+      </p>
+<pre><code>var cardId = new URLSearchParams(location.search).get(&quot;id&quot;);
+var files = { WEB: &quot;website&quot;, OF: &quot;CFDcourse&quot;, PJ: &quot;projet&quot; };
+
+if (files[cardId]) {
+  $(&quot;#content&quot;).load(&quot;./posts/projects/&quot; + files[cardId] + &quot;.html&quot;);
+} else {
+  $(&quot;#content&quot;).html(&quot;&lt;h1&gt;Project not found&lt;/h1&gt;&quot;);
 }</code></pre>
       <p style="text-align: justify;">
-        The timeline itself is a simple list of dated entries, each linking to a post. Posts that
-are planned but not yet written can be listed without a link, as a roadmap.
+        Adding a project means adding one entry here (and a card on the projects page).
       </p>
+      <h3 style="margin-top: 1.6rem;">The timeline file</h3>
+      <p style="text-align: justify;">
+        The timeline is a list of dated entries, each linking to a post. Planned posts can be listed
+without a link, which turns the timeline into a public roadmap:
+      </p>
+<pre><code>&lt;h3 class=&quot;tag is-primary&quot;&gt;2026&lt;/h3&gt;
+&lt;div class=&quot;timeline&quot;&gt;
+  &lt;article class=&quot;media&quot;&gt;
+    &lt;div class=&quot;media-content&quot;&gt;
+      &lt;p class=&quot;date&quot;&gt;&lt;time&gt;21/11/2026&lt;/time&gt;&lt;/p&gt;
+      &lt;p class=&quot;title&quot;&gt;
+        &lt;a href=&quot;projectPost?project=website&amp;post=overview&quot;&gt;Overview&lt;/a&gt;
+      &lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/article&gt;
+  &lt;!-- one &lt;article&gt; per post --&gt;
+&lt;/div&gt;</code></pre>
       <h2 id="Post" style="scroll-margin: 1em;">
-        <a href="#Post" class="headerlink" title="The post and its table of contents"></a>
-        The post and its table of contents
+        <a href="#Post" class="headerlink" title="The post"></a>
+        The post
       </h2>
       <p style="text-align: justify;">
-        <code>projectPost.html</code> works like the page of a blog post: it reads
-<code>project</code> and <code>post</code> from the address and loads
-<code>posts/projects/&lt;project&gt;Posts/&lt;post&gt;.html</code>.
+        <code>projectPost.html</code> works like the page of a blog post, with two parameters:
       </p>
+<pre><code>var q = new URLSearchParams(location.search);
+var project = q.get(&quot;project&quot;), post = q.get(&quot;post&quot;);
+$.ajax({ url: &quot;./posts/projects/&quot; + project + &quot;Posts/&quot; + post + &quot;.html&quot; })
+  .done(function (html) { $(&quot;.column-main&quot;).html(html); });</code></pre>
       <p style="text-align: justify;">
-        The table of contents in the left column is built automatically by
-<code>tableContent.js</code> from the headings of the post. Each heading carries an anchor,
-and the script numbers the sections, links them, and highlights the section being read while
-scrolling:
+        A post has the same structure as a blog post: a title, a line of metadata (dates, links back
+to the timeline and to the projects, reading time), the text, a licence box, tags and comments.
+Starting a new post by copying an existing one is the fastest way to keep them consistent.
       </p>
-<pre><code>&lt;h2 id=&quot;Archive&quot; style=&quot;scroll-margin: 1em;&quot;&gt;
-  &lt;a href=&quot;#Archive&quot; class=&quot;headerlink&quot; title=&quot;Archive&quot;&gt;&lt;/a&gt;
-  The list of posts
+      <h2 id="Toc" style="scroll-margin: 1em;">
+        <a href="#Toc" class="headerlink" title="The table of contents"></a>
+        The table of contents
+      </h2>
+      <p style="text-align: justify;">
+        The table of contents in the left column is built by <code>tableContent.js</code> from the
+headings of the post. Each section heading has an <code>id</code> and an empty link with the
+class <code>headerlink</code>:
+      </p>
+<pre><code>&lt;h2 id=&quot;Toc&quot; style=&quot;scroll-margin: 1em;&quot;&gt;
+  &lt;a href=&quot;#Toc&quot; class=&quot;headerlink&quot; title=&quot;The table of contents&quot;&gt;&lt;/a&gt;
+  The table of contents
 &lt;/h2&gt;</code></pre>
-      <h2 id="Next" style="scroll-margin: 1em;">
-        <a href="#Next" class="headerlink" title="Next"></a>
-        Next
-      </h2>
       <p style="text-align: justify;">
-        The next post, <a href="projectPost?project=website&amp;post=search">site search</a>, explains how the search finds posts,
-projects, theses and CV entries without a server.
+        The script collects every <code>.headerlink</code>, numbers the sections (1, 2, 3&hellip;
+for <code>&lt;h2&gt;</code>, 1.1, 1.2&hellip; for <code>&lt;h3&gt;</code>), and adds a link for
+each one to the left column. While scrolling, it highlights the section being read.
       </p>
+<pre><code>document.querySelectorAll(&quot;.content .headerlink&quot;).forEach(function (link) {
+  var heading = link.parentNode;               // the &lt;h2&gt; or &lt;h3&gt;
+  var item = document.createElement(&quot;li&quot;);
+  item.innerHTML = &#x27;&lt;a href=&quot;#&#x27; + heading.id + &#x27;&quot;&gt;&#x27; + heading.textContent + &quot;&lt;/a&gt;&quot;;
+  toc.appendChild(item);
+});</code></pre>
+      <h3 style="margin-top: 1.6rem;">Keeping it short</h3>
+      <p style="text-align: justify;">
+        Only headings with a <code>headerlink</code> enter the table of contents. Sub-headings
+without it (like &ldquo;Keeping it short&rdquo; here) structure the text without making the table
+of contents long: a good rule is four to six entries per post.
+      </p>
+      <p style="text-align: justify;">
+        <code>scroll-margin</code> leaves some space above a heading when a link jumps to it, so
+that it is not hidden under the sticky navigation bar.
+      </p>
+      <h3 style="margin-top: 1.6rem;">Try it yourself</h3>
+      <ol>
+        <li>Create a project with a timeline and two posts.</li>
+        <li>Add its id to <code>projectArchive.html</code> and a card to <code>projects.html</code>.</li>
+        <li>Give the posts three or four <code>&lt;h2&gt;</code> with <code>headerlink</code> and check the table of contents.</li>
+      </ol>
+      <hr style="height:1px;margin:2rem 0 1rem">
+      <p style="text-align: justify;"><strong>Next.</strong> <a href="projectPost?project=website&amp;post=search">Site search</a> explains how the search finds posts, projects, theses and
+CV entries without a server.</p>
 
     </div>
 

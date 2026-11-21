@@ -29,7 +29,7 @@
         </span>
         <span class="level-item">
           <i class="far fa-clock"></i>&nbsp;
-          <div class="read-time">7 minutes</div>
+          <div class="read-time">12 minutes</div>
         </span>
       </div>
     </div>
@@ -43,107 +43,172 @@
       <p style="text-align: justify;">
         Sometimes a page should not be part of the public navigation: a guide meant only for my
 students, or a project I do not want to show to everyone. A static website has no login, but
-there are still two useful options, with very different levels of protection.
+there are two useful options, with very different levels of protection: <em>unlisted</em> pages
+and <em>encrypted</em> pages. This post builds both.
       </p>
       <h2 id="Unlisted" style="scroll-margin: 1em;">
         <a href="#Unlisted" class="headerlink" title="Unlisted pages"></a>
         Unlisted pages
       </h2>
       <p style="text-align: justify;">
-        An <em>unlisted</em> page is a normal page that is simply not linked from the menu or from
-other pages, and that asks search engines not to index it. Whoever has the link can open it;
-everyone else will not stumble upon it. The guides for my students are published this way
-under <code>/howTo/</code>.
+        An unlisted page is a normal page that is not linked from the menu or from other pages, and
+that asks search engines not to index it. Whoever has the link can open it; everyone else will not
+stumble upon it. The guides for my students are published this way, under
+<code>/howTo/</code>:
       </p>
+<pre><code>howTo/
+├── index.html                  /howTo/                     list of guides
+├── prepareThesisGit/
+│   └── index.html              /howTo/prepareThesisGit/
+└── writeThesis/
+    └── index.html              /howTo/writeThesis/</code></pre>
+      <h3 style="margin-top: 1.6rem;">Not indexed</h3>
 <pre><code>&lt;meta name=&quot;robots&quot; content=&quot;noindex, nofollow&quot;&gt;</code></pre>
       <p style="text-align: justify;">
-        These pages live in subfolders (<code>howTo/writeThesis/index.html</code>), so their
-relative links would point to the wrong place. A <code>&lt;base&gt;</code> element makes all
-relative links start from the root of the website again:
+        Search engines that respect this line do not show the page in their results, and do not
+follow its links. The pages are also left out of the site search.
+      </p>
+      <h3 style="margin-top: 1.6rem;">Links from a subfolder</h3>
+      <p style="text-align: justify;">
+        All the shared parts and scripts use links relative to the root (<code>./common/navBar.html</code>,
+<code>assets/css/modern.css</code>). From a page inside <code>howTo/writeThesis/</code> those links
+would point to <code>howTo/writeThesis/common/...</code>, which does not exist. One line in the
+<code>&lt;head&gt;</code> makes all relative links start from the root again:
       </p>
 <pre><code>&lt;base href=&quot;/&quot;&gt;</code></pre>
       <p style="text-align: justify;">
-        Unlisted is not private: the files are in a public repository, and the link can be passed
-on. It is the right choice for content that is harmless if found, but not meant for everyone.
+        The price is that links to sections of the same page must then be written in full
+(<code>/howTo/writeThesis/#introduction</code> instead of <code>#introduction</code>), because
+<code>#introduction</code> alone would now point to the home page.
       </p>
-      <h2 id="Protected" style="scroll-margin: 1em;">
-        <a href="#Protected" class="headerlink" title="Password-protected pages"></a>
+      <h3 style="margin-top: 1.6rem;">What unlisted means</h3>
+      <p style="text-align: justify;">
+        Unlisted is not private: the files are in a public repository, and anyone can pass the link
+on. It is the right choice for content that is harmless if found, but not meant for
+everyone.
+      </p>
+      <h2 id="Encryption" style="scroll-margin: 1em;">
+        <a href="#Encryption" class="headerlink" title="Password-protected pages"></a>
         Password-protected pages
       </h2>
       <p style="text-align: justify;">
-        For real protection the content must not be readable at all without the password. On a
-static website the only way is <strong>encryption</strong>: the repository contains only
-encrypted files, and the browser decrypts them after the visitor types the password. The
-password is never stored anywhere, and the encrypted files are useless without it.
+        For real protection the content must be unreadable without the password, even for someone
+browsing the repository. On a static website the only way is <strong>encryption</strong>: the
+repository contains only encrypted files, and the browser decrypts them after the visitor types
+the password. The password itself is never stored or published.
       </p>
-      <h2 id="Encrypting" style="scroll-margin: 1em;">
-        <a href="#Encrypting" class="headerlink" title="Encrypting the files"></a>
-        Encrypting the files
-      </h2>
+      <h3 style="margin-top: 1.6rem;">The ingredients</h3>
+      <ul>
+        <li><strong>AES-256-GCM</strong>, a standard symmetric cipher. GCM also detects tampering: decrypting with a wrong key fails instead of producing garbage, which is how a wrong password is recognised.</li>
+        <li><strong>PBKDF2</strong> with SHA-256, to turn the password into a 256-bit key. It is deliberately slow (600&thinsp;000 iterations), so that trying millions of passwords is impractical.</li>
+        <li>A random <strong>salt</strong>, public, so that the same password gives a different key on different websites.</li>
+        <li>A random <strong>IV</strong> (initialisation vector) for each file, stored at its start.</li>
+      </ul>
+      <h3 style="margin-top: 1.6rem;">Encrypting: a Python script</h3>
       <p style="text-align: justify;">
-        The readable pages and images are kept in a folder excluded from Git
-(<code>private/</code>, listed in <code>.gitignore</code>), so they never reach the public
-repository. A Python script encrypts them with AES-256-GCM, using a key derived from the
-password with PBKDF2 (600&thinsp;000 iterations, which makes guessing passwords slow), and
-writes the encrypted <code>.enc</code> files that are published:
+        The readable pages and images are kept in <code>private/</code>, a folder listed in
+<code>.gitignore</code>, so they never reach the public repository. A script encrypts them with
+the <code>cryptography</code> package and writes the <code>.enc</code> files that are published:
       </p>
-<pre><code>key = PBKDF2HMAC(algorithm=hashes.SHA256(), length=32,
+<pre><code>import base64, getpass, json, os
+from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.primitives.ciphers.aead import AESGCM
+from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
+
+password = getpass.getpass(&quot;Password: &quot;).encode()
+salt = os.urandom(16)
+key = PBKDF2HMAC(algorithm=hashes.SHA256(), length=32,
                  salt=salt, iterations=600_000).derive(password)
 aes = AESGCM(key)
-for page in pages:
+
+def seal(data):
     iv = os.urandom(12)
-    write(page + &quot;.enc&quot;, iv + aes.encrypt(iv, read(page), None))</code></pre>
+    return iv + aes.encrypt(iv, data, None)        # IV + ciphertext + tag
+
+for name in os.listdir(&quot;private/project&quot;):
+    data = open(f&quot;private/project/{name}&quot;, &quot;rb&quot;).read()
+    open(f&quot;posts/projects/project/{name}.enc&quot;, &quot;wb&quot;).write(seal(data))
+
+# public parameters + an encrypted test string to check the password
+json.dump({&quot;iterations&quot;: 600_000,
+           &quot;salt&quot;: base64.b64encode(salt).decode(),
+           &quot;check&quot;: base64.b64encode(seal(b&quot;ok&quot;)).decode()},
+          open(&quot;assets/data/lock.json&quot;, &quot;w&quot;))</code></pre>
       <p style="text-align: justify;">
-        A small public file stores the salt, the number of iterations and an encrypted test
-string, used to check whether a password is right.
+        The password is typed in the terminal (<code>getpass</code> does not show it), so it never
+appears in a file or in the shell history.
       </p>
-      <h2 id="Decrypting" style="scroll-margin: 1em;">
-        <a href="#Decrypting" class="headerlink" title="Decrypting in the browser"></a>
+      <h2 id="Browser" style="scroll-margin: 1em;">
+        <a href="#Browser" class="headerlink" title="Decrypting in the browser"></a>
         Decrypting in the browser
       </h2>
+      <h3 style="margin-top: 1.6rem;">Checking the password</h3>
       <p style="text-align: justify;">
-        When the protected page is opened, it shows a password box. The browser derives the key
-with the same parameters, using the built-in Web Crypto API, and tries to decrypt the test
-string. If that fails, the password is wrong; otherwise the page is decrypted and
-displayed:
+        The protected page first shows a password box. When the visitor submits it, the browser
+derives the key with the same parameters, using the built-in Web Crypto API, and tries to decrypt
+the test string. If decryption fails, the password is wrong:
       </p>
-<pre><code>const base = await crypto.subtle.importKey(&quot;raw&quot;, encode(password), &quot;PBKDF2&quot;, false, [&quot;deriveKey&quot;]);
-const key  = await crypto.subtle.deriveKey(
-  { name: &quot;PBKDF2&quot;, hash: &quot;SHA-256&quot;, salt, iterations },
-  base, { name: &quot;AES-GCM&quot;, length: 256 }, true, [&quot;decrypt&quot;]);
-const html = await crypto.subtle.decrypt({ name: &quot;AES-GCM&quot;, iv }, key, data);</code></pre>
+<pre><code>async function unlock(password) {
+  const meta = await (await fetch(&quot;assets/data/lock.json&quot;)).json();
+  const base = await crypto.subtle.importKey(
+    &quot;raw&quot;, new TextEncoder().encode(password), &quot;PBKDF2&quot;, false, [&quot;deriveKey&quot;]);
+  const key = await crypto.subtle.deriveKey(
+    { name: &quot;PBKDF2&quot;, hash: &quot;SHA-256&quot;, salt: b64(meta.salt), iterations: meta.iterations },
+    base, { name: &quot;AES-GCM&quot;, length: 256 }, true, [&quot;decrypt&quot;]);
+  await decrypt(key, b64(meta.check));     // throws if the password is wrong
+  return key;
+}
+
+function decrypt(key, bytes) {
+  return crypto.subtle.decrypt(
+    { name: &quot;AES-GCM&quot;, iv: bytes.slice(0, 12) }, key, bytes.slice(12));
+}</code></pre>
       <p style="text-align: justify;">
-        The key is kept in the session storage, so the visitor types the password once and can then
-read all the posts of the project until the tab is closed. Images are encrypted too: they are
-downloaded, decrypted and shown from memory (as <em>blob</em> addresses), so the original
-image files are never published.
+        Web Crypto is available only on secure pages (<code>https://</code> or
+<code>localhost</code>), which GitHub Pages provides.
+      </p>
+      <h3 style="margin-top: 1.6rem;">Showing pages and images</h3>
+      <p style="text-align: justify;">
+        After a successful unlock, the page downloads the encrypted post, decrypts it and inserts it
+as usual. Images are encrypted too: before inserting the post, their addresses are moved to a
+<code>data-</code> attribute, so that the browser does not request the (missing) originals; each
+image is then downloaded encrypted, decrypted, and shown from memory with a <em>blob</em>
+address:
+      </p>
+<pre><code>const plain = await decrypt(key, await getBytes(path + &quot;.enc&quot;));
+img.src = URL.createObjectURL(new Blob([plain], { type: &quot;image/webp&quot; }));</code></pre>
+      <h3 style="margin-top: 1.6rem;">Remembering the key for the visit</h3>
+      <p style="text-align: justify;">
+        Deriving the key takes a moment by design, and typing the password on every post would be
+annoying. The derived key is therefore kept in the session storage: the visitor types the password
+once and can read all the posts of the project until the tab is closed.
       </p>
       <h2 id="Search" style="scroll-margin: 1em;">
-        <a href="#Search" class="headerlink" title="Search and protected content"></a>
-        Search and protected content
+        <a href="#Search" class="headerlink" title="Search and limits"></a>
+        Search and limits
       </h2>
+      <h3 style="margin-top: 1.6rem;">Protected content and the site search</h3>
       <p style="text-align: justify;">
-        The site search must not reveal protected content, so protected pages are not part of the
-public index. Only in a tab where the password has already been entered, the search decrypts
-those pages too and adds them to the results; the decrypted index stays in that tab.
+        The public search index must not contain protected text, otherwise the search would reveal
+it. Protected pages are left out of the index. In a tab where the password has already been
+entered, however, the search decrypts them and adds them to a separate index that stays in that
+tab, so that they can be searched like everything else.
       </p>
-      <h2 id="Limits" style="scroll-margin: 1em;">
-        <a href="#Limits" class="headerlink" title="Limits"></a>
-        Limits
-      </h2>
+      <h3 style="margin-top: 1.6rem;">Limits</h3>
       <ul>
-        <li>The protection is as strong as the password: choose a long one.</li>
+        <li>The protection is as strong as the password: choose a long one, not used elsewhere.</li>
         <li>Everyone who knows the password can read the content and pass it on.</li>
-        <li>Every change to a protected page means running the encryption script again.</li>
+        <li>Each change to a protected page means running the encryption script again.</li>
       </ul>
-      <h2 id="Next" style="scroll-margin: 1em;">
-        <a href="#Next" class="headerlink" title="Next"></a>
-        Next
-      </h2>
-      <p style="text-align: justify;">
-        The last post, <a href="projectPost?project=website&amp;post=polish">polish and performance</a>, collects the small details that
-make the website feel fast.
-      </p>
+      <h3 style="margin-top: 1.6rem;">Try it yourself</h3>
+      <ol>
+        <li>Create an unlisted page in a subfolder, with <code>noindex</code> and <code>&lt;base&gt;</code>.</li>
+        <li>Encrypt a short HTML file with the script and decrypt it in the browser console with <code>unlock</code> and <code>decrypt</code>.</li>
+        <li>Try a wrong password and check that decryption fails.</li>
+      </ol>
+      <hr style="height:1px;margin:2rem 0 1rem">
+      <p style="text-align: justify;"><strong>Next.</strong> <a href="projectPost?project=website&amp;post=polish">Polish and performance</a> collects the small details that make the
+website feel fast and consistent.</p>
 
     </div>
 

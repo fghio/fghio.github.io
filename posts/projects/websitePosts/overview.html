@@ -41,10 +41,10 @@
         Introduction
       </h2>
       <p style="text-align: justify;">
-        This series explains, step by step, how this website is built, so that you can build
-a similar one for yourself. This first post is the map: it describes the pieces, how they
-fit together and what happens when a page is opened. The following posts take one piece at
-a time and build it from scratch.
+        This series explains, step by step, how this website is built, so that you can build a
+similar one for yourself. This first post is the map: it describes the pieces, how they fit
+together and what happens when a page is opened. The following posts take one piece at a time
+and build it from scratch.
       </p>
       <p style="text-align: justify;">
         You do not need to be a web developer to follow the series. You need to be comfortable
@@ -57,36 +57,37 @@ HTML, CSS and a little JavaScript. Every post shows complete, working code.
       </h2>
       <p style="text-align: justify;">
         The most important design choice is that the website is <strong>static</strong>. There is
-no server-side program (no PHP, no Python, no Node.js running on a server) and no database.
-The website is just a folder of files: HTML pages, CSS stylesheets, JavaScript scripts and
-images. A web server sends these files to the browser exactly as they are stored.
+no server-side program (no PHP, no Python, no Node.js running on a server) and no database. The
+website is just a folder of files: HTML pages, CSS stylesheets, JavaScript scripts and images.
+A web server sends these files to the browser exactly as they are stored.
       </p>
       <p style="text-align: justify;">
         Everything that looks dynamic is done by the <em>browser</em>, with a few lines of
 JavaScript: inserting the navigation bar into every page, listing the blog posts, building the
 search index, filtering the theses, switching to the dark theme.
       </p>
-      <h3>Why static</h3>
+      <h3 style="margin-top: 1.6rem;">Why static</h3>
       <ul>
-        <li><strong>Free hosting.</strong> GitHub Pages publishes static websites at no cost (see the next post).</li>
-        <li><strong>Nothing to maintain.</strong> There is no server to update, no database to back up, no plugin with security holes. The attack surface is essentially zero.</li>
+        <li><strong>Free hosting.</strong> GitHub Pages publishes static websites at no cost.</li>
+        <li><strong>Nothing to maintain.</strong> There is no server to update, no database to back up, no plugin with security holes.</li>
         <li><strong>Fast.</strong> Files are served as they are, from a content delivery network, and the browser caches them.</li>
         <li><strong>Versioned.</strong> The whole website is a Git repository: every change is recorded, can be reviewed and can be undone.</li>
         <li><strong>Portable.</strong> The same folder works on any web server, or on your laptop.</li>
       </ul>
-      <h3>What you give up</h3>
+      <h3 style="margin-top: 1.6rem;">What you give up</h3>
       <ul>
         <li>No server-side logic: forms cannot be processed by the website itself (this website uses e-mail links and an external Google Form instead).</li>
         <li>No user accounts: a page cannot be shown only to logged-in users. A later post shows how to protect a page with encryption instead.</li>
-        <li>Some repetition must be avoided by hand, which is what the &ldquo;shared parts&rdquo; mechanism is for.</li>
+        <li>Repetition must be avoided by hand, which is what the &ldquo;shared parts&rdquo; mechanism is for.</li>
       </ul>
-      <h2 id="Tree" style="scroll-margin: 1em;">
-        <a href="#Tree" class="headerlink" title="The folder"></a>
-        The folder
+      <h2 id="Organisation" style="scroll-margin: 1em;">
+        <a href="#Organisation" class="headerlink" title="How the website is organised"></a>
+        How the website is organised
       </h2>
+      <h3 style="margin-top: 1.6rem;">The folder</h3>
       <p style="text-align: justify;">
-        This is the complete structure of the repository, with the role of each element. Do not
-worry about the details now: each part has its own post.
+        This is the complete structure of the repository, with the role of each element. Each part
+has its own post.
       </p>
 <pre><code>fghio.github.io/
 ├── index.html            home page
@@ -124,23 +125,38 @@ worry about the details now: each part has its own post.
 │
 └── tools/
     └── serve.py          local test server</code></pre>
-      <h2 id="Templates" style="scroll-margin: 1em;">
-        <a href="#Templates" class="headerlink" title="Pages as templates"></a>
-        Pages as templates
-      </h2>
+      <h3 style="margin-top: 1.6rem;">Pages as templates</h3>
       <p style="text-align: justify;">
         The pages in the root are <em>templates</em>: they define the layout and contain empty
-containers. The actual text lives in separate files, which the template loads when the page
-is opened. Two kinds of content are loaded this way:
+containers. The actual text lives in separate files, which the template loads when the page is
+opened. Two kinds of content are loaded this way:
       </p>
       <ul>
-        <li><strong>Shared parts</strong> (navigation bar, side columns, footer), identical on every page, from <code>common/</code>;</li>
-        <li><strong>Page content</strong>, different for each address: the text of the home page, a blog post, a project post, the list of theses.</li>
+        <li><strong>shared parts</strong> (navigation bar, side columns, footer), identical on every page, from <code>common/</code>;</li>
+        <li><strong>page content</strong>, different for each address: the text of the home page, a blog post, a project post, the list of theses.</li>
       </ul>
       <p style="text-align: justify;">
-        The advantage is that each piece of information exists in exactly one place. The
-navigation bar is written once and appears on eleven pages; a blog post is written once and
-appears in the list of posts, on its own page, in the tags and in the search results.
+        Each piece of information exists in exactly one place. The navigation bar is written once
+and appears on eleven pages; a blog post is written once and appears in the list of posts, on
+its own page, in the tags and in the search results.
+      </p>
+      <h3 style="margin-top: 1.6rem;">The scripts</h3>
+      <table class="table is-fullwidth is-narrow">
+<thead><tr><th>File</th><th>Role</th><th>Post</th></tr></thead>
+<tbody>
+<tr><td><code>partials.js</code></td><td>loads the shared parts and keeps them in memory</td><td><a href="projectPost?project=website&amp;post=sharedParts">shared parts</a></td></tr>
+<tr><td><code>script.js</code></td><td>dark mode switch</td><td><a href="projectPost?project=website&amp;post=darkMode">dark mode</a></td></tr>
+<tr><td><code>blogCard.js</code>, <code>tags.js</code></td><td>list of blog posts, tags</td><td><a href="projectPost?project=website&amp;post=blog">the blog</a></td></tr>
+<tr><td><code>tableContent.js</code></td><td>table of contents of posts</td><td><a href="projectPost?project=website&amp;post=projects">projects</a></td></tr>
+<tr><td><code>search.js</code></td><td>site search</td><td><a href="projectPost?project=website&amp;post=search">site search</a></td></tr>
+<tr><td><code>pflock.js</code></td><td>password-protected content</td><td><a href="projectPost?project=website&amp;post=hiddenPages">hidden and protected pages</a></td></tr>
+<tr><td><code>main.js</code>, <code>columns.js</code></td><td>small behaviours (dialogs, column layout)</td><td>&ndash;</td></tr>
+</tbody></table>
+      <p style="text-align: justify;">
+        External libraries are few and loaded from public CDNs: jQuery (to write shorter
+JavaScript), Font Awesome (icons), Fuse.js (search, loaded only when used) and the Inter font.
+There is no build step and no package manager: what is in the repository is exactly what the
+browser receives.
       </p>
       <h2 id="Request" style="scroll-margin: 1em;">
         <a href="#Request" class="headerlink" title="What happens when a page opens"></a>
@@ -159,32 +175,11 @@ appears in the list of posts, on its own page, in the tags and in the search res
         <li>The scripts included in the post run: <code>tableContent.js</code> builds the table of contents in the left column from the headings of the post, and the comments are loaded.</li>
       </ol>
       <p style="text-align: justify;">
-        All of this takes a fraction of a second, and only steps 5 and 6 involve this specific
+        All of this takes a fraction of a second, and only the last two steps involve this specific
 post: everything else is shared with the rest of the website.
       </p>
-      <h2 id="Scripts" style="scroll-margin: 1em;">
-        <a href="#Scripts" class="headerlink" title="The scripts"></a>
-        The scripts
-      </h2>
-      <table class="table is-fullwidth is-narrow">
-<thead><tr><th>File</th><th>Role</th><th>Post</th></tr></thead>
-<tbody>
-<tr><td><code>partials.js</code></td><td>loads the shared parts and keeps them in memory</td><td><a href="projectPost?project=website&amp;post=sharedParts">shared parts</a></td></tr>
-<tr><td><code>script.js</code></td><td>dark mode switch</td><td><a href="projectPost?project=website&amp;post=darkMode">dark mode</a></td></tr>
-<tr><td><code>blogCard.js</code>, <code>tags.js</code></td><td>list of blog posts, tags</td><td><a href="projectPost?project=website&amp;post=blog">the blog</a></td></tr>
-<tr><td><code>tableContent.js</code></td><td>table of contents of posts</td><td><a href="projectPost?project=website&amp;post=projects">projects</a></td></tr>
-<tr><td><code>search.js</code></td><td>site search</td><td><a href="projectPost?project=website&amp;post=search">site search</a></td></tr>
-<tr><td><code>pflock.js</code></td><td>password-protected content</td><td><a href="projectPost?project=website&amp;post=hiddenPages">hidden and protected pages</a></td></tr>
-<tr><td><code>main.js</code>, <code>columns.js</code></td><td>small behaviours (popups, column layout)</td><td>&ndash;</td></tr>
-</tbody></table>
-      <p style="text-align: justify;">
-        External libraries are few and loaded from public CDNs: jQuery (to write shorter
-JavaScript), Font Awesome (icons), Fuse.js (search, loaded only when used) and the Inter font.
-There is no build step and no package manager: what is in the repository is exactly what the
-browser receives.
-      </p>
-      <h2 id="Recipes" style="scroll-margin: 1em;">
-        <a href="#Recipes" class="headerlink" title="Common tasks"></a>
+      <h2 id="Tasks" style="scroll-margin: 1em;">
+        <a href="#Tasks" class="headerlink" title="Common tasks"></a>
         Common tasks
       </h2>
       <p style="text-align: justify;">
@@ -202,25 +197,13 @@ changes involve:
 <tr><td>Add a page</td><td>copy an existing page, keep the containers, change the central column, add it to the menu</td></tr>
 </tbody></table>
       <p style="text-align: justify;">
-        In all cases the list of posts, the tags and the search update by themselves.
+        In all cases the list of posts, the tags and the search update by themselves. Changes are
+made on a separate branch, tested on the local computer with a small server that behaves like
+GitHub Pages, and only then published: the next post explains this workflow.
       </p>
-      <h2 id="Workflow" style="scroll-margin: 1em;">
-        <a href="#Workflow" class="headerlink" title="How it is updated"></a>
-        How it is updated
-      </h2>
-      <p style="text-align: justify;">
-        Changes are made on a separate branch, tested on the local computer with a small server
-that behaves like GitHub Pages, and only then published by merging them into the
-<code>main</code> branch. The next post explains this workflow in detail.
-      </p>
-      <h2 id="Next" style="scroll-margin: 1em;">
-        <a href="#Next" class="headerlink" title="Next"></a>
-        Next
-      </h2>
-      <p style="text-align: justify;">
-        The next post, <a href="projectPost?project=website&amp;post=hosting">hosting on GitHub Pages</a>, starts building: it creates the
-repository, publishes a first page and sets up the local test server.
-      </p>
+      <hr style="height:1px;margin:2rem 0 1rem">
+      <p style="text-align: justify;"><strong>Next.</strong> <a href="projectPost?project=website&amp;post=hosting">Hosting on GitHub Pages</a> starts building: it creates the repository,
+publishes a first page and sets up the local test server.</p>
 
     </div>
 

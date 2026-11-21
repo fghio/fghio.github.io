@@ -29,7 +29,7 @@
         </span>
         <span class="level-item">
           <i class="far fa-clock"></i>&nbsp;
-          <div class="read-time">6 minutes</div>
+          <div class="read-time">10 minutes</div>
         </span>
       </div>
     </div>
@@ -41,86 +41,162 @@
         Introduction
       </h2>
       <p style="text-align: justify;">
-        The blog has a list of posts with cards and pages, a page for each post and a page of
-tags. There is no database and no build step: a post is an HTML file, and a small JSON file
-lists the posts.
+        The blog has a list of posts shown as cards with pagination, a page for each post, a page of
+tags, and comments. There is no database and no build step: a post is an HTML file that carries
+its own metadata, and a short JSON file lists the posts. In this post we build all of it.
       </p>
       <h2 id="Post" style="scroll-margin: 1em;">
         <a href="#Post" class="headerlink" title="A post"></a>
         A post
       </h2>
       <p style="text-align: justify;">
-        Each post is a file in <code>posts/blog/</code>. Besides the text, it carries its own
-metadata (title, dates, tags, description) in a <code>data-metadata</code> attribute, so that
-the list, the tags and the search can read them without a separate file:
+        Each post is a file in <code>posts/blog/</code>. Like the shared parts, it is a fragment of
+HTML: it will be inserted into the central column of <code>blogPost.html</code>. Besides the text,
+it carries its metadata in a <code>data-metadata</code> attribute, as JSON:
       </p>
-<pre><code>&lt;article class=&quot;card-content article&quot; data-metadata=&#x27;{
-  &quot;creationDate&quot;: &quot;2024-11-23&quot;,
-  &quot;lastModificationDate&quot;: &quot;2024-11-24&quot;,
-  &quot;title&quot;: &quot;collectify: gotta collect &amp;apos;em all&quot;,
-  &quot;readTime&quot;: &quot;5 min&quot;,
-  &quot;tags&quot;: [&quot;python&quot;, &quot;app&quot;, &quot;utility&quot;],
-  &quot;description&quot;: &quot;The tool for collectors.&quot;
-}&#x27;&gt;
-  &lt;!-- text of the post --&gt;
-&lt;/article&gt;</code></pre>
-      <h2 id="Index" style="scroll-margin: 1em;">
-        <a href="#Index" class="headerlink" title="The list of posts"></a>
+<pre><code>&lt;div class=&quot;card&quot;&gt;
+  &lt;article class=&quot;card-content article&quot; data-metadata=&#x27;{
+    &quot;creationDate&quot;: &quot;2024-11-23&quot;,
+    &quot;lastModificationDate&quot;: &quot;2024-11-24&quot;,
+    &quot;title&quot;: &quot;collectify: gotta collect &amp;apos;em all&quot;,
+    &quot;readTime&quot;: &quot;5 min&quot;,
+    &quot;tags&quot;: [&quot;python&quot;, &quot;app&quot;, &quot;utility&quot;],
+    &quot;description&quot;: &quot;The tool for collectors. Provided they know how to run a python script.&quot;
+  }&#x27;&gt;
+
+    &lt;h1 class=&quot;title&quot;&gt;collectify: gotta collect &#x27;em all&lt;/h1&gt;
+    &lt;div class=&quot;content&quot;&gt;
+      &lt;p&gt;The text of the post...&lt;/p&gt;
+    &lt;/div&gt;
+
+  &lt;/article&gt;
+&lt;/div&gt;</code></pre>
+      <p style="text-align: justify;">
+        Keeping the metadata inside the post means there is a single file to write and nothing to
+keep in sync: the list of posts, the tags and the search all read the same attribute. Note the
+single quotes around the attribute, so that the JSON can use double quotes, and
+<code>&amp;apos;</code> for an apostrophe inside it.
+      </p>
+      <h2 id="List" style="scroll-margin: 1em;">
+        <a href="#List" class="headerlink" title="The list of posts"></a>
         The list of posts
       </h2>
+      <h3 style="margin-top: 1.6rem;">index.json</h3>
       <p style="text-align: justify;">
-        A static website cannot list the files of a folder, so the posts are listed in
-<code>posts/blog/index.json</code>:
+        A static website cannot ask the server for the list of files in a folder, so the posts are
+listed by hand in <code>posts/blog/index.json</code>:
       </p>
 <pre><code>[
   { &quot;name&quot;: &quot;collectify.html&quot; },
   { &quot;name&quot;: &quot;tex2html.html&quot; }
 ]</code></pre>
       <p style="text-align: justify;">
-        Publishing a new post therefore takes two steps: add its HTML file, and add its name
-to this list. <code>blogCard.js</code> reads the list, loads the metadata of each post,
-sorts the posts from the most recently updated, and builds the cards, four per page, with
-pagination.
+        Publishing a post therefore takes two steps: add its HTML file, and add its name here. The
+order in the file does not matter.
+      </p>
+      <h3 style="margin-top: 1.6rem;">Cards and pagination</h3>
+      <p style="text-align: justify;">
+        <code>blogCard.js</code>, included in <code>blog.html</code>, does the rest:
+      </p>
+      <ol>
+        <li>downloads <code>index.json</code>;</li>
+        <li>downloads each post and reads its <code>data-metadata</code>;</li>
+        <li>sorts the posts by last modification date, most recent first;</li>
+        <li>builds a card for each post (title, date, reading time, description, tags) and shows them four per page, with page links at the bottom.</li>
+      </ol>
+<pre><code>$.getJSON(&quot;posts/blog/index.json&quot;, function (files) {
+  var posts = files.map(function (f) { return f.name.replace(/\.html$/, &quot;&quot;); });
+  // ... load each post, read data-metadata, sort by lastModificationDate ...
+  showPage(1);
+});
+
+function readMetadata(html) {
+  var doc = new DOMParser().parseFromString(html, &quot;text/html&quot;);
+  return JSON.parse(doc.querySelector(&quot;[data-metadata]&quot;).getAttribute(&quot;data-metadata&quot;));
+}</code></pre>
+      <p style="text-align: justify;">
+        Each card links to <code>blogPost?post=&lt;name&gt;</code>.
       </p>
       <h2 id="Page" style="scroll-margin: 1em;">
         <a href="#Page" class="headerlink" title="The page of a post"></a>
         The page of a post
       </h2>
       <p style="text-align: justify;">
-        All posts are shown by the same page, <code>blogPost.html</code>, which reads the name of
-the post from the address and loads its file into the central column:
+        All posts are displayed by the same page, <code>blogPost.html</code>: the usual layout with
+an empty central column. A short script reads the name of the post from the address and loads
+the corresponding file:
       </p>
 <pre><code>// blogPost?post=collectify  -&gt;  posts/blog/collectify.html
-var post = new URLSearchParams(location.search).get(&quot;post&quot;);
-$.ajax({ url: &quot;./posts/blog/&quot; + post + &quot;.html&quot; })
-  .done(function (html) { $(&quot;.column-main&quot;).html(html); });</code></pre>
+$(function () {
+  var post = new URLSearchParams(location.search).get(&quot;post&quot;);
+  if (!post) return;
+  $.ajax({ url: &quot;./posts/blog/&quot; + post + &quot;.html&quot; })
+    .done(function (html) { $(&quot;.column-main&quot;).html(html); });
+});</code></pre>
+      <p style="text-align: justify;">
+        jQuery's <code>.html()</code> runs the scripts contained in the post, so a post can include
+its own interactive parts: a calculator, a chart, the table of contents.
+      </p>
+      <h3 style="margin-top: 1.6rem;">Comments</h3>
+      <p style="text-align: justify;">
+        The comments are provided by <a href="https://disqus.com" target="_blank"
+rel="noopener">Disqus</a>, an external service, since a static website cannot store them. Each
+post ends with the Disqus snippet, which identifies the post with its address and a unique
+identifier:
+      </p>
+<pre><code>&lt;div id=&quot;disqus_thread&quot;&gt;&lt;/div&gt;
+&lt;script&gt;
+  var disqus_config = function () {
+    this.page.url = &quot;https://fghio.github.io/blogPost?post=collectify&quot;;
+    this.page.identifier = &quot;/posts/blog/collectify.html&quot;;
+  };
+  (function () {
+    var s = document.createElement(&quot;script&quot;);
+    s.src = &quot;//&lt;your-shortname&gt;.disqus.com/embed.js&quot;;
+    s.setAttribute(&quot;data-timestamp&quot;, +new Date());
+    document.body.appendChild(s);
+  })();
+&lt;/script&gt;</code></pre>
+      <p style="text-align: justify;">
+        The identifier must never change once the post is published, otherwise the existing
+comments are lost; the address can change, as long as the identifier stays the same.
+      </p>
       <h2 id="Tags" style="scroll-margin: 1em;">
         <a href="#Tags" class="headerlink" title="Tags"></a>
         Tags
       </h2>
       <p style="text-align: justify;">
-        The tags page collects the tags of all posts from their metadata and shows them as
-buttons; <code>tagArticles?tag=python</code> lists the posts with that tag. Since collecting
-the tags means reading every post, the result is kept in the session storage and reused
-while the tab is open.
+        <code>tags.html</code> shows every tag used by the posts, with the number of posts for each;
+<code>tagArticles?tag=python</code> lists the posts with a given tag. Collecting the tags means
+downloading every post and reading its metadata, so the result is kept in the session storage, as
+for the shared parts, and reused while the tab is open:
       </p>
-      <h2 id="Comments" style="scroll-margin: 1em;">
-        <a href="#Comments" class="headerlink" title="Comments"></a>
-        Comments
-      </h2>
+<pre><code>var CACHE_KEY = &quot;blogTags:v1&quot;;
+var cached = null;
+try { cached = JSON.parse(sessionStorage.getItem(CACHE_KEY)); } catch (e) {}
+
+if (Array.isArray(cached)) {
+  showTags(cached);                         // instant
+} else {
+  collectTags().then(function (tags) {      // download and count
+    if (tags.length) sessionStorage.setItem(CACHE_KEY, JSON.stringify(tags));
+    showTags(tags);
+  });
+}</code></pre>
       <p style="text-align: justify;">
-        The comments at the bottom of the posts are provided by Disqus, an external service: each
-post includes a short script with its own address and identifier, and Disqus does the
-rest.
+        An empty result (for example when the network is down) is not saved, so that the next page
+tries again.
       </p>
-      <h2 id="Next" style="scroll-margin: 1em;">
-        <a href="#Next" class="headerlink" title="Next"></a>
-        Next
-      </h2>
-      <p style="text-align: justify;">
-        The next post, <a href="projectPost?project=website&amp;post=projects">projects</a>, describes how projects such as this series are
-organised in posts.
-      </p>
+      <h3 style="margin-top: 1.6rem;">Try it yourself</h3>
+      <ol>
+        <li>Write a post with its <code>data-metadata</code> and add it to <code>index.json</code>.</li>
+        <li>Open <code>blogPost?post=&lt;name&gt;</code> on the local server.</li>
+        <li>Add a second post with a more recent date and check that it comes first in the list.</li>
+        <li>Add a new tag and check that it appears on the tags page in a new tab.</li>
+      </ol>
+      <hr style="height:1px;margin:2rem 0 1rem">
+      <p style="text-align: justify;"><strong>Next.</strong> <a href="projectPost?project=website&amp;post=projects">Projects</a> organises longer works, like this series, in several posts
+with a timeline and a table of contents.</p>
 
     </div>
 

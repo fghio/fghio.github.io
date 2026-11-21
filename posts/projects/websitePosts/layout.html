@@ -29,7 +29,7 @@
         </span>
         <span class="level-item">
           <i class="far fa-clock"></i>&nbsp;
-          <div class="read-time">6 minutes</div>
+          <div class="read-time">11 minutes</div>
         </span>
       </div>
     </div>
@@ -42,108 +42,203 @@
       </h2>
       <p style="text-align: justify;">
         All the pages of this website share the same structure: a navigation bar, three columns
-and a footer. This post describes how the layout is built and how the style is organised,
-so that changing a colour or a font means editing one line.
+and a footer. In this post we build that layout and give it a consistent style. The goal is a
+stylesheet organised so that changing a colour or a font means editing one line, and so that
+the dark theme of the next posts comes almost for free.
       </p>
-      <h2 id="Bulma" style="scroll-margin: 1em;">
-        <a href="#Bulma" class="headerlink" title="Bulma and the base theme"></a>
-        Bulma and the base theme
-      </h2>
       <p style="text-align: justify;">
-        The layout uses <a href="https://bulma.io" target="_blank" rel="noopener">Bulma</a>, a
-CSS framework based on flexbox, through a stylesheet (<code>default.css</code>) adapted from
-the Icarus theme. Bulma describes the layout with classes: a <code>columns</code> container
-and one <code>column</code> per column, with their width at each screen size.
+        We use two stylesheets: a base theme that provides the grid and the components, and a
+small stylesheet of our own, loaded after it, that holds all the visual choices.
       </p>
-<pre><code>&lt;section class=&quot;section&quot;&gt;
-  &lt;div class=&quot;container&quot;&gt;
-    &lt;div class=&quot;columns&quot;&gt;
-      &lt;div class=&quot;column column-main order-2 is-8-tablet is-8-desktop is-6-widescreen&quot;&gt;
-        &lt;!-- content --&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;column column-left order-1 is-4-tablet is-4-desktop is-3-widescreen&quot;&gt;
-        &lt;div id=&quot;leftPaneContainer&quot;&gt;&lt;/div&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;column column-right order-3 is-4-tablet is-4-desktop is-3-widescreen&quot;&gt;
-        &lt;div id=&quot;rightPaneContainer&quot;&gt;&lt;/div&gt;
+      <h2 id="Grid" style="scroll-margin: 1em;">
+        <a href="#Grid" class="headerlink" title="The three-column grid"></a>
+        The three-column grid
+      </h2>
+      <h3 style="margin-top: 1.6rem;">Bulma</h3>
+      <p style="text-align: justify;">
+        The layout uses <a href="https://bulma.io" target="_blank" rel="noopener">Bulma</a>, a CSS
+framework based on flexbox. This website loads it through <code>default.css</code>, a stylesheet
+adapted from the Icarus theme, which adds components such as cards and the navigation bar. You
+can use Bulma directly from its CDN if you start from scratch:
+      </p>
+<pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css&quot;&gt;</code></pre>
+      <p style="text-align: justify;">
+        Bulma describes the layout with classes. A <code>columns</code> element contains one
+<code>column</code> per column, and modifier classes set the width of each column at each screen
+size, in twelfths of the available width:
+      </p>
+      <table class="table is-fullwidth is-narrow">
+<thead><tr><th>Class</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td><code>is-6-widescreen</code></td><td>6/12 of the width on screens wider than 1216 px</td></tr>
+<tr><td><code>is-8-desktop</code></td><td>8/12 on screens from 1024 px</td></tr>
+<tr><td><code>is-8-tablet</code></td><td>8/12 on screens from 769 px</td></tr>
+<tr><td>(none)</td><td>on phones, every column takes the full width and they stack</td></tr>
+</tbody></table>
+      <h3 style="margin-top: 1.6rem;">A complete page</h3>
+      <p style="text-align: justify;">
+        This is the skeleton shared by all the pages, ready to be copied:
+      </p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot; class=&quot;mx&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;title&gt;Jane Doe&lt;/title&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;assets/css/default.css&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;assets/css/modern.css&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;nav class=&quot;navbar&quot;&gt;...&lt;/nav&gt;
+
+  &lt;section class=&quot;section&quot;&gt;
+    &lt;div class=&quot;container&quot;&gt;
+      &lt;div class=&quot;columns&quot;&gt;
+
+        &lt;div class=&quot;column column-main order-2 is-8-tablet is-8-desktop is-6-widescreen&quot;&gt;
+          &lt;div class=&quot;card&quot;&gt;&lt;div class=&quot;card-content&quot;&gt;
+            &lt;h1 class=&quot;title&quot;&gt;Welcome&lt;/h1&gt;
+            &lt;p&gt;The content of the page.&lt;/p&gt;
+          &lt;/div&gt;&lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;column column-left order-1 is-4-tablet is-4-desktop is-3-widescreen&quot;&gt;
+          &lt;div class=&quot;card&quot;&gt;&lt;div class=&quot;card-content&quot;&gt;Profile&lt;/div&gt;&lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;column column-right order-3 is-4-tablet is-4-desktop is-3-widescreen&quot;&gt;
+          &lt;div class=&quot;card&quot;&gt;&lt;div class=&quot;card-content&quot;&gt;Links&lt;/div&gt;&lt;/div&gt;
+        &lt;/div&gt;
+
       &lt;/div&gt;
     &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/section&gt;</code></pre>
+  &lt;/section&gt;
+
+  &lt;footer class=&quot;footer&quot;&gt;...&lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
       <p style="text-align: justify;">
-        The central column comes first in the HTML, because it is the most important content,
-but the <code>order-*</code> classes display it between the two side columns. On a wide
-screen the widths are 3 + 6 + 3 twelfths; on smaller screens the right column moves below,
-and on a phone all the columns stack.
+        Notice that the central column comes <em>first</em> in the HTML, although it is displayed
+in the middle. The content is the most important part of the page: putting it first helps
+screen readers and search engines, and on a phone (where the columns stack in HTML order) the
+reader sees the content before the side columns. The <code>order-1</code>,
+<code>order-2</code>, <code>order-3</code> classes then place the columns left, centre and right
+on wider screens.
       </p>
-      <h2 id="Modern" style="scroll-margin: 1em;">
-        <a href="#Modern" class="headerlink" title="A separate stylesheet for the restyle"></a>
-        A separate stylesheet for the restyle
+      <h3 style="margin-top: 1.6rem;">The right column on medium screens</h3>
+      <p style="text-align: justify;">
+        Between 769 and 1280 px there is not enough room for three columns. A small script,
+<code>columns.js</code>, moves the content of the right column into a container at the bottom of
+the left column, and moves it back when the window is enlarged. Nothing is lost on medium screens,
+and nothing is duplicated in the HTML.
+      </p>
+      <h2 id="Restyle" style="scroll-margin: 1em;">
+        <a href="#Restyle" class="headerlink" title="A stylesheet of our own"></a>
+        A stylesheet of our own
       </h2>
       <p style="text-align: justify;">
-        Instead of editing the base theme, all the visual choices are in a second stylesheet,
-<code>modern.css</code>, loaded after it. Keeping them apart has two advantages: the base theme
-can be updated or replaced, and the whole restyle can be switched off by removing one line.
+        The base theme gives the structure. All the visual choices (fonts, colours, spacing,
+borders) are in a second stylesheet, <code>modern.css</code>, loaded after the base one. Keeping
+them separate has two advantages: the base theme is never edited, so it can be updated or replaced,
+and the whole restyle can be switched off by removing one line.
       </p>
+      <h3 style="margin-top: 1.6rem;">Winning over the base theme</h3>
       <p style="text-align: justify;">
-        To make sure the new rules win over the old ones without sprinkling
-<code>!important</code> everywhere, every rule starts with <code>html.mx</code>, a class added
-to the <code>&lt;html&gt;</code> element of each page. The extra class gives the new rules a
-higher priority (specificity) than the theme's.
+        When two CSS rules apply to the same element, the more <em>specific</em> one wins. To make sure
+our rules always win, without writing <code>!important</code> everywhere, every rule of
+<code>modern.css</code> starts with <code>html.mx</code>, a class set on the
+<code>&lt;html&gt;</code> element of each page:
       </p>
 <pre><code>&lt;html lang=&quot;en&quot; class=&quot;mx&quot;&gt;</code></pre>
+<pre><code>/* base theme */
+.card { box-shadow: 0 4px 10px rgba(0,0,0,.1); }
+
+/* ours: one class and one element more, so it wins */
+html.mx body .card { box-shadow: none; border: 1px solid var(--border); }</code></pre>
+      <p style="text-align: justify;">
+        The extra class has a second benefit: removing <code>class="mx"</code> from a page shows it
+with the original theme, which is handy to compare before and after.
+      </p>
       <h2 id="Tokens" style="scroll-margin: 1em;">
         <a href="#Tokens" class="headerlink" title="Colours and fonts as variables"></a>
         Colours and fonts as variables
       </h2>
       <p style="text-align: justify;">
-        Colours, font, corner radius and shadows are defined once, as CSS variables, and used
-everywhere else. Changing the accent colour of the whole website is a one-line change.
+        Colours, font, corner radius and shadows are defined once, as <em>CSS custom properties</em>
+(variables), at the top of the stylesheet. Every other rule uses the variables instead of writing
+values directly:
       </p>
 <pre><code>:root {
-  --accent: #1a3a6e;        /* PoliMi navy */
-  --accent-soft: #e7edf7;
+  --accent: #1a3a6e;          /* PoliMi navy: links, buttons, highlights */
+  --accent-hover: #0f2a55;
+  --accent-soft: #e7edf7;     /* light background for tags and code */
   --bg: #ffffff;
+  --card-bg: #ffffff;
   --text: #1f2633;
-  --text-muted: #5b6475;
+  --text-muted: #5b6475;      /* dates, captions */
   --border: #e3e7ee;
   --radius: 6px;
+  --radius-sm: 4px;
   --font-body: &quot;Inter&quot;, system-ui, -apple-system, &quot;Segoe UI&quot;, sans-serif;
+  --font-mono: &quot;JetBrains Mono&quot;, ui-monospace, monospace;
 }
 
-html.mx body a { color: var(--accent); }
-html.mx body .card { border: 1px solid var(--border); border-radius: var(--radius); }</code></pre>
+html.mx body          { background: var(--bg); color: var(--text); font-family: var(--font-body); }
+html.mx body a        { color: var(--accent); }
+html.mx body .card    { background: var(--card-bg); border: 1px solid var(--border);
+                        border-radius: var(--radius); box-shadow: none; }
+html.mx body .tag     { background: var(--accent-soft); color: var(--accent); }</code></pre>
       <p style="text-align: justify;">
-        The same variables are redefined for the dark theme, which is why the dark mode needs no
-extra rules for most elements (see <a href="projectPost?project=website&amp;post=darkMode">dark mode</a>).
+        Changing the accent colour of the whole website is now a one-line change. More importantly,
+the dark theme becomes a second set of values for the same variables: no rule has to be written
+twice (see <a href="projectPost?project=website&amp;post=darkMode">dark mode</a>).
       </p>
-      <h2 id="Style" style="scroll-margin: 1em;">
-        <a href="#Style" class="headerlink" title="The style"></a>
-        The style
-      </h2>
+      <h3 style="margin-top: 1.6rem;">The style</h3>
       <p style="text-align: justify;">
-        The style is deliberately minimal: a single sans-serif font (Inter), one accent colour,
-thin borders instead of shadows, generous white space, and a consistent type scale.
-Cards, CV entries, tags and buttons are all built from the same few variables, which keeps
-the pages consistent with each other.
+        The style is deliberately minimal, in the spirit of academic websites: one sans-serif font
+(Inter) for everything, one accent colour, thin borders instead of shadows, generous white space
+and a small, consistent set of font sizes. Cards, CV entries, tags and buttons are all built from
+the same few variables, which keeps every page consistent with the others.
       </p>
-      <h2 id="Mobile" style="scroll-margin: 1em;">
-        <a href="#Mobile" class="headerlink" title="Phones"></a>
+      <h3 style="margin-top: 1.6rem;">Choosing a font</h3>
+      <p style="text-align: justify;">
+        Inter is loaded from Google Fonts with the <code>&lt;link&gt;</code> shown in the skeleton
+above. The <code>font-family</code> lists fallbacks: if Inter is not available yet, the browser
+uses the system font (<code>system-ui</code>), which avoids invisible text while the font is
+loading.
+      </p>
+      <h2 id="Phones" style="scroll-margin: 1em;">
+        <a href="#Phones" class="headerlink" title="Phones"></a>
         Phones
       </h2>
       <p style="text-align: justify;">
-        Below 769 px the navigation bar wraps onto two lines, the CV entries put the dates above
-the text instead of beside it, and the side columns move below the content. These rules are
-in the same stylesheet, inside <code>@media</code> blocks, next to the rules they adapt.
+        Bulma already stacks the columns on phones. A few more rules adapt the rest, in
+<code>@media</code> blocks placed next to the rules they modify:
       </p>
-      <h2 id="Next" style="scroll-margin: 1em;">
-        <a href="#Next" class="headerlink" title="Next"></a>
-        Next
-      </h2>
+<pre><code>@media screen and (max-width: 768px) {
+  /* the navigation bar wraps onto two lines instead of overflowing */
+  html.mx body .navbar-container { flex-wrap: wrap; }
+
+  /* CV entries: the dates go above the text instead of beside it */
+  html.mx body .cv-entry { flex-direction: column; }
+  html.mx body .cv-entry .left-column { width: auto; }
+}</code></pre>
       <p style="text-align: justify;">
-        The next post, <a href="projectPost?project=website&amp;post=sharedParts">shared parts</a>, explains how the navigation bar, the side
-columns and the footer are written once and reused on every page.
+        To check the result without a phone, open the browser's developer tools
+(<kbd>F12</kbd>) and switch to the device toolbar: 375 px is a good width to test, as it is one
+of the narrowest common screens.
       </p>
+      <h3 style="margin-top: 1.6rem;">Try it yourself</h3>
+      <ol>
+        <li>Copy the skeleton into <code>index.html</code>, with Bulma from its CDN.</li>
+        <li>Create <code>assets/css/modern.css</code> with the variables above and load it after Bulma.</li>
+        <li>Change <code>--accent</code> and watch links and tags change colour together.</li>
+        <li>Narrow the window and check the order of the columns on a phone.</li>
+      </ol>
+      <hr style="height:1px;margin:2rem 0 1rem">
+      <p style="text-align: justify;"><strong>Next.</strong> Copying the navigation bar and the side columns into every page would be tedious.
+<a href="projectPost?project=website&amp;post=sharedParts">Shared parts</a> writes them once and inserts them everywhere.</p>
 
     </div>
 

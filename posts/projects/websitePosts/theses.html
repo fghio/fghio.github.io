@@ -29,7 +29,7 @@
         </span>
         <span class="level-item">
           <i class="far fa-clock"></i>&nbsp;
-          <div class="read-time">5 minutes</div>
+          <div class="read-time">9 minutes</div>
         </span>
       </div>
     </div>
@@ -41,66 +41,140 @@
         Introduction
       </h2>
       <p style="text-align: justify;">
-        The theses page lists the M.Sc. theses I offer, with a search box, a filter for the
-available ones and a counter. All the theses are in one file,
-<code>thesis-card.html</code>, loaded into the page.
+        The theses page lists the M.Sc. theses I offer, with a search box, a filter for the available
+ones and a counter. Before writing an e-mail, students are guided to fill in a short form. In this
+post we build the cards, the filters and the dialog.
       </p>
-      <h2 id="Card" style="scroll-margin: 1em;">
-        <a href="#Card" class="headerlink" title="A thesis card"></a>
-        A thesis card
+      <h2 id="Cards" style="scroll-margin: 1em;">
+        <a href="#Cards" class="headerlink" title="The cards"></a>
+        The cards
       </h2>
       <p style="text-align: justify;">
-        Each thesis is a card with a title, a status, a short description that can be expanded,
-the expected outputs and the recommended background. Two attributes describe the card for the
-filters:
+        All the theses are in a single file, <code>thesis-card.html</code>, loaded into the page;
+adding a thesis means adding a card to that file. Each card has two attributes used by the
+filters, <code>data-status</code> and <code>data-tags</code>:
       </p>
 <pre><code>&lt;div class=&quot;box card&quot; data-status=&quot;open&quot;
      data-tags=&quot;hydrogen les detonation openfoam&quot;&gt;
-  &lt;h2 class=&quot;title&quot;&gt;Parametric LES of a Hydrogen Rotating Detonation Engine&lt;/h2&gt;
-  &lt;span class=&quot;tag&quot;&gt;Open&lt;/span&gt;
-  ...
+  &lt;div class=&quot;card-content&quot;&gt;
+    &lt;h2 class=&quot;title&quot;&gt;Parametric LES of a Hydrogen Rotating Detonation Engine&lt;/h2&gt;
+    &lt;span&gt;~6 months&lt;/span&gt;
+    &lt;span class=&quot;tag&quot;&gt;Open&lt;/span&gt;
+
+    &lt;div class=&quot;thesis-description&quot;&gt;
+      &lt;p&gt;A short description ...&lt;/p&gt;
+      &lt;div class=&quot;more-text&quot;&gt;... the rest, shown with &quot;Read more&quot;.&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;p&gt;&lt;strong&gt;Supervisor:&lt;/strong&gt; F. Ghioldi&lt;/p&gt;
+    &lt;p&gt;&lt;strong&gt;Expected outputs:&lt;/strong&gt; ...&lt;/p&gt;
+    &lt;p&gt;&lt;strong&gt;Recommended background:&lt;/strong&gt; ...&lt;/p&gt;
+  &lt;/div&gt;
 &lt;/div&gt;</code></pre>
+      <h3 style="margin-top: 1.6rem;">Statuses</h3>
+      <table class="table is-fullwidth is-narrow">
+<thead><tr><th>data-status</th><th>Label</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td><code>open</code></td><td>Open</td><td>available</td></tr>
+<tr><td><code>in-progress</code></td><td>In progress</td><td>assigned, ongoing</td></tr>
+<tr><td><code>finished</code></td><td>Finished</td><td>completed</td></tr>
+<tr><td><code>coming</code></td><td>Coming soon</td><td>will open at a given date</td></tr>
+</tbody></table>
       <p style="text-align: justify;">
-        The status is one of <code>open</code>, <code>in-progress</code>, <code>finished</code> or
-<code>coming</code> (coming soon), each with its own colour.
+        Each status has its own colour, set in the stylesheet. Keeping finished theses on the page is
+useful: they show students what has already been done, and the filter hides them when needed.
       </p>
       <h2 id="Filters" style="scroll-margin: 1em;">
-        <a href="#Filters" class="headerlink" title="Search and filters"></a>
-        Search and filters
+        <a href="#Filters" class="headerlink" title="Search, filter and counter"></a>
+        Search, filter and counter
+      </h2>
+      <h3 style="margin-top: 1.6rem;">Filtering while typing</h3>
+      <p style="text-align: justify;">
+        The search box filters the cards at every keystroke. A card is visible if the text appears in
+its title, description or tags, and, when the checkbox &ldquo;Only available theses&rdquo; is
+ticked, if its status is <code>open</code>:
+      </p>
+<pre><code>function filterTheses() {
+  var query = $(&quot;#searchBar&quot;).val().replace(/\s+/g, &quot; &quot;).trim().toLowerCase();
+  var openOnly = $(&quot;#showOpenOnly&quot;).is(&quot;:checked&quot;);
+
+  $(&quot;#thesisCardsContainer .card&quot;).each(function () {
+    var title = $(this).find(&quot;h2.title&quot;).text().replace(/\s+/g, &quot; &quot;).toLowerCase();
+    var desc  = $(this).find(&quot;.thesis-description&quot;).text().replace(/\s+/g, &quot; &quot;).toLowerCase();
+    var tags  = String($(this).data(&quot;tags&quot;) || &quot;&quot;).toLowerCase();
+
+    var queryMatch  = !query || title.includes(query) || desc.includes(query) || tags.includes(query);
+    var statusMatch = !openOnly || $(this).data(&quot;status&quot;) === &quot;open&quot;;
+    $(this).toggle(queryMatch &amp;&amp; statusMatch);
+  });
+  updateCount();
+}
+
+$(&quot;#searchBar&quot;).on(&quot;input&quot;, filterTheses);
+$(&quot;#showOpenOnly&quot;).on(&quot;change&quot;, filterTheses);</code></pre>
+      <p style="text-align: justify;">
+        Normalising the spaces matters: titles in the HTML are often split over several lines, and
+without it a search for two words would fail.
+      </p>
+      <h3 style="margin-top: 1.6rem;">The counter</h3>
+      <p style="text-align: justify;">
+        The counter at the top counts the cards with status <code>open</code>: &ldquo;Theses still
+available: 7/7&rdquo;. Theses marked as coming soon are not counted, since they cannot be
+requested yet.
+      </p>
+      <h3 style="margin-top: 1.6rem;">Filtering from the address</h3>
+      <p style="text-align: justify;">
+        The page also reads a query from the address: <code>theses?q=hydrogen</code> opens the page
+already filtered. The site search uses this to open a single thesis, and it is handy to send a
+student a link to a group of theses.
+      </p>
+<pre><code>var q = new URLSearchParams(location.search).get(&quot;q&quot;);
+if (q) { $(&quot;#searchBar&quot;).val(q); filterTheses(); }</code></pre>
+      <h2 id="Dialog" style="scroll-margin: 1em;">
+        <a href="#Dialog" class="headerlink" title="Before the e-mail"></a>
+        Before the e-mail
       </h2>
       <p style="text-align: justify;">
-        The search box filters the cards while typing, looking in the title, the description and
-the tags. The checkbox &ldquo;Only available theses&rdquo; hides everything that is not
-<code>open</code>. The counter at the top shows how many theses are still available.
+        Students who want a thesis are asked to fill in a short Google Form before writing, so that
+the first meeting starts from their background and interests. The header of the page has two
+buttons: one opens the form, the other (&ldquo;Apply&rdquo;) prepares an e-mail with a pre-filled
+subject.
       </p>
-<pre><code>var queryMatch  = query === &quot;&quot; || title.includes(query)
-                  || description.includes(query) || tags.includes(query);
-var statusMatch = !showOpenOnly || status === &quot;open&quot;;
-$(card).toggle(queryMatch &amp;&amp; statusMatch);</code></pre>
+<pre><code>&lt;a class=&quot;button thesis-form&quot; href=&quot;https://forms.gle/...&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+  Before emailing click here
+&lt;/a&gt;
+&lt;a class=&quot;button is-primary thesis-apply&quot;
+   href=&quot;mailto:name@example.com?subject=Requesting%20meeting%20for%20Thesis&quot;&gt;Apply&lt;/a&gt;</code></pre>
       <p style="text-align: justify;">
-        The page also accepts the query from the address, so <code>theses?q=hydrogen</code> opens
-the page already filtered. The site search uses this to open a single thesis.
+        Clicking &ldquo;Apply&rdquo; does not open the e-mail directly: a dialog asks whether the form
+has been filled in. <em>Yes</em> opens the e-mail; <em>No</em> opens the form instead.
       </p>
-      <h2 id="Apply" style="scroll-margin: 1em;">
-        <a href="#Apply" class="headerlink" title="Before the email"></a>
-        Before the email
-      </h2>
+<pre><code>document.querySelector(&quot;.thesis-apply&quot;).addEventListener(&quot;click&quot;, function (e) {
+  e.preventDefault();
+  var mailto = this.href;
+  openDialog({
+    title: &quot;Before you email me&quot;,
+    text: &quot;Have you filled in the Google Form before applying for a thesis?&quot;,
+    yes: function () { window.location.href = mailto; },
+    no:  function () { window.open(FORM_URL, &quot;_blank&quot;, &quot;noopener&quot;); }
+  });
+});</code></pre>
+      <h3 style="margin-top: 1.6rem;">One dialog style for the whole website</h3>
       <p style="text-align: justify;">
-        Students who want a thesis are asked to fill in a short form before writing. The page has
-two buttons: one opens the form, the other (&ldquo;Apply&rdquo;) prepares an email. Before
-the email opens, a small dialog asks whether the form has been filled in: <em>Yes</em> opens
-the email, <em>No</em> opens the form instead. The dialog is the same component used for the
-&ldquo;Hire me&rdquo; button in the left column.
+        The dialog has the same design as the one of the &ldquo;Hire me&rdquo; button in the left column:
+a centred panel over a dimmed page, with an icon, a title, a text and buttons. It closes with
+<kbd>Esc</kbd> or a click outside, and gives the keyboard focus back to the button that opened it,
+so that keyboard users do not lose their place.
       </p>
-      <h2 id="Next" style="scroll-margin: 1em;">
-        <a href="#Next" class="headerlink" title="Next"></a>
-        Next
-      </h2>
-      <p style="text-align: justify;">
-        The next post, <a href="projectPost?project=website&amp;post=hiddenPages">hidden and protected pages</a>, explains how to publish
-pages that are not linked anywhere, and how to protect a page with a password on a static
-website.
-      </p>
+      <h3 style="margin-top: 1.6rem;">Try it yourself</h3>
+      <ol>
+        <li>Write three cards with different statuses and tags.</li>
+        <li>Add the search box and the checkbox, and check the counter.</li>
+        <li>Open <code>theses?q=&lt;word&gt;</code> and check that the page opens filtered.</li>
+      </ol>
+      <hr style="height:1px;margin:2rem 0 1rem">
+      <p style="text-align: justify;"><strong>Next.</strong> <a href="projectPost?project=website&amp;post=hiddenPages">Hidden and protected pages</a> explains how to publish pages that are
+not linked anywhere, and how to protect content with a password on a static website.</p>
 
     </div>
 

@@ -29,7 +29,7 @@
         </span>
         <span class="level-item">
           <i class="far fa-clock"></i>&nbsp;
-          <div class="read-time">5 minutes</div>
+          <div class="read-time">8 minutes</div>
         </span>
       </div>
     </div>
@@ -41,74 +41,115 @@
         Introduction
       </h2>
       <p style="text-align: justify;">
-        The previous posts covered the main features. This one collects the details that do not
-add features but make the website feel quicker and more consistent.
+        The previous posts built the features. This last one collects the details that add no
+feature but make the website feel quicker and more finished: transitions between pages, caching,
+images, phones, and a quick way to check everything before publishing.
       </p>
       <h2 id="Transitions" style="scroll-margin: 1em;">
         <a href="#Transitions" class="headerlink" title="Transitions between pages"></a>
         Transitions between pages
       </h2>
       <p style="text-align: justify;">
-        Recent browsers can animate the change from one page to the next of the same website
-(<em>view transitions</em>). One line enables them; the shared parts are given a name, so the
-browser treats them as the same element on both pages and swaps them instantly, while only
-the central content changes:
+        Recent browsers can animate the change from one page to the next of the same website, with
+<em>view transitions</em>. One CSS rule enables them for every link:
       </p>
-<pre><code>@view-transition { navigation: auto; }
+<pre><code>@view-transition { navigation: auto; }</code></pre>
+      <p style="text-align: justify;">
+        By default the whole page cross-fades. For this website the shared parts should not move at
+all: they are the same on both pages. Giving them a <code>view-transition-name</code> tells the
+browser that they are the same element on both pages; disabling their animation makes the swap
+instant, so that only the central content changes:
+      </p>
+<pre><code>html.mx body #navBarContainer { view-transition-name: mx-navbar; }
 
-html.mx body #navBarContainer   { view-transition-name: mx-navbar; }
-html.mx body #leftPaneContainer { view-transition-name: mx-left; }
+@media screen and (min-width: 769px) {
+  html.mx body #leftPaneContainer  { view-transition-name: mx-left; }
+  html.mx body #rightPaneContainer { view-transition-name: mx-right; }
+}
 
 ::view-transition-group(mx-navbar),
-::view-transition-group(mx-left) { animation: none; }</code></pre>
+::view-transition-group(mx-left),
+::view-transition-group(mx-right) { animation: none; }
+::view-transition-old(mx-navbar),
+::view-transition-old(mx-left),
+::view-transition-old(mx-right)   { display: none; }</code></pre>
       <p style="text-align: justify;">
-        Browsers that do not support view transitions just change page as usual.
+        The side columns are named only on wider screens: on phones they are stacked below the
+content and have nothing to stay aligned with. Browsers without view transitions simply change
+page as usual.
       </p>
       <h2 id="Caching" style="scroll-margin: 1em;">
         <a href="#Caching" class="headerlink" title="Caching"></a>
         Caching
       </h2>
       <p style="text-align: justify;">
-        Several things are computed once and kept for the rest of the visit, in the session
-storage: the shared parts (<a href="projectPost?project=website&amp;post=sharedParts">shared parts</a>), the blog tags
-(<a href="projectPost?project=website&amp;post=blog">the blog</a>) and the search index (<a href="projectPost?project=website&amp;post=search">site search</a>). The keys
-include a version number (<code>partial:v3:</code>, <code>searchIndex:v5</code>): when the
-format changes, increasing the number makes every browser discard the old copy.
+        Three things are computed once and kept in the session storage for the rest of the visit:
+      </p>
+      <table class="table is-fullwidth is-narrow">
+<thead><tr><th>What</th><th>Key</th><th>Post</th></tr></thead>
+<tbody>
+<tr><td>shared parts</td><td><code>partial:v3:&lt;file&gt;</code></td><td><a href="projectPost?project=website&amp;post=sharedParts">shared parts</a></td></tr>
+<tr><td>blog tags</td><td><code>blogTags:v1</code></td><td><a href="projectPost?project=website&amp;post=blog">the blog</a></td></tr>
+<tr><td>search index</td><td><code>searchIndex:v5</code></td><td><a href="projectPost?project=website&amp;post=search">site search</a></td></tr>
+</tbody></table>
+      <p style="text-align: justify;">
+        All keys include a version number. When the format of what is stored changes, increasing the
+number makes every browser ignore the old copy, instead of reading data it no longer
+understands. The session storage is per tab and is cleared when the tab is closed, so a visitor
+never sees content that is out of date for long.
+      </p>
+      <p style="text-align: justify;">
+        For the files themselves, GitHub Pages sends caching headers and serves them from a content
+delivery network close to the visitor; there is nothing to configure.
       </p>
       <h2 id="Images" style="scroll-margin: 1em;">
-        <a href="#Images" class="headerlink" title="Images"></a>
-        Images
+        <a href="#Images" class="headerlink" title="Images and phones"></a>
+        Images and phones
       </h2>
+      <h3 style="margin-top: 1.6rem;">Images</h3>
       <p style="text-align: justify;">
-        Photos and screenshots are saved in WebP, which is much smaller than JPEG or PNG at the
-same quality. The map on the contacts page fades in only once it has loaded, instead of
-appearing as an empty box.
+        Photos and screenshots are saved in <strong>WebP</strong>, which is usually much smaller
+than JPEG or PNG at the same visual quality. Most image editors can export it, and on the command
+line:
       </p>
-      <h2 id="Mobile" style="scroll-margin: 1em;">
-        <a href="#Mobile" class="headerlink" title="Phones"></a>
-        Phones
-      </h2>
+<pre><code>cwebp -q 80 photo.jpg -o photo.webp</code></pre>
+      <p style="text-align: justify;">
+        Images are also resized to the size at which they are displayed: a 4000-pixel photo shown 300
+pixels wide wastes bandwidth. Embedded content such as the map on the contacts page fades in once
+loaded, instead of appearing as an empty box.
+      </p>
+      <h3 style="margin-top: 1.6rem;">Phones</h3>
       <p style="text-align: justify;">
         Every page is checked at phone width (375 px): the navigation bar wraps, the CV dates move
-above the text, the buttons get the full width, and no element is wider than the screen.
+above the text, buttons take the full width, and no element is wider than the screen. A
+horizontal scrollbar on a phone almost always comes from a single element that is too wide: a
+long code line (give <code>pre</code> blocks <code>overflow-x: auto</code>), a table, or an
+image without <code>max-width: 100%</code>.
       </p>
-      <h2 id="Testing" style="scroll-margin: 1em;">
-        <a href="#Testing" class="headerlink" title="Checking the result"></a>
-        Checking the result
+      <h2 id="Checking" style="scroll-margin: 1em;">
+        <a href="#Checking" class="headerlink" title="Checking before publishing"></a>
+        Checking before publishing
       </h2>
       <p style="text-align: justify;">
-        Before publishing, the pages are opened in a headless browser (Chrome without a window)
-that takes screenshots in light and dark mode, at desktop and phone width. It is a quick way
-to catch a broken layout without clicking through every page by hand.
+        Before merging into <code>main</code>, the pages are opened in a <em>headless</em> browser
+(Chrome without a window), which takes screenshots in light and dark mode, at desktop and phone
+width:
       </p>
-      <h2 id="End" style="scroll-margin: 1em;">
-        <a href="#End" class="headerlink" title="The end"></a>
-        The end
-      </h2>
+<pre><code>google-chrome --headless=new --window-size=1280,2000 \
+  --screenshot=home.png http://localhost:8000/
+
+google-chrome --headless=new --window-size=375,2000 \
+  --screenshot=home-phone.png http://localhost:8000/</code></pre>
       <p style="text-align: justify;">
-        This is the end of the series. The <a href="projectPost?project=website&amp;post=overview">overview</a> is a good place to come back
-to for the overall picture; the source code of the whole website is public on
+        Looking at a few screenshots takes a minute and catches most broken layouts, without clicking
+through every page by hand.
+      </p>
+      <h3 style="margin-top: 1.6rem;">The end</h3>
+      <p style="text-align: justify;">
+        This is the end of the series. The <a href="projectPost?project=website&amp;post=overview">overview</a> is the place to come back
+to for the overall picture, and the source code of the whole website is public on
 <a href="https://github.com/fghio/fghio.github.io" target="_blank" rel="noopener">GitHub</a>.
+If something is unclear, or you build your own version, <a href="./contact">get in touch</a>.
       </p>
 
     </div>

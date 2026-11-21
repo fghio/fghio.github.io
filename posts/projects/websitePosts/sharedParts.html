@@ -29,7 +29,7 @@
         </span>
         <span class="level-item">
           <i class="far fa-clock"></i>&nbsp;
-          <div class="read-time">6 minutes</div>
+          <div class="read-time">10 minutes</div>
         </span>
       </div>
     </div>
@@ -41,21 +41,49 @@
         Introduction
       </h2>
       <p style="text-align: justify;">
-        The navigation bar, the two side columns and the footer are the same on every page.
-Copying them into eleven files would mean editing eleven files for every change. Instead,
-they are written once, in the <code>common/</code> folder, and inserted into each page by a
-small script, <code>partials.js</code>.
+        The navigation bar, the two side columns and the footer are the same on every page. Copying
+them into eleven files would mean editing eleven files for every change, and sooner or later
+the copies would differ. In this post we write them once, in a <code>common/</code> folder, and
+insert them into every page with a small script.
       </p>
-      <h2 id="Containers" style="scroll-margin: 1em;">
-        <a href="#Containers" class="headerlink" title="Empty containers"></a>
-        Empty containers
-      </h2>
       <p style="text-align: justify;">
-        Each page contains only empty placeholders where the shared parts go, followed by a
-short script that fills them:
+        Then we make them fast: when moving from one page to another, the shared parts should not
+disappear and reappear, but stay where they are while only the central content changes.
+      </p>
+      <h2 id="Idea" style="scroll-margin: 1em;">
+        <a href="#Idea" class="headerlink" title="Write once, insert everywhere"></a>
+        Write once, insert everywhere
+      </h2>
+      <h3 style="margin-top: 1.6rem;">The parts</h3>
+      <p style="text-align: justify;">
+        Each shared part is a fragment of HTML, without <code>&lt;html&gt;</code> or
+<code>&lt;head&gt;</code>: just the markup of that part.
+      </p>
+<pre><code>common/
+├── navBar.html      navigation bar
+├── leftPane.html    profile, CV and contact buttons
+├── rightPane.html   right column
+└── footer.html      footer</code></pre>
+<pre><code>&lt;!-- common/navBar.html (simplified) --&gt;
+&lt;nav class=&quot;navbar navbar-main&quot;&gt;
+  &lt;div class=&quot;container navbar-container&quot;&gt;
+    &lt;a class=&quot;navbar-item navbar-logo&quot; href=&quot;./&quot;&gt;FGh.io&lt;/a&gt;
+    &lt;div class=&quot;navbar-start&quot;&gt;
+      &lt;a class=&quot;navbar-item&quot; href=&quot;./curriculum&quot;&gt;Curriculum&lt;/a&gt;
+      &lt;a class=&quot;navbar-item&quot; href=&quot;./blog&quot;&gt;Blog&lt;/a&gt;
+      &lt;a class=&quot;navbar-item&quot; href=&quot;./projects&quot;&gt;Projects&lt;/a&gt;
+      &lt;a class=&quot;navbar-item&quot; href=&quot;./theses&quot;&gt;Theses&lt;/a&gt;
+      &lt;a class=&quot;navbar-item&quot; href=&quot;./contact&quot;&gt;Contact&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;</code></pre>
+      <h3 style="margin-top: 1.6rem;">The containers</h3>
+      <p style="text-align: justify;">
+        Each page contains only empty placeholders where the parts go, followed by a short script
+that fills them:
       </p>
 <pre><code>&lt;div id=&quot;navBarContainer&quot;&gt;&lt;/div&gt;
-&lt;!-- ... page content ... --&gt;
+&lt;!-- ... the page: columns, content ... --&gt;
 &lt;div id=&quot;footerContainer&quot;&gt;&lt;/div&gt;
 
 &lt;script id=&quot;mx-partials&quot;&gt;
@@ -65,69 +93,136 @@ short script that fills them:
   loadPartial(&quot;#footerContainer&quot;, &quot;./common/footer.html&quot;);
 &lt;/script&gt;</code></pre>
       <p style="text-align: justify;">
-        The calls are placed right after the containers, not at the end of the page, so that the
-parts are inserted as early as possible.
+        The calls are placed right after the containers, not at the end of the page or inside a
+&ldquo;page loaded&rdquo; handler, so that the parts are inserted as early as possible. A page that
+does not need the right column (the post pages, for example) simply omits that container and that
+call.
+      </p>
+      <h3 style="margin-top: 1.6rem;">The simplest version</h3>
+      <p style="text-align: justify;">
+        With jQuery, the simplest implementation is one line per part:
+      </p>
+<pre><code>$(&quot;#navBarContainer&quot;).load(&quot;./common/navBar.html&quot;);</code></pre>
+      <p style="text-align: justify;">
+        It works, but every page change downloads the four parts again, and they appear a moment
+after the rest of the page. The next section fixes this.
       </p>
       <h2 id="Cache" style="scroll-margin: 1em;">
         <a href="#Cache" class="headerlink" title="Keeping the parts in memory"></a>
         Keeping the parts in memory
       </h2>
       <p style="text-align: justify;">
-        Downloading the four parts at every page change would make them appear a moment after
-the rest of the page. <code>loadPartial</code> avoids this with the browser's
-<em>session storage</em>, a small memory that lasts as long as the tab is open:
+        The browser offers a small key&ndash;value memory, the <em>session storage</em>, that lasts as
+long as the tab is open and survives page changes. We use it to keep a copy of each part:
       </p>
       <ol>
-        <li>If the part is already in memory, it is inserted immediately.</li>
-        <li>In any case, the current version is downloaded in the background; if it has changed, it is saved and used from the next page on.</li>
-        <li>When a page has finished loading, the parts not yet in memory are downloaded in advance.</li>
+        <li>If the part is already in memory, insert it immediately, without waiting for the network.</li>
+        <li>In any case, download the current version in the background. If it differs from the copy, save it: it will be used from the next page on.</li>
+        <li>If there was no copy (the first page of the visit), insert the downloaded version as soon as it arrives.</li>
       </ol>
-<pre><code>window.loadPartial = function (selector, url) {
-  var el = document.querySelector(selector);
-  var cached = sessionStorage.getItem(&quot;partial:&quot; + url);
-  if (cached !== null) render(el, cached);          // immediately, from memory
-
-  fetch(url, { cache: &quot;no-cache&quot; }).then(r =&gt; r.text()).then(function (html) {
-    if (html === cached) return;
-    sessionStorage.setItem(&quot;partial:&quot; + url, html); // fresh copy for the next page
-    if (cached === null) render(el, html);          // first visit: show it now
-  });
-};</code></pre>
       <p style="text-align: justify;">
-        The result is that moving from one page to another, only the central column changes: the
-navigation bar and the side columns stay where they are.
+        This is the complete <code>assets/js/partials.js</code>, to be included in the
+<code>&lt;head&gt;</code> after jQuery:
+      </p>
+<pre><code>(function ($) {
+  var PREFIX = &quot;partial:v3:&quot;;
+
+  function read(url)        { try { return sessionStorage.getItem(PREFIX + url); } catch (e) { return null; } }
+  function write(url, html) { try { sessionStorage.setItem(PREFIX + url, html); } catch (e) {} }
+  function fetchPartial(url) { return $.ajax({ url: url, dataType: &quot;html&quot;, cache: false }); }
+
+  // Insert the HTML, then re-create the &lt;script&gt; elements so that they run
+  function render(el, html) {
+    var nodes = $.parseHTML(html, document, true) || [];
+    var scripts = [];
+    el.textContent = &quot;&quot;;
+    nodes.forEach(function (node) {
+      if (node.nodeName === &quot;SCRIPT&quot;) scripts.push(node);
+      else el.appendChild(node);
+    });
+    scripts.forEach(function (old) {
+      var s = document.createElement(&quot;script&quot;);
+      if (old.src) { s.src = old.getAttribute(&quot;src&quot;); s.async = false; }
+      else s.text = old.text;
+      el.appendChild(s);
+    });
+  }
+
+  window.loadPartial = function (selector, url) {
+    var el = document.querySelector(selector);
+    if (!el) return;
+    var cached = read(url);
+    if (cached !== null) render(el, cached);       // 1. immediately, from memory
+
+    fetchPartial(url).done(function (html) {       // 2. always check for a newer version
+      if (html === cached) return;
+      write(url, html);
+      if (cached === null) render(el, html);       // first visit: show it now
+    });
+  };
+})(jQuery);</code></pre>
+      <h3 style="margin-top: 1.6rem;">Why not show the new version immediately</h3>
+      <p style="text-align: justify;">
+        When a part has changed (because you just published a new menu), the script saves the new
+version but does not replace the one already on screen. Replacing it would make the part flicker
+and run its scripts twice; showing the new version from the next page is invisible to the
+visitor.
+      </p>
+      <h3 style="margin-top: 1.6rem;">The version prefix</h3>
+      <p style="text-align: justify;">
+        The keys start with <code>partial:v3:</code>. If the way parts are stored ever changes,
+increasing the number makes every browser ignore the old copies instead of reusing them.
+      </p>
+      <h3 style="margin-top: 1.6rem;">Errors</h3>
+      <p style="text-align: justify;">
+        Every access to the session storage is wrapped in <code>try</code>: in some private windows
+it is not available, or it is full. In that case the script simply behaves like the simplest
+version, downloading the parts every time.
       </p>
       <h2 id="Scripts" style="scroll-margin: 1em;">
         <a href="#Scripts" class="headerlink" title="Parts with scripts"></a>
         Parts with scripts
       </h2>
       <p style="text-align: justify;">
-        Some parts contain scripts (the dark mode switch, the search button). When HTML is
-inserted from JavaScript, the browser does not run the scripts it contains, so
-<code>render</code> recreates each <code>&lt;script&gt;</code> element after inserting the
-rest. This keeps the shared parts self-contained: a part brings its own behaviour with it.
+        Some parts contain scripts: the left column wires up the &ldquo;Hire me&rdquo; button, the
+navigation bar the search and the dark mode switch. When HTML is inserted from JavaScript, the
+browser does not run the <code>&lt;script&gt;</code> elements it contains. That is why
+<code>render</code> inserts everything else first, then creates a <em>new</em> script element for
+each old one: newly created scripts do run.
       </p>
-      <h2 id="Rendering" style="scroll-margin: 1em;">
-        <a href="#Rendering" class="headerlink" title="Waiting for the parts"></a>
-        Waiting for the parts
+      <p style="text-align: justify;">
+        Setting <code>async = false</code> on external scripts keeps them in their original order,
+which matters when one script depends on another.
+      </p>
+      <h2 id="Render" style="scroll-margin: 1em;">
+        <a href="#Render" class="headerlink" title="Drawing the page once"></a>
+        Drawing the page once
       </h2>
       <p style="text-align: justify;">
-        Chrome supports a hint that delays the first drawing of the page until a given element
-has been parsed. Pointing it to the script that loads the parts means the page is drawn
-once, already complete, instead of drawing the content first and the parts a moment later:
+        Even with the parts in memory, the browser could draw the page once without them and once
+again a few milliseconds later. Chrome supports a hint that delays the first drawing until a given
+element has been parsed. Pointing it to the script that loads the parts means the first frame
+already contains them:
       </p>
-<pre><code>&lt;link rel=&quot;expect&quot; href=&quot;#mx-partials&quot; blocking=&quot;render&quot;&gt;</code></pre>
+<pre><code>&lt;head&gt;
+  ...
+  &lt;link rel=&quot;expect&quot; href=&quot;#mx-partials&quot; blocking=&quot;render&quot;&gt;
+&lt;/head&gt;</code></pre>
       <p style="text-align: justify;">
-        Browsers that do not know this hint simply ignore it.
+        Browsers that do not know this hint ignore it, and nothing breaks. Combined with the cache
+and with the page transitions described in <a href="projectPost?project=website&amp;post=polish">polish and performance</a>,
+moving between pages feels like changing only the central column.
       </p>
-      <h2 id="Next" style="scroll-margin: 1em;">
-        <a href="#Next" class="headerlink" title="Next"></a>
-        Next
-      </h2>
-      <p style="text-align: justify;">
-        The next post, <a href="projectPost?project=website&amp;post=darkMode">dark mode</a>, shows how the same variables used for the
-colours make a dark theme almost free.
-      </p>
+      <h3 style="margin-top: 1.6rem;">Try it yourself</h3>
+      <ol>
+        <li>Move your navigation bar into <code>common/navBar.html</code> and load it with the one-line jQuery version.</li>
+        <li>Replace it with <code>partials.js</code>.</li>
+        <li>Open the developer tools (<kbd>F12</kbd>), tab <em>Application &rarr; Session storage</em>, and watch the parts being saved as you navigate.</li>
+        <li>Change the menu, reload twice, and see when the change appears.</li>
+      </ol>
+      <hr style="height:1px;margin:2rem 0 1rem">
+      <p style="text-align: justify;"><strong>Next.</strong> <a href="projectPost?project=website&amp;post=darkMode">Dark mode</a> uses the colour variables of the previous post to add a
+dark theme with very little code.</p>
 
     </div>
 

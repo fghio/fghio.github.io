@@ -29,7 +29,7 @@
         </span>
         <span class="level-item">
           <i class="far fa-clock"></i>&nbsp;
-          <div class="read-time">6 minutes</div>
+          <div class="read-time">11 minutes</div>
         </span>
       </div>
     </div>
@@ -42,46 +42,90 @@
       </h2>
       <p style="text-align: justify;">
         The magnifying glass in the navigation bar (or the keys <kbd>/</kbd> and
-<kbd>Ctrl</kbd>+<kbd>K</kbd>) opens a search over the whole website: blog posts, project
-posts, theses, the CV, publications and contacts. Search engines for websites usually need a
-server; here the browser does everything.
+<kbd>Ctrl</kbd>+<kbd>K</kbd>) opens a search over the whole website: blog posts, project posts,
+theses, the CV, publications and contacts. Search engines for websites usually need a server;
+here the browser does everything, with one script, <code>search.js</code>, and a small library.
+In this post we build the index, the matching and the search window.
       </p>
       <h2 id="Index" style="scroll-margin: 1em;">
         <a href="#Index" class="headerlink" title="Building the index"></a>
         Building the index
       </h2>
+      <h3 style="margin-top: 1.6rem;">Documents</h3>
       <p style="text-align: justify;">
-        The first time the search is opened, <code>search.js</code> downloads the pages listed in
-its sources, extracts their text, and builds an <em>index</em>: a list of documents, each with
-a title, a type, some tags, the text and the address to open.
+        The search works on an <em>index</em>: a list of documents, one per result that can be
+shown, each with a few fields:
       </p>
 <pre><code>{
-  type: &quot;Project&quot;,
-  section: &quot;How to make this website&quot;,
+  type: &quot;Project&quot;,                                   // shown as a label
+  section: &quot;How to make this website&quot;,               // where it belongs
   title: &quot;How to make this website: site search&quot;,
+  tags: &quot;&quot;,
   text: &quot;The magnifying glass in the navigation bar ...&quot;,
-  url: &quot;projectPost?project=website&amp;post=search&quot;
+  url: &quot;projectPost?project=website&amp;post=search&quot;     // what to open
+}</code></pre>
+      <h3 style="margin-top: 1.6rem;">Sources</h3>
+      <p style="text-align: justify;">
+        The index is built the first time the search is opened. <code>search.js</code> has one small
+function per source; each downloads the pages it needs, extracts the text and returns its
+documents:
+      </p>
+      <table class="table is-fullwidth is-narrow">
+<thead><tr><th>Source</th><th>Where the documents come from</th></tr></thead>
+<tbody>
+<tr><td>Home</td><td><code>homePane.html</code>, one document per section</td></tr>
+<tr><td>Curriculum</td><td><code>curriculum.html</code>, one per CV entry</td></tr>
+<tr><td>Publications</td><td><code>pubs.html</code></td></tr>
+<tr><td>Theses</td><td><code>thesis-card.html</code>, one per thesis</td></tr>
+<tr><td>Contact</td><td><code>contact.html</code></td></tr>
+<tr><td>Blog</td><td><code>posts/blog/index.json</code>, then each post and its metadata</td></tr>
+<tr><td>Projects</td><td>each project's timeline, then every post it links to</td></tr>
+</tbody></table>
+<pre><code>function indexBlog() {
+  return getJSON(&quot;posts/blog/index.json&quot;).then(function (files) {
+    return Promise.all(files.map(function (f) {
+      var slug = f.name.replace(/\.html$/, &quot;&quot;);
+      return getText(&quot;posts/blog/&quot; + f.name).then(function (html) {
+        var doc = parse(html);
+        var meta = JSON.parse(doc.querySelector(&quot;[data-metadata]&quot;).getAttribute(&quot;data-metadata&quot;));
+        return { type: &quot;Blog&quot;, title: meta.title, tags: meta.tags.join(&quot; &quot;),
+                 text: text(doc.querySelector(&quot;.content&quot;)),
+                 url: &quot;blogPost?post=&quot; + slug };
+      });
+    }));
+  });
 }</code></pre>
       <p style="text-align: justify;">
-        New content is found automatically: blog posts from <code>index.json</code>, theses from
-their cards, project posts from the links in each project's timeline. Only a brand-new
-project has to be added to the list of sources.
+        Since the blog list, the theses file and the project timelines are read every time, new
+content enters the search by itself. Only a brand-new project has to be added to the list of
+projects in <code>search.js</code>.
       </p>
+      <h3 style="margin-top: 1.6rem;">Robustness and cache</h3>
       <p style="text-align: justify;">
-        The index is saved in the session storage, so it is built once per tab: the following
-searches are instantaneous.
+        All sources run in parallel, and a failing source returns an empty list instead of breaking
+the others. The finished index is saved in the session storage, so it is built once per tab and
+the following searches are instantaneous:
       </p>
-      <h2 id="Fuse" style="scroll-margin: 1em;">
-        <a href="#Fuse" class="headerlink" title="Fuzzy matching"></a>
+<pre><code>var sources = [indexHome, indexCurriculum, indexPublications, indexTheses,
+               indexContact, indexBlog, indexProjects];
+
+Promise.all(sources.map(function (f) {
+  return f().catch(function () { return []; });   // one broken source does not block the rest
+})).then(function (lists) {
+  var docs = [].concat.apply([], lists);
+  sessionStorage.setItem(&quot;searchIndex:v5&quot;, JSON.stringify(docs));
+});</code></pre>
+      <h2 id="Matching" style="scroll-margin: 1em;">
+        <a href="#Matching" class="headerlink" title="Fuzzy matching"></a>
         Fuzzy matching
       </h2>
       <p style="text-align: justify;">
         The matching is done by <a href="https://www.fusejs.io" target="_blank"
 rel="noopener">Fuse.js</a>, a small library for <em>fuzzy</em> search: it tolerates typos and
-partial words, and ranks the results. Each field has a weight, so that a match in the title
-counts more than a match in the text:
+partial words, and ranks the results by relevance. Each field has a weight, so that a match in the
+title counts more than a match in the text:
       </p>
-<pre><code>new Fuse(docs, {
+<pre><code>var fuse = new Fuse(docs, {
   keys: [
     { name: &quot;title&quot;,   weight: 3 },
     { name: &quot;tags&quot;,    weight: 1.5 },
@@ -89,40 +133,74 @@ counts more than a match in the text:
     { name: &quot;type&quot;,    weight: 1 },
     { name: &quot;text&quot;,    weight: 1 }
   ],
-  includeMatches: true,   // to highlight the matching words
-  ignoreLocation: true,   // a match anywhere in the text is fine
-  threshold: 0.3          // how fuzzy: 0 = exact, 1 = anything
-});</code></pre>
+  includeMatches: true,   // positions of the matches, to highlight them
+  ignoreLocation: true,   // a match at the end of a long text counts as much as at the start
+  threshold: 0.3,         // tolerance: 0 = exact, 1 = matches anything
+  minMatchCharLength: 2
+});
+
+var results = fuse.search(&quot;dark mode&quot;).slice(0, 12);</code></pre>
       <p style="text-align: justify;">
-        Fuse.js is loaded only when the search is opened for the first time, so it costs nothing
-to visitors who never use it.
+        <code>threshold</code> is the main setting to tune: lower values give fewer, more precise
+results; higher values forgive more typos but bring in noise. 0.3 worked well for this
+website.
       </p>
-      <h2 id="Results" style="scroll-margin: 1em;">
-        <a href="#Results" class="headerlink" title="Opening a result"></a>
-        Opening a result
+      <h3 style="margin-top: 1.6rem;">Loading the library only when needed</h3>
+      <p style="text-align: justify;">
+        Fuse.js is loaded from a CDN only when the search is opened for the first time, so it costs
+nothing to visitors who never use it:
+      </p>
+<pre><code>function loadFuse() {
+  if (window.Fuse) return Promise.resolve(window.Fuse);
+  return new Promise(function (resolve, reject) {
+    var s = document.createElement(&quot;script&quot;);
+    s.src = &quot;https://cdnjs.cloudflare.com/ajax/libs/fuse.js/7.0.0/fuse.min.js&quot;;
+    s.onload = function () { resolve(window.Fuse); };
+    s.onerror = reject;
+    document.head.appendChild(s);
+  });
+}</code></pre>
+      <h2 id="Window" style="scroll-margin: 1em;">
+        <a href="#Window" class="headerlink" title="The search window"></a>
+        The search window
       </h2>
       <p style="text-align: justify;">
-        Each result links to its page. Some results also carry a hint for the page they open: a
-thesis opens <code>theses?q=&lt;title&gt;</code>, which shows that thesis only, and a CV entry
-opens the curriculum scrolled to the right section.
+        The search window is created by the script the first time it is needed: a panel with an input
+field and a list of results, over a dimmed page. Each result shows its type, title and section,
+with the matching words highlighted, and links to its page.
       </p>
-      <h2 id="Keyboard" style="scroll-margin: 1em;">
-        <a href="#Keyboard" class="headerlink" title="Keyboard"></a>
-        Keyboard
-      </h2>
+      <h3 style="margin-top: 1.6rem;">Smarter links</h3>
       <p style="text-align: justify;">
-        The search is usable without the mouse: <kbd>/</kbd> or <kbd>Ctrl</kbd>+<kbd>K</kbd>
-(<kbd>Cmd</kbd>+<kbd>K</kbd> on a Mac) opens it, the arrows move through the results,
-<kbd>Enter</kbd> opens the selected one and <kbd>Esc</kbd> closes it.
+        Some results carry a hint for the page they open. A thesis opens
+<code>theses?q=&lt;title&gt;</code>, which shows that thesis only; a CV entry opens the
+curriculum at the right section, using an anchor (<code>curriculum#PhDCourse</code>).
       </p>
-      <h2 id="Next" style="scroll-margin: 1em;">
-        <a href="#Next" class="headerlink" title="Next"></a>
-        Next
-      </h2>
+      <h3 style="margin-top: 1.6rem;">Keyboard</h3>
       <p style="text-align: justify;">
-        The next post, <a href="projectPost?project=website&amp;post=theses">the theses page</a>, shows how the list of theses is filtered
-and how students are guided before they write an email.
+        The search is fully usable without the mouse:
       </p>
+<pre><code>document.addEventListener(&quot;keydown&quot;, function (e) {
+  var typing = /INPUT|TEXTAREA/.test(document.activeElement.tagName);
+  if ((e.key === &quot;k&quot; &amp;&amp; (e.ctrlKey || e.metaKey)) || (e.key === &quot;/&quot; &amp;&amp; !typing)) {
+    e.preventDefault();
+    open();
+  }
+  if (e.key === &quot;Escape&quot; &amp;&amp; isOpen()) close();
+});
+// in the input field: ArrowDown / ArrowUp move the selection, Enter opens it</code></pre>
+      <p style="text-align: justify;">
+        The <kbd>/</kbd> shortcut is ignored while typing in a text field, otherwise it would be
+impossible to type a slash.
+      </p>
+      <h3 style="margin-top: 1.6rem;">Try it yourself</h3>
+      <ol>
+        <li>Build an index with two sources (the blog and one page of your choice).</li>
+        <li>Search it with Fuse.js from the browser console, trying different values of <code>threshold</code>.</li>
+        <li>Add the window and the shortcuts.</li>
+      </ol>
+      <hr style="height:1px;margin:2rem 0 1rem">
+      <p style="text-align: justify;"><strong>Next.</strong> <a href="projectPost?project=website&amp;post=theses">The theses page</a> shows how a list of cards is filtered while typing,
+and how a dialog can guide visitors before they write an e-mail.</p>
 
     </div>
 

@@ -29,7 +29,7 @@
         </span>
         <span class="level-item">
           <i class="far fa-clock"></i>&nbsp;
-          <div class="read-time">5 minutes</div>
+          <div class="read-time">8 minutes</div>
         </span>
       </div>
     </div>
@@ -41,79 +41,124 @@
         Introduction
       </h2>
       <p style="text-align: justify;">
-        The moon icon in the navigation bar switches the website to a dark theme, and the choice
-is remembered for the next visits. This post explains how it works.
+        The moon icon in the navigation bar switches the website to a dark theme, and the choice is
+remembered for the next visits. Thanks to the colour variables introduced in
+<a href="projectPost?project=website&amp;post=layout">layout and theme</a>, the dark theme is mostly a second list of values.
+In this post we write that list, the switch, and the few lines that apply the saved choice when a
+page opens.
       </p>
-      <h2 id="Variables" style="scroll-margin: 1em;">
-        <a href="#Variables" class="headerlink" title="Redefining the variables"></a>
-        Redefining the variables
+      <h2 id="Palette" style="scroll-margin: 1em;">
+        <a href="#Palette" class="headerlink" title="A second set of values"></a>
+        A second set of values
       </h2>
       <p style="text-align: justify;">
-        Since all colours are CSS variables (see <a href="projectPost?project=website&amp;post=layout">layout and theme</a>), the dark
-theme is mostly a second set of values for the same variables, applied when the
-<code>&lt;html&gt;</code> element has the class <code>dark</code>:
+        The dark theme is active when the <code>&lt;html&gt;</code> element has the class
+<code>dark</code>. Under that class, the same variables get new values:
       </p>
 <pre><code>html.mx.dark body {
-  --accent: #9dbcf0;      /* a lighter blue, readable on a dark background */
+  --accent: #9dbcf0;                       /* a lighter blue, readable on dark */
+  --accent-hover: #c0d4f7;
   --accent-soft: rgba(157, 188, 240, 0.13);
   --bg: #18181b;
+  --card-bg: #18181b;
   --text: #e4e4e7;
   --text-muted: #a1a1aa;
   --border: #303036;
 }
-html.mx.dark { background: #18181b; color-scheme: dark; }</code></pre>
+
+html.mx.dark {
+  background: #18181b;
+  color-scheme: dark;    /* dark scrollbars and form controls */
+}</code></pre>
       <p style="text-align: justify;">
-        Every element that uses the variables changes colour by itself. Only a few elements need a
-specific rule, for example images with a white background or embedded maps.
+        Every element that uses the variables changes colour by itself: cards, links, tags, code
+blocks, tables. This is the main payoff of defining colours as variables.
       </p>
+      <h3 style="margin-top: 1.6rem;">Choosing the colours</h3>
+      <ul>
+        <li><strong>Neutral greys, not dark blue.</strong> A blue-tinted background tints everything, including photos; neutral greys stay out of the way.</li>
+        <li><strong>Not pure black.</strong> <code>#18181b</code> instead of <code>#000</code>, and light grey text instead of pure white: the contrast is still high, but less harsh.</li>
+        <li><strong>A lighter accent.</strong> The navy blue of the light theme is unreadable on a dark background, so the accent becomes a light blue. Buttons with an accent background then need dark text, defined by another variable (<code>--on-accent</code>).</li>
+        <li><strong>Borders instead of shadows.</strong> Shadows are invisible on a dark background; thin borders keep the cards separated.</li>
+      </ul>
+      <h3 style="margin-top: 1.6rem;">The exceptions</h3>
       <p style="text-align: justify;">
-        The dark theme uses neutral greys rather than dark blues: they are easier on the eyes, and
-they do not clash with photos. The accent
-blue is lighter than in the light theme, to keep enough contrast.
+        A few elements do not use the variables and need a specific rule: images with a white
+background (logos, diagrams), embedded content such as the map, and some boxes of the base theme
+with hard-coded colours. For example:
       </p>
-      <h2 id="Toggle" style="scroll-margin: 1em;">
-        <a href="#Toggle" class="headerlink" title="The switch"></a>
+<pre><code>/* boxes of the base theme: let the card colour show through */
+html.mx.dark body .box { background: transparent; }</code></pre>
+      <h2 id="Switch" style="scroll-margin: 1em;">
+        <a href="#Switch" class="headerlink" title="The switch"></a>
         The switch
       </h2>
       <p style="text-align: justify;">
-        The switch saves the choice in the browser's <em>local storage</em>, which, unlike the
-session storage, survives when the browser is closed:
+        The switch is a link with an icon in the navigation bar. Clicking it toggles the class and
+saves the choice in the <em>local storage</em>, which, unlike the session storage, survives when
+the browser is closed:
       </p>
+<pre><code>&lt;a class=&quot;navbar-item night&quot; id=&quot;night-nav&quot; title=&quot;Switch Color Scheme&quot; href=&quot;javascript:;&quot;&gt;
+  &lt;i class=&quot;fas fa-moon&quot; id=&quot;night-icon&quot;&gt;&lt;/i&gt;
+&lt;/a&gt;</code></pre>
 <pre><code>function applyNight(on) {
   document.documentElement.classList.toggle(&quot;dark&quot;, on);
+  // swap the icon: moon in light mode, sun in dark mode
+  document.getElementById(&quot;night-icon&quot;).className = on ? &quot;fas fa-sun&quot; : &quot;fas fa-moon&quot;;
 }
-toggle.addEventListener(&quot;click&quot;, function () {
+
+document.getElementById(&quot;night-nav&quot;).addEventListener(&quot;click&quot;, function () {
   var on = !document.documentElement.classList.contains(&quot;dark&quot;);
   applyNight(on);
   localStorage.setItem(&quot;night&quot;, on);
 });</code></pre>
+      <h3 style="margin-top: 1.6rem;">Following the system setting</h3>
+      <p style="text-align: justify;">
+        Operating systems have their own light/dark preference, exposed to CSS and JavaScript as
+<code>prefers-color-scheme</code>. This website starts in the light theme and lets the visitor
+choose, but you can use the system preference as the default when nothing has been saved yet:
+      </p>
+<pre><code>var saved = localStorage.getItem(&quot;night&quot;);
+var on = saved !== null ? saved === &quot;true&quot;
+                        : matchMedia(&quot;(prefers-color-scheme: dark)&quot;).matches;</code></pre>
       <h2 id="Early" style="scroll-margin: 1em;">
-        <a href="#Early" class="headerlink" title="Applying the theme early"></a>
-        Applying the theme early
+        <a href="#Early" class="headerlink" title="Applying the choice when a page opens"></a>
+        Applying the choice when a page opens
       </h2>
       <p style="text-align: justify;">
-        The saved choice is applied by a one-line script at the very top of the
-<code>&lt;head&gt;</code> of each page, before the stylesheets. In this way the page is drawn
-directly with the right theme:
+        The saved choice must be applied on every page, and as early as possible: the page should be
+drawn directly with the right theme. The place is the very top of the
+<code>&lt;head&gt;</code>, before the stylesheets, in a one-line script:
       </p>
-<pre><code>&lt;script&gt;
-  try {
-    if (localStorage.getItem(&quot;night&quot;) === &quot;true&quot;)
-      document.documentElement.classList.add(&quot;dark&quot;);
-  } catch (e) {}
-&lt;/script&gt;</code></pre>
+<pre><code>&lt;head&gt;
+  &lt;script&gt;
+    try {
+      if (localStorage.getItem(&quot;night&quot;) === &quot;true&quot;)
+        document.documentElement.classList.add(&quot;dark&quot;);
+    } catch (e) {}
+  &lt;/script&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;assets/css/default.css&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;assets/css/modern.css&quot;&gt;
+  ...</code></pre>
       <p style="text-align: justify;">
-        The <code>try</code> block matters: in some private windows the local storage is not
-available, and the page must still work, simply in the light theme.
+        Two details matter. The script acts on <code>&lt;html&gt;</code>, which already exists when
+the <code>&lt;head&gt;</code> is parsed, while <code>&lt;body&gt;</code> does not exist yet. And
+the <code>try</code> block keeps the page working in private windows where the local storage is
+not available: the page then simply opens in the light theme.
       </p>
-      <h2 id="Next" style="scroll-margin: 1em;">
-        <a href="#Next" class="headerlink" title="Next"></a>
-        Next
-      </h2>
       <p style="text-align: justify;">
-        The next post, <a href="projectPost?project=website&amp;post=blog">the blog</a>, explains how blog posts are written, listed and
-tagged without any database.
+        The script is inline rather than in a separate file on purpose: a separate file would have to
+be downloaded before running, while an inline script runs immediately.
       </p>
+      <h3 style="margin-top: 1.6rem;">Try it yourself</h3>
+      <ol>
+        <li>Add the dark values of your variables under <code>html.mx.dark body</code>.</li>
+        <li>Add <code>class="dark"</code> to <code>&lt;html&gt;</code> by hand and look for elements that do not change: give them a rule or make them use a variable.</li>
+        <li>Add the switch and the early script, then check that the choice survives a reload and a browser restart.</li>
+      </ol>
+      <hr style="height:1px;margin:2rem 0 1rem">
+      <p style="text-align: justify;"><strong>Next.</strong> <a href="projectPost?project=website&amp;post=blog">The blog</a> shows how blog posts are written, listed and tagged without a
+database.</p>
 
     </div>
 
