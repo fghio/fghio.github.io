@@ -1029,3 +1029,16 @@ html.mx body .content .cv-entry .right-column a {
   text-decoration: none !important;
 }
 html.mx body .content .cv-entry .right-column a:hover { color: var(--accent-text); }
+
+/* ---------- Colonne "sticky" (post, blog) sotto la navbar fissa ---------- */
+/* Il tema le ferma a 0.75rem dal bordo con z-index 99: scorrendo finivano
+ * sopra la navbar. Ora si fermano sotto la navbar e restano dietro di lei. */
+@media screen and (min-width: 769px) {
+  html.mx body #navBarContainer { z-index: 100; }
+  html.mx body .column-left.is-sticky,
+  html.mx body .column-right.is-sticky,
+  html.mx body .column-main.is-sticky {
+    top: calc(56px + 1rem);
+    z-index: 1;
+  }
+}
