@@ -2,6 +2,10 @@
 <html lang="en" class="mx">
 
 <head>
+  <!-- Tema scuro applicato prima di tutto: niente flash bianco -->
+  <script>try{if(localStorage.getItem("night")==="true")document.documentElement.classList.add("dark")}catch(e){}</script>
+  <!-- Chrome aspetta a disegnare la pagina fino a quando le parti comuni sono inserite -->
+  <link rel="expect" href="#mx-partials" blocking="render">
 
   <title>FGh.io - Theses</title>
 
@@ -162,7 +166,7 @@
   <div id="footerContainer"></div>
 
   <!-- Parti comuni: inserite subito (dalla cache se disponibile) -->
-  <script>
+  <script id="mx-partials">
     loadPartial("#navBarContainer", "./common/navBar.html");
     loadPartial("#leftPaneContainer", "./common/leftPane.html");
     loadPartial("#rightPaneContainer", "./common/rightPane.html");

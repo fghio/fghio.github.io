@@ -28,7 +28,8 @@ html.mx body {
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
 
-/* La classe "dark" su <html> viene messa nel <head> (partials.js) e da
+/* La classe "dark" su <html> viene messa da uno script inline in cima al
+ * <head> di ogni pagina e da
  * script.js quando si cambia tema: così la pagina nasce già scura e non c'è
  * il flash bianco tra una pagina e l'altra. */
 html.mx.dark { background: #18181b; color-scheme: dark; }
@@ -1005,3 +1006,10 @@ html.mx body .mx-modal__close {
   color: var(--text);
 }
 html.mx body .mx-modal__close:hover { background: var(--accent-soft); }
+
+/* ---------- Dark mode: niente riquadri bianchi --------------------------- */
+/* Immagini con classe .box del tema originale (banner, immagini nei post) */
+html.mx.dark body .box { background-color: transparent; }
+/* Mappa di Google (Contatti): nascosta su fondo scuro finché non ha caricato */
+html.mx body .map-embed { background: var(--bg); transition: opacity 0.25s ease; }
+html.mx.dark body .map-embed:not(.is-loaded) { opacity: 0; }

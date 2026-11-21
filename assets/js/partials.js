@@ -14,14 +14,6 @@
  * subito dopo i contenitori (non dentro $(function)), così l'inserimento
  * avviene prima che la pagina venga disegnata.
  * ======================================================================== */
-// Tema scuro applicato subito (prima che la pagina venga disegnata),
-// leggendo la stessa preferenza salvata da script.js.
-try {
-  if (localStorage.getItem("night") === "true") {
-    document.documentElement.classList.add("dark");
-  }
-} catch (e) {}
-
 (function ($) {
   var PREFIX = "partial:v1:";
   var COMMON = [
