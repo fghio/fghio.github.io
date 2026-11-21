@@ -1,11 +1,204 @@
 <!-- BEGIN THESIS CARD -->
 <!-- 
-Also: data-status="in-progress" or data-status="finished"
+Also: data-status="in-progress", data-status="finished" or data-status="coming"
+        <span class="tag" style="background-color: #2196f3; color: white;">Coming soon</span>
 
         <span class="tag" style="background-color: #4caf50; color: white;">Open</span>
         <span class="tag" style="background-color: #ffeb3b; color: black;">In Progress</span>
         <span class="tag" style="background-color: #f44336; color: white;">Finished</span>
 -->
+
+<!-- New 1: Hydrogen RDE, parametric LES -->
+<div class="box card card-content" data-tags="cfd openfoam hydrogen rotating detonation engine rde detonation les hpc parametric study" data-status="open">
+  <div style="display: flex; align-items: center;
+  justify-content: space-between; gap: 1rem; flex-wrap: nowrap;">
+    <h2 class="title is-size-5" style="font-family: 'PT Sans Narrow',
+    sans-serif; margin: 0; line-height: 1.2;">
+      Parametric LES of a Hydrogen Rotating Detonation Engine: Operating Map and Off-Nominal Regimes
+    </h2>
+    <div style="display: flex; align-items: center; gap: 0.5rem;">
+      <span style="font-size: 0.85rem;">~6 months</span>
+      <span class="tag" style="background-color: #4caf50; color: white;">Open</span>
+    </div>
+  </div>
+  <div class="thesis-description" style="margin: 0.75rem 0;">
+    <p class="short">
+      Simulate a hydrogen-air Rotating Detonation Engine (RDE) with LES in OpenFOAM and map how the detonation waves
+      <span class="more-text">
+          respond to mass flow rate, equivalence ratio and injection conditions, including
+          off-nominal regimes close to wave failure. The solver and a baseline RDE setup
+          are already available: the thesis focuses on a parametric campaign on HPC
+          resources and on its analysis.
+          <br><br>
+          <strong>Supervisor:</strong> F. Ghioldi
+          <br><br>
+          <strong>Expected outputs include:</strong>
+          a parametric database of LES runs, an operating map (number and speed of the
+          detonation waves, pressure gain), the characterization of off-nominal and failure
+          conditions, and a documented, reusable post-processing workflow.
+          <br><br>
+          <strong>Recommended background:</strong><br>
+          - Fundamentals of compressible flows and combustion;<br>
+          - Basic experience with reactive flow problems in OpenFOAM (meshing and simulating);<br>
+          - Coding in Python; experience with HPC systems is a plus.<br><br>
+          On-site presence strongly recommended for regular feedback.
+      </span>
+      <a href="#" class="read-more">Read more</a>
+    </p>
+  </div>
+  <div class="tags are-small" style="flex-wrap: wrap;">
+      <span class="tag">OpenFOAM</span>
+      <span class="tag">Rotating Detonation Engine</span>
+      <span class="tag">Hydrogen</span>
+      <span class="tag">LES</span>
+      <span class="tag">HPC</span>
+      <span class="tag">Python</span>
+  </div>
+</div>
+
+<!-- New 2: CSP of hydrogen-ammonia flames -->
+<div class="box card card-content" data-tags="csp computational singular perturbation chemical kinetics hydrogen ammonia nox n2o canonical flames" data-status="open">
+  <div style="display: flex; align-items: center;
+  justify-content: space-between; gap: 1rem; flex-wrap: nowrap;">
+    <h2 class="title is-size-5" style="font-family: 'PT Sans Narrow',
+    sans-serif; margin: 0; line-height: 1.2;">
+      Chemical Analysis of Hydrogen–Ammonia Flames with Computational Singular Perturbation
+    </h2>
+    <div style="display: flex; align-items: center; gap: 0.5rem;">
+      <span style="font-size: 0.85rem;">~6 months</span>
+      <span class="tag" style="background-color: #4caf50; color: white;">Open</span>
+    </div>
+  </div>
+  <div class="thesis-description" style="margin: 0.75rem 0;">
+    <p class="short">
+      Apply Computational Singular Perturbation (CSP) to canonical hydrogen–ammonia flames (0D reactors and 1D flames) to identify
+      <span class="more-text">
+          the chemical processes that drive ignition, extinction and pollutant formation
+          (NOx and N2O) across blend ratios, equivalence ratios and pressures. The in-house
+          CSP tools are already available: the thesis focuses on building the canonical
+          cases and on the physical interpretation of the results.
+          <br><br>
+          <strong>Supervisor:</strong> F. Ghioldi
+          <br><br>
+          <strong>Expected outputs include:</strong>
+          a database of canonical hydrogen–ammonia cases with a documented format, a CSP
+          analysis (dominant reactions, active modes, importance indices) as a function of
+          blend ratio and pressure, insight into NOx/N2O formation pathways, and reusable
+          analysis scripts.
+          <br><br>
+          <strong>Recommended background:</strong><br>
+          - Fundamentals of combustion and chemical kinetics;<br>
+          - Coding in Python (experience with Cantera is a plus);<br>
+          - Basic linear algebra (eigenvalues and eigenvectors).<br><br>
+          On-site presence strongly recommended for regular feedback.
+      </span>
+      <a href="#" class="read-more">Read more</a>
+    </p>
+  </div>
+  <div class="tags are-small" style="flex-wrap: wrap;">
+      <span class="tag">CSP</span>
+      <span class="tag">Chemical Kinetics</span>
+      <span class="tag">Hydrogen</span>
+      <span class="tag">Ammonia</span>
+      <span class="tag">NOx</span>
+      <span class="tag">Python</span>
+  </div>
+</div>
+
+<!-- New 3: POD and autoencoder ROM benchmark -->
+<div class="box card card-content" data-tags="machine learning reduced-order models rom pod autoencoder hydrogen python pytorch" data-status="open">
+  <div style="display: flex; align-items: center;
+  justify-content: space-between; gap: 1rem; flex-wrap: nowrap;">
+    <h2 class="title is-size-5" style="font-family: 'PT Sans Narrow',
+    sans-serif; margin: 0; line-height: 1.2;">
+      Data-Driven Reduced-Order Models of Hydrogen Flames: a POD and Autoencoder Benchmark
+    </h2>
+    <div style="display: flex; align-items: center; gap: 0.5rem;">
+      <span style="font-size: 0.85rem;">~6 months</span>
+      <span class="tag" style="background-color: #4caf50; color: white;">Open</span>
+    </div>
+  </div>
+  <div class="thesis-description" style="margin: 0.75rem 0;">
+    <p class="short">
+      Build and compare data-driven reduced-order models of hydrogen combustion on canonical 0D/1D cases,
+      <span class="more-text">
+          reproducing published approaches based on Proper Orthogonal Decomposition (POD)
+          and autoencoders. The focus is on a rigorous and reproducible comparison: data
+          splits with held-out operating conditions, error metrics, compression and
+          computational cost.
+          <br><br>
+          <strong>Supervisor:</strong> F. Ghioldi
+          <br><br>
+          <strong>Expected outputs include:</strong>
+          the reproduction of one or two published models, a benchmark of accuracy,
+          compression and extrapolation to unseen operating conditions, and clean,
+          documented open-source code.
+          <br><br>
+          <strong>Recommended background:</strong><br>
+          - Linear algebra and basics of machine learning;<br>
+          - Coding in Python with NumPy and PyTorch (or similar);<br>
+          - Fundamentals of combustion.<br><br>
+          On-site presence strongly recommended for regular feedback.
+      </span>
+      <a href="#" class="read-more">Read more</a>
+    </p>
+  </div>
+  <div class="tags are-small" style="flex-wrap: wrap;">
+      <span class="tag">Machine Learning</span>
+      <span class="tag">Reduced-Order Models</span>
+      <span class="tag">POD</span>
+      <span class="tag">Autoencoders</span>
+      <span class="tag">Hydrogen</span>
+      <span class="tag">Python</span>
+  </div>
+</div>
+
+<!-- New 4: Neural ODEs vs recurrent networks for stiff kinetics -->
+<div class="box card card-content" data-tags="machine learning neural ode recurrent networks stiff chemical kinetics hydrogen ammonia 0d reactors gpu" data-status="open">
+  <div style="display: flex; align-items: center;
+  justify-content: space-between; gap: 1rem; flex-wrap: nowrap;">
+    <h2 class="title is-size-5" style="font-family: 'PT Sans Narrow',
+    sans-serif; margin: 0; line-height: 1.2;">
+      Learning Stiff Chemical Kinetics: Neural ODEs vs Recurrent Networks for 0D Reactors
+    </h2>
+    <div style="display: flex; align-items: center; gap: 0.5rem;">
+      <span style="font-size: 0.85rem;">~6 months</span>
+      <span class="tag" style="background-color: #4caf50; color: white;">Open</span>
+    </div>
+  </div>
+  <div class="thesis-description" style="margin: 0.75rem 0;">
+    <p class="short">
+      Train neural networks that advance in time the thermochemical state of hydrogen and hydrogen–ammonia 0D reactors,
+      <span class="more-text">
+          and compare two families of models, Neural ODEs and recurrent networks, in terms
+          of accuracy, long-term stability, conservation of mass and chemical elements,
+          and speed-up with respect to a stiff ODE solver.
+          <br><br>
+          <strong>Supervisor:</strong> F. Ghioldi
+          <br><br>
+          <strong>Expected outputs include:</strong>
+          a dataset of 0D reactor trajectories, two trained models, an assessment of
+          rollout stability and conservation errors, and a speed-up benchmark on CPU and
+          GPU.
+          <br><br>
+          <strong>Recommended background:</strong><br>
+          - Ordinary differential equations and numerical methods;<br>
+          - Coding in Python with PyTorch (or similar);<br>
+          - Basics of chemical kinetics.<br><br>
+          On-site presence strongly recommended for regular feedback.
+      </span>
+      <a href="#" class="read-more">Read more</a>
+    </p>
+  </div>
+  <div class="tags are-small" style="flex-wrap: wrap;">
+      <span class="tag">Machine Learning</span>
+      <span class="tag">Neural ODE</span>
+      <span class="tag">Chemical Kinetics</span>
+      <span class="tag">Hydrogen</span>
+      <span class="tag">GPU</span>
+      <span class="tag">Python</span>
+  </div>
+</div>
 
 <!-- Thesis 1 -->
 <div class="box card card-content" data-tags="cfd openfoam combustion hydrogen swirling flows" data-status="open">
@@ -120,61 +313,6 @@ Also: data-status="in-progress" or data-status="finished"
 
 
 
-<!-- Thesis 2 FLOX -->
-<div class="box card card-content" data-tags="cfd openfoam methane combustion premixed" data-status="open">
-    <div style="display: flex; align-items: center; 
-      justify-content: space-between; gap: 1rem; flex-wrap: nowrap;">
-        <h2 class="title is-size-5" style="font-family: 'PT Sans Narrow', 
-          sans-serif; margin: 0; line-height: 1.2;">
-            Low NOx premixed methane-air flames in Gas Turbine Burner
-        </h2>
-        <div style="display: flex; align-items: center; gap: 0.5rem;">
-            <span style="font-size: 0.85rem;">~6 months</span>
-        <span class="tag" style="background-color: #4caf50; color: white;">Open</span>
-        </div>
-    </div>
-
-    <!-- Description -->
-    <div class="thesis-description" style="margin: 0.75rem 0;">
-        <p class="short">
-            Explore the dynamics of the methane-air flames generated in a 
-            low NOx gas turbine burner using LES in OpenFOAM. Focus on
-            <span class="more-text">
-                flame stabilization, flame dynamics, and NOx
-                production. Two configurations of the gas turbine burner 
-                are investigated. You get to apply already existing models.
-                <br><br>
-                <strong>Supervisor:</strong> F. Ghioldi
-                <br><br>
-                <strong>Expected outputs include:</strong>
-                LES validation, analysis of flow structures 
-                and post-processing of chemical metrics with 
-                particular care to NOx production.
-                <br><br>
-                <strong>Recommended background:</strong><br>
-                - Fundamentals of fluid dynamics and combustion;<br>
-                - Basic experience with reactive flow problems in OpenFOAM 
-                (meshing and simulating);<br>
-                - Coding in Python.<br>
-                <br>
-                On-site presence strongly recommended for regular feedback.
-            </span>
-            <a href="#" class="read-more">Read more</a>
-        </p>
-    </div>
-
-    <!-- Skills as Tags -->
-    <div class="tags are-small" style="flex-wrap: wrap;">
-        <span class="tag">OpenFOAM</span>
-        <span class="tag">Meshing</span>
-        <span class="tag">Reacting flows</span>
-        <span class="tag">Python</span>
-        <span class="tag">Gas turbine</span>
-        <span class="tag">Premixed methane-air</span>
-    </div>
-</div>
-
-
 <!-- Thesis 3 -->
 <div class="box card card-content" data-tags="cfd openfoam combustion ammonia methane premixed " data-status="open">
     <div style="display: flex; align-items: center; 
@@ -234,112 +372,6 @@ Also: data-status="in-progress" or data-status="finished"
 
 
 
-<!-- Thesis 4: Methane TJI at High Pressure --> 
-<div class="box card card-content" data-tags="cfd openfoam methane 
-turbulent jet ignition high pressure" data-status="open"> 
-  <div style="display: flex; align-items: center; 
-  justify-content: space-between; gap: 1rem; flex-wrap: nowrap;"> 
-    <h2 class="title is-size-5" style="font-family: 'PT Sans Narrow', 
-    sans-serif; margin: 0; line-height: 1.2;"> 
-      Methane Combustion in Turbulent Jet Ignition at High Pressure 
-    </h2> 
-    <div style="display: flex; align-items: center; gap: 0.5rem;"> 
-      <span style="font-size: 0.85rem;">~6 months</span> 
-      <span class="tag" style="background-color: #4caf50; color: white;">Open</span> 
-    </div> 
-  </div>
-  <div class="thesis-description" style="margin: 0.75rem 0;">
-    <p class="short">
-      Analyze turbulent jet ignition (TJI) of methane-air mixtures 
-      at elevated pressures using LES in OpenFOAM. Focus on
-      <span class="more-text">
-          ignition kernel dynamics, flame propagation, and the effect 
-          of pressure on flame morphology and pollutant formation. The 
-          work builds on existing validated geometries and chemical 
-          mechanisms.
-          <br><br>
-          <strong>Supervisor:</strong> F. Ghioldi
-          <br><br>
-          <strong>Expected outputs include:</strong>
-          LES validation, post-processing of ignition metrics, heat 
-          release analysis, and interpretation of high-pressure effects 
-          on combustion dynamics.
-          <br><br>
-          <strong>Recommended background:</strong><br>
-          - Fundamentals of fluid dynamics and combustion;<br>
-          - Basic experience with reactive flow problems in OpenFOAM 
-          (meshing and simulating);<br>
-          - Coding in Python.<br><br>
-          On-site presence strongly recommended for regular feedback.
-      </span>
-      <a href="#" class="read-more">Read more</a>
-    </p>
-  </div>
-  <div class="tags are-small" style="flex-wrap: wrap;">
-      <span class="tag">OpenFOAM</span>
-      <span class="tag">Turbulent Jet Ignition</span>
-      <span class="tag">High Pressure</span>
-      <span class="tag">Methane</span>
-      <span class="tag">Reacting flows</span>
-      <span class="tag">Python</span>
-  </div>
-</div>
-
-
-
-<!-- Thesis 5: Methane TJI, quenching --> 
-<div class="box card card-content" data-tags="cfd openfoam methane 
-  turbulent jet ignition quenching parametric study" data-status="open"> 
-  <div style="display: flex; align-items: center; justify-content: 
-    space-between; gap: 1rem; flex-wrap: nowrap;"> 
-    <h2 class="title is-size-5" style="font-family: 'PT Sans Narrow', 
-      sans-serif; margin: 0; line-height: 1.2;"> 
-      Quenching in Methane TJI: Role of Nozzle and Equivalence Ratio 
-    </h2> 
-    <div style="display: flex; align-items: center; gap: 0.5rem;"> 
-      <span style="font-size: 0.85rem;">~6 months</span> 
-      <span class="tag" style="background-color: #4caf50; color: white;">Open</span> 
-    </div> 
-  </div>
-  <div class="thesis-description" style="margin: 0.75rem 0;">
-    <p class="short">
-        Investigate quenching phenomena in methane-air TJI systems by 
-        systematically varying equivalence ratio and nozzle diameter 
-        <span class="more-text">
-          in LES simulations.
-          Focus on identifying ignition failure mechanisms and 
-          sensitivity to mixture stratification and jet momentum. 
-          Geometry and solver setup are already available; the thesis 
-          centers on parametric variation and analysis.
-          <br><br>
-          <strong>Supervisor:</strong> F. Ghioldi
-          <br><br>
-          <strong>Expected outputs include:</strong>
-          LES post-processing, analysis of flame structure, ignition delay, 
-          and identification of quenching regimes and controlling parameters.
-          <br><br>
-          <strong>Recommended background:</strong><br>
-          - Fundamentals of fluid dynamics and combustion;<br>
-          - Basic experience with reactive flow problems in OpenFOAM 
-          (meshing and simulating);<br>
-          - Coding in Python.<br><br>
-          On-site presence strongly recommended for regular feedback.
-        </span>
-        <a href="#" class="read-more">Read more</a>
-    </p>
-  </div>
-  <div class="tags are-small" style="flex-wrap: wrap;">
-      <span class="tag">OpenFOAM</span>
-      <span class="tag">Turbulent Jet Ignition</span>
-      <span class="tag">Methane</span>
-      <span class="tag">Quenching</span>
-      <span class="tag">Parametric Study</span>
-      <span class="tag">Python</span>
-  </div>
-</div>
-
-
-
 <!-- Thesis 6: Hydrogen TJI --> 
 <div class="box card card-content" data-tags="cfd openfoam hydrogen 
   turbulent jet ignition high pressure" data-status="open"> 
@@ -389,3 +421,137 @@ turbulent jet ignition high pressure" data-status="open">
       <span class="tag">Python</span>
   </div>
 </div>
+
+
+<!-- Coming 1: ML-ready datasets from 3D LES -->
+<div class="box card card-content" data-tags="hpc data pipelines machine learning les 3d reacting flows sampling python" data-status="coming">
+  <div style="display: flex; align-items: center;
+  justify-content: space-between; gap: 1rem; flex-wrap: nowrap;">
+    <h2 class="title is-size-5" style="font-family: 'PT Sans Narrow',
+    sans-serif; margin: 0; line-height: 1.2;">
+      From LES to ML-Ready Datasets: Feature-Based Sampling of Active Reaction Zones in 3D Reacting Flows
+    </h2>
+    <div style="display: flex; align-items: center; gap: 0.5rem;">
+      <span style="font-size: 0.85rem;">~6 months · from July 2027</span>
+      <span class="tag" style="background-color: #2196f3; color: white;">Coming soon</span>
+    </div>
+  </div>
+  <div class="thesis-description" style="margin: 0.75rem 0;">
+    <p class="short">
+      Develop a pipeline that turns large 3D reacting-flow simulations into compact datasets for machine learning,
+      <span class="more-text">
+          detecting the regions where chemistry is active (flame fronts, detonation waves)
+          and sampling them efficiently, with attention to storage, I/O and parallel
+          processing on HPC systems.
+          <br><br>
+          <strong>Supervisor:</strong> F. Ghioldi
+          <br><br>
+          <strong>Expected outputs include:</strong>
+          a data pipeline (HDF5 or similar), criteria to detect the active regions, a
+          sampling strategy evaluated on 3D cases, and documentation.
+          <br><br>
+          <strong>Recommended background:</strong><br>
+          - Coding in Python; parallel programming and HPC;<br>
+          - Basics of CFD and combustion.<br><br>
+          On-site presence strongly recommended for regular feedback.
+      </span>
+      <a href="#" class="read-more">Read more</a>
+    </p>
+  </div>
+  <div class="tags are-small" style="flex-wrap: wrap;">
+      <span class="tag">HPC</span>
+      <span class="tag">Data Pipelines</span>
+      <span class="tag">LES</span>
+      <span class="tag">Machine Learning</span>
+      <span class="tag">Python</span>
+  </div>
+</div>
+
+<!-- Coming 2: early warning of quenching and blow-off -->
+<div class="box card card-content" data-tags="combustion monitoring early warning quenching blow-off machine learning python" data-status="coming">
+  <div style="display: flex; align-items: center;
+  justify-content: space-between; gap: 1rem; flex-wrap: nowrap;">
+    <h2 class="title is-size-5" style="font-family: 'PT Sans Narrow',
+    sans-serif; margin: 0; line-height: 1.2;">
+      Early Warning of Flame Quenching and Blow-Off from Simulation Data
+    </h2>
+    <div style="display: flex; align-items: center; gap: 0.5rem;">
+      <span style="font-size: 0.85rem;">~6 months</span>
+      <span class="tag" style="background-color: #2196f3; color: white;">Coming soon</span>
+    </div>
+  </div>
+  <div class="thesis-description" style="margin: 0.75rem 0;">
+    <p class="short">
+      Design indicators that anticipate flame quenching or blow-off from simulation data,
+      <span class="more-text">
+          and evaluate them as an early-warning system in offline replay: how early a
+          warning is raised (lead time), how often it is wrong (false alarms) and what it
+          misses (missed detections).
+          <br><br>
+          <strong>Supervisor:</strong> F. Ghioldi
+          <br><br>
+          <strong>Expected outputs include:</strong>
+          a replay pipeline, a set of indicators and thresholds, and their evaluation in
+          terms of lead time, false alarms and missed detections.
+          <br><br>
+          <strong>Recommended background:</strong><br>
+          - Coding in Python; basics of statistics and signal processing;<br>
+          - Fundamentals of combustion.<br><br>
+          On-site presence strongly recommended for regular feedback.
+      </span>
+      <a href="#" class="read-more">Read more</a>
+    </p>
+  </div>
+  <div class="tags are-small" style="flex-wrap: wrap;">
+      <span class="tag">Combustion</span>
+      <span class="tag">Monitoring</span>
+      <span class="tag">Blow-off</span>
+      <span class="tag">Machine Learning</span>
+      <span class="tag">Python</span>
+  </div>
+</div>
+
+<!-- Coming 3: GPU inference and containerized deployment -->
+<div class="box card card-content" data-tags="hpc gpu containers docker apptainer software engineering reduced-order models deployment" data-status="coming">
+  <div style="display: flex; align-items: center;
+  justify-content: space-between; gap: 1rem; flex-wrap: nowrap;">
+    <h2 class="title is-size-5" style="font-family: 'PT Sans Narrow',
+    sans-serif; margin: 0; line-height: 1.2;">
+      GPU Inference and Containerized Deployment of Reduced-Order Combustion Models
+    </h2>
+    <div style="display: flex; align-items: center; gap: 0.5rem;">
+      <span style="font-size: 0.85rem;">~6 months</span>
+      <span class="tag" style="background-color: #2196f3; color: white;">Coming soon</span>
+    </div>
+  </div>
+  <div class="thesis-description" style="margin: 0.75rem 0;">
+    <p class="short">
+      Turn trained reduced-order combustion models into fast and portable software:
+      <span class="more-text">
+          GPU-optimized inference, containerization and a clean API, together with a
+          rigorous speed-up benchmark against full simulations on the same hardware.
+          Particularly suited to students of the M.Sc. in HPC Engineering.
+          <br><br>
+          <strong>Supervisor:</strong> F. Ghioldi
+          <br><br>
+          <strong>Expected outputs include:</strong>
+          a containerized software package (Docker/Apptainer) with an API, and a benchmark
+          report on accuracy and speed-up.
+          <br><br>
+          <strong>Recommended background:</strong><br>
+          - Coding in Python and C++; GPU programming (CUDA is a plus);<br>
+          - Containers, Linux and HPC environments.<br><br>
+          On-site presence strongly recommended for regular feedback.
+      </span>
+      <a href="#" class="read-more">Read more</a>
+    </p>
+  </div>
+  <div class="tags are-small" style="flex-wrap: wrap;">
+      <span class="tag">HPC</span>
+      <span class="tag">GPU</span>
+      <span class="tag">Containers</span>
+      <span class="tag">Software Engineering</span>
+      <span class="tag">Python</span>
+  </div>
+</div>
+

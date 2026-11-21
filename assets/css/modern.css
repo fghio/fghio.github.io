@@ -628,9 +628,11 @@ html.mx body #thesisCardsContainer .tags .tag { margin-bottom: 0.35rem; }
 html.mx body .tag[style*="#4caf50"] { background: #e3f3e6 !important; color: #23683a !important; font-weight: 600; }
 html.mx body .tag[style*="#ffeb3b"] { background: #fdf3d8 !important; color: #8a5a00 !important; font-weight: 600; }
 html.mx body .tag[style*="#f44336"] { background: #fbe7e6 !important; color: #a3302a !important; font-weight: 600; }
+html.mx body .tag[style*="#2196f3"] { background: #e3edfb !important; color: #1d4f9c !important; font-weight: 600; }
 html.mx.dark body .tag[style*="#4caf50"] { background: rgba(80, 190, 110, 0.16) !important; color: #8fd8a3 !important; }
 html.mx.dark body .tag[style*="#ffeb3b"] { background: rgba(230, 180, 60, 0.16) !important; color: #f0cf7e !important; }
 html.mx.dark body .tag[style*="#f44336"] { background: rgba(230, 100, 90, 0.16) !important; color: #f0a49c !important; }
+html.mx.dark body .tag[style*="#2196f3"] { background: rgba(96, 150, 230, 0.16) !important; color: #9cc0f5 !important; }
 
 @media screen and (max-width: 768px) {
   html.mx body #thesisCardsContainer .card > div:first-child { flex-wrap: wrap !important; gap: 0.5rem !important; }

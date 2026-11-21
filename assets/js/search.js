@@ -13,7 +13,7 @@
 (function () {
   "use strict";
 
-  var INDEX_KEY = "searchIndex:v3";
+  var INDEX_KEY = "searchIndex:v4";
   var FUSE_URL = "https://cdnjs.cloudflare.com/ajax/libs/fuse.js/7.0.0/fuse.min.js";
   var MAX_RESULTS = 12;
 
@@ -110,7 +110,7 @@
         var status = c.getAttribute("data-status") || "";
         return {
           type: "Thesis", title: title,
-          section: status === "open" ? "Open" : status === "in-progress" ? "In progress" : status,
+          section: { "open": "Open", "in-progress": "In progress", "finished": "Finished", "coming": "Coming soon" }[status] || status,
           tags: clean((c.getAttribute("data-tags") || "") + " " + text(c.querySelector(".tags"))),
           text: text(c.querySelector(".thesis-description")),
           url: "theses?q=" + encodeURIComponent(title)
