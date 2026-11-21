@@ -74,7 +74,10 @@
 
   function forget() {
     cryptoKey = null;
-    try { sessionStorage.removeItem(KEY_STORE); } catch (e) {}
+    try {
+      sessionStorage.removeItem(KEY_STORE);
+      sessionStorage.removeItem("searchIndex:pf:v1");  // indice della ricerca decifrato
+    } catch (e) {}
   }
 
   function imageUrl(key, path) {
@@ -148,6 +151,15 @@
         return show(el, key, url).catch(function () { forget(); form(el, url); });
       });
     },
-    forget: forget
+    forget: forget,
+    // testo decifrato di un file .enc, oppure null se in questa scheda la
+    // password non è ancora stata inserita (usato dalla ricerca)
+    decryptText: function (url) {
+      return storedKey().then(function (key) {
+        if (!key) return null;
+        return getBytes(url).then(function (data) { return decrypt(key, data); })
+          .then(function (plain) { return new TextDecoder().decode(plain); });
+      });
+    }
   };
 })();

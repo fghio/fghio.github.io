@@ -17,8 +17,11 @@
   var FUSE_URL = "https://cdnjs.cloudflare.com/ajax/libs/fuse.js/7.0.0/fuse.min.js";
   var MAX_RESULTS = 12;
 
-  // PF (Personal Finance Spreadsheet) è escluso di proposito: è protetto da
-  // password e il suo contenuto non deve finire nell'indice di ricerca.
+  // PF (Personal Finance Spreadsheet) non è in PROJECTS: è protetto da password.
+  // Entra nella ricerca solo nella scheda in cui la password è stata inserita
+  // (vedi indexLocked), con un indice a parte che non finisce in quello pubblico.
+  var PF_KEY = "pf:key:v1";
+  var PF_INDEX_KEY = "searchIndex:pf:v1";
   var PROJECTS = [
     { id: "WEB", file: "website" },
     { id: "OF", file: "CFDcourse" },
@@ -186,6 +189,60 @@
     })).then(function (lists) { return [].concat.apply([], lists); });
   }
 
+  /* --------------------------- progetto protetto (solo dopo la password) */
+  function hasPfKey() {
+    try { return !!sessionStorage.getItem(PF_KEY); } catch (e) { return false; }
+  }
+
+  function loadPfLock() {
+    if (window.PFLock) return Promise.resolve(window.PFLock);
+    return new Promise(function (resolve, reject) {
+      var s = document.createElement("script");
+      s.src = "assets/js/pflock.js";
+      s.onload = function () { resolve(window.PFLock); };
+      s.onerror = reject;
+      document.head.appendChild(s);
+    });
+  }
+
+  function indexLocked() {
+    if (!hasPfKey()) return Promise.resolve([]);
+    try {
+      var cached = JSON.parse(sessionStorage.getItem(PF_INDEX_KEY));
+      if (Array.isArray(cached) && cached.length) return Promise.resolve(cached);
+    } catch (e) {}
+    return loadPfLock().then(function (L) {
+      return L.decryptText("posts/projects/spreadsheet.enc").then(function (html) {
+        if (!html) return [];
+        var doc = parse(html);
+        var projTitle = text(doc.querySelector("h1"));
+        var docs = [{ type: "Project", title: projTitle, text: text(doc.body), url: "projectArchive?id=PF" }];
+        var seen = {};
+        var posts = [];
+        doc.querySelectorAll('a[href*="project=spreadsheet"]').forEach(function (a) {
+          var q = new URLSearchParams(a.getAttribute("href").split("?")[1] || "");
+          var post = q.get("post");
+          if (post && !seen[post]) { seen[post] = true; posts.push({ post: post, a: a }); }
+        });
+        return Promise.all(posts.map(function (p) {
+          return L.decryptText("posts/projects/spreadsheetPosts/" + p.post + ".enc").then(function (h) {
+            var d = parse(h || "");
+            return {
+              type: "Project", section: projTitle,
+              title: text(d.querySelector("h1")) || text(p.a),
+              text: text(d.querySelector(".content") || d.body),
+              url: "projectPost?project=spreadsheet&post=" + encodeURIComponent(p.post)
+            };
+          }).catch(function () { return null; });
+        })).then(function (sub) {
+          var all = docs.concat(sub).filter(function (d) { return d && d.title; });
+          try { sessionStorage.setItem(PF_INDEX_KEY, JSON.stringify(all)); } catch (e) {}
+          return all;
+        });
+      });
+    }).catch(function () { return []; });
+  }
+
   var indexPromise = null;
   function buildIndex() {
     if (indexPromise) return indexPromise;
@@ -220,11 +277,15 @@
     return fusePromise;
   }
 
-  var fuse = null;
+  var fuse = null, fuseHasPf = null;
   function ready() {
-    return Promise.all([loadFuse(), buildIndex()]).then(function (r) {
-      if (!fuse) {
-        fuse = new r[0](r[1], {
+    // l'indice del progetto protetto si aggiunge solo se in questa scheda la
+    // password è stata inserita (anche dopo che la ricerca era già aperta)
+    var pf = hasPfKey();
+    return Promise.all([loadFuse(), buildIndex(), pf ? indexLocked() : Promise.resolve([])]).then(function (r) {
+      if (!fuse || fuseHasPf !== pf) {
+        fuseHasPf = pf;
+        fuse = new r[0](r[1].concat(r[2]), {
           keys: [
             { name: "title", weight: 3 },
             { name: "tags", weight: 1.5 },
