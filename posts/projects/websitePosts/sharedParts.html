@@ -1,0 +1,209 @@
+<div class="card" id="my-blog-post-card">
+  <article class="card-content article">
+
+    <h1 class="title is-size-3" style="font-family: 'PT Sans Narrow', sans-serif">
+      How to make this website: shared parts
+    </h1>
+
+    <div class="article-meta is-size-7 is-uppercase level is-mobile">
+      <div class="level-left" style="margin-bottom: 0.50rem">
+        <span class="level-item">
+          <i class="far fa-calendar-alt">&nbsp;</i>
+          <time>
+            <div class="post-date">21/11/2026</div>
+          </time>
+        </span>
+        <span class="level-item is-hidden-mobile">
+          <i class="far fa-calendar-check">&nbsp;</i>
+          <time>
+            <div class="last-updated">21/11/2026</div>
+          </time>
+        </span>
+        <span class="level-item">
+          <i class="far fa-folder-open has-text-grey"></i>&nbsp;
+          <a class="link-muted" href="./projectArchive?id=WEB">back to posts list</a>
+        </span>
+        <span class="level-item">
+          <i class="far fa-folder-open has-text-grey"></i>&nbsp;
+          <a class="link-muted" href="./projects">list of projects</a>
+        </span>
+        <span class="level-item">
+          <i class="far fa-clock"></i>&nbsp;
+          <div class="read-time">6 minutes</div>
+        </span>
+      </div>
+    </div>
+
+    <div class="content" style="margin-top: 1.0rem">
+
+      <h2 id="Introduction" style="scroll-margin: 1em;">
+        <a href="#Introduction" class="headerlink" title="Introduction"></a>
+        Introduction
+      </h2>
+      <p style="text-align: justify;">
+        The navigation bar, the two side columns and the footer are the same on every page.
+Copying them into eleven files would mean editing eleven files for every change. Instead,
+they are written once, in the <code>common/</code> folder, and inserted into each page by a
+small script, <code>partials.js</code>.
+      </p>
+      <h2 id="Containers" style="scroll-margin: 1em;">
+        <a href="#Containers" class="headerlink" title="Empty containers"></a>
+        Empty containers
+      </h2>
+      <p style="text-align: justify;">
+        Each page contains only empty placeholders where the shared parts go, followed by a
+short script that fills them:
+      </p>
+<pre><code>&lt;div id=&quot;navBarContainer&quot;&gt;&lt;/div&gt;
+&lt;!-- ... page content ... --&gt;
+&lt;div id=&quot;footerContainer&quot;&gt;&lt;/div&gt;
+
+&lt;script id=&quot;mx-partials&quot;&gt;
+  loadPartial(&quot;#navBarContainer&quot;, &quot;./common/navBar.html&quot;);
+  loadPartial(&quot;#leftPaneContainer&quot;, &quot;./common/leftPane.html&quot;);
+  loadPartial(&quot;#rightPaneContainer&quot;, &quot;./common/rightPane.html&quot;);
+  loadPartial(&quot;#footerContainer&quot;, &quot;./common/footer.html&quot;);
+&lt;/script&gt;</code></pre>
+      <p style="text-align: justify;">
+        The calls are placed right after the containers, not at the end of the page, so that the
+parts are inserted as early as possible.
+      </p>
+      <h2 id="Cache" style="scroll-margin: 1em;">
+        <a href="#Cache" class="headerlink" title="Keeping the parts in memory"></a>
+        Keeping the parts in memory
+      </h2>
+      <p style="text-align: justify;">
+        Downloading the four parts at every page change would make them appear a moment after
+the rest of the page. <code>loadPartial</code> avoids this with the browser's
+<em>session storage</em>, a small memory that lasts as long as the tab is open:
+      </p>
+      <ol>
+        <li>If the part is already in memory, it is inserted immediately.</li>
+        <li>In any case, the current version is downloaded in the background; if it has changed, it is saved and used from the next page on.</li>
+        <li>When a page has finished loading, the parts not yet in memory are downloaded in advance.</li>
+      </ol>
+<pre><code>window.loadPartial = function (selector, url) {
+  var el = document.querySelector(selector);
+  var cached = sessionStorage.getItem(&quot;partial:&quot; + url);
+  if (cached !== null) render(el, cached);          // immediately, from memory
+
+  fetch(url, { cache: &quot;no-cache&quot; }).then(r =&gt; r.text()).then(function (html) {
+    if (html === cached) return;
+    sessionStorage.setItem(&quot;partial:&quot; + url, html); // fresh copy for the next page
+    if (cached === null) render(el, html);          // first visit: show it now
+  });
+};</code></pre>
+      <p style="text-align: justify;">
+        The result is that moving from one page to another, only the central column changes: the
+navigation bar and the side columns stay where they are.
+      </p>
+      <h2 id="Scripts" style="scroll-margin: 1em;">
+        <a href="#Scripts" class="headerlink" title="Parts with scripts"></a>
+        Parts with scripts
+      </h2>
+      <p style="text-align: justify;">
+        Some parts contain scripts (the dark mode switch, the search button). When HTML is
+inserted from JavaScript, the browser does not run the scripts it contains, so
+<code>render</code> recreates each <code>&lt;script&gt;</code> element after inserting the
+rest. This keeps the shared parts self-contained: a part brings its own behaviour with it.
+      </p>
+      <h2 id="Rendering" style="scroll-margin: 1em;">
+        <a href="#Rendering" class="headerlink" title="Waiting for the parts"></a>
+        Waiting for the parts
+      </h2>
+      <p style="text-align: justify;">
+        Chrome supports a hint that delays the first drawing of the page until a given element
+has been parsed. Pointing it to the script that loads the parts means the page is drawn
+once, already complete, instead of drawing the content first and the parts a moment later:
+      </p>
+<pre><code>&lt;link rel=&quot;expect&quot; href=&quot;#mx-partials&quot; blocking=&quot;render&quot;&gt;</code></pre>
+      <p style="text-align: justify;">
+        Browsers that do not know this hint simply ignore it.
+      </p>
+      <h2 id="Next" style="scroll-margin: 1em;">
+        <a href="#Next" class="headerlink" title="Next"></a>
+        Next
+      </h2>
+      <p style="text-align: justify;">
+        The next post, <a href="projectPost?project=website&amp;post=darkMode">dark mode</a>, shows how the same variables used for the
+colours make a dark theme almost free.
+      </p>
+
+    </div>
+
+    <div class="article-licensing box">
+      <div class="licensing-title">
+        <p>How to make this website: shared parts</p>
+        <p>
+          <a href="https://fghio.github.io/projectPost?project=website&post=sharedParts">
+            https://fghio.github.io/projectPost?project=website&post=sharedParts
+          </a>
+        </p>
+      </div>
+      <div class="licensing-meta level is-mobile">
+        <div class="level-left">
+          <div class="level-item is-narrow">
+            <div>
+              <h6>Author</h6>
+              <p>F. Ghioldi</p>
+            </div>
+          </div>
+          <div class="level-item is-narrow">
+            <div>
+              <h6>Posted on</h6>
+              <p>21-11-2026</p>
+            </div>
+          </div>
+          <div class="level-item is-narrow">
+            <div>
+              <h6>Updated on</h6>
+              <p>21-11-2026</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr style="height:1px;margin:1rem 0">
+    <div class="level is-mobile is-flex">
+      <div class="article-tags is-size-7 is-uppercase">
+        <i class="fas fa-tag has-text-grey" style="transform: translateY(20%);"></i>&nbsp;&nbsp;
+        <div>
+          Website,
+          &nbsp;
+        </div>
+        <div>
+          Coding
+          &nbsp;
+        </div>
+      </div>
+    </div>
+
+  </article>
+</div>
+
+<script src=assets/js/tableContent.js></script>
+
+<div class="card" id="comment-card" style="margin-top: 20px; opacity: 1; transform-origin: center top;">
+  <div class="card-content">
+    <h3 class="title is-5">Comments</h3>
+
+    <!-- DISQUS COMMENTS -->
+    <div id="disqus_thread"></div>
+
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://fghio.github.io/projectPost?project=website&post=sharedParts';
+        this.page.identifier = '/posts/projects/websitePosts/sharedParts.html';
+      };
+
+      (function () {
+        var d = document, s = d.createElement('script');
+        s.src = '//' + 'https-fghio-github-io' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+        powered by Disqus.</a></noscript>
+  </div>
+</div>

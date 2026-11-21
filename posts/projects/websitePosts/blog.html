@@ -1,0 +1,202 @@
+<div class="card" id="my-blog-post-card">
+  <article class="card-content article">
+
+    <h1 class="title is-size-3" style="font-family: 'PT Sans Narrow', sans-serif">
+      How to make this website: the blog
+    </h1>
+
+    <div class="article-meta is-size-7 is-uppercase level is-mobile">
+      <div class="level-left" style="margin-bottom: 0.50rem">
+        <span class="level-item">
+          <i class="far fa-calendar-alt">&nbsp;</i>
+          <time>
+            <div class="post-date">21/11/2026</div>
+          </time>
+        </span>
+        <span class="level-item is-hidden-mobile">
+          <i class="far fa-calendar-check">&nbsp;</i>
+          <time>
+            <div class="last-updated">21/11/2026</div>
+          </time>
+        </span>
+        <span class="level-item">
+          <i class="far fa-folder-open has-text-grey"></i>&nbsp;
+          <a class="link-muted" href="./projectArchive?id=WEB">back to posts list</a>
+        </span>
+        <span class="level-item">
+          <i class="far fa-folder-open has-text-grey"></i>&nbsp;
+          <a class="link-muted" href="./projects">list of projects</a>
+        </span>
+        <span class="level-item">
+          <i class="far fa-clock"></i>&nbsp;
+          <div class="read-time">6 minutes</div>
+        </span>
+      </div>
+    </div>
+
+    <div class="content" style="margin-top: 1.0rem">
+
+      <h2 id="Introduction" style="scroll-margin: 1em;">
+        <a href="#Introduction" class="headerlink" title="Introduction"></a>
+        Introduction
+      </h2>
+      <p style="text-align: justify;">
+        The blog has a list of posts with cards and pages, a page for each post and a page of
+tags. There is no database and no build step: a post is an HTML file, and a small JSON file
+lists the posts.
+      </p>
+      <h2 id="Post" style="scroll-margin: 1em;">
+        <a href="#Post" class="headerlink" title="A post"></a>
+        A post
+      </h2>
+      <p style="text-align: justify;">
+        Each post is a file in <code>posts/blog/</code>. Besides the text, it carries its own
+metadata (title, dates, tags, description) in a <code>data-metadata</code> attribute, so that
+the list, the tags and the search can read them without a separate file:
+      </p>
+<pre><code>&lt;article class=&quot;card-content article&quot; data-metadata=&#x27;{
+  &quot;creationDate&quot;: &quot;2024-11-23&quot;,
+  &quot;lastModificationDate&quot;: &quot;2024-11-24&quot;,
+  &quot;title&quot;: &quot;collectify: gotta collect &amp;apos;em all&quot;,
+  &quot;readTime&quot;: &quot;5 min&quot;,
+  &quot;tags&quot;: [&quot;python&quot;, &quot;app&quot;, &quot;utility&quot;],
+  &quot;description&quot;: &quot;The tool for collectors.&quot;
+}&#x27;&gt;
+  &lt;!-- text of the post --&gt;
+&lt;/article&gt;</code></pre>
+      <h2 id="Index" style="scroll-margin: 1em;">
+        <a href="#Index" class="headerlink" title="The list of posts"></a>
+        The list of posts
+      </h2>
+      <p style="text-align: justify;">
+        A static website cannot list the files of a folder, so the posts are listed in
+<code>posts/blog/index.json</code>:
+      </p>
+<pre><code>[
+  { &quot;name&quot;: &quot;collectify.html&quot; },
+  { &quot;name&quot;: &quot;tex2html.html&quot; }
+]</code></pre>
+      <p style="text-align: justify;">
+        Publishing a new post therefore takes two steps: add its HTML file, and add its name
+to this list. <code>blogCard.js</code> reads the list, loads the metadata of each post,
+sorts the posts from the most recently updated, and builds the cards, four per page, with
+pagination.
+      </p>
+      <h2 id="Page" style="scroll-margin: 1em;">
+        <a href="#Page" class="headerlink" title="The page of a post"></a>
+        The page of a post
+      </h2>
+      <p style="text-align: justify;">
+        All posts are shown by the same page, <code>blogPost.html</code>, which reads the name of
+the post from the address and loads its file into the central column:
+      </p>
+<pre><code>// blogPost?post=collectify  -&gt;  posts/blog/collectify.html
+var post = new URLSearchParams(location.search).get(&quot;post&quot;);
+$.ajax({ url: &quot;./posts/blog/&quot; + post + &quot;.html&quot; })
+  .done(function (html) { $(&quot;.column-main&quot;).html(html); });</code></pre>
+      <h2 id="Tags" style="scroll-margin: 1em;">
+        <a href="#Tags" class="headerlink" title="Tags"></a>
+        Tags
+      </h2>
+      <p style="text-align: justify;">
+        The tags page collects the tags of all posts from their metadata and shows them as
+buttons; <code>tagArticles?tag=python</code> lists the posts with that tag. Since collecting
+the tags means reading every post, the result is kept in the session storage and reused
+while the tab is open.
+      </p>
+      <h2 id="Comments" style="scroll-margin: 1em;">
+        <a href="#Comments" class="headerlink" title="Comments"></a>
+        Comments
+      </h2>
+      <p style="text-align: justify;">
+        The comments at the bottom of the posts are provided by Disqus, an external service: each
+post includes a short script with its own address and identifier, and Disqus does the
+rest.
+      </p>
+      <h2 id="Next" style="scroll-margin: 1em;">
+        <a href="#Next" class="headerlink" title="Next"></a>
+        Next
+      </h2>
+      <p style="text-align: justify;">
+        The next post, <a href="projectPost?project=website&amp;post=projects">projects</a>, describes how projects such as this series are
+organised in posts.
+      </p>
+
+    </div>
+
+    <div class="article-licensing box">
+      <div class="licensing-title">
+        <p>How to make this website: the blog</p>
+        <p>
+          <a href="https://fghio.github.io/projectPost?project=website&post=blog">
+            https://fghio.github.io/projectPost?project=website&post=blog
+          </a>
+        </p>
+      </div>
+      <div class="licensing-meta level is-mobile">
+        <div class="level-left">
+          <div class="level-item is-narrow">
+            <div>
+              <h6>Author</h6>
+              <p>F. Ghioldi</p>
+            </div>
+          </div>
+          <div class="level-item is-narrow">
+            <div>
+              <h6>Posted on</h6>
+              <p>21-11-2026</p>
+            </div>
+          </div>
+          <div class="level-item is-narrow">
+            <div>
+              <h6>Updated on</h6>
+              <p>21-11-2026</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr style="height:1px;margin:1rem 0">
+    <div class="level is-mobile is-flex">
+      <div class="article-tags is-size-7 is-uppercase">
+        <i class="fas fa-tag has-text-grey" style="transform: translateY(20%);"></i>&nbsp;&nbsp;
+        <div>
+          Website,
+          &nbsp;
+        </div>
+        <div>
+          Coding
+          &nbsp;
+        </div>
+      </div>
+    </div>
+
+  </article>
+</div>
+
+<script src=assets/js/tableContent.js></script>
+
+<div class="card" id="comment-card" style="margin-top: 20px; opacity: 1; transform-origin: center top;">
+  <div class="card-content">
+    <h3 class="title is-5">Comments</h3>
+
+    <!-- DISQUS COMMENTS -->
+    <div id="disqus_thread"></div>
+
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://fghio.github.io/projectPost?project=website&post=blog';
+        this.page.identifier = '/posts/projects/websitePosts/blog.html';
+      };
+
+      (function () {
+        var d = document, s = d.createElement('script');
+        s.src = '//' + 'https-fghio-github-io' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+        powered by Disqus.</a></noscript>
+  </div>
+</div>

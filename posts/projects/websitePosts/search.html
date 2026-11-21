@@ -1,0 +1,204 @@
+<div class="card" id="my-blog-post-card">
+  <article class="card-content article">
+
+    <h1 class="title is-size-3" style="font-family: 'PT Sans Narrow', sans-serif">
+      How to make this website: site search
+    </h1>
+
+    <div class="article-meta is-size-7 is-uppercase level is-mobile">
+      <div class="level-left" style="margin-bottom: 0.50rem">
+        <span class="level-item">
+          <i class="far fa-calendar-alt">&nbsp;</i>
+          <time>
+            <div class="post-date">21/11/2026</div>
+          </time>
+        </span>
+        <span class="level-item is-hidden-mobile">
+          <i class="far fa-calendar-check">&nbsp;</i>
+          <time>
+            <div class="last-updated">21/11/2026</div>
+          </time>
+        </span>
+        <span class="level-item">
+          <i class="far fa-folder-open has-text-grey"></i>&nbsp;
+          <a class="link-muted" href="./projectArchive?id=WEB">back to posts list</a>
+        </span>
+        <span class="level-item">
+          <i class="far fa-folder-open has-text-grey"></i>&nbsp;
+          <a class="link-muted" href="./projects">list of projects</a>
+        </span>
+        <span class="level-item">
+          <i class="far fa-clock"></i>&nbsp;
+          <div class="read-time">6 minutes</div>
+        </span>
+      </div>
+    </div>
+
+    <div class="content" style="margin-top: 1.0rem">
+
+      <h2 id="Introduction" style="scroll-margin: 1em;">
+        <a href="#Introduction" class="headerlink" title="Introduction"></a>
+        Introduction
+      </h2>
+      <p style="text-align: justify;">
+        The magnifying glass in the navigation bar (or the keys <kbd>/</kbd> and
+<kbd>Ctrl</kbd>+<kbd>K</kbd>) opens a search over the whole website: blog posts, project
+posts, theses, the CV, publications and contacts. Search engines for websites usually need a
+server; here the browser does everything.
+      </p>
+      <h2 id="Index" style="scroll-margin: 1em;">
+        <a href="#Index" class="headerlink" title="Building the index"></a>
+        Building the index
+      </h2>
+      <p style="text-align: justify;">
+        The first time the search is opened, <code>search.js</code> downloads the pages listed in
+its sources, extracts their text, and builds an <em>index</em>: a list of documents, each with
+a title, a type, some tags, the text and the address to open.
+      </p>
+<pre><code>{
+  type: &quot;Project&quot;,
+  section: &quot;How to make this website&quot;,
+  title: &quot;How to make this website: site search&quot;,
+  text: &quot;The magnifying glass in the navigation bar ...&quot;,
+  url: &quot;projectPost?project=website&amp;post=search&quot;
+}</code></pre>
+      <p style="text-align: justify;">
+        New content is found automatically: blog posts from <code>index.json</code>, theses from
+their cards, project posts from the links in each project's timeline. Only a brand-new
+project has to be added to the list of sources.
+      </p>
+      <p style="text-align: justify;">
+        The index is saved in the session storage, so it is built once per tab: the following
+searches are instantaneous.
+      </p>
+      <h2 id="Fuse" style="scroll-margin: 1em;">
+        <a href="#Fuse" class="headerlink" title="Fuzzy matching"></a>
+        Fuzzy matching
+      </h2>
+      <p style="text-align: justify;">
+        The matching is done by <a href="https://www.fusejs.io" target="_blank"
+rel="noopener">Fuse.js</a>, a small library for <em>fuzzy</em> search: it tolerates typos and
+partial words, and ranks the results. Each field has a weight, so that a match in the title
+counts more than a match in the text:
+      </p>
+<pre><code>new Fuse(docs, {
+  keys: [
+    { name: &quot;title&quot;,   weight: 3 },
+    { name: &quot;tags&quot;,    weight: 1.5 },
+    { name: &quot;section&quot;, weight: 1 },
+    { name: &quot;type&quot;,    weight: 1 },
+    { name: &quot;text&quot;,    weight: 1 }
+  ],
+  includeMatches: true,   // to highlight the matching words
+  ignoreLocation: true,   // a match anywhere in the text is fine
+  threshold: 0.3          // how fuzzy: 0 = exact, 1 = anything
+});</code></pre>
+      <p style="text-align: justify;">
+        Fuse.js is loaded only when the search is opened for the first time, so it costs nothing
+to visitors who never use it.
+      </p>
+      <h2 id="Results" style="scroll-margin: 1em;">
+        <a href="#Results" class="headerlink" title="Opening a result"></a>
+        Opening a result
+      </h2>
+      <p style="text-align: justify;">
+        Each result links to its page. Some results also carry a hint for the page they open: a
+thesis opens <code>theses?q=&lt;title&gt;</code>, which shows that thesis only, and a CV entry
+opens the curriculum scrolled to the right section.
+      </p>
+      <h2 id="Keyboard" style="scroll-margin: 1em;">
+        <a href="#Keyboard" class="headerlink" title="Keyboard"></a>
+        Keyboard
+      </h2>
+      <p style="text-align: justify;">
+        The search is usable without the mouse: <kbd>/</kbd> or <kbd>Ctrl</kbd>+<kbd>K</kbd>
+(<kbd>Cmd</kbd>+<kbd>K</kbd> on a Mac) opens it, the arrows move through the results,
+<kbd>Enter</kbd> opens the selected one and <kbd>Esc</kbd> closes it.
+      </p>
+      <h2 id="Next" style="scroll-margin: 1em;">
+        <a href="#Next" class="headerlink" title="Next"></a>
+        Next
+      </h2>
+      <p style="text-align: justify;">
+        The next post, <a href="projectPost?project=website&amp;post=theses">the theses page</a>, shows how the list of theses is filtered
+and how students are guided before they write an email.
+      </p>
+
+    </div>
+
+    <div class="article-licensing box">
+      <div class="licensing-title">
+        <p>How to make this website: site search</p>
+        <p>
+          <a href="https://fghio.github.io/projectPost?project=website&post=search">
+            https://fghio.github.io/projectPost?project=website&post=search
+          </a>
+        </p>
+      </div>
+      <div class="licensing-meta level is-mobile">
+        <div class="level-left">
+          <div class="level-item is-narrow">
+            <div>
+              <h6>Author</h6>
+              <p>F. Ghioldi</p>
+            </div>
+          </div>
+          <div class="level-item is-narrow">
+            <div>
+              <h6>Posted on</h6>
+              <p>21-11-2026</p>
+            </div>
+          </div>
+          <div class="level-item is-narrow">
+            <div>
+              <h6>Updated on</h6>
+              <p>21-11-2026</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr style="height:1px;margin:1rem 0">
+    <div class="level is-mobile is-flex">
+      <div class="article-tags is-size-7 is-uppercase">
+        <i class="fas fa-tag has-text-grey" style="transform: translateY(20%);"></i>&nbsp;&nbsp;
+        <div>
+          Website,
+          &nbsp;
+        </div>
+        <div>
+          Coding
+          &nbsp;
+        </div>
+      </div>
+    </div>
+
+  </article>
+</div>
+
+<script src=assets/js/tableContent.js></script>
+
+<div class="card" id="comment-card" style="margin-top: 20px; opacity: 1; transform-origin: center top;">
+  <div class="card-content">
+    <h3 class="title is-5">Comments</h3>
+
+    <!-- DISQUS COMMENTS -->
+    <div id="disqus_thread"></div>
+
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://fghio.github.io/projectPost?project=website&post=search';
+        this.page.identifier = '/posts/projects/websitePosts/search.html';
+      };
+
+      (function () {
+        var d = document, s = d.createElement('script');
+        s.src = '//' + 'https-fghio-github-io' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+        powered by Disqus.</a></noscript>
+  </div>
+</div>

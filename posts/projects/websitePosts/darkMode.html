@@ -1,0 +1,195 @@
+<div class="card" id="my-blog-post-card">
+  <article class="card-content article">
+
+    <h1 class="title is-size-3" style="font-family: 'PT Sans Narrow', sans-serif">
+      How to make this website: dark mode
+    </h1>
+
+    <div class="article-meta is-size-7 is-uppercase level is-mobile">
+      <div class="level-left" style="margin-bottom: 0.50rem">
+        <span class="level-item">
+          <i class="far fa-calendar-alt">&nbsp;</i>
+          <time>
+            <div class="post-date">21/11/2026</div>
+          </time>
+        </span>
+        <span class="level-item is-hidden-mobile">
+          <i class="far fa-calendar-check">&nbsp;</i>
+          <time>
+            <div class="last-updated">21/11/2026</div>
+          </time>
+        </span>
+        <span class="level-item">
+          <i class="far fa-folder-open has-text-grey"></i>&nbsp;
+          <a class="link-muted" href="./projectArchive?id=WEB">back to posts list</a>
+        </span>
+        <span class="level-item">
+          <i class="far fa-folder-open has-text-grey"></i>&nbsp;
+          <a class="link-muted" href="./projects">list of projects</a>
+        </span>
+        <span class="level-item">
+          <i class="far fa-clock"></i>&nbsp;
+          <div class="read-time">5 minutes</div>
+        </span>
+      </div>
+    </div>
+
+    <div class="content" style="margin-top: 1.0rem">
+
+      <h2 id="Introduction" style="scroll-margin: 1em;">
+        <a href="#Introduction" class="headerlink" title="Introduction"></a>
+        Introduction
+      </h2>
+      <p style="text-align: justify;">
+        The moon icon in the navigation bar switches the website to a dark theme, and the choice
+is remembered for the next visits. This post explains how it works.
+      </p>
+      <h2 id="Variables" style="scroll-margin: 1em;">
+        <a href="#Variables" class="headerlink" title="Redefining the variables"></a>
+        Redefining the variables
+      </h2>
+      <p style="text-align: justify;">
+        Since all colours are CSS variables (see <a href="projectPost?project=website&amp;post=layout">layout and theme</a>), the dark
+theme is mostly a second set of values for the same variables, applied when the
+<code>&lt;html&gt;</code> element has the class <code>dark</code>:
+      </p>
+<pre><code>html.mx.dark body {
+  --accent: #9dbcf0;      /* a lighter blue, readable on a dark background */
+  --accent-soft: rgba(157, 188, 240, 0.13);
+  --bg: #18181b;
+  --text: #e4e4e7;
+  --text-muted: #a1a1aa;
+  --border: #303036;
+}
+html.mx.dark { background: #18181b; color-scheme: dark; }</code></pre>
+      <p style="text-align: justify;">
+        Every element that uses the variables changes colour by itself. Only a few elements need a
+specific rule, for example images with a white background or embedded maps.
+      </p>
+      <p style="text-align: justify;">
+        The dark theme uses neutral greys rather than dark blues: they are easier on the eyes, and
+they do not clash with photos. The accent
+blue is lighter than in the light theme, to keep enough contrast.
+      </p>
+      <h2 id="Toggle" style="scroll-margin: 1em;">
+        <a href="#Toggle" class="headerlink" title="The switch"></a>
+        The switch
+      </h2>
+      <p style="text-align: justify;">
+        The switch saves the choice in the browser's <em>local storage</em>, which, unlike the
+session storage, survives when the browser is closed:
+      </p>
+<pre><code>function applyNight(on) {
+  document.documentElement.classList.toggle(&quot;dark&quot;, on);
+}
+toggle.addEventListener(&quot;click&quot;, function () {
+  var on = !document.documentElement.classList.contains(&quot;dark&quot;);
+  applyNight(on);
+  localStorage.setItem(&quot;night&quot;, on);
+});</code></pre>
+      <h2 id="Early" style="scroll-margin: 1em;">
+        <a href="#Early" class="headerlink" title="Applying the theme early"></a>
+        Applying the theme early
+      </h2>
+      <p style="text-align: justify;">
+        The saved choice is applied by a one-line script at the very top of the
+<code>&lt;head&gt;</code> of each page, before the stylesheets. In this way the page is drawn
+directly with the right theme:
+      </p>
+<pre><code>&lt;script&gt;
+  try {
+    if (localStorage.getItem(&quot;night&quot;) === &quot;true&quot;)
+      document.documentElement.classList.add(&quot;dark&quot;);
+  } catch (e) {}
+&lt;/script&gt;</code></pre>
+      <p style="text-align: justify;">
+        The <code>try</code> block matters: in some private windows the local storage is not
+available, and the page must still work, simply in the light theme.
+      </p>
+      <h2 id="Next" style="scroll-margin: 1em;">
+        <a href="#Next" class="headerlink" title="Next"></a>
+        Next
+      </h2>
+      <p style="text-align: justify;">
+        The next post, <a href="projectPost?project=website&amp;post=blog">the blog</a>, explains how blog posts are written, listed and
+tagged without any database.
+      </p>
+
+    </div>
+
+    <div class="article-licensing box">
+      <div class="licensing-title">
+        <p>How to make this website: dark mode</p>
+        <p>
+          <a href="https://fghio.github.io/projectPost?project=website&post=darkMode">
+            https://fghio.github.io/projectPost?project=website&post=darkMode
+          </a>
+        </p>
+      </div>
+      <div class="licensing-meta level is-mobile">
+        <div class="level-left">
+          <div class="level-item is-narrow">
+            <div>
+              <h6>Author</h6>
+              <p>F. Ghioldi</p>
+            </div>
+          </div>
+          <div class="level-item is-narrow">
+            <div>
+              <h6>Posted on</h6>
+              <p>21-11-2026</p>
+            </div>
+          </div>
+          <div class="level-item is-narrow">
+            <div>
+              <h6>Updated on</h6>
+              <p>21-11-2026</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr style="height:1px;margin:1rem 0">
+    <div class="level is-mobile is-flex">
+      <div class="article-tags is-size-7 is-uppercase">
+        <i class="fas fa-tag has-text-grey" style="transform: translateY(20%);"></i>&nbsp;&nbsp;
+        <div>
+          Website,
+          &nbsp;
+        </div>
+        <div>
+          Coding
+          &nbsp;
+        </div>
+      </div>
+    </div>
+
+  </article>
+</div>
+
+<script src=assets/js/tableContent.js></script>
+
+<div class="card" id="comment-card" style="margin-top: 20px; opacity: 1; transform-origin: center top;">
+  <div class="card-content">
+    <h3 class="title is-5">Comments</h3>
+
+    <!-- DISQUS COMMENTS -->
+    <div id="disqus_thread"></div>
+
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://fghio.github.io/projectPost?project=website&post=darkMode';
+        this.page.identifier = '/posts/projects/websitePosts/darkMode.html';
+      };
+
+      (function () {
+        var d = document, s = d.createElement('script');
+        s.src = '//' + 'https-fghio-github-io' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+        powered by Disqus.</a></noscript>
+  </div>
+</div>

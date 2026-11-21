@@ -1,0 +1,215 @@
+<div class="card" id="my-blog-post-card">
+  <article class="card-content article">
+
+    <h1 class="title is-size-3" style="font-family: 'PT Sans Narrow', sans-serif">
+      How to make this website: hosting on GitHub Pages
+    </h1>
+
+    <div class="article-meta is-size-7 is-uppercase level is-mobile">
+      <div class="level-left" style="margin-bottom: 0.50rem">
+        <span class="level-item">
+          <i class="far fa-calendar-alt">&nbsp;</i>
+          <time>
+            <div class="post-date">21/11/2026</div>
+          </time>
+        </span>
+        <span class="level-item is-hidden-mobile">
+          <i class="far fa-calendar-check">&nbsp;</i>
+          <time>
+            <div class="last-updated">21/11/2026</div>
+          </time>
+        </span>
+        <span class="level-item">
+          <i class="far fa-folder-open has-text-grey"></i>&nbsp;
+          <a class="link-muted" href="./projectArchive?id=WEB">back to posts list</a>
+        </span>
+        <span class="level-item">
+          <i class="far fa-folder-open has-text-grey"></i>&nbsp;
+          <a class="link-muted" href="./projects">list of projects</a>
+        </span>
+        <span class="level-item">
+          <i class="far fa-clock"></i>&nbsp;
+          <div class="read-time">5 minutes</div>
+        </span>
+      </div>
+    </div>
+
+    <div class="content" style="margin-top: 1.0rem">
+
+      <h2 id="Introduction" style="scroll-margin: 1em;">
+        <a href="#Introduction" class="headerlink" title="Introduction"></a>
+        Introduction
+      </h2>
+      <p style="text-align: justify;">
+        GitHub Pages is a free service of GitHub that publishes the files of a repository as a
+website. There is nothing to install on a server and nothing to pay: you push your files,
+and a minute later they are online. This post explains how this website is published and how
+it is tested locally before publishing.
+      </p>
+      <h2 id="Repository" style="scroll-margin: 1em;">
+        <a href="#Repository" class="headerlink" title="The repository"></a>
+        The repository
+      </h2>
+      <p style="text-align: justify;">
+        A personal website lives in a repository with a special name:
+<code>&lt;username&gt;.github.io</code>, where <code>&lt;username&gt;</code> is your GitHub
+account. This website, for example, is in the repository <code>fghio.github.io</code> and is
+published at <code>https://fghio.github.io</code>.
+      </p>
+      <ol>
+        <li>Create a new <strong>public</strong> repository named <code>&lt;username&gt;.github.io</code>.</li>
+        <li>Add a file <code>index.html</code> at its root: this is the home page.</li>
+        <li>In <em>Settings &rarr; Pages</em>, choose <em>Deploy from a branch</em>, branch <code>main</code>, folder <code>/ (root)</code>.</li>
+        <li>Push. After a minute or two the website is online at <code>https://&lt;username&gt;.github.io</code>.</li>
+      </ol>
+      <p style="text-align: justify;">
+        Every following push to <code>main</code> publishes a new version: the history of the
+website is the history of the repository, and any change can be undone with Git.
+      </p>
+      <h2 id="URLs" style="scroll-margin: 1em;">
+        <a href="#URLs" class="headerlink" title="Addresses without .html"></a>
+        Addresses without .html
+      </h2>
+      <p style="text-align: justify;">
+        GitHub Pages serves a file also when the address omits the <code>.html</code> extension:
+<code>/curriculum</code> shows <code>curriculum.html</code>. This makes addresses easier to
+read and to share (&ldquo;go to fghio.github.io/curriculum&rdquo;). All the internal links
+of this website are written without the extension, and old links with <code>.html</code>
+still work. A tiny script in the <code>&lt;head&gt;</code> of each page also removes the
+extension from the address bar when someone arrives from an old link:
+      </p>
+<pre><code>&lt;script&gt;
+  (function () {
+    var p = location.pathname;
+    if (/\.html$/.test(p))
+      history.replaceState(null, &quot;&quot;,
+        p.replace(/(^|\/)index\.html$/, &quot;$1&quot;).replace(/\.html$/, &quot;&quot;)
+        + location.search + location.hash);
+  })();
+&lt;/script&gt;</code></pre>
+      <p style="text-align: justify;">
+        A folder with an <code>index.html</code> inside behaves the same way:
+<code>howTo/index.html</code> is reachable as <code>/howTo/</code>.
+      </p>
+      <h2 id="Local" style="scroll-margin: 1em;">
+        <a href="#Local" class="headerlink" title="Testing on your computer"></a>
+        Testing on your computer
+      </h2>
+      <p style="text-align: justify;">
+        Opening the HTML files directly from the disk does not work well: the browser blocks the
+requests that load the shared parts and the posts. You need a small local web server.
+Python has one built in (<code>python3 -m http.server</code>), but it does not understand
+addresses without <code>.html</code>. This website uses a slightly extended version,
+<code>tools/serve.py</code>, which behaves like GitHub Pages:
+      </p>
+      <ul>
+        <li><code>/curriculum</code> serves <code>curriculum.html</code>;</li>
+        <li>folders without <code>index.html</code> return 404 instead of listing their files;</li>
+        <li>nothing is cached, so every change is visible at the next reload.</li>
+      </ul>
+<pre><code>python3 tools/serve.py        # http://localhost:8000
+python3 tools/serve.py 8080   # another port</code></pre>
+      <h2 id="Branches" style="scroll-margin: 1em;">
+        <a href="#Branches" class="headerlink" title="A safe workflow"></a>
+        A safe workflow
+      </h2>
+      <p style="text-align: justify;">
+        Changes are never made directly on <code>main</code>, which is what the visitors see.
+The work happens on a separate branch (here called <code>development</code>), is checked
+locally with the server above, and only then is merged into <code>main</code> and pushed.
+If something goes wrong, <code>main</code> is untouched and the previous version is one
+command away.
+      </p>
+<pre><code>git switch development
+# ... edit, test on http://localhost:8000 ...
+git commit -am &quot;New post&quot;
+git switch main
+git merge development
+git push</code></pre>
+      <h2 id="Next" style="scroll-margin: 1em;">
+        <a href="#Next" class="headerlink" title="Next"></a>
+        Next
+      </h2>
+      <p style="text-align: justify;">
+        The next post, <a href="projectPost?project=website&amp;post=layout">layout and theme</a>, explains how the three-column
+layout and the style of the pages are built.
+      </p>
+
+    </div>
+
+    <div class="article-licensing box">
+      <div class="licensing-title">
+        <p>How to make this website: hosting on GitHub Pages</p>
+        <p>
+          <a href="https://fghio.github.io/projectPost?project=website&post=hosting">
+            https://fghio.github.io/projectPost?project=website&post=hosting
+          </a>
+        </p>
+      </div>
+      <div class="licensing-meta level is-mobile">
+        <div class="level-left">
+          <div class="level-item is-narrow">
+            <div>
+              <h6>Author</h6>
+              <p>F. Ghioldi</p>
+            </div>
+          </div>
+          <div class="level-item is-narrow">
+            <div>
+              <h6>Posted on</h6>
+              <p>21-11-2026</p>
+            </div>
+          </div>
+          <div class="level-item is-narrow">
+            <div>
+              <h6>Updated on</h6>
+              <p>21-11-2026</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr style="height:1px;margin:1rem 0">
+    <div class="level is-mobile is-flex">
+      <div class="article-tags is-size-7 is-uppercase">
+        <i class="fas fa-tag has-text-grey" style="transform: translateY(20%);"></i>&nbsp;&nbsp;
+        <div>
+          Website,
+          &nbsp;
+        </div>
+        <div>
+          Coding
+          &nbsp;
+        </div>
+      </div>
+    </div>
+
+  </article>
+</div>
+
+<script src=assets/js/tableContent.js></script>
+
+<div class="card" id="comment-card" style="margin-top: 20px; opacity: 1; transform-origin: center top;">
+  <div class="card-content">
+    <h3 class="title is-5">Comments</h3>
+
+    <!-- DISQUS COMMENTS -->
+    <div id="disqus_thread"></div>
+
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://fghio.github.io/projectPost?project=website&post=hosting';
+        this.page.identifier = '/posts/projects/websitePosts/hosting.html';
+      };
+
+      (function () {
+        var d = document, s = d.createElement('script');
+        s.src = '//' + 'https-fghio-github-io' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+        powered by Disqus.</a></noscript>
+  </div>
+</div>

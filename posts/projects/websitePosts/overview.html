@@ -1,0 +1,254 @@
+<div class="card" id="my-blog-post-card">
+  <article class="card-content article">
+
+    <h1 class="title is-size-3" style="font-family: 'PT Sans Narrow', sans-serif">
+      How to make this website: overview
+    </h1>
+
+    <div class="article-meta is-size-7 is-uppercase level is-mobile">
+      <div class="level-left" style="margin-bottom: 0.50rem">
+        <span class="level-item">
+          <i class="far fa-calendar-alt">&nbsp;</i>
+          <time>
+            <div class="post-date">21/11/2026</div>
+          </time>
+        </span>
+        <span class="level-item is-hidden-mobile">
+          <i class="far fa-calendar-check">&nbsp;</i>
+          <time>
+            <div class="last-updated">21/11/2026</div>
+          </time>
+        </span>
+        <span class="level-item">
+          <i class="far fa-folder-open has-text-grey"></i>&nbsp;
+          <a class="link-muted" href="./projectArchive?id=WEB">back to posts list</a>
+        </span>
+        <span class="level-item">
+          <i class="far fa-folder-open has-text-grey"></i>&nbsp;
+          <a class="link-muted" href="./projects">list of projects</a>
+        </span>
+        <span class="level-item">
+          <i class="far fa-clock"></i>&nbsp;
+          <div class="read-time">6 minutes</div>
+        </span>
+      </div>
+    </div>
+
+    <div class="content" style="margin-top: 1.0rem">
+
+      <h2 id="Introduction" style="scroll-margin: 1em;">
+        <a href="#Introduction" class="headerlink" title="Introduction"></a>
+        Introduction
+      </h2>
+      <p style="text-align: justify;">
+        This post gives a map of the whole website before we go into the details in the
+        next posts. The website is <strong>static</strong>: there is no server-side code and
+        no database. It is a set of HTML, CSS and JavaScript files stored in a GitHub
+        repository and served for free by GitHub Pages. Everything that looks dynamic
+        (the shared navigation bar, the list of blog posts, the search, the filters of the
+        theses) is done by the browser with a few lines of JavaScript.
+      </p>
+      <p style="text-align: justify;">
+        This choice keeps the website fast, free to host, easy to back up (it is just a
+        Git repository) and easy to change: a new post is a new HTML file.
+      </p>
+
+      <h2 id="Pages" style="scroll-margin: 1em;">
+        <a href="#Pages" class="headerlink" title="Pages"></a>
+        The pages
+      </h2>
+      <p style="text-align: justify;">
+        Each section of the website is one HTML file in the root of the repository. Thanks
+        to GitHub Pages the extension can be omitted, so <code>curriculum.html</code> is also
+        reachable as <code>/curriculum</code>.
+      </p>
+      <ul>
+        <li><code>index.html</code>: the home page;</li>
+        <li><code>curriculum.html</code>: the CV, with the list of publications;</li>
+        <li><code>blog.html</code> and <code>blogPost.html</code>: the list of blog posts and
+          the page that shows a single post;</li>
+        <li><code>tags.html</code> and <code>tagArticles.html</code>: blog tags and the posts
+          with a given tag;</li>
+        <li><code>projects.html</code>, <code>projectArchive.html</code> and
+          <code>projectPost.html</code>: the list of projects, the list of posts of a project
+          (like this series) and a single post;</li>
+        <li><code>theses.html</code>: the available M.Sc. theses, with filters;</li>
+        <li><code>contact.html</code>: contacts, map and directions.</li>
+      </ul>
+
+      <h2 id="Layout" style="scroll-margin: 1em;">
+        <a href="#Layout" class="headerlink" title="Layout"></a>
+        One layout, three columns
+      </h2>
+      <p style="text-align: justify;">
+        All pages share the same layout: a navigation bar on top, three columns (the profile
+        on the left, the content in the centre, extra links on the right) and a footer. On a
+        phone the columns stack one below the other. The layout comes from Bulma, a CSS
+        framework, adapted from the Icarus theme; on top of it a single stylesheet,
+        <code>modern.css</code>, defines fonts, colours, spacing and the dark mode.
+      </p>
+      <p style="text-align: justify;">
+        The parts that are identical on every page are not copied into every file. Each page
+        contains only empty containers, and the content is loaded from the
+        <code>common/</code> folder:
+      </p>
+<pre><code>common/
+├── navBar.html      navigation bar
+├── leftPane.html    profile, CV and contact buttons
+├── rightPane.html   right column
+└── footer.html      footer</code></pre>
+      <p style="text-align: justify;">
+        Changing the navigation bar therefore means editing one file, and the change appears on
+        every page. The browser keeps these parts in memory while you move from one page to
+        the next, so they are shown immediately.
+      </p>
+
+      <h2 id="Content" style="scroll-margin: 1em;">
+        <a href="#Content" class="headerlink" title="Content"></a>
+        Where the content lives
+      </h2>
+      <p style="text-align: justify;">
+        The same idea is used for the content: the pages are templates, and the text is in
+        separate files loaded when needed.
+      </p>
+<pre><code>posts/
+├── blog/
+│   ├── index.json          list of the blog posts
+│   ├── collectify.html
+│   └── tex2html.html
+└── projects/
+    ├── website.html        list of posts of this project
+    └── websitePosts/
+        └── overview.html   this post
+homePane.html               text of the home page
+pubs.html                   list of publications
+thesis-card.html            the theses</code></pre>
+      <p style="text-align: justify;">
+        For example, the address <code>projectPost?project=website&amp;post=overview</code>
+        tells <code>projectPost.html</code> to load
+        <code>posts/projects/websitePosts/overview.html</code> into the central column. Adding
+        a blog post means writing its HTML file and adding its name to
+        <code>index.json</code>; the list of posts, the tags and the search update by
+        themselves.
+      </p>
+
+      <h2 id="Assets" style="scroll-margin: 1em;">
+        <a href="#Assets" class="headerlink" title="Assets"></a>
+        Styles, scripts and images
+      </h2>
+<pre><code>assets/
+├── css/
+│   ├── default.css    the base theme (Bulma + Icarus)
+│   └── modern.css     the restyle: fonts, colours, dark mode
+├── js/
+│   ├── partials.js    loads the shared parts (and keeps them in memory)
+│   ├── script.js      dark mode switch
+│   ├── search.js      search
+│   ├── tableContent.js table of contents of the posts
+│   └── ...
+└── images/</code></pre>
+      <p style="text-align: justify;">
+        There is no build step: what is in the repository is exactly what the browser
+        receives. The only external libraries are loaded from public CDNs (jQuery, Font
+        Awesome for the icons, Fuse.js for the search).
+      </p>
+
+      <h2 id="Workflow" style="scroll-margin: 1em;">
+        <a href="#Workflow" class="headerlink" title="Workflow"></a>
+        How it is updated
+      </h2>
+      <p style="text-align: justify;">
+        The website is developed on a separate branch and tested on the local computer with a
+        small Python server (<code>tools/serve.py</code>) that behaves like GitHub Pages. When
+        everything works, the branch is merged into <code>main</code> and pushed: GitHub
+        Pages publishes the new version within a minute or two.
+      </p>
+
+      <h2 id="Next" style="scroll-margin: 1em;">
+        <a href="#Next" class="headerlink" title="Next"></a>
+        Next
+      </h2>
+      <p style="text-align: justify;">
+        The next post, <a href="projectPost?project=website&amp;post=hosting">hosting on GitHub
+        Pages</a>, explains how to publish a website like this one, from the creation of the
+        repository to the first page online.
+      </p>
+
+    </div>
+
+    <div class="article-licensing box">
+      <div class="licensing-title">
+        <p>How to make this website: overview</p>
+        <p>
+          <a href="https://fghio.github.io/projectPost?project=website&post=overview">
+            https://fghio.github.io/projectPost?project=website&post=overview
+          </a>
+        </p>
+      </div>
+      <div class="licensing-meta level is-mobile">
+        <div class="level-left">
+          <div class="level-item is-narrow">
+            <div>
+              <h6>Author</h6>
+              <p>F. Ghioldi</p>
+            </div>
+          </div>
+          <div class="level-item is-narrow">
+            <div>
+              <h6>Posted on</h6>
+              <p>21-11-2026</p>
+            </div>
+          </div>
+          <div class="level-item is-narrow">
+            <div>
+              <h6>Updated on</h6>
+              <p>21-11-2026</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr style="height:1px;margin:1rem 0">
+    <div class="level is-mobile is-flex">
+      <div class="article-tags is-size-7 is-uppercase">
+        <i class="fas fa-tag has-text-grey" style="transform: translateY(20%);"></i>&nbsp;&nbsp;
+        <div>
+          Website,
+          &nbsp;
+        </div>
+        <div>
+          Coding
+          &nbsp;
+        </div>
+      </div>
+    </div>
+
+  </article>
+</div>
+
+<script src=assets/js/tableContent.js></script>
+
+<div class="card" id="comment-card" style="margin-top: 20px; opacity: 1; transform-origin: center top;">
+  <div class="card-content">
+    <h3 class="title is-5">Comments</h3>
+
+    <!-- DISQUS COMMENTS -->
+    <div id="disqus_thread"></div>
+
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://fghio.github.io/projectPost?project=website&post=overview';
+        this.page.identifier = '/posts/projects/websitePosts/overview.html';
+      };
+
+      (function () {
+        var d = document, s = d.createElement('script');
+        s.src = '//' + 'https-fghio-github-io' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+        powered by Disqus.</a></noscript>
+  </div>
+</div>

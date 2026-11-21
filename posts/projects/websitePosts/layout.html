@@ -1,0 +1,225 @@
+<div class="card" id="my-blog-post-card">
+  <article class="card-content article">
+
+    <h1 class="title is-size-3" style="font-family: 'PT Sans Narrow', sans-serif">
+      How to make this website: layout and theme
+    </h1>
+
+    <div class="article-meta is-size-7 is-uppercase level is-mobile">
+      <div class="level-left" style="margin-bottom: 0.50rem">
+        <span class="level-item">
+          <i class="far fa-calendar-alt">&nbsp;</i>
+          <time>
+            <div class="post-date">21/11/2026</div>
+          </time>
+        </span>
+        <span class="level-item is-hidden-mobile">
+          <i class="far fa-calendar-check">&nbsp;</i>
+          <time>
+            <div class="last-updated">21/11/2026</div>
+          </time>
+        </span>
+        <span class="level-item">
+          <i class="far fa-folder-open has-text-grey"></i>&nbsp;
+          <a class="link-muted" href="./projectArchive?id=WEB">back to posts list</a>
+        </span>
+        <span class="level-item">
+          <i class="far fa-folder-open has-text-grey"></i>&nbsp;
+          <a class="link-muted" href="./projects">list of projects</a>
+        </span>
+        <span class="level-item">
+          <i class="far fa-clock"></i>&nbsp;
+          <div class="read-time">6 minutes</div>
+        </span>
+      </div>
+    </div>
+
+    <div class="content" style="margin-top: 1.0rem">
+
+      <h2 id="Introduction" style="scroll-margin: 1em;">
+        <a href="#Introduction" class="headerlink" title="Introduction"></a>
+        Introduction
+      </h2>
+      <p style="text-align: justify;">
+        All the pages of this website share the same structure: a navigation bar, three columns
+and a footer. This post describes how the layout is built and how the style is organised,
+so that changing a colour or a font means editing one line.
+      </p>
+      <h2 id="Bulma" style="scroll-margin: 1em;">
+        <a href="#Bulma" class="headerlink" title="Bulma and the base theme"></a>
+        Bulma and the base theme
+      </h2>
+      <p style="text-align: justify;">
+        The layout uses <a href="https://bulma.io" target="_blank" rel="noopener">Bulma</a>, a
+CSS framework based on flexbox, through a stylesheet (<code>default.css</code>) adapted from
+the Icarus theme. Bulma describes the layout with classes: a <code>columns</code> container
+and one <code>column</code> per column, with their width at each screen size.
+      </p>
+<pre><code>&lt;section class=&quot;section&quot;&gt;
+  &lt;div class=&quot;container&quot;&gt;
+    &lt;div class=&quot;columns&quot;&gt;
+      &lt;div class=&quot;column column-main order-2 is-8-tablet is-8-desktop is-6-widescreen&quot;&gt;
+        &lt;!-- content --&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;column column-left order-1 is-4-tablet is-4-desktop is-3-widescreen&quot;&gt;
+        &lt;div id=&quot;leftPaneContainer&quot;&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;column column-right order-3 is-4-tablet is-4-desktop is-3-widescreen&quot;&gt;
+        &lt;div id=&quot;rightPaneContainer&quot;&gt;&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+      <p style="text-align: justify;">
+        The central column comes first in the HTML, because it is the most important content,
+but the <code>order-*</code> classes display it between the two side columns. On a wide
+screen the widths are 3 + 6 + 3 twelfths; on smaller screens the right column moves below,
+and on a phone all the columns stack.
+      </p>
+      <h2 id="Modern" style="scroll-margin: 1em;">
+        <a href="#Modern" class="headerlink" title="A separate stylesheet for the restyle"></a>
+        A separate stylesheet for the restyle
+      </h2>
+      <p style="text-align: justify;">
+        Instead of editing the base theme, all the visual choices are in a second stylesheet,
+<code>modern.css</code>, loaded after it. Keeping them apart has two advantages: the base theme
+can be updated or replaced, and the whole restyle can be switched off by removing one line.
+      </p>
+      <p style="text-align: justify;">
+        To make sure the new rules win over the old ones without sprinkling
+<code>!important</code> everywhere, every rule starts with <code>html.mx</code>, a class added
+to the <code>&lt;html&gt;</code> element of each page. The extra class gives the new rules a
+higher priority (specificity) than the theme's.
+      </p>
+<pre><code>&lt;html lang=&quot;en&quot; class=&quot;mx&quot;&gt;</code></pre>
+      <h2 id="Tokens" style="scroll-margin: 1em;">
+        <a href="#Tokens" class="headerlink" title="Colours and fonts as variables"></a>
+        Colours and fonts as variables
+      </h2>
+      <p style="text-align: justify;">
+        Colours, font, corner radius and shadows are defined once, as CSS variables, and used
+everywhere else. Changing the accent colour of the whole website is a one-line change.
+      </p>
+<pre><code>:root {
+  --accent: #1a3a6e;        /* PoliMi navy */
+  --accent-soft: #e7edf7;
+  --bg: #ffffff;
+  --text: #1f2633;
+  --text-muted: #5b6475;
+  --border: #e3e7ee;
+  --radius: 6px;
+  --font-body: &quot;Inter&quot;, system-ui, -apple-system, &quot;Segoe UI&quot;, sans-serif;
+}
+
+html.mx body a { color: var(--accent); }
+html.mx body .card { border: 1px solid var(--border); border-radius: var(--radius); }</code></pre>
+      <p style="text-align: justify;">
+        The same variables are redefined for the dark theme, which is why the dark mode needs no
+extra rules for most elements (see <a href="projectPost?project=website&amp;post=darkMode">dark mode</a>).
+      </p>
+      <h2 id="Style" style="scroll-margin: 1em;">
+        <a href="#Style" class="headerlink" title="The style"></a>
+        The style
+      </h2>
+      <p style="text-align: justify;">
+        The style is deliberately minimal: a single sans-serif font (Inter), one accent colour,
+thin borders instead of shadows, generous white space, and a consistent type scale.
+Cards, CV entries, tags and buttons are all built from the same few variables, which keeps
+the pages consistent with each other.
+      </p>
+      <h2 id="Mobile" style="scroll-margin: 1em;">
+        <a href="#Mobile" class="headerlink" title="Phones"></a>
+        Phones
+      </h2>
+      <p style="text-align: justify;">
+        Below 769 px the navigation bar wraps onto two lines, the CV entries put the dates above
+the text instead of beside it, and the side columns move below the content. These rules are
+in the same stylesheet, inside <code>@media</code> blocks, next to the rules they adapt.
+      </p>
+      <h2 id="Next" style="scroll-margin: 1em;">
+        <a href="#Next" class="headerlink" title="Next"></a>
+        Next
+      </h2>
+      <p style="text-align: justify;">
+        The next post, <a href="projectPost?project=website&amp;post=sharedParts">shared parts</a>, explains how the navigation bar, the side
+columns and the footer are written once and reused on every page.
+      </p>
+
+    </div>
+
+    <div class="article-licensing box">
+      <div class="licensing-title">
+        <p>How to make this website: layout and theme</p>
+        <p>
+          <a href="https://fghio.github.io/projectPost?project=website&post=layout">
+            https://fghio.github.io/projectPost?project=website&post=layout
+          </a>
+        </p>
+      </div>
+      <div class="licensing-meta level is-mobile">
+        <div class="level-left">
+          <div class="level-item is-narrow">
+            <div>
+              <h6>Author</h6>
+              <p>F. Ghioldi</p>
+            </div>
+          </div>
+          <div class="level-item is-narrow">
+            <div>
+              <h6>Posted on</h6>
+              <p>21-11-2026</p>
+            </div>
+          </div>
+          <div class="level-item is-narrow">
+            <div>
+              <h6>Updated on</h6>
+              <p>21-11-2026</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr style="height:1px;margin:1rem 0">
+    <div class="level is-mobile is-flex">
+      <div class="article-tags is-size-7 is-uppercase">
+        <i class="fas fa-tag has-text-grey" style="transform: translateY(20%);"></i>&nbsp;&nbsp;
+        <div>
+          Website,
+          &nbsp;
+        </div>
+        <div>
+          Coding
+          &nbsp;
+        </div>
+      </div>
+    </div>
+
+  </article>
+</div>
+
+<script src=assets/js/tableContent.js></script>
+
+<div class="card" id="comment-card" style="margin-top: 20px; opacity: 1; transform-origin: center top;">
+  <div class="card-content">
+    <h3 class="title is-5">Comments</h3>
+
+    <!-- DISQUS COMMENTS -->
+    <div id="disqus_thread"></div>
+
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://fghio.github.io/projectPost?project=website&post=layout';
+        this.page.identifier = '/posts/projects/websitePosts/layout.html';
+      };
+
+      (function () {
+        var d = document, s = d.createElement('script');
+        s.src = '//' + 'https-fghio-github-io' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+        powered by Disqus.</a></noscript>
+  </div>
+</div>

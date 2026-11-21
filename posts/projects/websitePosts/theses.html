@@ -1,0 +1,182 @@
+<div class="card" id="my-blog-post-card">
+  <article class="card-content article">
+
+    <h1 class="title is-size-3" style="font-family: 'PT Sans Narrow', sans-serif">
+      How to make this website: the theses page
+    </h1>
+
+    <div class="article-meta is-size-7 is-uppercase level is-mobile">
+      <div class="level-left" style="margin-bottom: 0.50rem">
+        <span class="level-item">
+          <i class="far fa-calendar-alt">&nbsp;</i>
+          <time>
+            <div class="post-date">21/11/2026</div>
+          </time>
+        </span>
+        <span class="level-item is-hidden-mobile">
+          <i class="far fa-calendar-check">&nbsp;</i>
+          <time>
+            <div class="last-updated">21/11/2026</div>
+          </time>
+        </span>
+        <span class="level-item">
+          <i class="far fa-folder-open has-text-grey"></i>&nbsp;
+          <a class="link-muted" href="./projectArchive?id=WEB">back to posts list</a>
+        </span>
+        <span class="level-item">
+          <i class="far fa-folder-open has-text-grey"></i>&nbsp;
+          <a class="link-muted" href="./projects">list of projects</a>
+        </span>
+        <span class="level-item">
+          <i class="far fa-clock"></i>&nbsp;
+          <div class="read-time">5 minutes</div>
+        </span>
+      </div>
+    </div>
+
+    <div class="content" style="margin-top: 1.0rem">
+
+      <h2 id="Introduction" style="scroll-margin: 1em;">
+        <a href="#Introduction" class="headerlink" title="Introduction"></a>
+        Introduction
+      </h2>
+      <p style="text-align: justify;">
+        The theses page lists the M.Sc. theses I offer, with a search box, a filter for the
+available ones and a counter. All the theses are in one file,
+<code>thesis-card.html</code>, loaded into the page.
+      </p>
+      <h2 id="Card" style="scroll-margin: 1em;">
+        <a href="#Card" class="headerlink" title="A thesis card"></a>
+        A thesis card
+      </h2>
+      <p style="text-align: justify;">
+        Each thesis is a card with a title, a status, a short description that can be expanded,
+the expected outputs and the recommended background. Two attributes describe the card for the
+filters:
+      </p>
+<pre><code>&lt;div class=&quot;box card&quot; data-status=&quot;open&quot;
+     data-tags=&quot;hydrogen les detonation openfoam&quot;&gt;
+  &lt;h2 class=&quot;title&quot;&gt;Parametric LES of a Hydrogen Rotating Detonation Engine&lt;/h2&gt;
+  &lt;span class=&quot;tag&quot;&gt;Open&lt;/span&gt;
+  ...
+&lt;/div&gt;</code></pre>
+      <p style="text-align: justify;">
+        The status is one of <code>open</code>, <code>in-progress</code>, <code>finished</code> or
+<code>coming</code> (coming soon), each with its own colour.
+      </p>
+      <h2 id="Filters" style="scroll-margin: 1em;">
+        <a href="#Filters" class="headerlink" title="Search and filters"></a>
+        Search and filters
+      </h2>
+      <p style="text-align: justify;">
+        The search box filters the cards while typing, looking in the title, the description and
+the tags. The checkbox &ldquo;Only available theses&rdquo; hides everything that is not
+<code>open</code>. The counter at the top shows how many theses are still available.
+      </p>
+<pre><code>var queryMatch  = query === &quot;&quot; || title.includes(query)
+                  || description.includes(query) || tags.includes(query);
+var statusMatch = !showOpenOnly || status === &quot;open&quot;;
+$(card).toggle(queryMatch &amp;&amp; statusMatch);</code></pre>
+      <p style="text-align: justify;">
+        The page also accepts the query from the address, so <code>theses?q=hydrogen</code> opens
+the page already filtered. The site search uses this to open a single thesis.
+      </p>
+      <h2 id="Apply" style="scroll-margin: 1em;">
+        <a href="#Apply" class="headerlink" title="Before the email"></a>
+        Before the email
+      </h2>
+      <p style="text-align: justify;">
+        Students who want a thesis are asked to fill in a short form before writing. The page has
+two buttons: one opens the form, the other (&ldquo;Apply&rdquo;) prepares an email. Before
+the email opens, a small dialog asks whether the form has been filled in: <em>Yes</em> opens
+the email, <em>No</em> opens the form instead. The dialog is the same component used for the
+&ldquo;Hire me&rdquo; button in the left column.
+      </p>
+      <h2 id="Next" style="scroll-margin: 1em;">
+        <a href="#Next" class="headerlink" title="Next"></a>
+        Next
+      </h2>
+      <p style="text-align: justify;">
+        The next post, <a href="projectPost?project=website&amp;post=hiddenPages">hidden and protected pages</a>, explains how to publish
+pages that are not linked anywhere, and how to protect a page with a password on a static
+website.
+      </p>
+
+    </div>
+
+    <div class="article-licensing box">
+      <div class="licensing-title">
+        <p>How to make this website: the theses page</p>
+        <p>
+          <a href="https://fghio.github.io/projectPost?project=website&post=theses">
+            https://fghio.github.io/projectPost?project=website&post=theses
+          </a>
+        </p>
+      </div>
+      <div class="licensing-meta level is-mobile">
+        <div class="level-left">
+          <div class="level-item is-narrow">
+            <div>
+              <h6>Author</h6>
+              <p>F. Ghioldi</p>
+            </div>
+          </div>
+          <div class="level-item is-narrow">
+            <div>
+              <h6>Posted on</h6>
+              <p>21-11-2026</p>
+            </div>
+          </div>
+          <div class="level-item is-narrow">
+            <div>
+              <h6>Updated on</h6>
+              <p>21-11-2026</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr style="height:1px;margin:1rem 0">
+    <div class="level is-mobile is-flex">
+      <div class="article-tags is-size-7 is-uppercase">
+        <i class="fas fa-tag has-text-grey" style="transform: translateY(20%);"></i>&nbsp;&nbsp;
+        <div>
+          Website,
+          &nbsp;
+        </div>
+        <div>
+          Coding
+          &nbsp;
+        </div>
+      </div>
+    </div>
+
+  </article>
+</div>
+
+<script src=assets/js/tableContent.js></script>
+
+<div class="card" id="comment-card" style="margin-top: 20px; opacity: 1; transform-origin: center top;">
+  <div class="card-content">
+    <h3 class="title is-5">Comments</h3>
+
+    <!-- DISQUS COMMENTS -->
+    <div id="disqus_thread"></div>
+
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://fghio.github.io/projectPost?project=website&post=theses';
+        this.page.identifier = '/posts/projects/websitePosts/theses.html';
+      };
+
+      (function () {
+        var d = document, s = d.createElement('script');
+        s.src = '//' + 'https-fghio-github-io' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+        powered by Disqus.</a></noscript>
+  </div>
+</div>

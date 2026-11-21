@@ -1,0 +1,225 @@
+<div class="card" id="my-blog-post-card">
+  <article class="card-content article">
+
+    <h1 class="title is-size-3" style="font-family: 'PT Sans Narrow', sans-serif">
+      How to make this website: hidden and protected pages
+    </h1>
+
+    <div class="article-meta is-size-7 is-uppercase level is-mobile">
+      <div class="level-left" style="margin-bottom: 0.50rem">
+        <span class="level-item">
+          <i class="far fa-calendar-alt">&nbsp;</i>
+          <time>
+            <div class="post-date">21/11/2026</div>
+          </time>
+        </span>
+        <span class="level-item is-hidden-mobile">
+          <i class="far fa-calendar-check">&nbsp;</i>
+          <time>
+            <div class="last-updated">21/11/2026</div>
+          </time>
+        </span>
+        <span class="level-item">
+          <i class="far fa-folder-open has-text-grey"></i>&nbsp;
+          <a class="link-muted" href="./projectArchive?id=WEB">back to posts list</a>
+        </span>
+        <span class="level-item">
+          <i class="far fa-folder-open has-text-grey"></i>&nbsp;
+          <a class="link-muted" href="./projects">list of projects</a>
+        </span>
+        <span class="level-item">
+          <i class="far fa-clock"></i>&nbsp;
+          <div class="read-time">7 minutes</div>
+        </span>
+      </div>
+    </div>
+
+    <div class="content" style="margin-top: 1.0rem">
+
+      <h2 id="Introduction" style="scroll-margin: 1em;">
+        <a href="#Introduction" class="headerlink" title="Introduction"></a>
+        Introduction
+      </h2>
+      <p style="text-align: justify;">
+        Sometimes a page should not be part of the public navigation: a guide meant only for my
+students, or a project I do not want to show to everyone. A static website has no login, but
+there are still two useful options, with very different levels of protection.
+      </p>
+      <h2 id="Unlisted" style="scroll-margin: 1em;">
+        <a href="#Unlisted" class="headerlink" title="Unlisted pages"></a>
+        Unlisted pages
+      </h2>
+      <p style="text-align: justify;">
+        An <em>unlisted</em> page is a normal page that is simply not linked from the menu or from
+other pages, and that asks search engines not to index it. Whoever has the link can open it;
+everyone else will not stumble upon it. The guides for my students are published this way
+under <code>/howTo/</code>.
+      </p>
+<pre><code>&lt;meta name=&quot;robots&quot; content=&quot;noindex, nofollow&quot;&gt;</code></pre>
+      <p style="text-align: justify;">
+        These pages live in subfolders (<code>howTo/writeThesis/index.html</code>), so their
+relative links would point to the wrong place. A <code>&lt;base&gt;</code> element makes all
+relative links start from the root of the website again:
+      </p>
+<pre><code>&lt;base href=&quot;/&quot;&gt;</code></pre>
+      <p style="text-align: justify;">
+        Unlisted is not private: the files are in a public repository, and the link can be passed
+on. It is the right choice for content that is harmless if found, but not meant for everyone.
+      </p>
+      <h2 id="Protected" style="scroll-margin: 1em;">
+        <a href="#Protected" class="headerlink" title="Password-protected pages"></a>
+        Password-protected pages
+      </h2>
+      <p style="text-align: justify;">
+        For real protection the content must not be readable at all without the password. On a
+static website the only way is <strong>encryption</strong>: the repository contains only
+encrypted files, and the browser decrypts them after the visitor types the password. The
+password is never stored anywhere, and the encrypted files are useless without it.
+      </p>
+      <h2 id="Encrypting" style="scroll-margin: 1em;">
+        <a href="#Encrypting" class="headerlink" title="Encrypting the files"></a>
+        Encrypting the files
+      </h2>
+      <p style="text-align: justify;">
+        The readable pages and images are kept in a folder excluded from Git
+(<code>private/</code>, listed in <code>.gitignore</code>), so they never reach the public
+repository. A Python script encrypts them with AES-256-GCM, using a key derived from the
+password with PBKDF2 (600&thinsp;000 iterations, which makes guessing passwords slow), and
+writes the encrypted <code>.enc</code> files that are published:
+      </p>
+<pre><code>key = PBKDF2HMAC(algorithm=hashes.SHA256(), length=32,
+                 salt=salt, iterations=600_000).derive(password)
+aes = AESGCM(key)
+for page in pages:
+    iv = os.urandom(12)
+    write(page + &quot;.enc&quot;, iv + aes.encrypt(iv, read(page), None))</code></pre>
+      <p style="text-align: justify;">
+        A small public file stores the salt, the number of iterations and an encrypted test
+string, used to check whether a password is right.
+      </p>
+      <h2 id="Decrypting" style="scroll-margin: 1em;">
+        <a href="#Decrypting" class="headerlink" title="Decrypting in the browser"></a>
+        Decrypting in the browser
+      </h2>
+      <p style="text-align: justify;">
+        When the protected page is opened, it shows a password box. The browser derives the key
+with the same parameters, using the built-in Web Crypto API, and tries to decrypt the test
+string. If that fails, the password is wrong; otherwise the page is decrypted and
+displayed:
+      </p>
+<pre><code>const base = await crypto.subtle.importKey(&quot;raw&quot;, encode(password), &quot;PBKDF2&quot;, false, [&quot;deriveKey&quot;]);
+const key  = await crypto.subtle.deriveKey(
+  { name: &quot;PBKDF2&quot;, hash: &quot;SHA-256&quot;, salt, iterations },
+  base, { name: &quot;AES-GCM&quot;, length: 256 }, true, [&quot;decrypt&quot;]);
+const html = await crypto.subtle.decrypt({ name: &quot;AES-GCM&quot;, iv }, key, data);</code></pre>
+      <p style="text-align: justify;">
+        The key is kept in the session storage, so the visitor types the password once and can then
+read all the posts of the project until the tab is closed. Images are encrypted too: they are
+downloaded, decrypted and shown from memory (as <em>blob</em> addresses), so the original
+image files are never published.
+      </p>
+      <h2 id="Search" style="scroll-margin: 1em;">
+        <a href="#Search" class="headerlink" title="Search and protected content"></a>
+        Search and protected content
+      </h2>
+      <p style="text-align: justify;">
+        The site search must not reveal protected content, so protected pages are not part of the
+public index. Only in a tab where the password has already been entered, the search decrypts
+those pages too and adds them to the results; the decrypted index stays in that tab.
+      </p>
+      <h2 id="Limits" style="scroll-margin: 1em;">
+        <a href="#Limits" class="headerlink" title="Limits"></a>
+        Limits
+      </h2>
+      <ul>
+        <li>The protection is as strong as the password: choose a long one.</li>
+        <li>Everyone who knows the password can read the content and pass it on.</li>
+        <li>Every change to a protected page means running the encryption script again.</li>
+      </ul>
+      <h2 id="Next" style="scroll-margin: 1em;">
+        <a href="#Next" class="headerlink" title="Next"></a>
+        Next
+      </h2>
+      <p style="text-align: justify;">
+        The last post, <a href="projectPost?project=website&amp;post=polish">polish and performance</a>, collects the small details that
+make the website feel fast.
+      </p>
+
+    </div>
+
+    <div class="article-licensing box">
+      <div class="licensing-title">
+        <p>How to make this website: hidden and protected pages</p>
+        <p>
+          <a href="https://fghio.github.io/projectPost?project=website&post=hiddenPages">
+            https://fghio.github.io/projectPost?project=website&post=hiddenPages
+          </a>
+        </p>
+      </div>
+      <div class="licensing-meta level is-mobile">
+        <div class="level-left">
+          <div class="level-item is-narrow">
+            <div>
+              <h6>Author</h6>
+              <p>F. Ghioldi</p>
+            </div>
+          </div>
+          <div class="level-item is-narrow">
+            <div>
+              <h6>Posted on</h6>
+              <p>21-11-2026</p>
+            </div>
+          </div>
+          <div class="level-item is-narrow">
+            <div>
+              <h6>Updated on</h6>
+              <p>21-11-2026</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr style="height:1px;margin:1rem 0">
+    <div class="level is-mobile is-flex">
+      <div class="article-tags is-size-7 is-uppercase">
+        <i class="fas fa-tag has-text-grey" style="transform: translateY(20%);"></i>&nbsp;&nbsp;
+        <div>
+          Website,
+          &nbsp;
+        </div>
+        <div>
+          Coding
+          &nbsp;
+        </div>
+      </div>
+    </div>
+
+  </article>
+</div>
+
+<script src=assets/js/tableContent.js></script>
+
+<div class="card" id="comment-card" style="margin-top: 20px; opacity: 1; transform-origin: center top;">
+  <div class="card-content">
+    <h3 class="title is-5">Comments</h3>
+
+    <!-- DISQUS COMMENTS -->
+    <div id="disqus_thread"></div>
+
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://fghio.github.io/projectPost?project=website&post=hiddenPages';
+        this.page.identifier = '/posts/projects/websitePosts/hiddenPages.html';
+      };
+
+      (function () {
+        var d = document, s = d.createElement('script');
+        s.src = '//' + 'https-fghio-github-io' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+        powered by Disqus.</a></noscript>
+  </div>
+</div>
