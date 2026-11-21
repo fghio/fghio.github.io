@@ -1084,3 +1084,24 @@ html.mx body .content.howto-guide h3 {
   font-size: 1rem;
   margin-top: 1.6rem;
 }
+
+/* ---------- Tabelle nelle guide How to ------------------------------------ */
+html.mx body .content.howto-guide table {
+  font-size: 0.88rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+}
+html.mx body .content.howto-guide table th {
+  background: var(--accent-soft);
+  color: var(--text);
+  font-weight: 600;
+}
+html.mx body .content.howto-guide table td,
+html.mx body .content.howto-guide table th {
+  border-color: var(--border);
+  color: var(--text);
+}
+html.mx body .content.howto-guide .outline a { font-weight: 500; }

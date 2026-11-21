@@ -43,11 +43,175 @@
               <a class="howto-back" href="howTo/"><i class="fas fa-arrow-left"></i>&nbsp; All guides</a>
               <h1 class="title is-size-3">How to write your thesis</h1>
               <hr />
-              <div class="content">
+              <div class="content howto-guide">
                 <!-- Nota: in questa pagina i link interni vanno scritti come
                      href="/howTo/writeThesis/#sezione" (per via di <base href="/">). -->
-                <p>A practical guide for students writing their M.Sc. thesis with me: structure, writing style, figures and the review process.</p>
-                <p><em>This page is a work in progress.</em></p>
+                <p>This page explains how your M.Sc. thesis should be organized: format, length
+                and what goes in each section. Read it before you start writing, and again
+                before you send me a draft.</p>
+
+                <h2 id="format"><p style="color: #3273dc">Format and template</p></h2>
+                <p>The thesis must be written in <strong>LaTeX</strong>, and the final document
+                is a <strong>PDF</strong>. You can choose any template you like. Politecnico di
+                Milano provides templates in several formats: I recommend the
+                <strong>article</strong> format. The only exception is the title page, which can
+                <em>also</em> be produced in the <strong>book</strong> format, so that it can be
+                used if you decide to print the thesis as a classic bound copy.</p>
+
+                <h2 id="length"><p style="color: #3273dc">Length</p></h2>
+                <p>The thesis must <strong>not exceed 65 pages</strong>. Going beyond this limit is
+                acceptable only because of blank pages or long appendices. None of the M.Sc.
+                theses I propose requires more than 65 pages.</p>
+
+                <h2 id="structure"><p style="color: #3273dc">Overall structure</p></h2>
+                <p>The thesis is divided into chapters (book format) or sections (article format).
+                Subchapters and subsections are rarely useful, so avoid them.</p>
+                <p>After the abstract in English and the abstract in your native language (each
+                followed by keywords in the same language), the thesis develops as follows:</p>
+                <ol class="outline">
+                  <li><a href="/howTo/writeThesis/#introduction">Introduction</a></li>
+                  <li><a href="/howTo/writeThesis/#equations">Governing equations</a></li>
+                  <li><a href="/howTo/writeThesis/#numerics">Numerical modeling</a></li>
+                  <li><a href="/howTo/writeThesis/#problem">Problem description</a></li>
+                  <li><a href="/howTo/writeThesis/#validation">Validation and verification</a></li>
+                  <li><a href="/howTo/writeThesis/#results">Results</a></li>
+                  <li><a href="/howTo/writeThesis/#conclusions">Conclusions</a></li>
+                </ol>
+                <p>followed by the references and, if needed, the
+                <a href="/howTo/writeThesis/#appendices">appendices</a>.</p>
+
+                <h2 id="introduction"><p style="color: #3273dc">1. Introduction</p></h2>
+                <p>The introduction leads the reader into the topic of the thesis. It must not
+                contain unnecessary information: it contains only the information that is
+                essential for what follows. In particular, the introduction holds
+                <strong>at least 90% of all the references</strong> cited in the thesis, which are
+                typically 35&ndash;45.</p>
+                <p>It is usually organized as follows:</p>
+                <ol>
+                  <li><strong>Framing.</strong> The first few lines (3&ndash;4) frame the problem in
+                  general terms (what we are talking about), and move from the general problem to
+                  the specific one.</li>
+                  <li><strong>Literature.</strong> Then describe what other authors have done and
+                  what is therefore available in the literature. Do not dwell on basic concepts,
+                  unnecessary explanations or topics loosely related to your thesis. For example,
+                  explaining the operating cycle of an aircraft engine is of little interest to a
+                  committee (and later readers) who know it well: refer to a textbook in half a
+                  sentence, and use the space for interesting details closely related to your
+                  topic. Reviewing the literature is where you reach the number of references
+                  above, and it leads to the <strong>scientific question</strong>.</li>
+                  <li><strong>Scientific question.</strong> State it clearly to the reader. It is
+                  the focus of the thesis, the reason why the work is carried out: what you want
+                  to show, demonstrate, obtain, design, program, etc.</li>
+                  <li><strong>Motivations.</strong> One paragraph on what drives the work, often a
+                  gap in the literature or a long-term goal (&ldquo;this research lays the
+                  foundations for&hellip;&rdquo;).</li>
+                  <li><strong>Highlights.</strong> One paragraph anticipating the most important
+                  findings of the thesis. It is usually completed at the end of the work.</li>
+                  <li><strong>Outline.</strong> A final paragraph describing how the rest of the
+                  thesis is organized: what is in Section 2, then 3, and so on up to the
+                  conclusions.</li>
+                </ol>
+                <p>Do not use bullet points in the introduction. Inline enumerations are
+                acceptable, for example: a) a list with letters; 1) a list with numbers.</p>
+
+                <h2 id="equations"><p style="color: #3273dc">2. Governing equations</p></h2>
+                <p>This section presents the equations that govern the problems studied.
+                Only the equations: no references to codes, methods, tools, software or solvers.
+                If the problem relies on the compressible Navier&ndash;Stokes equations, there is
+                no need to derive them.</p>
+
+                <h2 id="numerics"><p style="color: #3273dc">3. Numerical modeling</p></h2>
+                <p>This section describes all the numerical models and schemes used to solve the
+                problem.</p>
+                <ul>
+                  <li>Do not use keywords of the CFD software you used.</li>
+                  <li>For the numerical schemes, stating their order is enough.</li>
+                  <li>For existing models (turbulence, combustion or others), give a citation
+                  instead of repeating the explanation that is already available in the
+                  literature.</li>
+                  <li>New models, implemented by you or not yet available in the literature, must
+                  be explained in detail, and <strong>only</strong> in this section.</li>
+                </ul>
+
+                <h2 id="problem"><p style="color: #3273dc">4. Problem description</p></h2>
+                <p>This section describes the problem in detail, using sketches, images and plots.
+                Include a <strong>summary table</strong> of the operating conditions and/or
+                boundary conditions, without software keywords: for example, do not write
+                <code>fixedValue</code>, write &ldquo;imposed velocity&rdquo; and give the value
+                for the corresponding boundary.</p>
+                <table>
+                  <thead>
+                    <tr><th>Boundary</th><th>Condition</th><th>Value</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>Fuel inlet</td><td>Imposed velocity</td><td>U = XX m/s</td></tr>
+                    <tr><td>Outlet</td><td>Imposed pressure</td><td>p = XX bar</td></tr>
+                    <tr><td>Walls</td><td>No slip, adiabatic</td><td>&ndash;</td></tr>
+                  </tbody>
+                </table>
+                <p>This section also reports the <strong>grid size</strong>, the
+                <strong>average mesh size</strong> and the <strong>total simulated time</strong>
+                (end time).</p>
+                <p>Finally, present here the whole post-processing setup. The images of the
+                geometry should show the axial lines, the cutting planes, the probe locations
+                and everything else used to extract the data shown later in the validation and
+                results.</p>
+
+                <h2 id="validation"><p style="color: #3273dc">5. Validation and verification</p></h2>
+                <p>Before showing results, prove that they can be trusted. Keep the two parts
+                separate:</p>
+                <ul>
+                  <li><strong>Verification</strong> (are the equations solved correctly?):
+                  a grid sensitivity study on at least three grids, comparing the key
+                  quantities and justifying the grid you chose. For unsteady simulations, also
+                  show that the time step is adequate and that the statistics are converged
+                  (state the averaging window). If you implemented a new model, test it first on
+                  a simple case with a known reference solution.</li>
+                  <li><strong>Validation</strong> (are the right equations solved?): compare your
+                  results with experimental or reference numerical data, extracted at the lines,
+                  planes and probes defined in Section 4. Cite the source of the reference data,
+                  quantify the discrepancies and briefly discuss where they come from.</li>
+                </ul>
+                <p>If no reference data exist for your configuration, say so explicitly and
+                explain what you did instead (e.g., validation on a similar, well-documented
+                configuration).</p>
+
+                <h2 id="results"><p style="color: #3273dc">6. Results</p></h2>
+                <p>This is the core of the thesis: the results answer the scientific question
+                stated in the introduction.</p>
+                <ul>
+                  <li>Organize the results by topic, following the logic of the scientific
+                  question, not in the chronological order in which you ran the simulations.</li>
+                  <li>Every figure must be cited and commented in the text: first say what it
+                  shows, then explain the physics behind it. A figure that is not commented
+                  should not be there.</li>
+                  <li>Figures must be readable: axis labels with units, font size comparable to
+                  the text, consistent colors, colormaps and ranges when comparing cases.</li>
+                  <li>Few citations here: use them only to compare your findings with the
+                  literature.</li>
+                </ul>
+
+                <h2 id="conclusions"><p style="color: #3273dc">7. Conclusions</p></h2>
+                <p>Keep the conclusions short (one to two pages). Restate the scientific question,
+                summarize the approach in a few lines, list the main findings (quantitatively,
+                where possible) and give a clear answer to the question. Close with the
+                limitations of the work and possible future developments.</p>
+                <p>No new results, figures or references in the conclusions. Once they are
+                written, go back to the introduction and make sure the highlights are
+                consistent with them.</p>
+
+                <h2 id="appendices"><p style="color: #3273dc">A note on appendices</p></h2>
+                <p>Appendices are optional and host material that would interrupt the reading of
+                the main text, for example:</p>
+                <ul>
+                  <li>long derivations;</li>
+                  <li>additional data from the grid sensitivity study or from parametric cases;</li>
+                  <li>large tables (e.g., kinetic mechanisms, thermophysical properties);</li>
+                  <li>a summary of the settings needed to reproduce the simulations (the full
+                  case setup is in your <a href="howTo/prepareThesisGit/">Git repository</a>).</li>
+                </ul>
+                <p>The main text must remain complete without them: the appendices support it,
+                they are not the place for results that matter.</p>
               </div>
             </article>
           </div>
