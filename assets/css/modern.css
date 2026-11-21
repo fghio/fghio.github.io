@@ -1062,3 +1062,25 @@ html.mx.dark body .button.thesis-form:hover { color: var(--on-accent); }
   html.mx body .thesis-actions { width: 100%; }
   html.mx body .thesis-actions .button { flex: 1 1 auto; }
 }
+
+/* ---------- Blocchi di codice (guide How to, post) ------------------------ */
+html.mx body .content pre {
+  background: var(--accent-soft);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.9rem 1rem;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  overflow-x: auto;
+}
+html.mx body .content pre code {
+  background: none;
+  color: inherit;
+  padding: 0;
+  font-size: inherit;
+}
+html.mx body .content.howto-guide h3 {
+  font-size: 1rem;
+  margin-top: 1.6rem;
+}

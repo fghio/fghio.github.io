@@ -43,11 +43,103 @@
               <a class="howto-back" href="howTo/"><i class="fas fa-arrow-left"></i>&nbsp; All guides</a>
               <h1 class="title is-size-3">How to prepare your thesis repository with Git</h1>
               <hr />
-              <div class="content">
+              <div class="content howto-guide">
                 <!-- Nota: in questa pagina i link interni vanno scritti come
                      href="/howTo/prepareThesisGit/#sezione" (per via di <base href="/">). -->
-                <p>How to set up and organize the Git repository for your thesis: code, simulation cases, post-processing and the LaTeX document.</p>
-                <p><em>This page is a work in progress.</em></p>
+                <p>Every thesis I supervise lives in a Git repository on GitHub. It keeps your
+                work safe, lets me follow your progress and makes your results reproducible.
+                This page explains how to create the repository and how to organize it.</p>
+
+                <h2 id="create"><p style="color: #3273dc">1. Create the repository</p></h2>
+                <ol>
+                  <li>Go to <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+                  and create a free account, if you do not have one already.</li>
+                  <li>Create a new <strong>private</strong> repository named
+                  <code>&lt;currentYear&gt;-&lt;surname&gt;-&lt;oneOrTwoKeywords&gt;</code>,
+                  where the keywords identify the topic of your thesis.<br>
+                  Example: <code>202X-ghioldi-CSPRDE</code></li>
+                  <li>Invite me as a collaborator (<em>Settings &rarr; Collaborators &rarr; Add people</em>):
+                  use the account <code>fghio</code> or the email address
+                  <code>federico.ghioldi@polimi.it</code>.</li>
+                </ol>
+
+                <h2 id="structure"><p style="color: #3273dc">2. Folder structure</p></h2>
+                <p>Clone the repository on your computer and create the following four folders
+                inside it:</p>
+<pre><code>202X-ghioldi-CSPRDE/
+├── biblio/
+│   ├── README.md
+│   ├── smith2021-hydrogen-flames.pdf
+│   └── ...
+├── OpenFOAM-thesis/
+│   └── src/
+│       └── reactionModels/
+│           └── myNewCombustionModel/
+├── data/
+│   ├── fig1.py
+│   ├── fig1_data.csv
+│   └── ...
+└── thesis/
+    ├── main.tex
+    ├── bibliography.bib
+    └── figures/</code></pre>
+                <p><strong>Warning:</strong> empty folders cannot be pushed to the remote
+                repository, so the other users with access to it will not see them. To push a
+                folder that is still empty, add an empty file named <code>.gitkeep</code>
+                inside it.</p>
+
+                <h2 id="folders"><p style="color: #3273dc">3. What goes in each folder</p></h2>
+
+                <h3 id="biblio">biblio</h3>
+                <p>All the papers (in PDF format) that are fundamental for your research. Papers
+                can be uploaded with your comments, notes, highlights, etc.</p>
+                <p>The folder must contain a <code>README</code> file, kept up to date, listing
+                the most relevant papers and why they matter: for each relevant paper in
+                <code>biblio</code>, add a very short description (2&ndash;3 lines at most).
+                For example:</p>
+<pre><code># Key references
+
+- smith2021-hydrogen-flames.pdf
+  LES of lean premixed hydrogen flames. Reference for the mesh
+  resolution and the validation data used in Chapter 3.</code></pre>
+
+                <h3 id="openfoam">OpenFOAM-thesis</h3>
+                <p>This folder must <strong>NOT</strong> contain OpenFOAM. It must contain
+                <strong>only</strong> the new models or developments you produce during your
+                thesis, if any.</p>
+                <p>The models you develop <strong>must</strong> follow the folder structure of
+                OpenFOAM. For example, if you create a new combustion model,
+                <code>OpenFOAM-thesis</code> will contain <strong>only</strong> the path
+                <code>src/reactionModels/&lt;newModel&gt;</code>.</p>
+
+                <h3 id="data">data</h3>
+                <p>All the data needed to create the figures of your thesis, together with the
+                Python scripts used to produce the plots. The name of each script must make it
+                clear what it produces (e.g. <code>fig1.py</code> for Figure 1 of the thesis).</p>
+                <p>The folder must not exceed <strong>100&nbsp;MB</strong>. If your data are
+                larger, do <strong>not</strong> upload them: upload only the scripts. I will give
+                you specific instructions on how to handle large data.</p>
+
+                <h3 id="thesis">thesis</h3>
+                <p>All the <code>.tex</code> and <code>.bib</code> files, plus the
+                <code>figures</code> folder, needed to compile your thesis. The choice of style
+                and format is up to you. I recommend the <em>article</em> format of the template
+                provided by Politecnico di Milano; for the title page, use the <em>book</em>
+                format of the same template.</p>
+
+                <h2 id="commands"><p style="color: #3273dc">4. Basic Git commands</p></h2>
+                <p>If you have never used Git, these are the commands you need every day
+                (replace the repository name with yours):</p>
+<pre><code>git clone https://github.com/&lt;yourUsername&gt;/202X-ghioldi-CSPRDE.git
+cd 202X-ghioldi-CSPRDE
+
+git add .                                  # stage your changes
+git commit -m "Short description of the change"
+git push                                   # send them to GitHub
+git pull                                   # get the latest version</code></pre>
+
+                <p>More information on how to write the thesis is available in
+                <a href="howTo/writeThesis/">How to write your thesis</a>.</p>
               </div>
             </article>
           </div>
