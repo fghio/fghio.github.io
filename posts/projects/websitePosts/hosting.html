@@ -29,7 +29,7 @@
         </span>
         <span class="level-item">
           <i class="far fa-clock"></i>&nbsp;
-          <div class="read-time">5 minutes</div>
+          <div class="read-time">12 minutes</div>
         </span>
       </div>
     </div>
@@ -41,98 +41,300 @@
         Introduction
       </h2>
       <p style="text-align: justify;">
-        GitHub Pages is a free service of GitHub that publishes the files of a repository as a
-website. There is nothing to install on a server and nothing to pay: you push your files,
-and a minute later they are online. This post explains how this website is published and how
-it is tested locally before publishing.
+        In this post we put a first page online. We create the repository, write a minimal page,
+publish it with GitHub Pages, and set up a local server to test changes before publishing
+them. At the end you will have a public address, such as
+<code>https://&lt;username&gt;.github.io</code>, and a workflow to update it safely.
       </p>
+      <h2 id="Pages" style="scroll-margin: 1em;">
+        <a href="#Pages" class="headerlink" title="What GitHub Pages is"></a>
+        What GitHub Pages is
+      </h2>
+      <p style="text-align: justify;">
+        GitHub Pages is a free service of GitHub that takes the files of a repository and serves
+them as a website. There is no server to configure: you push files to the repository, and
+GitHub publishes them, usually within a minute. It is designed exactly for static websites
+like this one.
+      </p>
+      <p style="text-align: justify;">
+        A few limits are worth knowing from the start:
+      </p>
+      <ul>
+        <li>the repository of a free account must be <strong>public</strong>: anyone can read your files on GitHub (keep this in mind for anything you would not publish);</li>
+        <li>the published website should stay below 1 GB, and a single file below 100 MB;</li>
+        <li>there is a soft limit on traffic (about 100 GB per month), far above what a personal website needs;</li>
+        <li>only static files are served: no PHP, no databases, no server-side code.</li>
+      </ul>
+      <h2 id="Prerequisites" style="scroll-margin: 1em;">
+        <a href="#Prerequisites" class="headerlink" title="What you need"></a>
+        What you need
+      </h2>
+      <ul>
+        <li>a GitHub account (free);</li>
+        <li>Git installed on your computer (<code>git --version</code> in a terminal should print a version number);</li>
+        <li>a text editor (any: VS Code, Sublime Text, even Notepad);</li>
+        <li>Python 3, for the local server (<code>python3 --version</code>).</li>
+      </ul>
       <h2 id="Repository" style="scroll-margin: 1em;">
-        <a href="#Repository" class="headerlink" title="The repository"></a>
-        The repository
+        <a href="#Repository" class="headerlink" title="Step 1: create the repository"></a>
+        Step 1: create the repository
       </h2>
       <p style="text-align: justify;">
         A personal website lives in a repository with a special name:
 <code>&lt;username&gt;.github.io</code>, where <code>&lt;username&gt;</code> is your GitHub
-account. This website, for example, is in the repository <code>fghio.github.io</code> and is
-published at <code>https://fghio.github.io</code>.
+account name, in lowercase. This website is in the repository <code>fghio.github.io</code>
+and is published at <code>https://fghio.github.io</code>.
       </p>
       <ol>
-        <li>Create a new <strong>public</strong> repository named <code>&lt;username&gt;.github.io</code>.</li>
-        <li>Add a file <code>index.html</code> at its root: this is the home page.</li>
-        <li>In <em>Settings &rarr; Pages</em>, choose <em>Deploy from a branch</em>, branch <code>main</code>, folder <code>/ (root)</code>.</li>
-        <li>Push. After a minute or two the website is online at <code>https://&lt;username&gt;.github.io</code>.</li>
+        <li>On GitHub, click <em>New repository</em>.</li>
+        <li>Name it <code>&lt;username&gt;.github.io</code>, exactly.</li>
+        <li>Make it <strong>public</strong>.</li>
+        <li>Tick <em>Add a README file</em>, so that the repository is not empty, and create it.</li>
       </ol>
       <p style="text-align: justify;">
-        Every following push to <code>main</code> publishes a new version: the history of the
-website is the history of the repository, and any change can be undone with Git.
+        Then clone it on your computer:
       </p>
+<pre><code>git clone https://github.com/&lt;username&gt;/&lt;username&gt;.github.io.git
+cd &lt;username&gt;.github.io</code></pre>
+      <div class="notification is-light" style="font-size: 0.92rem;">
+        Any other repository name also works, but the website is then published in a
+subfolder: a repository called <code>notes</code> appears at
+<code>https://&lt;username&gt;.github.io/notes/</code>. For a personal website, the special
+name is simpler.
+      </div>
+      <h2 id="FirstPage" style="scroll-margin: 1em;">
+        <a href="#FirstPage" class="headerlink" title="Step 2: a first page"></a>
+        Step 2: a first page
+      </h2>
+      <p style="text-align: justify;">
+        The home page of a website is always called <code>index.html</code>. Create it in the root
+of the repository with this content:
+      </p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;title&gt;Jane Doe&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Jane Doe&lt;/h1&gt;
+  &lt;p&gt;Aerospace engineer. This website is under construction.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      <p style="text-align: justify;">
+        The two <code>&lt;meta&gt;</code> lines are important: the first makes accented
+characters display correctly, the second makes the page readable on phones (without it,
+phones show a zoomed-out desktop page).
+      </p>
+      <p style="text-align: justify;">
+        Commit and push:
+      </p>
+<pre><code>git add index.html
+git commit -m &quot;First page&quot;
+git push</code></pre>
+      <h2 id="Publish" style="scroll-margin: 1em;">
+        <a href="#Publish" class="headerlink" title="Step 3: publish"></a>
+        Step 3: publish
+      </h2>
+      <ol>
+        <li>On GitHub, open the repository and go to <em>Settings &rarr; Pages</em>.</li>
+        <li>Under <em>Build and deployment</em>, choose <em>Source: Deploy from a branch</em>.</li>
+        <li>Choose the branch <code>main</code> and the folder <code>/ (root)</code>, then <em>Save</em>.</li>
+        <li>Open the <em>Actions</em> tab: a workflow called <em>pages build and deployment</em> runs. When it turns green, the website is online.</li>
+      </ol>
+      <p style="text-align: justify;">
+        Open <code>https://&lt;username&gt;.github.io</code>: you should see your page. From now on,
+<strong>every push to <code>main</code> publishes a new version</strong>, and the history of the
+website is the history of the repository.
+      </p>
+      <h3>If it does not work</h3>
+      <ul>
+        <li><strong>404 page.</strong> Wait a couple of minutes and reload; check that the file is called <code>index.html</code> (lowercase) and is in the root, not in a subfolder.</li>
+        <li><strong>Old version.</strong> The browser may show a cached copy: reload with <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>R</kbd> (<kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>R</kbd> on a Mac).</li>
+        <li><strong>Works locally, broken online.</strong> GitHub Pages runs on Linux, where file names are case-sensitive: <code>Photo.jpg</code> and <code>photo.jpg</code> are different files. Use lowercase names, or check that links match exactly.</li>
+      </ul>
       <h2 id="URLs" style="scroll-margin: 1em;">
         <a href="#URLs" class="headerlink" title="Addresses without .html"></a>
         Addresses without .html
       </h2>
       <p style="text-align: justify;">
-        GitHub Pages serves a file also when the address omits the <code>.html</code> extension:
-<code>/curriculum</code> shows <code>curriculum.html</code>. This makes addresses easier to
-read and to share (&ldquo;go to fghio.github.io/curriculum&rdquo;). All the internal links
-of this website are written without the extension, and old links with <code>.html</code>
-still work. A tiny script in the <code>&lt;head&gt;</code> of each page also removes the
-extension from the address bar when someone arrives from an old link:
+        GitHub Pages also serves a file when the address omits the <code>.html</code> extension:
+<code>/curriculum</code> shows <code>curriculum.html</code>. In the same way, a folder with an
+<code>index.html</code> inside is reachable by its name: <code>howTo/index.html</code> is
+<code>/howTo/</code>.
+      </p>
+      <p style="text-align: justify;">
+        This makes addresses shorter and nicer to share (&ldquo;go to
+fghio.github.io/curriculum&rdquo;), so all internal links of this website are written without
+the extension:
+      </p>
+<pre><code>&lt;a href=&quot;./curriculum&quot;&gt;Curriculum&lt;/a&gt;        &lt;!-- instead of curriculum.html --&gt;</code></pre>
+      <p style="text-align: justify;">
+        Old links with the extension keep working. To keep the address bar tidy also for visitors
+arriving from an old link, each page starts with a tiny script that removes the extension
+without reloading the page:
       </p>
 <pre><code>&lt;script&gt;
   (function () {
-    var p = location.pathname;
+    var p = location.pathname;                      // e.g. /curriculum.html
     if (/\.html$/.test(p))
       history.replaceState(null, &quot;&quot;,
-        p.replace(/(^|\/)index\.html$/, &quot;$1&quot;).replace(/\.html$/, &quot;&quot;)
-        + location.search + location.hash);
+        p.replace(/(^|\/)index\.html$/, &quot;$1&quot;)        // /index.html -&gt; /
+         .replace(/\.html$/, &quot;&quot;)                      // /curriculum.html -&gt; /curriculum
+        + location.search + location.hash);         // keep ?query and #anchor
   })();
 &lt;/script&gt;</code></pre>
       <p style="text-align: justify;">
-        A folder with an <code>index.html</code> inside behaves the same way:
-<code>howTo/index.html</code> is reachable as <code>/howTo/</code>.
+        <code>history.replaceState</code> only changes what the address bar shows; the page is not
+reloaded and the browser's back button behaves normally.
       </p>
       <h2 id="Local" style="scroll-margin: 1em;">
-        <a href="#Local" class="headerlink" title="Testing on your computer"></a>
-        Testing on your computer
+        <a href="#Local" class="headerlink" title="Step 4: a local test server"></a>
+        Step 4: a local test server
       </h2>
       <p style="text-align: justify;">
-        Opening the HTML files directly from the disk does not work well: the browser blocks the
-requests that load the shared parts and the posts. You need a small local web server.
-Python has one built in (<code>python3 -m http.server</code>), but it does not understand
-addresses without <code>.html</code>. This website uses a slightly extended version,
-<code>tools/serve.py</code>, which behaves like GitHub Pages:
+        Publishing every change to see whether it works would be slow and would expose half-finished
+pages to visitors. Changes should be tested on your computer first.
       </p>
-      <ul>
-        <li><code>/curriculum</code> serves <code>curriculum.html</code>;</li>
-        <li>folders without <code>index.html</code> return 404 instead of listing their files;</li>
-        <li>nothing is cached, so every change is visible at the next reload.</li>
-      </ul>
+      <p style="text-align: justify;">
+        Double-clicking an HTML file opens it with an address that starts with
+<code>file://</code>. Simple pages work, but this website loads its shared parts and posts with
+JavaScript, and browsers block these requests for files opened from the disk. You need a local
+web server.
+      </p>
+      <p style="text-align: justify;">
+        Python includes one: <code>python3 -m http.server</code> serves the current folder at
+<code>http://localhost:8000</code>. It has two differences from GitHub Pages that matter here:
+it does not understand addresses without <code>.html</code>, and it lists the files of folders
+without an <code>index.html</code>. The script below, saved as <code>tools/serve.py</code>,
+fixes both and also disables caching, so that every change is visible at the next reload:
+      </p>
+<pre><code>#!/usr/bin/env python3
+&quot;&quot;&quot;Local server that behaves like GitHub Pages.&quot;&quot;&quot;
+import http.server
+import os
+import sys
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
+class Handler(http.server.SimpleHTTPRequestHandler):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, directory=ROOT, **kwargs)
+
+    def translate_path(self, path):
+        fs_path = super().translate_path(path)
+        # /curriculum -&gt; curriculum.html, as on GitHub Pages
+        if not os.path.exists(fs_path) and os.path.isfile(fs_path + &quot;.html&quot;):
+            return fs_path + &quot;.html&quot;
+        return fs_path
+
+    def list_directory(self, path):
+        # GitHub Pages never lists the files of a folder
+        self.send_error(404, &quot;File not found&quot;)
+        return None
+
+    def end_headers(self):
+        # no cache: every change is visible at the next reload
+        self.send_header(&quot;Cache-Control&quot;, &quot;no-cache&quot;)
+        super().end_headers()
+
+
+if __name__ == &quot;__main__&quot;:
+    port = int(sys.argv[1]) if len(sys.argv) &gt; 1 else 8000
+    print(f&quot;http://localhost:{port}  (Ctrl+C to stop)&quot;)
+    http.server.ThreadingHTTPServer((&quot;127.0.0.1&quot;, port), Handler).serve_forever()</code></pre>
+      <p style="text-align: justify;">
+        Run it from the root of the repository and open <code>http://localhost:8000</code>:
+      </p>
 <pre><code>python3 tools/serve.py        # http://localhost:8000
-python3 tools/serve.py 8080   # another port</code></pre>
+python3 tools/serve.py 8080   # on another port</code></pre>
+      <p style="text-align: justify;">
+        The server listens only on <code>127.0.0.1</code>, so it is reachable from your computer
+and not from the rest of the network. Stop it with <kbd>Ctrl</kbd>+<kbd>C</kbd>.
+      </p>
       <h2 id="Branches" style="scroll-margin: 1em;">
-        <a href="#Branches" class="headerlink" title="A safe workflow"></a>
-        A safe workflow
+        <a href="#Branches" class="headerlink" title="Step 5: a safe workflow"></a>
+        Step 5: a safe workflow
       </h2>
       <p style="text-align: justify;">
-        Changes are never made directly on <code>main</code>, which is what the visitors see.
-The work happens on a separate branch (here called <code>development</code>), is checked
-locally with the server above, and only then is merged into <code>main</code> and pushed.
-If something goes wrong, <code>main</code> is untouched and the previous version is one
-command away.
+        The <code>main</code> branch is what visitors see. To avoid publishing something broken,
+the work happens on a second branch, here called <code>development</code>:
       </p>
+<pre><code>git switch -c development       # once: create the branch and move to it</code></pre>
+      <p style="text-align: justify;">
+        Then, every time:
+      </p>
+      <ol>
+        <li>work on <code>development</code> and test with the local server;</li>
+        <li>commit as often as you like (nothing is published);</li>
+        <li>when everything works, bring the changes to <code>main</code> and push.</li>
+      </ol>
 <pre><code>git switch development
 # ... edit, test on http://localhost:8000 ...
-git commit -am &quot;New post&quot;
+git commit -am &quot;New post on dark mode&quot;
+
 git switch main
 git merge development
-git push</code></pre>
+git push                         # published
+git switch development           # back to work</code></pre>
+      <p style="text-align: justify;">
+        Pushing <code>development</code> too (<code>git push -u origin development</code>) keeps
+a backup of the work in progress on GitHub without publishing it: GitHub Pages only looks at
+<code>main</code>.
+      </p>
+      <div class="notification is-light" style="font-size: 0.92rem;">
+        If a change goes online and turns out to be wrong, <code>git revert</code> on
+<code>main</code> undoes it with a new commit, and the previous version is back online a
+minute later.
+      </div>
+      <h2 id="Gitignore" style="scroll-margin: 1em;">
+        <a href="#Gitignore" class="headerlink" title="Files that should not be published"></a>
+        Files that should not be published
+      </h2>
+      <p style="text-align: justify;">
+        Since the repository is public, anything committed is visible to everyone, including in
+the history of old commits. A <code>.gitignore</code> file in the root lists files that Git
+must ignore: system files, editor settings, and anything private.
+      </p>
+<pre><code># system and editor files
+.DS_Store
+Thumbs.db
+.vscode/
+__pycache__/
+
+# private material, never published
+private/</code></pre>
+      <h2 id="Domain" style="scroll-margin: 1em;">
+        <a href="#Domain" class="headerlink" title="Optional: your own domain"></a>
+        Optional: your own domain
+      </h2>
+      <p style="text-align: justify;">
+        If you own a domain (for example <code>janedoe.com</code>), GitHub Pages can serve the
+website on it: enter the domain in <em>Settings &rarr; Pages &rarr; Custom domain</em>, and at
+your domain registrar add the DNS records that GitHub indicates. GitHub then provides a free
+HTTPS certificate. This website keeps the <code>github.io</code> address, which needs no
+configuration and no yearly fee.
+      </p>
+      <h2 id="Try" style="scroll-margin: 1em;">
+        <a href="#Try" class="headerlink" title="Try it yourself"></a>
+        Try it yourself
+      </h2>
+      <ol>
+        <li>Create the repository and publish the first page.</li>
+        <li>Add a second page, <code>about.html</code>, and a link to it from <code>index.html</code> written as <code>href="./about"</code>.</li>
+        <li>Check both pages with the local server, then publish and check them online.</li>
+        <li>Open <code>/about.html</code> online and confirm that it shows the same page.</li>
+      </ol>
       <h2 id="Next" style="scroll-margin: 1em;">
         <a href="#Next" class="headerlink" title="Next"></a>
         Next
       </h2>
       <p style="text-align: justify;">
-        The next post, <a href="projectPost?project=website&amp;post=layout">layout and theme</a>, explains how the three-column
-layout and the style of the pages are built.
+        Our website is online, but it is a plain page. The next post,
+<a href="projectPost?project=website&amp;post=layout">layout and theme</a>, gives it the three-column layout and the style of this
+website.
       </p>
 
     </div>

@@ -1131,3 +1131,32 @@ html.mx body .pf-lock-form .input { flex: 1 1 auto; }
 html.mx body .pf-lock-error { color: #c0392b !important; min-height: 1.4em; margin-top: 0.5rem; }
 html.mx.dark body .pf-lock-error { color: #f97066 !important; }
 html.mx body .pf-lock-help { font-size: 0.8rem !important; }
+
+/* ---------- Tabelle e note nei post (es. How to make this website) -------- */
+html.mx body .content table.table {
+  background: transparent;
+  color: var(--text);
+  font-size: 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+}
+html.mx body .content table.table th {
+  background: var(--accent-soft);
+  color: var(--text);
+  font-weight: 600;
+}
+html.mx body .content table.table td,
+html.mx body .content table.table th { border-color: var(--border); }
+html.mx body .content .notification.is-light {
+  background: var(--accent-soft);
+  color: var(--text);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius-sm);
+  padding: 0.8rem 1rem;
+}
+/* niente legature nel codice: "</" e "//" devono restare leggibili */
+html.mx body .content pre,
+html.mx body .content code { font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0; }
