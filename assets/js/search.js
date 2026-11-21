@@ -13,7 +13,7 @@
 (function () {
   "use strict";
 
-  var INDEX_KEY = "searchIndex:v2";
+  var INDEX_KEY = "searchIndex:v3";
   var FUSE_URL = "https://cdnjs.cloudflare.com/ajax/libs/fuse.js/7.0.0/fuse.min.js";
   var MAX_RESULTS = 12;
 
@@ -113,7 +113,7 @@
           section: status === "open" ? "Open" : status === "in-progress" ? "In progress" : status,
           tags: clean((c.getAttribute("data-tags") || "") + " " + text(c.querySelector(".tags"))),
           text: text(c.querySelector(".thesis-description")),
-          url: "thesis?q=" + encodeURIComponent(title)
+          url: "theses?q=" + encodeURIComponent(title)
         };
       });
     });
