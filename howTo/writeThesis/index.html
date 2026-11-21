@@ -156,10 +156,24 @@
                 <p>This section also reports the <strong>grid size</strong>, the
                 <strong>average mesh size</strong> and the <strong>total simulated time</strong>
                 (end time).</p>
-                <p>Finally, present here the whole post-processing setup. The images of the
-                geometry should show the axial lines, the cutting planes, the probe locations
-                and everything else used to extract the data shown later in the validation and
-                results.</p>
+                <p>Finally, describe here <strong>where and what</strong> you extract from the
+                simulations to produce the plots shown later in the validation and results.</p>
+                <p><strong>This does not mean showing the post-processing code.</strong> No
+                scripts, no Python, no software dictionaries, no lists of commands or utilities.
+                What is needed is:</p>
+                <ul>
+                  <li><strong>in the figures of the geometry</strong>: the axial lines, the cutting
+                  planes and the probe locations drawn and labelled (e.g., &ldquo;lines L1&ndash;L3&rdquo;,
+                  &ldquo;plane P1&rdquo;, &ldquo;probes A&ndash;D&rdquo;);</li>
+                  <li><strong>in the text</strong>: a sentence saying what is extracted there and
+                  how, for example: &ldquo;Mean and RMS axial velocity profiles are extracted along
+                  lines L1&ndash;L3 (x/D = 1, 2 and 5), averaging over 20 flow-through times. Pressure
+                  is sampled at probes A&ndash;D at 1 MHz to compute the spectra shown in
+                  Section 6.&rdquo;</li>
+                </ul>
+                <p>The goal is that the reader, looking at a plot in the results, knows exactly
+                where the data come from. The code stays in your
+                <a href="howTo/prepareThesisGit/">Git repository</a>, not in the thesis.</p>
 
                 <h2 id="validation"><p style="color: #3273dc">5. Validation and verification</p></h2>
                 <p>Before showing results, prove that they can be trusted. Keep the two parts
