@@ -637,7 +637,6 @@ html.mx.dark body .tag[style*="#2196f3"] { background: rgba(96, 150, 230, 0.16) 
 @media screen and (max-width: 768px) {
   html.mx body #thesisCardsContainer .card > div:first-child { flex-wrap: wrap !important; gap: 0.5rem !important; }
   html.mx body #thesisCardsContainer .card { padding: 1rem 1.1rem; }
-  html.mx body .thesis-apply { width: 100%; }
 }
 
 /* ==========================================================================
@@ -1043,4 +1042,23 @@ html.mx body .content .cv-entry .right-column a:hover { color: var(--accent-text
     top: calc(56px + 1rem);
     z-index: 1;
   }
+}
+
+/* ---------- Theses: bottoni "Before emailing" + "Apply" -------------------- */
+html.mx body .thesis-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+html.mx body .button.thesis-form {
+  background: var(--accent-soft);
+  color: var(--accent-text);
+  border: none;
+}
+html.mx body .button.thesis-form:hover { background: var(--accent); color: #fff; }
+html.mx.dark body .button.thesis-form:hover { color: var(--on-accent); }
+@media screen and (max-width: 768px) {
+  html.mx body .thesis-actions { width: 100%; }
+  html.mx body .thesis-actions .button { flex: 1 1 auto; }
 }

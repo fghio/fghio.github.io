@@ -57,10 +57,16 @@
 									<span class="thesis-count">Theses still available: 5/5</span>
 								</div>
 
-								<a class="button is-primary thesis-apply"
-									href="mailto:federico.ghioldi@polimi.it?subject=[FGH.IO]%20-%20Requesting%20meeting%20for%20Thesis">
-									<i class="fas fa-envelope"></i>&nbsp;&nbsp;Apply
-								</a>
+								<div class="thesis-actions">
+									<a class="button thesis-form" href="https://forms.gle/onwAEitRfS2JYaHy5"
+										target="_blank" rel="noopener">
+										<i class="fas fa-clipboard-list"></i>&nbsp;&nbsp;Before emailing click here
+									</a>
+									<a class="button is-primary thesis-apply"
+										href="mailto:federico.ghioldi@polimi.it?subject=[FGH.IO]%20-%20Requesting%20meeting%20for%20Thesis">
+										<i class="fas fa-envelope"></i>&nbsp;&nbsp;Apply
+									</a>
+								</div>
 							</div>
 
 							<hr style="height:2px;margin:1rem 0" />
@@ -303,6 +309,62 @@ $(function () {
   </script>
 
 
+
+  <!-- Apply: prima di aprire la mail chiede se il Google Form è stato compilato -->
+  <script>
+  (function () {
+    var FORM_URL = "https://forms.gle/onwAEitRfS2JYaHy5";
+    var modal = null, mailto = "", lastFocus = null;
+
+    function build() {
+      modal = document.createElement("div");
+      modal.className = "mx-modal";
+      modal.setAttribute("role", "dialog");
+      modal.setAttribute("aria-modal", "true");
+      modal.setAttribute("aria-labelledby", "apply-title");
+      modal.innerHTML =
+        '<div class="mx-modal__panel">' +
+        '  <div class="mx-modal__icon"><i class="fas fa-clipboard-check" aria-hidden="true"></i></div>' +
+        '  <h2 class="mx-modal__title" id="apply-title">Before you email me</h2>' +
+        '  <p class="mx-modal__text">Have you filled in the Google Form before applying for a thesis?</p>' +
+        '  <div class="mx-modal__actions">' +
+        '    <button type="button" class="button is-primary apply-yes">Yes</button>' +
+        '    <button type="button" class="button mx-modal__close apply-no">No</button>' +
+        '  </div>' +
+        '</div>';
+      document.body.appendChild(modal);
+      modal.addEventListener("mousedown", function (e) { if (e.target === modal) close(); });
+      modal.querySelector(".apply-yes").addEventListener("click", function () {
+        close();
+        window.location.href = mailto;           // apre la mail da scrivere
+      });
+      modal.querySelector(".apply-no").addEventListener("click", function () {
+        close();
+        window.open(FORM_URL, "_blank", "noopener"); // apre il form, niente mail
+      });
+    }
+
+    function open(href) {
+      if (!modal) build();
+      mailto = href;
+      lastFocus = document.activeElement;
+      modal.classList.add("is-open");
+      modal.querySelector(".apply-yes").focus();
+    }
+
+    function close() {
+      if (!modal || !modal.classList.contains("is-open")) return;
+      modal.classList.remove("is-open");
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+
+    document.addEventListener("click", function (e) {
+      var a = e.target.closest(".thesis-apply");
+      if (a) { e.preventDefault(); open(a.href); }
+    });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
+  })();
+  </script>
 
 </body>
 
