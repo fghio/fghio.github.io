@@ -1221,3 +1221,4 @@ html.mx body .content a.teaching-tile:hover { border-color: var(--accent-text); 
 html.mx body .teaching-tile i { color: var(--accent-text); font-size: 1.05rem; margin-bottom: 0.2rem; }
 html.mx body .teaching-tile strong { color: var(--accent-text); font-size: 0.92rem; }
 html.mx body .teaching-tile span { color: var(--text-muted); font-size: 0.82rem; line-height: 1.4; }
+html.mx body .content .teaching-desc { font-size: 0.85rem; color: var(--text-muted); margin: 0.2rem 0 0; line-height: 1.5; }
