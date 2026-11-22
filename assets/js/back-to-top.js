@@ -42,12 +42,9 @@ document.getElementById("back-to-top").addEventListener("click", function () {
 });
 
 function scrollToTop() {
-  const scrollStep = -window.scrollY / 15;
-  const scrollInterval = setInterval(function() {
-    if (window.scrollY !== 0) {
-      window.scrollBy(0, scrollStep);
-    } else {
-      clearInterval(scrollInterval);
-    }
-  }, 15);
+  // Scorrimento nativo: una sola animazione, veloce anche su pagine lunghe.
+  // (Il vecchio passo-passo con setInterval si sommava a "scroll-behavior:
+  // smooth" del CSS e risultava lentissimo.)
+  const reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
 }
