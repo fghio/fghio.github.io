@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="assets/css/modern.css">
   <script src="assets/js/jquery-3.7.1.min.js"></script>
   <script src="assets/js/partials.js"></script>
+  <script src="assets/js/router.js" defer></script>
   <script src="assets/js/search.js" defer></script>
   
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css">
@@ -213,7 +214,8 @@ $(function () {
     updateThesisCount();
     
     // Event delegation for 'Read more' links
-    $(document).on('click', '.read-more', function (e) {
+    // .off: con il cambio pagina senza ricaricare lo script può essere rieseguito
+    $(document).off('click.mxThesis').on('click.mxThesis', '.read-more', function (e) {
         e.preventDefault();
         var moreText = $(this).closest('.thesis-description').find('.more-text');
         moreText.toggleClass('show'); // Toggle the display of the extra text
@@ -313,6 +315,9 @@ $(function () {
   <!-- Apply: prima di aprire la mail chiede se il Google Form è stato compilato -->
   <script>
   (function () {
+    // una volta sola anche se la pagina viene riaperta senza ricaricare
+    if (window.mxApplyInit) return;
+    window.mxApplyInit = true;
     var FORM_URL = "https://forms.gle/onwAEitRfS2JYaHy5";
     var modal = null, mailto = "", lastFocus = null;
 
