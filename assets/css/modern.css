@@ -1222,3 +1222,15 @@ html.mx body .teaching-tile i { color: var(--accent-text); font-size: 1.05rem; m
 html.mx body .teaching-tile strong { color: var(--accent-text); font-size: 0.92rem; }
 html.mx body .teaching-tile span { color: var(--text-muted); font-size: 0.82rem; line-height: 1.4; }
 html.mx body .content .teaching-desc { font-size: 0.85rem; color: var(--text-muted); margin: 0.2rem 0 0; line-height: 1.5; }
+html.mx body .content table.teaching-schedule {
+  width: auto; margin: 0.3rem 0 0.2rem; font-size: 0.8rem; border-collapse: collapse; background: transparent;
+}
+html.mx body .content .teaching-when { font-size: 0.75rem; color: var(--text-muted); margin: 0.7rem 0 0; }
+html.mx body .content table.teaching-schedule td {
+  border: 0; border-bottom: 1px solid var(--border); padding: 0.2rem 1rem 0.2rem 0; color: var(--text);
+}
+html.mx body .content table.teaching-schedule tr:last-child td { border-bottom: 0; }
+html.mx body .content table.teaching-schedule td:first-child { font-weight: 500; }
+html.mx body .content .teaching-links { display: flex; flex-wrap: wrap; gap: 0.35rem 1.1rem; font-size: 0.8rem; margin: 0.5rem 0 0; }
+html.mx body .content .teaching-soon { color: var(--text-muted); }
+html.mx body .content .cv-entry .right-column .teaching-links a { color: var(--accent-text); font-weight: 500; }
