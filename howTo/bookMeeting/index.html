@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" class="mx">
+
+<head>
+  <!-- Tema scuro applicato prima di tutto: niente flash bianco -->
+  <script>try{if(localStorage.getItem("night")==="true")document.documentElement.classList.add("dark")}catch(e){}</script>
+  <!-- Chrome aspetta a disegnare la pagina fino a quando le parti comuni sono inserite -->
+  <link rel="expect" href="/howTo/bookMeeting/#mx-partials" blocking="render">
+
+  <!-- Pagina NON collegata dal resto del sito: raggiungibile solo con il link
+       diretto. I percorsi relativi partono dalla radice del sito. -->
+  <base href="/">
+  <meta name="robots" content="noindex, nofollow">
+
+  <title>FGh.io - How to book a meeting</title>
+  <link rel="shortcut icon" href="assets/images/logo.ico">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="assets/css/default.css">
+  <link rel="stylesheet" href="assets/css/modern.css">
+  <script src="assets/js/jquery-3.7.1.min.js"></script>
+  <script src="assets/js/partials.js"></script>
+  <script src="assets/js/router.js" defer></script>
+  <script src="assets/js/search.js" defer></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous">
+</head>
+
+<body class="pace-done is-3-column light">
+
+  <!-- NAVIGATION BAR -->
+  <div id="navBarContainer"></div>
+
+  <section class="section">
+    <div class="container">
+      <div class="columns">
+
+        <!-- CENTRAL PANE -->
+        <div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen">
+          <div class="card">
+            <article class="card-content article" role="article">
+              <a class="howto-back" href="howTo/"><i class="fas fa-arrow-left"></i>&nbsp; All guides</a>
+              <h1 class="title is-size-3">How to book a meeting</h1>
+              <hr />
+              <div class="content howto-guide">
+                <!-- Nota: in questa pagina i link interni vanno scritti come
+                     href="/howTo/bookMeeting/#sezione" (per via di <base href="/">). -->
+                <p>If you are doing your thesis with me, you do not need to email me for a
+                meeting: book one of the weekly slots yourself. Students of my courses should
+                instead <a href="mailto:federico.ghioldi@polimi.it?subject=[FGH.IO]%20-%20Office%20hours">email
+                me</a> to ask for an appointment.</p>
+
+                <h2 id="rule"><p style="color: #3273dc">1. One meeting per week</p></h2>
+                <p>You can book <strong>at most one meeting per week</strong>. This keeps slots
+                free for everyone. If you book more than one slot in the same week, the extra
+                bookings will be cancelled. For anything urgent, write me an email.</p>
+
+                <h2 id="book"><p style="color: #3273dc">2. Book a slot</p></h2>
+                <!-- DA FARE: mettere qui il link della pagina di prenotazione -->
+                <p><span class="button is-primary howto-book is-disabled" aria-disabled="true">
+                  <i class="fas fa-calendar-check"></i>&nbsp;&nbsp;Book a slot (link coming soon)</span></p>
+                <ol>
+                  <li>Open the booking page and pick a free slot.</li>
+                  <li>Write your name and the title of your thesis.</li>
+                  <li>Add one line on what you want to discuss.</li>
+                </ol>
+
+                <h2 id="before"><p style="color: #3273dc">3. Before the meeting</p></h2>
+                <ul>
+                  <li>Push your latest work to your
+                  <a href="howTo/prepareThesisGit/">thesis repository</a>, so I can look at it.</li>
+                  <li>Prepare the two or three points you want to discuss, with the figures or
+                  results you need to show.</li>
+                </ul>
+
+                <h2 id="cancel"><p style="color: #3273dc">4. If you cannot come</p></h2>
+                <p>Cancel the booking from the confirmation email as soon as you know, so that
+                someone else can use the slot.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- LEFT PANE -->
+        <div class="column column-left is-4-tablet is-4-desktop is-3-widescreen order-1">
+          <div id="leftPaneContainer"></div>
+        </div>
+
+        <!-- RIGHT PANE -->
+        <div class="column column-right is-4-tablet is-4-desktop is-3-widescreen order-3">
+          <div id="rightPaneContainer"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div id="footerContainer"></div>
+
+  <!-- Parti comuni: inserite subito (dalla cache se disponibile) -->
+  <script id="mx-partials">
+    loadPartial("#navBarContainer", "./common/navBar.html");
+    loadPartial("#leftPaneContainer", "./common/leftPane.html");
+    loadPartial("#rightPaneContainer", "./common/rightPane.html");
+    loadPartial("#footerContainer", "./common/footer.html");
+  </script>
+
+  <script src="assets/js/script.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/columns.js"></script>
+
+</body>
+
+</html>

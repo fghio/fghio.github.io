@@ -1276,3 +1276,4 @@ html.mx body .teaching-links { display: flex; flex-wrap: wrap; gap: 0.35rem 1.1r
 html.mx body .teaching-links a { color: var(--accent-text); font-weight: 500; }
 html.mx body .teaching-soon { color: var(--text-muted); }
 html.mx body .nowrap { white-space: nowrap; }
+html.mx body .howto-book.is-disabled { opacity: 0.55; cursor: default; pointer-events: none; }
