@@ -3,11 +3,11 @@
   <article class="card-content article" 
     data-metadata='{
       "creationDate": "2024-12-01", 
-      "lastModificationDate": "2025-04-29", 
+      "lastModificationDate": "2026-11-22", 
       "title": "tex2html: conversion tool to simplify my blogger life", 
       "views": 1000, 
-      "wordCount": 500,
-      "readTime": "15 min",
+      "wordCount": 1800,
+      "readTime": "9 min",
       "tags": ["python", "latex", "html"],
       "description": "This conversion tool may become highly valuable for my future projects."
     }'>
@@ -22,29 +22,31 @@
           <time><div class="post-date">01/12/2024</div></time>
         </span>
         <span class="level-item is-hidden-mobile"><i class="far fa-calendar-check">&nbsp;</i>
-          <time><div class="last-updated">02/12/2024</div></time>
+          <time><div class="last-updated">22/11/2026</div></time>
         </span>
         <span class="level-item"><i class="far fa-folder-open has-text-grey"></i>&nbsp;
           <a class="link-muted" href="./blog">blog</a>
         </span>
         <span class="level-item"><i class="far fa-clock"></i>&nbsp;
-          <div class="read-time">5 minutes</div>
+          <div class="read-time">9 minutes</div>
         </span>
       </div>
     </div>
 
     <div class="content" style="margin-top: 1.0rem">
 
-
+<h2 id="Why" style="scroll-margin: 1em;">
+  <a href="#Why" class="headerlink" title="Why tex2html"></a>
+  Why tex2html
+</h2>
 
 <p align="justify">
-A causa del tipo di lavoro che faccio, mi risulta molto più facile produrre testo in formato latex piuttosto che in HTML. Questa cosa è ottima per la stesura di documenti scientifici, ma non è altrettanto positiva per la creazione rapida di articoli da integrare in questo sito. La problematica è particolarmente rilevante quando il post è lungo e complesso, o contiene equazioni, figure, tabelle o porzioni di codice come sarà in questo caso. Ahimè, anche il formato markdown è scomodo per me, poichè non sono abituato ad usarlo.
+Because of the kind of work I do, it is much easier for me to produce text in LaTeX than in HTML. That is great for writing scientific documents, but not so great for quickly creating articles to add to this website. The problem gets worse when the post is long and complex, or contains equations, figures, tables or pieces of code, as this one does. Alas, Markdown is not convenient for me either, since I am not used to it.
 </p>
 
 <p align="justify">
-Dunque, per facilitarmi la scrittura di post da aggiungere alla sezione progetti e blog, ho pensato di costruire un convertitore di testo da latex a HTML usando python, e l'ho chiamato "tex2html".
+So, to make writing posts for the projects and blog sections easier, I decided to build a LaTeX-to-HTML text converter in Python, and I called it "tex2html".
 </p>
-
 
 <!-- card del repository (gh-card.dev ha chiuso: card statica) -->
 <a class="repo-card" href="https://github.com/fghio/tex2html" target="_blank" rel="noopener">
@@ -53,21 +55,25 @@ Dunque, per facilitarmi la scrittura di post da aggiungere alla sezione progetti
   <span class="repo-card__lang"><span class="repo-card__dot"></span>Python</span>
 </a>
 
+<p align="justify">
+Two notes. First: a tool like this probably already exists, but I found it faster to write one from scratch than to make an existing online tool work (or even just adapt my writing to it). Second: this post has a bit of an "Inception" effect. In fact, the HTML of this very post comes straight out of the tool presented here. After all, what better way to test it?!
+</p>
 
+<h2 id="PlainText" style="scroll-margin: 1em;">
+  <a href="#PlainText" class="headerlink" title="From LaTeX to plain HTML"></a>
+  From LaTeX to plain HTML
+</h2>
 
 <p align="justify">
-Due note. La prima: probabilmente esiste già un tool del genere, ma ho ritenuto più veloce scriverne uno da zero, piuttosto che cercare di fare funzionare (o anche solo adattare la mia scrittura ad) un tool esistente online. Seconda nota: questo post avrà un po' l'effetto "Inception". In effetti, la scrittura HTML di questo post deriva dall'output diretto del tool qui presentato. Del resto, quale modo migliore per testarlo?!
+Let's start from the beginning. I will not explain here what a LaTeX document is, or how to write one. There are plenty of examples for that, and less experienced readers are invited to watch <a href="https://youtu.be/QY2zdhSY48M?si=zuePtIGop0Fpnocp" target="_blank">one of these</a>.
 </p>
 
 <p align="justify">
-Partiamo dal principio. Non si spiega qui cosa sia un documento latex, o come si scriva un documento latex. Esistono fior fior di esempi per quello, e l'utente meno esperto è invitato a guardare <a href="https://youtu.be/QY2zdhSY48M?si=zuePtIGop0Fpnocp" target="_blank">uno di questi</a>.
-</p>
-<p align="justify">
-Qui si fa riferimento semplicemente alle caratteristiche principali che un documento latex contiene. Possiamo suddividere il documento in due grandi parti: il preambolo e il corpo del testo. Il preambolo contiene almeno la dichiarazione di formato del documento, il caricamento dei pacchetti e la definizione di eventuali macro. Il corpo del testo (più interessante per noi in questo caso) può contenere: testo, immagini, tabelle, elenchi puntati o numerati, code snippets, ecc.
+Here I only refer to the main features that a LaTeX document contains. The document can be split into two big parts: the preamble and the body. The preamble contains at least the document class, the packages to load and the definition of any macros. The body (the more interesting part for us) can contain: text, images, tables, bulleted or numbered lists, code snippets, and so on.
 </p>
 
 <p align="justify">
-Partiamo da un documento latex pulito, e assumiamo che <i>main.tex</i> contenga quanto segue:
+Let's start from a clean LaTeX document, and assume that <i>main.tex</i> contains the following:
 </p>
 
             <figure class="highlight tex hljs" id="code-6693777230479307">
@@ -100,21 +106,20 @@ Partiamo da un documento latex pulito, e assumiamo che <i>main.tex</i> contenga 
             </figure>
             
 <p align="justify">
-È evidente che l'html che andremo a generare come output della conversione non deve essere suscettibile al formato del documento. Al contrario, il formato dell'html è dipendente dal container nel quale viene messo, il quale a sua volta è dipendente dalla struttura del sito web. Non sono nemmeno interessanti ai fini della conversione i pacchetti da caricare nel documento latex. Dunque, per generalizzare la conversione latex-to-html e facilitare la generazione di un output utilizzabile nel sito web, cerchiamo di limitare la creazione di macro (soprattutto legate alle equazioni).
+Clearly, the HTML we generate as the output of the conversion must not depend on the document class. On the contrary, the layout of the HTML depends on the container it is placed in, which in turn depends on the structure of the website. The packages loaded in the LaTeX document do not matter for the conversion either. So, to keep the LaTeX-to-HTML conversion general and make it easy to produce output usable on the website, we try to limit the use of macros (especially those related to equations).
 </p>
 
 <p align="justify">
-Ciò che rimane da convertire, quindi, è il contenuto del file "text.tex" nel corpo del documento latex; e sempre considerando l'"inception" di cui sopra, la costruzione di questo articolo viene proprio dal file "text.tex" appena menzionato.
+What is left to convert, then, is the content of the file "text.tex" in the body of the LaTeX document; and, keeping in mind the "inception" mentioned above, this very article was built from that same "text.tex" file.
 </p>
 
 <p align="justify">
-Partiamo da un caso semplice: il file contiene solo del testo plain (come molti di questi paragrafi).
+Let's start from a simple case: the file only contains plain text (like many of these paragraphs).
 </p>
 
 <p align="justify">
-Scriviamo un codice python che legga il file text.tex e scriva l'output in <i>output.html</i>. La funzione python deve quindi: 1) procedere alla lettura di ogni riga contenuta nel file tex di input; 2) fare precedere a questa stessa < p >; 3) far concludere la stessa con < / p >. Alla dichiarazione del paragrafo (< p >) si può aggiungere dello stile CSS a piacere che sia compatibile con lo stile usato nel website di riferimento o nel quale inserire l'output prodotto. Un esempio è dato di seguito:
+We write a Python script that reads text.tex and writes the output to <i>output.html</i>. The Python function must therefore: 1) read each line of the input tex file; 2) put &lt;p&gt; in front of it; 3) close it with &lt;/p&gt;. Any CSS style can be added to the paragraph declaration (&lt;p&gt;), as long as it is compatible with the style of the website where the output will be placed. An example is given below:
 </p>
-
 
             <figure class="highlight text hljs" id="code-5659304886988659">
               <figcaption class="level is-mobile">
@@ -146,64 +151,68 @@ Scriviamo un codice python che legga il file text.tex e scriva l'output in <i>ou
             </figure>
             
 <p align="justify">
-C'è da dire che le righe possono contenere testo in <b>grassetto</b> (text bold), <i>corsivo</i> (text italic), oppure <b><i>combinazioni</b></i> di questi stessi. Per questo conviene creare una funzione che: 1) faccia un parse delle righe; 2) capisca quale setting è attivo; 3) sostituisca la funzione latex con il corrispettivo HTML; infine 4) chiuda lo stile (bold, italic, ...) quando non più in uso. Con questo semplice escamotage si riesce quindi a trattare un testo generico, senza figure, tabelle, elenchi, equazioni, ... esattamente come questo. Durante il parsing delle righe può capitare di incontrare un hyperlink (un po' come accaduto in questo post, poco più in alto). La stessa funzione di supporto può individuare che un link è presente nel testo, e trasformarlo in un link interpretabile in html, come appunto avvenuto sopra.
+Lines may also contain <b>bold</b> text, <i>italic</i> text, or <b><i>combinations</i></b> of the two. For this reason it is convenient to write a function that: 1) parses each line; 2) understands which style is active; 3) replaces the LaTeX command with its HTML counterpart; and finally 4) closes the style (bold, italic, ...) when it is no longer in use. With this simple trick we can handle generic text, without figures, tables, lists, equations, ... exactly like this one. While parsing the lines we may also find a hyperlink (as happened a little earlier in this post). The same helper function can detect that a link is present in the text and turn it into a link that HTML understands, as indeed happened above.
 </p>
 
+<h2 id="EquationsLists" style="scroll-margin: 1em;">
+  <a href="#EquationsLists" class="headerlink" title="Equations and lists"></a>
+  Equations and lists
+</h2>
+
 <p align="justify">
-Il passo successivo è il trattamento di formule. Ovviamente il testo può contenere formule matematiche o equazioni scritte usando: a) il simbolo del dollaro a delimitazione, o b) un wrapper per l'ambiente equation. Sapendo che il testo prodotto deve essere facilmente interpretabile in ambiente web, per equazioni complesse è preferibile usare la seconda delle due opzioni. Per la versione semplice (delimitazione con dollaro) è sufficiente aggiungere un simbolo di dollaro ulteriore a inizio e fine dell'equazione stessa. Per formule complesse, il codice deve essere in grado di interpretare una formula del tipo
+The next step is handling formulas. Of course, the text may contain mathematical formulas or equations written using: a) dollar signs as delimiters, or b) a wrapper for the equation environment. Since the output must be easy to render on the web, the second option is preferable for complex equations. For the simple version (dollar delimiters) it is enough to add one more dollar sign at the beginning and at the end of the equation. For complex formulas, the code must be able to interpret a formula such as
 </p>
+
 $$ \nabla \cdot \mathbf{u} = 0 \tag{1}$$
 
 <p align="justify">
-producendo un output come quello che si sta visualizzando a schermo. Per una corretta interpretazione dell'equazione, è sufficiente andare a controllare all'interno delle righe di testo latex se è presente la dicitura "begin equation". In caso positivo, si attiverà l'ambiente matematico per HTML fino alla successiva chiusura quando il reader incontrerà la formula "end equation". Tutto ciò che è contenuto in ambiente equation (latex) può quindi essere convertito (in HTML) ottenendo il risultato mostrato in Equazione 1.
+producing an output like the one you are seeing on screen. To interpret the equation correctly, it is enough to check whether the LaTeX lines contain "begin equation". If they do, the HTML math environment is switched on until the reader meets "end equation". Everything inside the (LaTeX) equation environment can then be converted (to HTML), giving the result shown in Equation 1.
 </p>
 
 <p align="justify">
-Ovviamente, se almeno una equazione è presente nel testo, è necessario che al termine della creazione del testo html venga aggiunta anche la riga che carica il jason di MathJax. Quest'ultimo permette la visualizzazione online di formule matematiche.
+Of course, if the text contains at least one equation, the line that loads MathJax must also be added at the end of the generated HTML. MathJax is what renders mathematical formulas on the web.
 </p>
 
 <p align="justify">
-Andando nel dettaglio dell'implementazione, tex2html è un codice python strutturato a classi. Dunque, per l'ambiente matematico, è richiesto l'import della classe Math, e l'uso della stessa per
+Going into the details of the implementation, tex2html is Python code organised in classes. For the math environment, the Math class is imported and used to
 </p>
+
 <ul>
-<li>attivare l'ambiente equation in HTML;</li>
-<li>trascrivere le equazioni in formato compatibile con MathJax;</li>
-<li>chiudere l'ambiente stesso quando l'equazione è terminata.</li>
+<li>switch on the equation environment in HTML;</li>
+<li>write the equations in a MathJax-compatible format;</li>
+<li>close the environment when the equation is over.</li>
 </ul>
 
 <p align="justify">
-Particolare attenzione va prestata anche alla numerazione delle equazioni, in modo da poterne poi fare un riferimento puntuale nel testo.
+Particular care is also needed for equation numbering, so that equations can be referenced precisely in the text.
 </p>
 
 <p align="justify">
-Nel paragrafo precedente spicca un'ulteriore feature! Elenchi numerati (o puntati) possono essere presenti spesso in testi, e necessariamente devono poter essere trattati con il tool qui proposto. Il funzionamento è del tutto simile a quanto visto per l'ambiente equation: viene caricata la classe in grado di trattare elenchi puntati e numerati in tex2html; il file viene letto riga per riga; il corrispondente ambiente HTML viene attivato quando un elenco è presente nel testo; il contenuto viene correttamente suddiviso in items; l'ambiente viene chiuso quando vi è una chiusura dello stesso nel file latex.
+The previous paragraph shows another feature! Numbered (or bulleted) lists often appear in texts, and the tool must be able to handle them. It works much like the equation environment: tex2html loads the class that handles bulleted and numbered lists; the file is read line by line; the corresponding HTML environment is switched on when a list appears in the text; the content is split into items; the environment is closed when the list is closed in the LaTeX file.
 </p>
 
 <p align="justify">
-L'integrazione di ambienti combinati (matematico e di elenchi, ad esempio) è una naturale evoluzione. Infatti, elenchi puntati o numerati possono avere equazioni al loro interno. Tali situazioni vengono gestite dal tool qui proposto con cross-check di attivazione e disattivazione di ambienti multipli, ben consapevoli che tipicamente <i>equation</i> può essere integrato in <i>itemize</i> o <i>enumerate</i>, mentre il contrario non è vero.
+Combining environments (math and lists, for example) is a natural next step. Indeed, bulleted or numbered lists can contain equations. The tool handles these situations by cross-checking when multiple environments are switched on and off, keeping in mind that <i>equation</i> can typically be nested inside <i>itemize</i> or <i>enumerate</i>, while the opposite is not true.
+</p>
+
+<h2 id="FiguresTables" style="scroll-margin: 1em;">
+  <a href="#FiguresTables" class="headerlink" title="Figures and tables"></a>
+  Figures and tables
+</h2>
+
+<p align="justify">
+The next step is the figure environment. Figures can be included in LaTeX text with includegraphics. The figure environment is switched on and off as shown above for equation and itemize. The figure has its caption and its label, both easy to handle. In LaTeX it is common to use "centering" (preferable to "begin center") to center the image. In this tool, "centering" is deliberately skipped. Image sizing is much harder to handle, and it often depends on the HTML environment the image is placed in. For this reason, sizing is left to the interested reader (and developer). Here is an example anyway, keeping in mind that the path to the image may differ between the LaTeX and the HTML environment.
+</p>
+
+<img src="assets/images/blog/cat.webp" class="box px-0 py-0 ml-auto mr-auto" width="500" title="An example of an image, with an example caption." alt="An example of an image, with an example caption.">
+
+<p align="justify">
+Mind one detail. On the web everything is sequential, so there is no need to reposition figures in the HTML text (there is no page layout to do). That is why, in LaTeX, no placement option was given next to the figure environment (e.g. [!ht]). Such options are not supported by this conversion tool anyway.
 </p>
 
 <p align="justify">
-Lo step successivo è l'ambiente figure. Figure possono essere inglobate nel testo latex usando includeGraphics. L'ambiente figure è attivato e disattivato come mostrato precedentemente per equation e itemize. La figura possiede la sua caption, la sua label,
+Let's move on to the last two key aspects: tables and code (algorithms). The first one is extremely easy. Here is an example of a table.
 </p>
-<p align="justify">
-entrambe facilmente gestibili. Spesso può capitare che in latex si usi un "centering"
-</p>
-<p align="justify">
-(da preferirsi a "begin center") per centrare l'immagine. In questo tool, "centering" è volutamente skippato. Infatti, la gestione della dimensione delle immagini è decisamente più difficoltosa, e spesso dipendente dall'ambiente HTML in cui l'immagine viene inserita. Per questo motivo, in questo caso, la gestione della dimensione è lasciata al lettore (e sviluppatore) interessato. Propongo comunque un esempio qui di seguito, sapendo bene che il path per includere l'immagine potrebbe essere diverso tra l'ambiente latex e quello html.
-</p>
-
-
-<img src="assets/images/blog/cat.webp" class="box px-0 py-0 ml-auto mr-auto" width="500" title="Un esempio di immagine, con un esempio di caption." alt="Un esempio di immagine, con un esempio di caption.">
-
-<p align="justify">
-Attenzione ad un dettaglio. È ben noto come in ambito web tutto sia sequenziale; dunque, non c'è bisogno di riposizionare le figure nel testo HTML (non c'è impaginazione da fare). Quindi, in latex, nessuna particolare indicazione è stata data accanto alla dichiarazione dell'ambiente figure (e.g. [!ht]). Tali indicazioni, comunque, non sono supportate nel tool di conversione qui proposto.
-</p>
-
-<p align="justify">
-Passiamo agli ultimi due aspetti fondamentali: tabelle e script (agoritmi). Il primo dei due è estremamente facile. Un esempio di tabella si trova qui di seguito.
-</p>
-
 
 <div class="table-container">
 <table class="table is-bordered is-striped is-hoverable is-fullwidth"style="border: 2px solid rgb(140 140 140); font-family: arial, sans-serif; #border-collapse: collapse;">
@@ -227,15 +236,20 @@ Passiamo agli ultimi due aspetti fondamentali: tabelle e script (agoritmi). Il p
 </div>
 
 <p align="justify">
-Come fatto precedentemente, l'ambiente table e il sottoambiente tabular vengono riconosciuti, attivati per la costruzione in HTML, e chiusi (sia in latex che in HTML) sulla base delle funzioni begin ed end. Ovviamente le celle all'interno dell'ambiente possono contenere equazioni matematiche (tipicamente in riga, ovvero delimitate da simboli di dollaro). Possiamo quindi passare ogni linea (o il contenuto di ogni cella della table) attraverso il filtro che individua e converte equazioni in linea. Le equazioni vengono convertite in formato HTML, ottenendo il risultato mostrato nell'esempio qui sopra. La tabella possiede la sua caption, ed è quindi riprodotta correttamente (e in modo generale), dipendentemente dai settaggi css imposti nel sito web dentro al quale viene inserita.
+As before, the table environment and the tabular sub-environment are recognised, switched on for the HTML construction, and closed (both in LaTeX and in HTML) according to begin and end. Of course, cells may contain mathematical equations (typically inline, i.e. delimited by dollar signs). So each line (or the content of each cell of the table) can be passed through the filter that finds and converts inline equations. The equations are converted to HTML, giving the result shown in the example above. The table has its caption, and is therefore reproduced correctly (and in a general way), depending on the CSS settings of the website it is placed in.
 </p>
 
 <p align="justify">
-Personalmente, volendo mantenere uno standard coerente per le tabelle, ho uno stile html aggiunto al termine della conversione, una volta sola (anche in caso di più di una tabella presente nel testo), se l'ambiente table viene attivato almeno una volta.
+Personally, since I want a consistent style for tables, I add an HTML style at the end of the conversion, only once (even if the text contains more than one table), if the table environment was used at least once.
 </p>
 
+<h2 id="Code" style="scroll-margin: 1em;">
+  <a href="#Code" class="headerlink" title="Code blocks"></a>
+  Code blocks
+</h2>
+
 <p align="justify">
-Ultimo step: gli algoritmi. Per niente facile. La spiegazione sarà anche un po' complessa. Partiamo da un esempio (anche se altri esempi sono già stati proposti sopra):
+Last step: algorithms. Not easy at all, and the explanation will be a bit involved. Let's start from an example (even though other examples have already been shown above):
 </p>
 
             <figure class="highlight python hljs" id="code-7411201767269392">
@@ -268,28 +282,34 @@ Ultimo step: gli algoritmi. Per niente facile. La spiegazione sarà anche un po'
             </figure>
             
 <p align="justify">
-In latex abbiamo algoritmi dentro l'ambiente verbatim. Quindi, come fatto precedentemente, possiamo individuare l'attivazione e la disattivazione degli stessi con "begin" e "end" verbatim. Tutto quello che è contenuto all'interno può essere trasformato in righe di codice da mostrare in post HTML. Certo, questo non giustifica la bella grafica usata in questo post (ispirata da <a href="https://leimao.github.io/" target="_blank">Lei Mao</a>, che usa il mio stesso template). Anzitutto tex2html deve salvare le righe contenute in ambiente verbatim. Queste righe devono essere contate e spezzate nelle parti principali, senza però eliminare l'indentazione, che per alcuni codici è fondamentale oltre che piacevole alla vista. È evidente che il codice viene spezzato in funzione delle sue parti principali, che vengono colorate per facilitarne la comprensione sulla base dello stile presente in css. Per la suddivisione e la conversione si può usare una libreria molto comoda: "pygments". In questo modo diamo per assodato che il contenuto del codice sia gestito correttamente.
+In LaTeX, algorithms sit inside the verbatim environment. So, as before, we can detect when it starts and ends with "begin" and "end" verbatim. Everything inside can be turned into lines of code to show in an HTML post. Of course, this does not explain the nice look of the code in this post (inspired by <a href="https://leimao.github.io/" target="_blank">Lei Mao</a>, who uses my same template). First of all, tex2html must store the lines inside the verbatim environment. These lines must be counted and split into their main parts, without removing the indentation, which for some languages is essential as well as pleasant to look at. The code is split according to its main parts, which are coloured to make it easier to read, based on the CSS style. For the splitting and conversion there is a very handy library: "pygments". This way we can take it for granted that the content of the code is handled correctly.
 </p>
 
 <p align="justify">
-In HTML, l'ambiente possiede due ulteriori features (inutili in latex): 1) fold/unfold the code; 2) copy in clipboard. Di seguito ecco una rapida spiegazione di come sono gestiti.
+In HTML, the environment has two extra features (useless in LaTeX): 1) fold/unfold the code; 2) copy to the clipboard. Here is a quick explanation of how they work.
 </p>
 
 <p align="justify">
-Ogni codice prodotto in HTML ha un numero associato (un random number al momento della generazione), quindi un identificativo. Questo serve per gli script associati a fold/unfold e copy, per riconoscere a quale codice si sta facendo riferimento. Le due icone sono cliccabili. In un caso (fold/unfold), al click corrisponde un cambio di stato, per il solo codice corrispondente all'ID, per cui il contenuto dell'algoritmo viene mostrato o nascosto. Contestualmente, la freccia cambia direzione ad indicare che il contenuto può essere folded, o unfolded. Nell'altro caso (copy), il contenuto dell'algoritmo viene aggiungo alla clipboard (copiato), indipendentemente dallo stato di visualizzazione dello stesso. Ad indicare l'avvenuta copia, il simbolo in alto a destra cambia, diventando una spunta di successo dell'operazione.
+Each code block produced in HTML has a number attached (a random number drawn at generation time), and therefore an identifier. The fold/unfold and copy scripts use it to know which code block they refer to. Both icons are clickable. In one case (fold/unfold), a click changes the state of that code block only, so its content is shown or hidden. At the same time, the arrow changes direction to show that the content can be folded or unfolded. In the other case (copy), the content of the algorithm is copied to the clipboard, whether it is currently shown or not. To show that the copy worked, the icon in the top right corner turns into a check mark.
 </p>
 
 <p align="justify">
-Per ogni algoritmo presente nel testo, viene costruita questa struttura. Ciascuno ha un identificativo diverso. Dunque, gli script sono prodotti in output una volta sola, al termine della conversione del documento latex, solo se il documento contiene almeno un algoritmo.
+This structure is built for every algorithm in the text, each with its own identifier. The scripts, instead, are written to the output only once, at the end of the conversion of the LaTeX document, and only if the document contains at least one algorithm.
+</p>
+
+<h2 id="WrapUp" style="scroll-margin: 1em;">
+  <a href="#WrapUp" class="headerlink" title="Wrapping up"></a>
+  Wrapping up
+</h2>
+
+<p align="justify">
+This concludes the (very superficial) explanation of how the tex2html converter works. Interested readers can clone the repository, fork it, propose suggestions, additions, changes... or tweak the code however they like!
 </p>
 
 <p align="justify">
-Questo conclude la spiegazione (molto superficiale) del funzionamento del programma di conversione tex2html. L'utente interessato può clonare la repository, fare un fork, proporre suggerimenti, integrazioni, modifiche...o aggiustare il codice come più lo soddisfa!
+Once again, bringing you a needlessly complicated tool for a fairly simple problem. This time, though, with a touch of inception!
 </p>
 
-<p align="justify">
-Ancora una volta, bringing you un tool inutilmente complicato per un problema relativamente semplice da gestire. Questa volta però, con un tocco di inception!
-</p>
 <style>
 th,
 td {
@@ -332,7 +352,7 @@ tr:nth-child(even) {
                         icon.classList.add('fa-copy'); 
                     }, 2000);                       // AFTER 2s GO BACK TO STD COPY ICON
                 } catch (err) {
-                    console.error('Impossibile copiare il testo: ', err);
+                    console.error('Could not copy the text: ', err);
                 }
                 
                 window.getSelection().removeAllRanges();
@@ -391,7 +411,7 @@ tr:nth-child(even) {
           <div class="level-item is-narrow">
             <div>
               <h6>Updated on</h6>
-              <p>29-04-2025</p>
+              <p>22-11-2026</p>
             </div>
           </div>
         </div>
