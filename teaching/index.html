@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" class="mx">
+
+<head>
+  <!-- Tema scuro applicato prima di tutto: niente flash bianco -->
+  <script>try{if(localStorage.getItem("night")==="true")document.documentElement.classList.add("dark")}catch(e){}</script>
+  <!-- Chrome aspetta a disegnare la pagina fino a quando le parti comuni sono inserite -->
+  <link rel="expect" href="/teaching/#mx-partials" blocking="render">
+
+  <!-- Pagina NON collegata dal resto del sito (bozza): raggiungibile solo con il
+       link diretto. I percorsi relativi partono dalla radice del sito. -->
+  <base href="/">
+  <meta name="robots" content="noindex, nofollow">
+
+  <title>FGh.io - Teaching</title>
+  <link rel="shortcut icon" href="assets/images/logo.ico">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="assets/css/default.css">
+  <link rel="stylesheet" href="assets/css/modern.css">
+  <script src="assets/js/jquery-3.7.1.min.js"></script>
+  <script src="assets/js/partials.js"></script>
+  <script src="assets/js/router.js" defer></script>
+  <script src="assets/js/search.js" defer></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous">
+</head>
+
+<body class="pace-done is-3-column light">
+
+  <!-- NAVIGATION BAR -->
+  <div id="navBarContainer"></div>
+
+  <section class="section">
+    <div class="container">
+      <div class="columns">
+
+        <!-- CENTRAL PANE -->
+        <div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen">
+          <div class="card">
+            <article class="card-content article" role="article">
+              <h1 class="title is-size-3">Teaching</h1>
+              <hr />
+              <div class="content">
+                <p>The courses I teach or assist at Politecnico di Milano, and what students
+                can find here.</p>
+
+                <h2 id="Courses">
+                  <a href="#Courses" class="headerlink" title="Courses"></a>
+                  <p style="color: #3273dc">Courses</p>
+                </h2>
+
+                <div class="cv-entry">
+                  <div class="left-column">
+                    <h4><p style="font-weight: 400; font-size: 14px">from 2027</p></h4>
+                  </div>
+                  <div class="right-column">
+                    <h4>
+                      <p style="font-weight: 400;">
+                        Bridging Experiments, High-Fidelity Simulations and Advanced Diagnostics in Propulsion Systems <span class="cv-badge">Incoming</span>
+                        <br>
+                        <span style="font-size: 12px;">Ph.D. course · Lecturer, co-taught with Prof. S. Carlotti</span>
+                      </p>
+                    </h4>
+                  </div>
+                </div>
+                <div class="cv-entry">
+                  <div class="left-column">
+                    <h4><p style="font-weight: 400; font-size: 14px">09/2020 - present</p></h4>
+                  </div>
+                  <div class="right-column">
+                    <h4>
+                      <p style="font-weight: 400;">
+                        Computational Techniques for Thermochemical Propulsion
+                        <br>
+                        <span style="font-size: 12px;">M.Sc. course · Teaching assistant, course held by Prof. F. Piscaglia</span>
+                      </p>
+                    </h4>
+                  </div>
+                </div>
+                <div class="cv-entry">
+                  <div class="left-column">
+                    <h4><p style="font-weight: 400; font-size: 14px">09/2021 - present</p></h4>
+                  </div>
+                  <div class="right-column">
+                    <h4>
+                      <p style="font-weight: 400;">
+                        Aerodynamics
+                        <br>
+                        <span style="font-size: 12px;">M.Sc. course · Teaching assistant, course held by Prof. L. Cortelezzi (2021-2024) and Prof. M. Quadrio (from 2025)</span>
+                      </p>
+                    </h4>
+                  </div>
+                </div>
+                <div class="cv-entry">
+                  <div class="left-column">
+                    <h4><p style="font-weight: 400; font-size: 14px">09/2024 - present</p></h4>
+                  </div>
+                  <div class="right-column">
+                    <h4>
+                      <p style="font-weight: 400;">
+                        Aerospace Propulsion
+                        <br>
+                        <span style="font-size: 12px;">B.Sc. course · Teaching assistant, course held by Prof. C. Paravan</span>
+                      </p>
+                    </h4>
+                  </div>
+                </div>
+                <div class="cv-entry">
+                  <div class="left-column">
+                    <h4><p style="font-weight: 400; font-size: 14px">09/2024 - 08/2026</p></h4>
+                  </div>
+                  <div class="right-column">
+                    <h4>
+                      <p style="font-weight: 400;">
+                        High Performance Computing in Aerospace
+                        <br>
+                        <span style="font-size: 12px;">M.Sc. course · Teaching assistant, course held by Prof. F. Piscaglia</span>
+                      </p>
+                    </h4>
+                  </div>
+                </div>
+
+                <h2 id="Students">
+                  <a href="#Students" class="headerlink" title="For students"></a>
+                  <p style="color: #3273dc">For students</p>
+                </h2>
+
+                <div class="teaching-grid">
+                  <a class="teaching-tile" href="mailto:federico.ghioldi@polimi.it?subject=[FGH.IO]%20-%20Office%20hours">
+                    <i class="fas fa-user-clock"></i>
+                    <strong>Office hours</strong>
+                    <span>By appointment: email me with the course name in the subject.</span>
+                  </a>
+                  <a class="teaching-tile" href="/theses">
+                    <i class="fas fa-graduation-cap"></i>
+                    <strong>M.Sc. theses</strong>
+                    <span>Open thesis proposals and how to apply.</span>
+                  </a>
+                  <a class="teaching-tile" href="/projectArchive?id=OF">
+                    <i class="fas fa-laptop-code"></i>
+                    <strong>CFD course</strong>
+                    <span>Free material on CFD and OpenFOAM, step by step.</span>
+                  </a>
+                  <a class="teaching-tile" href="/contact">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <strong>Where to find me</strong>
+                    <span>Department of Aerospace Science and Technology, Via La Masa 34.</span>
+                  </a>
+                </div>
+
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- LEFT PANE -->
+        <div class="column column-left is-4-tablet is-4-desktop is-3-widescreen order-1">
+          <div id="leftPaneContainer"></div>
+        </div>
+
+        <!-- RIGHT PANE -->
+        <div class="column column-right is-4-tablet is-4-desktop is-3-widescreen order-3">
+          <div id="rightPaneContainer"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div id="footerContainer"></div>
+
+  <!-- Parti comuni: inserite subito (dalla cache se disponibile) -->
+  <script id="mx-partials">
+    loadPartial("#navBarContainer", "./common/navBar.html");
+    loadPartial("#leftPaneContainer", "./common/leftPane.html");
+    loadPartial("#rightPaneContainer", "./common/rightPane.html");
+    loadPartial("#footerContainer", "./common/footer.html");
+  </script>
+
+  <script src="assets/js/script.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/columns.js"></script>
+
+</body>
+
+</html>
