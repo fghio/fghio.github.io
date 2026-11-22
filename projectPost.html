@@ -6,6 +6,8 @@
   <script>try{if(localStorage.getItem("night")==="true")document.documentElement.classList.add("dark")}catch(e){}</script>
   <!-- Indirizzi senza .html (es. /curriculum): toglie l'estensione da vecchi link e preferiti -->
   <script>(function(){try{var p=location.pathname;if(/\.html$/.test(p))history.replaceState(null,"",p.replace(/(^|\/)index\.html$/,"$1").replace(/\.html$/,"")+location.search+location.hash)}catch(e){}})()</script>
+  <!-- Chrome aspetta a disegnare la pagina fino a quando le parti comuni sono inserite -->
+  <link rel="expect" href="#mx-partials" blocking="render">
 
   <title>FGh.io - Projects</title>
 
@@ -15,20 +17,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="assets/css/default.css">
   <link rel="stylesheet" href="assets/css/modern.css">
-  <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <!-- Font, icone e immagini delle parti comuni scaricati subito: pronti al primo disegno, niente "lampi" -->
-  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="assets/images/logo.ico" as="image">
-  <link rel="preload" href="assets/images/profile-img-white.webp" as="image">
-  <link rel="preload" href="assets/images/viwoods.webp" as="image">
   <link rel="stylesheet" href="assets/css/slideshow.css">
   
   <script src="assets/js/jquery-3.7.1.min.js"></script>
   <script src="assets/js/partials.js"></script>
-  <!-- Chrome aspetta a disegnare la pagina fino a quando le parti comuni sono inserite.
-       Va DOPO jQuery: i test interni di jQuery all'avvio farebbero smettere l'attesa. -->
-  <link rel="expect" href="#mx-partials" blocking="render">
   <script src="assets/js/pflock.js"></script>
   <script src="assets/js/search.js" defer></script>
   
