@@ -147,7 +147,15 @@
         return;
       }
       storedKey().then(function (key) {
-        if (!key) return form(el, url);
+        if (!key) {
+          // un campo <input> inserito mentre la pagina si sta ancora caricando
+          // fa smettere a Chrome di attendere le parti comuni (colonne che
+          // "lampeggiano"): il modulo si inserisce a pagina analizzata
+          if (document.readyState === "loading") {
+            return document.addEventListener("DOMContentLoaded", function () { form(el, url); });
+          }
+          return form(el, url);
+        }
         return show(el, key, url).catch(function () { forget(); form(el, url); });
       });
     },

@@ -49,8 +49,34 @@
       else s.text = old.text;
       el.appendChild(s);
     });
+    renderTags(null, false);
     placeRightPane();
   }
+
+  // Tag del blog nella colonna destra (e nella pagina Tags). L'elenco è
+  // calcolato da tags.js e tenuto in sessionStorage: se c'è, lo si disegna
+  // insieme alla colonna, così compare già nel primo fotogramma.
+  function esc(t) {
+    return String(t).replace(/[&<>"]/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+    });
+  }
+  function renderTags(entries, force) {
+    if (!entries) {
+      try { entries = JSON.parse(sessionStorage.getItem("blogTags:v1")); } catch (e) {}
+    }
+    if (!Array.isArray(entries) || !entries.length) return;
+    var html = entries.map(function (e) {
+      return '<div class="control"><a class="tags has-addons" href="./tagArticles?tag=' +
+        encodeURIComponent(e[0]) + '"><span class="tag">' + esc(e[0]) +
+        '</span><span class="tag is-grey-lightest">' + esc(e[1]) + "</span></a></div>";
+    }).join("");
+    ["tagsLocation", "tagsLocationFull"].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el && (force || !el.children.length)) el.innerHTML = html;
+    });
+  }
+  window.mxRenderTags = renderTags;
 
   // Sotto i 1280px la colonna destra non ci sta: il suo contenuto va in fondo
   // alla colonna sinistra (#leftStorageForRightPane). Va fatto subito, insieme

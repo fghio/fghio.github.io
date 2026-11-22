@@ -60,37 +60,11 @@ $(document).ready(function () {
     generateTagsWidget();
   }
 
-  // Function to generate the tags widget HTML
+  // Il widget è disegnato da mxRenderTags (partials.js), che lo riempie anche
+  // subito dalla cache quando la colonna destra viene inserita: qui va
+  // ridisegnato solo se i tag sono stati appena calcolati.
   function generateTagsWidget() {
-
-    // Target the location by ID
-    const tagsLocation = $('#tagsLocation').add('#tagsLocationFull');
-
-    // Loop through the tags and counts, and add them to the widget
-    tagsMap.forEach((count, tag) => {
-      const tagElement = $(`
-        <div class="control">
-          <a class="tags has-addons" id=${tag}>
-            <span class="tag">${tag}</span>
-            <span class="tag is-grey-lightest">${count}</span>
-          </a>
-        </div>
-     `);
-      tagsLocation.append(tagElement);
-    });
-    
-    // Add click event handler to tag links
-    $('.control .tags').on('click', function () {
-      const tagId = $(this).attr('id'); // Get the id attribute
-      //console.log(tagId);
-      displayBlogCardsByTag(tagId);
-    });
-
-  }
-  
-  function displayBlogCardsByTag(tagId) {
-    // Redirect to the new page with the tag as a URL parameter
-    window.location.href = `./tagArticles?tag=${tagId}`;
+    if (window.mxRenderTags) window.mxRenderTags([...tagsMap], true);
   }
 
   // I tag vengono calcolati scaricando tutti gli articoli: il risultato viene
@@ -100,14 +74,15 @@ $(document).ready(function () {
   try { cachedTags = JSON.parse(sessionStorage.getItem(CACHE_KEY)); } catch (e) {}
 
   if (Array.isArray(cachedTags)) {
-    cachedTags.forEach(([tag, count]) => tagsMap.set(tag, count));
-    generateTagsWidget();
+    // già disegnati da partials.js; serve solo se il contenitore è vuoto
+    if (window.mxRenderTags) window.mxRenderTags(cachedTags, false);
   } else {
     loadBlogCards()
       .then(() => loadTags())
       .then(() => {
         if (tagsMap.size === 0) return; // non salvare un risultato vuoto (es. rete assente)
         try { sessionStorage.setItem(CACHE_KEY, JSON.stringify([...tagsMap])); } catch (e) {}
+        if (window.mxPlaceRightPane) window.mxPlaceRightPane();
       })
       .catch(() => {});
   }
