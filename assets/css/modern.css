@@ -1122,6 +1122,7 @@ html.mx body .pf-lock-icon {
   font-size: 1.1rem;
 }
 html.mx body .pf-lock .title { margin-bottom: 0.4rem; }
+html.mx body .pf-lock-meta { margin-bottom: 0.9rem; }
 html.mx body .pf-lock p { color: var(--text-muted); font-size: 0.9rem; }
 html.mx body .pf-lock-form {
   display: flex; gap: 0.5rem;

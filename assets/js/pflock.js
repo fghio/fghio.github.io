@@ -115,6 +115,10 @@
       (inCard ? '<div><div class="pf-lock">' : '<div class="card"><div class="card-content pf-lock">') +
       '<div class="pf-lock-icon"><i class="fas fa-lock"></i></div>' +
       '<h1 class="title is-size-4">Personal Finance Spreadsheet</h1>' +
+      // come negli altri progetti: la cartella "projects" per tornare all'elenco
+      '<div class="article-meta is-size-7 is-uppercase pf-lock-meta">' +
+      '<i class="far fa-folder-open has-text-grey"></i>&nbsp; ' +
+      '<a class="link-muted" href="./projects">projects</a></div>' +
       '<p>This project is password protected.</p>' +
       '<form class="pf-lock-form" autocomplete="off">' +
       '<input class="input" type="password" name="pw" placeholder="Password" aria-label="Password" required>' +

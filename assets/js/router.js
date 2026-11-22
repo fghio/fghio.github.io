@@ -18,7 +18,8 @@
 
   var PAGES = {
     "/": 1, "/curriculum": 1, "/projects": 1, "/theses": 1, "/contact": 1,
-    "/blog": 1, "/projectArchive": 1, "/tags": 1, "/tagArticles": 1
+    "/blog": 1, "/projectArchive": 1, "/tags": 1, "/tagArticles": 1,
+    "/blogPost": 1, "/projectPost": 1
   };
 
   // script comuni a tutte le pagine: già caricati, non vanno rieseguiti
@@ -48,6 +49,11 @@
   // attesi prima di passare al successivo)
   function run(list) {
     return list.reduce(function (p, old) {
+      // jQuery & co. sono già caricati (alcune pagine ne includono un'altra copia)
+      if (old.src && COMMON.test(old.getAttribute("src").split("?")[0])) {
+        if (old.ownerDocument === document && old.parentNode) old.parentNode.removeChild(old);
+        return p;
+      }
       return p.then(function () {
         return new Promise(function (done) {
           var s = document.createElement("script");
@@ -104,6 +110,46 @@
   // colonne laterali: restano, ma si allineano le classi (es. is-sticky) e le
   // parti proprie della pagina (es. il riquadro "donate" dell'archivio
   // progetti), cioè tutto ciò che non è il contenitore comune
+  // colonna destra: i post non ce l'hanno (la centrale è più larga). Uscendo
+  // da una pagina che ce l'ha la si mette da parte, e la si rimette tornando
+  // su una pagina che ce l'ha (se la pagina è stata aperta su un post, la si
+  // crea e la si riempie con la parte comune).
+  var parkedRight = null, parkedStorage = "";
+  function syncRight(doc) {
+    var cur = document.querySelector(".column-right"), next = doc.querySelector(".column-right");
+    var storage = document.getElementById("leftStorageForRightPane");
+    if (cur && !next) {
+      parkedRight = cur;
+      cur.parentNode.removeChild(cur);
+      // sotto i 1280px il contenuto della colonna destra (tag compresi) sta in
+      // fondo alla sinistra: lo si mette da parte insieme alla colonna
+      if (storage) { parkedStorage = storage.innerHTML; storage.innerHTML = ""; }
+    } else if (!cur && next) {
+      var cols = document.querySelector(".column-main").parentNode;
+      if (parkedRight && parkedStorage && storage && window.innerWidth <= 1280) {
+        cols.appendChild(parkedRight);
+        storage.innerHTML = parkedStorage;              // com'era prima del post
+        return;
+      }
+      if (parkedRight) {
+        cols.appendChild(parkedRight);
+      } else {
+        cols.appendChild(document.importNode(next, true));
+        if (window.loadPartial) window.loadPartial("#rightPaneContainer", "./common/rightPane.html");
+      }
+      if (window.mxPlaceRightPane) window.mxPlaceRightPane();
+    }
+  }
+
+  // commenti Disqus: a ogni post il suo thread; lo script di Disqus va
+  // ricaricato da capo (il post lo inserisce di nuovo)
+  function resetDisqus() {
+    if (!window.DISQUS) return;
+    try { delete window.DISQUS; } catch (e) { window.DISQUS = undefined; }
+    document.querySelectorAll('script[src*="disqus.com/embed.js"], link[href*="disqus"], iframe[src*="disqus"]')
+      .forEach(function (el) { el.parentNode.removeChild(el); });
+  }
+
   function syncSide(doc, sel, keep) {
     var cur = document.querySelector(sel), next = doc.querySelector(sel);
     if (!cur || !next) return [];
@@ -157,6 +203,8 @@
       shown = url.pathname + url.search;
 
       addStyles(doc);
+      resetDisqus();
+      syncRight(doc);
       var node = document.importNode(fresh, true);
       var inner = Array.prototype.slice.call(node.querySelectorAll("script"));
       main.parentNode.replaceChild(node, main);

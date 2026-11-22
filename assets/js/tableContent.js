@@ -13,7 +13,7 @@ function generateTableOfContents() {
     sectionItems.forEach((sectionItem) => {
       const sectionId = sectionItem.getAttribute('data-href').substring(1);
       const sectionElement = document.getElementById(sectionId);
-      if (sectionElement.offsetTop <= scrollPosition) {
+      if (sectionElement && sectionElement.offsetTop <= scrollPosition) {
         sectionItems.forEach((item) => item.classList.remove('is-active'));
         sectionItem.classList.add('is-active');
       }
@@ -21,6 +21,9 @@ function generateTableOfContents() {
   }
 
   // Listen for scroll events to update the highlighted section.
+  // un solo gestore anche aprendo più post senza ricaricare la pagina
+  if (window.mxTocScroll) window.removeEventListener('scroll', window.mxTocScroll);
+  window.mxTocScroll = highlightCurrentSection;
   window.addEventListener('scroll', highlightCurrentSection);
 
   headerLinkElements.forEach((headerLink, index) => {
