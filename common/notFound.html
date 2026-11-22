@@ -1,0 +1,73 @@
+<!-- Scheda "pagina non trovata": usata da 404.html e, via mxNotFound() in
+     partials.js, dalle pagine che caricano un post o un progetto inesistente.
+     Link con percorsi assoluti: vale a qualsiasi profondità. -->
+<div class="card">
+  <article class="card-content article notfound">
+    <p class="notfound-code">404</p>
+    <h1 class="title is-size-3">Page not found</h1>
+    <!-- robottino rotto (disegno originale, segue i colori del tema) -->
+    <svg class="notfound-robot" viewBox="0 0 260 200" role="img" aria-label="A broken robot">
+      <g class="nf-line">
+        <!-- terreno -->
+        <path d="M20 182 H240"/>
+        <!-- fumo -->
+        <g class="nf-smoke">
+          <path d="M150 40 q-8 -6 0 -12 q8 -6 0 -12"/>
+          <path d="M162 34 q-6 -5 0 -10 q6 -5 0 -10"/>
+        </g>
+        <!-- antenna piegata con scintilla -->
+        <path d="M118 62 V44 l14 -10"/>
+        <circle cx="134" cy="32" r="3.5" class="nf-fill-accent"/>
+        <g class="nf-spark">
+          <path d="M142 24 l6 -5 M144 32 h8 M140 18 l2 -7"/>
+        </g>
+        <!-- testa (inclinata) -->
+        <g transform="rotate(-8 118 84)">
+          <rect x="88" y="62" width="60" height="44" rx="10" class="nf-fill"/>
+          <!-- occhio rotto (X) e occhio a spirale -->
+          <path d="M101 76 l10 10 M111 76 l-10 10"/>
+          <circle cx="133" cy="81" r="6"/>
+          <circle cx="133" cy="81" r="2" class="nf-fill-accent"/>
+          <!-- bocca a zig zag -->
+          <path d="M102 96 l5 -4 l5 4 l5 -4 l5 4 l5 -4 l5 4"/>
+          <!-- bullone sulle tempie -->
+          <path d="M84 80 h4 M148 84 h4"/>
+        </g>
+        <!-- collo a molla -->
+        <path d="M112 106 q6 3 12 0 q-6 3 -12 6 q6 3 12 0"/>
+        <!-- corpo con sportello aperto -->
+        <rect x="84" y="116" width="68" height="50" rx="8" class="nf-fill"/>
+        <rect x="96" y="126" width="26" height="22" rx="3"/>
+        <path d="M122 126 l14 -6 v22 l-14 6"/>
+        <!-- fili che pendono -->
+        <path d="M102 148 q-6 10 -2 22 M112 148 q8 8 4 20"/>
+        <circle cx="130" cy="156" r="3"/>
+        <circle cx="141" cy="156" r="3"/>
+        <!-- braccio sinistro a penzoloni -->
+        <path d="M84 126 q-16 8 -14 26 l-4 8 M70 152 l6 6"/>
+        <!-- braccio destro staccato, a terra -->
+        <path d="M152 124 l5 3 l-2 4"/>
+        <circle cx="180" cy="177" r="4" class="nf-fill"/>
+        <path d="M184 176 l26 -7"/>
+        <path d="M210 169 l7 -6 M210 169 l9 1"/>
+        <!-- gambe / ruote -->
+        <path d="M100 166 v8 M136 166 v8"/>
+        <circle cx="100" cy="177" r="5" class="nf-fill"/>
+        <circle cx="136" cy="177" r="5" class="nf-fill"/>
+        <!-- vite e molla cadute -->
+        <path d="M44 176 h10 M49 176 v-8 M45 168 h8"/>
+        <path d="M60 180 q3 -6 6 0 q3 -6 6 0 q3 -6 6 0"/>
+      </g>
+    </svg>
+    <p>The page you are looking for does not exist or has been moved.<br>
+       Maybe one of these is what you need:</p>
+    <div class="notfound-links">
+      <a class="button is-primary" href="/"><i class="fas fa-home"></i>&nbsp;&nbsp;Home</a>
+      <a class="button" href="/theses"><i class="fas fa-graduation-cap"></i>&nbsp;&nbsp;Theses</a>
+      <a class="button" href="/curriculum"><i class="fas fa-file-alt"></i>&nbsp;&nbsp;Curriculum</a>
+      <a class="button" href="/blog"><i class="fas fa-pen"></i>&nbsp;&nbsp;Blog</a>
+    </div>
+    <p class="notfound-help">You can also use the search <i class="fas fa-search"></i> in the top bar,
+       or <a href="/contact">get in touch</a>.</p>
+  </article>
+</div>

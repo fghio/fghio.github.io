@@ -136,8 +136,11 @@
             console.log('postTitle:', postTitle);
             if (postTitle && projectTitle === 'spreadsheet') {
               // progetto protetto da password (contenuto cifrato)
-              PFLock.mount($('.column-main')[0],
-                `./posts/projects/spreadsheetPosts/${encodeURIComponent(postTitle)}.enc`);
+              // (prima si controlla che il post esista)
+              const encUrl = `./posts/projects/spreadsheetPosts/${encodeURIComponent(postTitle)}.enc`;
+              fetch(encUrl, { method: 'HEAD' })
+                .then(function (r) { if (r.ok) PFLock.mount($('.column-main')[0], encUrl); else mxNotFound(); })
+                .catch(function () { mxNotFound(); });
             } else if (postTitle) {
               // Fetch the content of the blog post based on postTitle
               $.ajax({
@@ -148,10 +151,11 @@
                   // titolo della scheda (e per Google) = titolo del post
                   var h = $('.column-main h1.title').first().text().replace(/\s+/g, ' ').trim();
                   if (h) document.title = h + ' - FGh.io';
-                }
+                },
+                error: function () { mxNotFound(); }   // post inesistente
               });
             } else {
-              console.log('Post title not found for this card.');
+              mxNotFound();   // nessun post indicato
             }
           });
           </script>

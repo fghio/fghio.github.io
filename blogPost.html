@@ -76,10 +76,11 @@
                   // titolo della scheda (e per Google) = titolo del post
                   var h = $('.column-main h1.title').first().text().replace(/\s+/g, ' ').trim();
                   if (h) document.title = h + ' - FGh.io';
-                }
+                },
+                error: function () { mxNotFound(); }   // post inesistente
               });
             } else {
-              console.log('Post title not found for this card.');
+              mxNotFound();   // nessun post indicato
             }
           });
           </script>

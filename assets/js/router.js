@@ -200,6 +200,7 @@
         history.pushState({ mx: 1, y: 0 }, "", url.href);
       }
       document.title = doc.title;
+      document.querySelectorAll("meta[data-mx-notfound]").forEach(function (m) { m.remove(); });
       shown = url.pathname + url.search;
 
       addStyles(doc);

@@ -73,6 +73,26 @@
   }
   window.mxPlaceRightPane = placeRightPane;
 
+  // Post o progetto inesistente (es. blogPost?post=xyz): la pagina esiste, ma
+  // il contenuto no. Al posto del contenuto si mostra la scheda della 404.
+  window.mxNotFound = function (el) {
+    el = el || document.querySelector(".column-main");
+    if (!el) return;
+    var url = "./common/notFound.html";
+    var cached = read(url);
+    if (cached !== null) render(el, cached);
+    else fetchPartial(url).done(function (html) { write(url, html); render(el, html); });
+    document.title = "Page not found - FGh.io";
+    var toc = document.getElementById("my-table-content");
+    if (toc) toc.style.display = "none";
+    if (!document.querySelector('meta[name="robots"]')) {
+      var m = document.createElement("meta");
+      m.name = "robots"; m.content = "noindex";
+      m.setAttribute("data-mx-notfound", "");
+      document.head.appendChild(m);
+    }
+  };
+
   window.loadPartial = function (selector, url) {
     var el = document.querySelector(selector);
     if (!el) return;
