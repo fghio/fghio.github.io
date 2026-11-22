@@ -117,7 +117,7 @@
       '<h1 class="title is-size-4">Personal Finance Spreadsheet</h1>' +
       // come negli altri progetti: la cartella "projects" per tornare all'elenco
       '<div class="article-meta is-size-7 is-uppercase pf-lock-meta">' +
-      '<i class="far fa-folder-open has-text-grey"></i>&nbsp; ' +
+      '<i class="far fa-folder-open has-text-grey"></i>&nbsp; Go back to ' +
       '<a class="link-muted" href="./projects">projects</a></div>' +
       '<p>This project is password protected.</p>' +
       '<form class="pf-lock-form" autocomplete="off">' +
