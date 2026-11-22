@@ -1,24 +1,9 @@
-window.onload = function () {
-  const leftStorage = document.getElementById('leftStorageForRightPane');
-  const rightColumn = document.querySelector('.column-right');
-  if (!leftStorage || !rightColumn) return; // es. blogPost.html non ha la colonna destra
-
-  function handleResize() {
-    if (window.innerWidth <= 1280) {
-      // Move content to left storage when the screen size is <= 1280px
-      leftStorage.innerHTML = rightColumn.innerHTML;
-      rightColumn.style.display = 'none';
-    } else {
-      // Show right column when the screen size is > 1280px
-      leftStorage.innerHTML = '';
-      rightColumn.style.display = 'block';
-    }
-  }
-
-  // Initial setup on page load
-  handleResize();
-
-  // Check and update on window resize
-  window.addEventListener('resize', handleResize);
-};
-
+/* La colonna destra va in fondo alla sinistra sotto i 1280px.
+ * Il posizionamento iniziale lo fa partials.js (subito, insieme alle parti
+ * comuni); qui resta solo l'aggiornamento quando la finestra cambia misura. */
+(function () {
+  if (window.mxPlaceRightPane) window.mxPlaceRightPane();
+  window.addEventListener("resize", function () {
+    if (window.mxPlaceRightPane) window.mxPlaceRightPane();
+  });
+})();

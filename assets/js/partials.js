@@ -49,7 +49,29 @@
       else s.text = old.text;
       el.appendChild(s);
     });
+    placeRightPane();
   }
+
+  // Sotto i 1280px la colonna destra non ci sta: il suo contenuto va in fondo
+  // alla colonna sinistra (#leftStorageForRightPane). Va fatto subito, insieme
+  // all'inserimento delle parti comuni, non a pagina caricata: altrimenti le
+  // colonne cambiano forma quando la pagina è già visibile.
+  function placeRightPane() {
+    var storage = document.getElementById("leftStorageForRightPane");
+    var right = document.querySelector(".column-right");
+    if (!storage || !right) return;
+    // si copia solo il contenuto (senza il contenitore e il suo id), e solo
+    // quando la colonna destra è già stata riempita
+    var content = right.querySelector("#rightPaneContainer") || right;
+    if (window.innerWidth <= 1280) {
+      if (content.innerHTML.trim() && storage.innerHTML !== content.innerHTML) storage.innerHTML = content.innerHTML;
+      right.style.display = "none";
+    } else {
+      storage.innerHTML = "";
+      right.style.display = "";
+    }
+  }
+  window.mxPlaceRightPane = placeRightPane;
 
   window.loadPartial = function (selector, url) {
     var el = document.querySelector(selector);

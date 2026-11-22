@@ -713,8 +713,9 @@ html.mx.dark body .cv-badge { background: rgba(230, 180, 60, 0.16); color: #f0cf
 html.mx body #navBarContainer { view-transition-name: mx-navbar; }
 
 @media screen and (min-width: 769px) {
-  html.mx body #leftPaneContainer { view-transition-name: mx-left; }
-  html.mx body #rightPaneContainer { view-transition-name: mx-right; }
+  /* le colonne intere (anche indice dei post, riquadri aggiunti dalle pagine) */
+  html.mx body .column-left { view-transition-name: mx-left; }
+  html.mx body .column-right { view-transition-name: mx-right; }
 }
 
 /* Le parti comuni sono uguali tra le pagine: scambio istantaneo, nessun movimento */
