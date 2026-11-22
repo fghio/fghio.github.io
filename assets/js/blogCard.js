@@ -1,5 +1,7 @@
 $(document).ready(function () {
   const blogPreview = $('#blog-preview');
+  // incluso anche in pagine senza l'elenco dei post (Projects, Tags...): lì non fa nulla
+  if (!blogPreview.length) return;
   const blogPost = $('#blog-post');
   const pagination = $('#pagination');
   const postsPerPage = 4; // Number of posts to display per page
