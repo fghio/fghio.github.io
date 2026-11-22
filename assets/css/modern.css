@@ -124,7 +124,7 @@ html.mx body .content p[align="justify"] { text-align: left; hyphens: auto; }
 
 html.mx body a { color: var(--accent-text); transition: color 0.15s ease; }
 html.mx body a:hover { color: var(--accent-hover); }
-html.mx body .content a:not(.headerlink):not(.button):not(.tag) {
+html.mx body .content a:not(.headerlink):not(.button):not(.tag):not(.repo-card) {
   text-decoration: underline;
   text-decoration-color: color-mix(in srgb, var(--accent) 35%, transparent);
   text-underline-offset: 3px;
@@ -1162,3 +1162,20 @@ html.mx body .content .notification.is-light {
 /* niente legature nel codice: "</" e "//" devono restare leggibili */
 html.mx body .content pre,
 html.mx body .content code { font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0; }
+
+/* ---------- Card di un repository GitHub (post del blog) ------------------ */
+html.mx body .content a.repo-card, html.mx body .repo-card {
+  display: flex; flex-direction: column; gap: 0.35rem;
+  max-width: 440px; margin: 0.5rem auto 1.25rem;
+  padding: 0.9rem 1.1rem;
+  border: 1px solid var(--border); border-radius: 10px;
+  background: var(--card-bg);
+  color: inherit; text-decoration: none;
+  transition: border-color 0.15s ease;
+}
+html.mx body .repo-card:hover { border-color: var(--accent-text); }
+html.mx body .repo-card__name { color: var(--accent-text); font-size: 0.95rem; }
+html.mx body .repo-card__name .fa-github { margin-right: 0.3rem; }
+html.mx body .repo-card__desc { color: var(--text-muted); font-size: 0.85rem; line-height: 1.4; }
+html.mx body .repo-card__lang { color: var(--text-muted); font-size: 0.78rem; display: flex; align-items: center; gap: 0.35rem; }
+html.mx body .repo-card__dot { width: 0.7rem; height: 0.7rem; border-radius: 50%; background: #3572a5; }
