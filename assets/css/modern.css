@@ -1179,3 +1179,16 @@ html.mx body .repo-card__name .fa-github { margin-right: 0.3rem; }
 html.mx body .repo-card__desc { color: var(--text-muted); font-size: 0.85rem; line-height: 1.4; }
 html.mx body .repo-card__lang { color: var(--text-muted); font-size: 0.78rem; display: flex; align-items: center; gap: 0.35rem; }
 html.mx body .repo-card__dot { width: 0.7rem; height: 0.7rem; border-radius: 50%; background: #3572a5; }
+
+/* ---------- Pagina 404 ----------------------------------------------------- */
+html.mx body .notfound { text-align: center; padding: 2.5rem 1.5rem; }
+html.mx body .notfound .notfound-code {
+  font-size: 4.5rem; font-weight: 700; line-height: 1;
+  color: var(--accent-text); letter-spacing: -0.04em; margin-bottom: 0.75rem;
+}
+html.mx body .notfound .title { margin-bottom: 0.6rem; }
+html.mx body .notfound p { color: var(--text-muted); }
+html.mx body .notfound-links {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; margin: 1.4rem 0;
+}
+html.mx body .notfound-help { font-size: 0.85rem; }

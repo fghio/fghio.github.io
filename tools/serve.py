@@ -30,6 +30,21 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         self.send_error(404, "File not found")
         return None
 
+    def send_error(self, code, message=None, explain=None):
+        # come GitHub Pages: per gli indirizzi inesistenti si mostra 404.html
+        page = os.path.join(ROOT, "404.html")
+        if code == 404 and os.path.isfile(page):
+            with open(page, "rb") as f:
+                body = f.read()
+            self.send_response(404)
+            self.send_header("Content-Type", "text/html; charset=utf-8")
+            self.send_header("Content-Length", str(len(body)))
+            self.end_headers()
+            if self.command != "HEAD":
+                self.wfile.write(body)
+            return
+        super().send_error(code, message, explain)
+
     def end_headers(self):
         # come GitHub Pages ma senza cache lunga: le modifiche si vedono subito
         self.send_header("Cache-Control", "no-cache")

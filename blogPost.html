@@ -15,6 +15,17 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Anteprima nei motori di ricerca e quando il link viene condiviso -->
+  <meta name="description" content="A blog post by Federico Ghioldi.">
+  <meta name="author" content="Federico Ghioldi">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="FGh.io">
+  <meta property="og:title" content="Blog post | Federico Ghioldi">
+  <meta property="og:description" content="A blog post by Federico Ghioldi.">
+  <meta property="og:image" content="https://fghio.github.io/assets/images/og-card.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="assets/css/default.css">
   <link rel="stylesheet" href="assets/css/modern.css">
   <script src="assets/js/jquery-3.7.1.min.js"></script>
@@ -65,6 +76,9 @@
                 success: function (postContent) {
                   // Display the postContent in the central pane of the blogPost.html page
                   $('.column-main').html(postContent);
+                  // titolo della scheda (e per Google) = titolo del post
+                  var h = $('.column-main h1.title').first().text().replace(/\s+/g, ' ').trim();
+                  if (h) document.title = h + ' - FGh.io';
                 }
               });
             } else {
