@@ -95,6 +95,25 @@ $(document).ready(function () {
 
   // I tag vengono calcolati scaricando tutti gli articoli: il risultato viene
   // tenuto in cache per la sessione, così cambiando pagina compaiono subito.
+  // pagina Tags aperta senza ricaricare (router.js): l'elenco completo va
+  // riempito qui, la colonna destra è già a posto
+  document.addEventListener('mx:navigate', function () {
+    const full = $('#tagsLocationFull');
+    if (!full.length || full.children('.control').length || tagsMap.size === 0) return;
+    tagsMap.forEach((count, tag) => {
+      full.append(`
+        <div class="control">
+          <a class="tags has-addons" id=${tag}>
+            <span class="tag">${tag}</span>
+            <span class="tag is-grey-lightest">${count}</span>
+          </a>
+        </div>`);
+    });
+    full.find('.control .tags').on('click', function () {
+      displayBlogCardsByTag($(this).attr('id'));
+    });
+  });
+
   const CACHE_KEY = 'blogTags:v1';
   let cachedTags = null;
   try { cachedTags = JSON.parse(sessionStorage.getItem(CACHE_KEY)); } catch (e) {}

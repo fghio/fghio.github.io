@@ -16,10 +16,13 @@
 (function () {
   if (!window.fetch || !window.DOMParser || !history.pushState) return;
 
-  var PAGES = { "/": 1, "/curriculum": 1, "/projects": 1, "/theses": 1, "/contact": 1 };
+  var PAGES = {
+    "/": 1, "/curriculum": 1, "/projects": 1, "/theses": 1, "/contact": 1,
+    "/blog": 1, "/projectArchive": 1, "/tags": 1, "/tagArticles": 1
+  };
 
   // script comuni a tutte le pagine: già caricati, non vanno rieseguiti
-  var COMMON = /(^|\/)(jquery[^\/]*|partials|columns|back-to-top|script|main|search|pflock|router|cookieconsent(\.min)?)\.js$/;
+  var COMMON = /(^|\/)(jquery[^\/]*|partials|columns|back-to-top|script|main|search|router|cookieconsent(\.min)?)\.js$/;
 
   function key(path) {
     path = path.replace(/\.html$/, "").replace(/\/index$/, "/");
@@ -68,14 +71,54 @@
     }, Promise.resolve());
   }
 
+  // script propri della pagina: quelli del <head> non comuni (es. pflock.js,
+  // tagTheArticle.js) e quelli del <body> fuori dalla colonna centrale
+  function headScripts(doc) {
+    return Array.prototype.filter.call(doc.head.querySelectorAll("script[src]"), function (s) {
+      return !COMMON.test(s.getAttribute("src").split("?")[0]);
+    });
+  }
   function pageScripts(doc, main) {
     return Array.prototype.filter.call(doc.body.querySelectorAll("script"), function (s) {
       if (main.contains(s)) return false;              // già nella colonna centrale
+      var side = s.closest(".column-left, .column-right");
+      if (side) return false;                          // già con le colonne laterali
       if (s.id === "mx-partials") return false;         // parti comuni
       var src = s.getAttribute("src");
       if (src) return !COMMON.test(src.split("?")[0]);
       return s.text.indexOf("cookieconsent") === -1;    // banner cookie: una volta sola
     });
+  }
+
+  // fogli di stile del <head> della nuova pagina che qui mancano
+  function addStyles(doc) {
+    doc.head.querySelectorAll('link[rel="stylesheet"]').forEach(function (l) {
+      var href = new URL(l.getAttribute("href"), location.href).href;
+      var have = Array.prototype.some.call(document.querySelectorAll('link[rel="stylesheet"]'), function (m) {
+        return m.href === href;
+      });
+      if (!have) document.head.appendChild(document.importNode(l, true));
+    });
+  }
+
+  // colonne laterali: restano, ma si allineano le classi (es. is-sticky) e le
+  // parti proprie della pagina (es. il riquadro "donate" dell'archivio
+  // progetti), cioè tutto ciò che non è il contenitore comune
+  function syncSide(doc, sel, keep) {
+    var cur = document.querySelector(sel), next = doc.querySelector(sel);
+    if (!cur || !next) return [];
+    if (cur.className !== next.className) cur.className = next.className;
+    var scripts = [];
+    Array.prototype.slice.call(cur.children).forEach(function (el) {
+      if (el.id !== keep) cur.removeChild(el);
+    });
+    Array.prototype.forEach.call(next.children, function (el) {
+      if (el.id === keep) return;
+      var n = document.importNode(el, true);
+      cur.appendChild(n);
+      scripts = scripts.concat(Array.prototype.slice.call(n.querySelectorAll("script")));
+    });
+    return scripts;
   }
 
   // torna alla posizione y; con Indietro il contenuto (es. le card delle tesi)
@@ -113,9 +156,13 @@
       document.title = doc.title;
       shown = url.pathname + url.search;
 
+      addStyles(doc);
       var node = document.importNode(fresh, true);
       var inner = Array.prototype.slice.call(node.querySelectorAll("script"));
       main.parentNode.replaceChild(node, main);
+      inner = inner
+        .concat(syncSide(doc, ".column-left", "leftPaneContainer"))
+        .concat(syncSide(doc, ".column-right", "rightPaneContainer"));
 
       // menu mobile aperto: si chiude
       document.querySelectorAll(".navbar-burger.is-active, .navbar-menu.is-active")
@@ -125,7 +172,9 @@
       if (target) target.scrollIntoView();
       else scrollBack(y || 0);
 
-      return run(inner.concat(pageScripts(doc, fresh))).then(function () {
+      // ordine come in una pagina normale: <head>, colonne, resto del <body>
+      // (gli script delle colonne laterali sono esclusi: già in "inner")
+      return run(headScripts(doc).concat(inner, pageScripts(doc, fresh))).then(function () {
         document.dispatchEvent(new CustomEvent("mx:navigate", { detail: { url: url.href } }));
       });
     }).catch(function () {
