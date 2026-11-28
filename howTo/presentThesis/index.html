@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" class="mx">
+
+<head>
+  <!-- Tema scuro applicato prima di tutto: niente flash bianco -->
+  <script>try{if(localStorage.getItem("night")==="true")document.documentElement.classList.add("dark")}catch(e){}</script>
+  <!-- Chrome aspetta a disegnare la pagina fino a quando le parti comuni sono inserite -->
+  <link rel="expect" href="/howTo/presentThesis/#mx-partials" blocking="render">
+
+  <!-- Pagina NON collegata dal resto del sito: raggiungibile solo con il link
+       diretto. I percorsi relativi partono dalla radice del sito. -->
+  <base href="/">
+  <meta name="robots" content="noindex, nofollow">
+
+  <title>FGh.io - How to prepare your thesis presentation</title>
+  <link rel="shortcut icon" href="assets/images/logo.ico">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="assets/css/default.css">
+  <link rel="stylesheet" href="assets/css/modern.css">
+  <script src="assets/js/jquery-3.7.1.min.js"></script>
+  <script src="assets/js/partials.js"></script>
+  <script src="assets/js/router.js" defer></script>
+  <script src="assets/js/search.js" defer></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous">
+</head>
+
+<body class="pace-done is-3-column light">
+
+  <!-- NAVIGATION BAR -->
+  <div id="navBarContainer"></div>
+
+  <section class="section">
+    <div class="container">
+      <div class="columns">
+
+        <!-- CENTRAL PANE -->
+        <div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen">
+          <div class="card">
+            <article class="card-content article" role="article">
+              <a class="howto-back" href="howTo/"><i class="fas fa-arrow-left"></i>&nbsp; All guides</a>
+              <h1 class="title is-size-3">How to prepare your thesis presentation</h1>
+              <hr />
+              <div class="content howto-guide">
+                <!-- Nota: in questa pagina i link interni vanno scritti come
+                     href="/howTo/presentThesis/#sezione" (per via di <base href="/">). -->
+                <p>This page explains how to prepare the presentation for your M.Sc. thesis
+                defence: timing, slides, structure and what to bring on the day. If you follow
+                these indications, there is no need to rehearse the presentation with me.</p>
+
+                <h2 id="timing"><p style="color: #3273dc">Timing</p></h2>
+                <p>The presentation lasts <strong>15 minutes</strong>, followed by
+                <strong>5 minutes of questions</strong>. You must stay within the time.</p>
+                <p>As a rule of thumb, count about <strong>one minute per slide</strong>: this
+                gives a total of about <strong>15 slides</strong>. You can add extra slides,
+                not numbered, after the <a href="/howTo/presentThesis/#thanks">thank-you slide</a>: they are
+                useful to answer questions.</p>
+
+                <h2 id="template"><p style="color: #3273dc">Template and software</p></h2>
+                <p>The template is up to you. If you want to start from something ready, you can
+                use the Politecnico di Milano template.</p>
+                <p>I recommend <strong>PowerPoint</strong> rather than LaTeX, simply because it
+                is more convenient for a presentation.</p>
+
+                <h2 id="titleSlide"><p style="color: #3273dc">Title slide</p></h2>
+                <p>The first slide contains:</p>
+                <ul>
+                  <li>the title of the thesis;</li>
+                  <li>the date of the defence;</li>
+                  <li>your first name and surname;</li>
+                  <li>the first name and surname of your supervisor.</li>
+                </ul>
+
+                <h2 id="footer"><p style="color: #3273dc">Footer and slide numbers</p></h2>
+                <p>Every slide must be <strong>numbered</strong>, showing also the total number
+                of slides (e.g., 1/15). I suggest this footer on every slide:</p>
+                <ul>
+                  <li><strong>bottom left</strong>: <em>N. Surname &ndash; Title of the
+                  presentation</em>;</li>
+                  <li><strong>bottom right</strong>: <em>slide number / total number of
+                  slides</em>.</li>
+                </ul>
+                <div class="slide-mock" aria-hidden="true">
+                  <div class="slide-mock-title">Results</div>
+                  <div class="slide-mock-body"><span></span><span></span><span></span></div>
+                  <div class="slide-mock-foot">
+                    <span>M. Rossi &ndash; High-fidelity simulation of a scramjet combustor</span>
+                    <span>9/15</span>
+                  </div>
+                </div>
+                <p>The extra slides after the thank-you slide are not counted in the total.</p>
+
+                <h2 id="structure"><p style="color: #3273dc">Structure</p></h2>
+                <p>The presentation follows the same logic as
+                <a href="howTo/writeThesis/">your thesis</a>:</p>
+                <ol class="outline">
+                  <li><strong>Title slide</strong> (see <a href="/howTo/presentThesis/#titleSlide">above</a>).</li>
+                  <li><strong>Agenda</strong>: it is best to use the second slide to show how
+                  the presentation is organized.</li>
+                  <li><strong>Introduction</strong>: frames the problem.</li>
+                  <li><strong>Governing equations</strong>.</li>
+                  <li><strong>Methodology</strong>: one slide, or more if it is long.</li>
+                  <li><strong>Test cases</strong>: presents the cases studied, indicating the
+                  post-processing (where and what you extract to produce the plots).</li>
+                  <li><strong>Validation</strong>, if present.</li>
+                  <li><strong>Results</strong>, and <strong>performance</strong> if
+                  needed.</li>
+                  <li><strong>Conclusions</strong>.</li>
+                  <li id="thanks"><strong>Thank you</strong>: the last slide, which separates the
+                  presentation from the extra slides.</li>
+                </ol>
+
+                <h2 id="day"><p style="color: #3273dc">On the day</p></h2>
+                <p>To make the procedure easier, come with:</p>
+                <ul>
+                  <li><strong>your own computer</strong>;</li>
+                  <li>a <strong>USB stick</strong> with the presentation in both
+                  <strong>PowerPoint</strong> and <strong>PDF</strong> format.</li>
+                </ul>
+                <p>The presentation must not be uploaded to the website.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- LEFT PANE -->
+        <div class="column column-left is-4-tablet is-4-desktop is-3-widescreen order-1">
+          <div id="leftPaneContainer"></div>
+        </div>
+
+        <!-- RIGHT PANE -->
+        <div class="column column-right is-4-tablet is-4-desktop is-3-widescreen order-3">
+          <div id="rightPaneContainer"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div id="footerContainer"></div>
+
+  <!-- Parti comuni: inserite subito (dalla cache se disponibile) -->
+  <script id="mx-partials">
+    loadPartial("#navBarContainer", "./common/navBar.html");
+    loadPartial("#leftPaneContainer", "./common/leftPane.html");
+    loadPartial("#rightPaneContainer", "./common/rightPane.html");
+    loadPartial("#footerContainer", "./common/footer.html");
+  </script>
+
+  <script src="assets/js/script.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/columns.js"></script>
+
+</body>
+
+</html>
