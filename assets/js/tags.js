@@ -82,7 +82,6 @@ $(document).ready(function () {
     // Add click event handler to tag links
     $('.control .tags').on('click', function () {
       const tagId = $(this).attr('id'); // Get the id attribute
-      //console.log(tagId);
       displayBlogCardsByTag(tagId);
     });
 

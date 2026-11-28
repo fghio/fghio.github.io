@@ -7,7 +7,6 @@
     var isNight = localStorage.getItem('night');
     var nightNav;
 
-    // console.log("IsNight: ", isNight)
   
     function applyNight(value) {
         if (value.toString() === 'true') {

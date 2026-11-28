@@ -39,15 +39,7 @@
 </head>
 
 
-<body class="pace-done is-3-column light" 
-  data-new-gr-c-s-check-loaded="14.1134.0" data-gr-ext-installed>
-
-  <div class="pace pace-inactive">
-    <div class="pace-progress" data-progress-text="100%" data-progress="100" style="transform: translate3d(100%, 0px, 0px);">
-      <div class="pace-progress-inner"></div>
-    </div>
-    <div class="pace-activity"></div>
-  </div>
+<body class="is-3-column light">
 
   <!-- NAVIGATION BAR -->
   <div id="navBarContainer"></div>
@@ -65,7 +57,6 @@
             // This code should be placed here
             const urlParams = new URLSearchParams(window.location.search);
             const postTitle = urlParams.get('post');
-            console.log('postTitle:', postTitle);
             if (postTitle) {
               // Fetch the content of the blog post based on postTitle
               $.ajax({
@@ -130,12 +121,6 @@
   <script src="./assets/js/script.js"></script>
   <script src="./assets/js/main.js"></script>
   <script src="./assets/js/columns.js"></script>
-
-  <script>
-    $(function () {
-      // Load content dynamically
-    });
-  </script>
 
 </body>
 
